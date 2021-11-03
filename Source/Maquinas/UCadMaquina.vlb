@@ -1,0 +1,8 @@
+﻿[dbCtx.TMaquinas]
+Visible=False
+
+[dbCtx.TAuxTipoMaqVeic]
+
+[dbCtx.TAuxMarca]
+Visible=False
+

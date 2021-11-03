@@ -1,0 +1,15 @@
+﻿[dbCtx.TProdutos]
+Visible=False
+
+[dbCtx.TAuxCategorias]
+Visible=False
+
+[dbCtx.TAuxSubGrupo]
+Visible=False
+
+[dbCtx.TAuxGrupo]
+Visible=False
+
+[dbCtx.TAuxMarca]
+Visible=False
+

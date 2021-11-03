@@ -1,0 +1,439 @@
+object frmListaOrcamento: TfrmListaOrcamento
+  Left = 0
+  Top = 0
+  BorderIcons = [biMinimize, biMaximize]
+  BorderStyle = Single
+  Caption = 'Solicita'#231#227'o de Or'#231'amento'
+  ClientHeight = 480
+  ClientWidth = 1035
+  StyleBook = frmPrincipal.StyleBook1
+  WindowState = wsMaximized
+  FormFactor.Width = 320
+  FormFactor.Height = 480
+  FormFactor.Devices = [Desktop]
+  OnShow = FormShow
+  DesignerMasterStyle = 0
+  object ToolBar11: TToolBar
+    Size.Width = 1035.000000000000000000
+    Size.Height = 25.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Label22: TLabel
+      Align = Contents
+      Size.Width = 1035.000000000000000000
+      Size.Height = 25.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.HorzAlign = Center
+      Text = 'Solicita'#231#227'o de Or'#231'amento/ Ordem de Compra'
+      TabOrder = 0
+    end
+    object Image26: TImage
+      MultiResBitmap.Height = 64
+      MultiResBitmap.Width = 64
+      MultiResBitmap = <
+        item
+          Width = 64
+          Height = 64
+          PNG = {
+            89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+            DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            03A549444154785EED9B4B6B135114C73337CFC9A3188D8B762155AC605B1762
+            AD1F4041912A8AED07D0B63E16555BDDB8AA2BB72E44D0B6F40B4C71218A6E5A
+            74292A526D1A2110A52005898D343379A7F17F662EB1B1E03E73EE0F6EE79E73
+            67F33F731FE774269A671B5B5B5B3ADA18BAC3B55AADD7EFF7279C91F6A65AAD
+            667D3E5F12DD05AFD73BA7695AC919F1789A0180F041883670C33EE97225D0F9
+            1D1A4784101FC816D239B8B9B9F9C6EDE20908EF364DF32D340F90ADA1A3E3C9
+            7FE5207E3B3413B02C0E0B74C6B889276826D4EBF5515A02C38E8B25C3023B64
+            BF34D881A5DF2F4AA55258DAEC28168B51118D46D7A5CD0E68FF81BD402C499B
+            1DD0BE289015CD1886D1903E369066689FB533411C0733B88C539F114F71FC5F
+            B703805C20D8683416D01D229B01CF31FD4730032A762A0CA38C760141B85BA9
+            5472F62D2E04DA36A0710A5A2F9278F2B55483046E08E17C3C891BFAD1E2D2DD
+            D640530EED0B52DF25686A56820A8542A1502814ACD9910912A80D62B8F4A048
+            DAED78DA1B143D1BB8A49102E71DCF5F5A028074F118C44F67B3D9D389442220
+            DDAE009A2AD0F41AA9F07D04E293743BEF0508E4FF53C964F21DBAE7DC269E90
+            9ACEAFAEAEBE87D6DB8E57CE0038AE21324F6C0F1330DBAFA2389AA517235DA6
+            69A6239108AB7F8EE6F3F9624747C72181484C70134FC462311DDA6F6898FE9F
+            31FD8F483F2B1080657A2FB05FDAEC2897CB079AA700531A22140A65A4C18E60
+            3098A1F7022FA5CD0ED24EC760A76559E970381C917E16140A050BA75F0FB242
+            B1AEEBFAA4F4B3019A6F92767B13A48C0847C2642A95AADBA32E666D6DAD06AD
+            B7A0799EEC966208CBE12806A773B9DC99783C1E946E57004D65687A258BA165
+            E9FE6F397C10E5F01EC7D3DEA01CFE05E1693453BA140A8542A15028143B3241
+            64813A32C053C89AFAD07649775B83F4FE37DA0A32C245A4C145E9B669060037
+            7821FC4EB55ABD1708045C21FC5FE80330BFDFFF00817888876B177E7600F0D4
+            E933B967E89E259B012F30132E2108CE677210FF18172EE289213CF447D4A11F
+            4C9C300CE38AED6604348F43FB710DEB9EFE3170D971B3634EC3A697C17A60F9
+            6E003320234CD3EC94363BA0BD4BE8BA6E499B1DD09E173E9F6F45DAEC404EB0
+            42C7A0E198FCC0F16F68F8435F87A7B011764B3F0B68034446D84BAFC64AE88C
+            5896559063AE87B492663CF472B3164044069013186E9F09D0F90DFB1EFD5AE4
+            23D92DD5202D070461145DFAF97C1F3689BDCE487B032D3F213A496B1E0F789E
+            9EBC33E2F1FC011CDE9A1E41861BFD0000000049454E44AE426082}
+          FileName = 
+            'F:\Projetos\Clientes\FortalezaGuapore\Agricultura\Projeto\IMG\Lo' +
+            'go\menu.png'
+        end>
+      Align = Left
+      Margins.Left = 2.000000000000000000
+      Margins.Top = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Position.X = 2.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 35.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = Image26Click
+    end
+    object Image27: TImage
+      MultiResBitmap.Height = 64
+      MultiResBitmap.Width = 64
+      MultiResBitmap = <
+        item
+          Width = 64
+          Height = 64
+          PNG = {
+            89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+            DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+            032849444154785EED9BBD6FD34018C6EF6C8582485A3121C18010EC08D1940D
+            290D134C9405FE412624269808251352A308B121B120A4C208E4838F26B1E171
+            EFAC043789EFFCDEDD8BE03734778EED7B9E5F6C478A54299630DC6DBE93525E
+            555321E5E4E2D9E7AF3FAA296BC6B7AF5F48D3DAA19A8A649A7ED8ECF62EA9E9
+            0205018356F35614C9AE9A16A8770E964AE3C0A8BD93AA618154CC5A8D4EFFA5
+            9A6644EA3563DCDADE5B551EAC5A2034EBB24911EF0F769BF7D43423FF3407ED
+            EDFB91881EABE95AB85D09261F4C92A67B9B2F7A4F30CE4A8C5A37EF88287D8A
+            B1095C24D85C95B36476776BBFFFECF816B0280F38DC0EB619E228CE3A4B8A12
+            A1AE048AEC0B0F415B425C09546B9208003E2550AE452600F89040BD469488A4
+            AFC624B894407D6E743FFE1A74109AFAC1E82A631E92B30497D916027294E03A
+            53211C27093EB29C188C83045F1996860A29C1E7DA2B038590E07BCDB59F88CF
+            402184AF15007C040B511E9412005C060C551E9416005C047541D9F2C04800E0
+            2EC1A43C301600B84A302D0FAC04006E126CCA036B01808B04DBF2A09200105A
+            4295F2A0B200104A42D5F2804400F02D81A23C2013007C49A02A0F480500D712
+            28CB037201C09504EAF280F467F1BF91FFB7807A25E19F7E08FA2AAFA1924072
+            12DFE53514122A9F2054794D5509950E0E5D5E534582F5815CCA6B6C25581DC4
+            ADBCC64682F1015CCB6B4C2518EDCCBDBCC64442E91D5D94D7415D9E7B1DA576
+            F211309484B53BF80C1642C2CA374304F2BDE6D237425D92C0E7DA276E0C595E
+            E32B43610387F21A1F5916269CCA6B5C67CA071CCB6B5C66CBFE702EAF719551
+            0E5B371ECA287EA4B691405D5E432D2112C90392FF1798C755790DBD04425C97
+            07D46B9009F0515E43B91689009FE535546B46EF3F8D36D4D88A10E53555D77E
+            FB65762A3BC1A8DD1CFEFE46AC675B0D08597E1E9B0763FA2D1D375EF5EAD92D
+            50EFF41A5F859864EF94844B79609A653C1547288FF1C28187ED9DA32D216A6A
+            BA144EE5E7297325A0FCF9EE417EDB178A7C6E5FFB5E131BA7D5B400D7F29A55
+            1226E2E78F739D3767D434A3F02D801D62915C51D31C1CCCBD3C40466455D39C
+            782A2FFF595E08217E01B173B51AB662CDC10000000049454E44AE426082}
+          FileName = 
+            'F:\Projetos\Clientes\FortalezaGuapore\Agricultura\Projeto\IMG\cl' +
+            'ose.png'
+        end>
+      Align = Right
+      Margins.Left = 2.000000000000000000
+      Margins.Top = 3.000000000000000000
+      Margins.Bottom = 3.000000000000000000
+      Position.X = 1000.000000000000000000
+      Position.Y = 3.000000000000000000
+      Size.Width = 35.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      OnClick = Image27Click
+    end
+  end
+  object layMnuStatus: TLayout
+    Align = Left
+    Position.Y = 25.000000000000000000
+    Size.Width = 150.000000000000000000
+    Size.Height = 455.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object Rectangle22: TRectangle
+      Align = Client
+      Fill.Color = xFF0C0B0B
+      Opacity = 0.800000011920929000
+      Size.Width = 150.000000000000000000
+      Size.Height = 455.000000000000000000
+      Size.PlatformDefault = False
+      object btnImprimir: TRectangle
+        Align = Top
+        Fill.Kind = None
+        Margins.Left = 5.000000000000000000
+        Margins.Top = 5.000000000000000000
+        Margins.Right = 5.000000000000000000
+        Margins.Bottom = 5.000000000000000000
+        Position.X = 5.000000000000000000
+        Position.Y = 5.000000000000000000
+        Size.Width = 140.000000000000000000
+        Size.Height = 50.000000000000000000
+        Size.PlatformDefault = False
+        Stroke.Color = claWhite
+        OnClick = btnImprimirClick
+        object Image45: TImage
+          MultiResBitmap.Height = 64
+          MultiResBitmap.Width = 64
+          MultiResBitmap = <
+            item
+              Width = 64
+              Height = 64
+              PNG = {
+                89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
+                DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
+                043549444154785EED9BBD4F144114C0B9038E33A8018D12A389225A5868B0D4
+                DA68402016461B63AC2C8CDFA132FE0336C6D8F80F6865244A503B4B0C34460C
+                95106C0C1C880286C09D2CF87BBB2F44CE85DD59727B7BECFE92B979333B77F3
+                DEBB375FBB77559B657979B999F4706969A93F9FCF8F0F0D0D592B25626C6CEC
+                4FA150F86E59D607FABC4FDAAB6A840F9D6F439127B95C2EAFFA85CEFCFCFC1C
+                7A3C40AC56B5C2814E9BF8C6071D35CA0F5F441F3AD5AB7AA585FEB218FFD1E9
+                3A3AE0841EB2B4AA593AE8E891D36524B9AE6AFA26A5B92F08B3FDB3B3B3230D
+                0D0D59AD8A144C90E3B5B5B52DE9747A41AB3C310D99CB51355EC86432FBC8CE
+                3A257F183980103BA7626441C736157D61E4008640B38A51E690E6BE307200B3
+                FF6E15230B11B047455F98CE01A6EDCB81918E95605049315A0609AF6B6419A7
+                144DD0719A65F0951613121236C6750E60BDDF49D6C5783A4F3A486A72AE5416
+                A9542A47FA467A47B197B961CEB9B20E189AC6F8BB8B8B8B3F90B714D834856D
+                B711D7AC7CAB11C085ED34788197BAB46A4B828DAF89882BD8392F65DB01E215
+                B94065A794B73AD8FA5E6CC511961D0E38A03B2EC60BD8DA86CD77454EE18D5D
+                F97C7E349BCD36D857630273C22F6C6E9108B81437E3056C6E240A2EA67969D7
+                BAD881ED1D32F91DD1B22B96650DD0F034628B5BE2DA198EC95F912B0EB13D25
+                6B7E5D5DDDBAE77C0C3CC1A4F1458BAEF0415DCCA86FB4583130F74DCB10F07A
+                A8E0E7C46874AA8C0A627B6A61614166C375274186C02011708F6F7842AB8A39
+                CC1078565353B3E1508A2244FF8CA703B632E280D8DF114A1CA0796C491CA079
+                6C491CA0796CF1B3111AD08D504EAB2A027679CDE82E1BB4A35AF51FB20FA812
+                07D0785DD8E71FD7F615879C51D40C57C4763F43A022F7F98AA7EEA66701B9C5
+                BC2CF538501E911D103902B8E9E57946B1CF025EC7E1221AE96846043A6A25FB
+                24720408A4977D1CAEAEAE9ED472EC203A2688EEF488966307513392E6E5AD96
+                6307B6F7C92AF0D25E0F4B88D77DC5E244DB92DF67C4E69F38C0F91D01EB6537
+                9DFA6175B5406E75AABC09B297F05AC38B30D68BCFB71F8CD8FB003CF1988A5E
+                914B4490BD44C9F61FD82ACF079F8ABCDA0995F538E63993E205AD7223D072E3
+                E3BE6231A6F7197DEB859D3DB4BD8A3EF6C3D135F066794E7093F13185EC46A0
+                2110029E7A61D324B6DD405C1359AE6146C31D649D346E273593E4071229F60C
+                27F19CFD2303EA22B91142F763445C1FE20A75F203893192AC747DE8FE5BDAFC
+                4BE0711655079892DC0FD0DC189308907D804E82BEEE29C8B0E33D1B9EE58B08
+                1C01811107907CC1B80C6D1F604A58432048A4058E4E13C21A02A1ED034C4956
+                01CD634BE200CD634B60073007E4552C3B9BD125B003987446E5A6A216CB062B
+                CC675618DFFF132C66330E286432993B5A2C0BC3C3C316C6DFD2627960C7D6C1
+                9A3D247F6D27144341FEB14E9FFDF47D4AD5084855D55FBB0BEEA45341B7E300
+                00000049454E44AE426082}
+              FileName = 
+                'F:\Projetos\Clientes\FortalezaGuapore\Compras\Projeto\IMG\print.' +
+                'png'
+            end>
+          Align = Left
+          Locked = True
+          HitTest = False
+          Margins.Left = 5.000000000000000000
+          Margins.Top = 5.000000000000000000
+          Margins.Right = 5.000000000000000000
+          Margins.Bottom = 5.000000000000000000
+          Position.X = 5.000000000000000000
+          Position.Y = 5.000000000000000000
+          Size.Width = 36.000000000000000000
+          Size.Height = 40.000000000000000000
+          Size.PlatformDefault = False
+        end
+        object lblImprimir: TLabel
+          Align = Contents
+          StyledSettings = [Family, Style, FontColor]
+          Locked = True
+          Size.Width = 140.000000000000000000
+          Size.Height = 50.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.HorzAlign = Center
+          Text = 'Imprimir'
+          TabOrder = 1
+        end
+      end
+    end
+  end
+  object Layout46: TLayout
+    Align = Client
+    Size.Width = 885.000000000000000000
+    Size.Height = 455.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object Layout47: TLayout
+      Align = Top
+      Size.Width = 885.000000000000000000
+      Size.Height = 120.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      object GroupBox2: TGroupBox
+        Align = Client
+        Margins.Left = 2.000000000000000000
+        Margins.Top = 2.000000000000000000
+        Margins.Right = 2.000000000000000000
+        Margins.Bottom = 2.000000000000000000
+        Size.Width = 881.000000000000000000
+        Size.Height = 116.000000000000000000
+        Size.PlatformDefault = False
+        Text = 'Filtros'
+        TabOrder = 0
+        object edtFornecedorF: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          Position.X = 18.000000000000000000
+          Position.Y = 50.000000000000000000
+          Size.Width = 311.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          CharCase = ecUpperCase
+          OnChangeTracking = edtFornecedorFChangeTracking
+        end
+        object Label36: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 17.000000000000000000
+          Position.Y = 30.000000000000000000
+          Size.Width = 83.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'Fornecedor'
+          TabOrder = 7
+        end
+        object lblStatus: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 345.000000000000000000
+          Position.Y = 30.000000000000000000
+          Size.Width = 83.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'Status'
+          TabOrder = 6
+        end
+        object cbxStatusOrcamento: TComboBox
+          Items.Strings = (
+            'Todos'
+            'Solicitacao'
+            'Ordem de Compra')
+          Position.X = 344.000000000000000000
+          Position.Y = 50.000000000000000000
+          Size.Width = 193.000000000000000000
+          Size.Height = 31.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 0
+          OnChange = cbxStatusOrcamentoChange
+        end
+        object edtOrdemF: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 2
+          Position.X = 546.000000000000000000
+          Position.Y = 50.000000000000000000
+          Size.Width = 111.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          CharCase = ecUpperCase
+          OnChangeTracking = edtOrdemFChangeTracking
+        end
+        object Label55: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 545.000000000000000000
+          Position.Y = 30.000000000000000000
+          Size.Width = 83.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'N'#176' Ordem'
+          TabOrder = 5
+        end
+        object Label56: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 673.000000000000000000
+          Position.Y = 33.000000000000000000
+          Size.Width = 83.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'N'#176' Pedido'
+          TabOrder = 4
+        end
+        object edtPedidoF: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 1
+          Position.X = 674.000000000000000000
+          Position.Y = 50.000000000000000000
+          Size.Width = 111.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          CharCase = ecUpperCase
+          OnChangeTracking = edtPedidoFChangeTracking
+        end
+      end
+    end
+    object StringGrid4: TStringGrid
+      Align = Client
+      CanFocus = True
+      ClipChildren = True
+      Margins.Left = 5.000000000000000000
+      Margins.Right = 5.000000000000000000
+      PopupMenu = PopupMenuEmail
+      Size.Width = 875.000000000000000000
+      Size.Height = 335.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 1
+      RowCount = 0
+      Options = [AlternatingRowBackground, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
+      Viewport.Width = 875.000000000000000000
+      Viewport.Height = 335.000000000000000000
+    end
+    object PopupMenuEmail: TPopupMenu
+      Left = 464
+      Top = 244
+      object MenuItem2: TMenuItem
+        Text = 'Enviar Email Fornecedor'
+        OnClick = MenuItem2Click
+      end
+    end
+  end
+  object BindSourceDB3: TBindSourceDB
+    DataSet = dbCtx.TOrcamento
+    ScopeMappings = <>
+    Left = 304
+    Top = 336
+  end
+  object BindingsList1: TBindingsList
+    Methods = <>
+    OutputConverters = <>
+    Left = 519
+    Top = 205
+    object LinkGridToDataSourceBindSourceDB3: TLinkGridToDataSource
+      Category = 'Quick Bindings'
+      DataSource = BindSourceDB3
+      GridControl = StringGrid4
+      Columns = <
+        item
+          MemberName = 'id'
+          Header = 'Ordem/Solicita'#231#227'o'
+          Width = 120
+        end
+        item
+          MemberName = 'identificador'
+          Header = 'Pedido'
+          Width = 100
+        end
+        item
+          MemberName = 'statusstr'
+          Header = 'Status'
+          Width = 200
+        end
+        item
+          MemberName = 'fornecedor'
+          Header = 'Fornecedor'
+          Width = 300
+        end
+        item
+          MemberName = 'observacao'
+          Header = 'Observa'#231#227'o'
+          Width = 600
+        end
+        item
+          MemberName = 'cpf_cnpj'
+          Header = 'CNPJ/CPF'
+          Width = 150
+        end
+        item
+          MemberName = 'telefone_fixo'
+          Header = 'Telefone'
+          Width = 150
+        end
+        item
+          MemberName = 'valortotal'
+          Header = 'Valor Total'
+          Width = 100
+        end>
+    end
+  end
+end
