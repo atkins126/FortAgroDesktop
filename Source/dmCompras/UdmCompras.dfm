@@ -34,10 +34,6 @@ object dmCompras: TdmCompras
       FieldName = 'idusuarioalteracao'
       Origin = 'idusuarioalteracao'
     end
-    object AuxFormaPGidfornecedor: TIntegerField
-      FieldName = 'idfornecedor'
-      Origin = 'idfornecedor'
-    end
     object AuxFormaPGcodigo: TWideStringField
       FieldName = 'codigo'
       Origin = 'codigo'

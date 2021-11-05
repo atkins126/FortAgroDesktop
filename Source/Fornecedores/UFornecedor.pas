@@ -56,45 +56,8 @@ type
     edtTelefoneFixo: TEdit;
     Label13: TLabel;
     edtInscricaoEstadual: TEdit;
-    Layout3: TLayout;
-    Layout10: TLayout;
-    Rectangle1: TRectangle;
-    Rectangle4: TRectangle;
-    Image7: TImage;
-    Label14: TLabel;
-    Rectangle6: TRectangle;
-    Image8: TImage;
-    Label15: TLabel;
-    Rectangle8: TRectangle;
-    Image10: TImage;
-    Label17: TLabel;
-    Rectangle9: TRectangle;
-    StringGrid2: TStringGrid;
     Label18: TLabel;
     BindSourceDB2: TBindSourceDB;
-    LinkGridToDataSourceBindSourceDB2: TLinkGridToDataSource;
-    layFormaPG: TLayout;
-    ToolBar5: TToolBar;
-    Rectangle10: TRectangle;
-    Label24: TLabel;
-    Image12: TImage;
-    Rectangle11: TRectangle;
-    Layout14: TLayout;
-    Rectangle12: TRectangle;
-    Label33: TLabel;
-    Image15: TImage;
-    Layout15: TLayout;
-    Rectangle13: TRectangle;
-    Layout16: TLayout;
-    edtCodigo: TEdit;
-    Layout17: TLayout;
-    Label19: TLabel;
-    Layout18: TLayout;
-    Rectangle14: TRectangle;
-    Layout19: TLayout;
-    edtDescricao: TEdit;
-    Layout20: TLayout;
-    Label20: TLabel;
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
@@ -115,10 +78,6 @@ type
       Shift: TShiftState);
     procedure edtRazaoSocialExit(Sender: TObject);
     procedure edtInscricaoEstadualExit(Sender: TObject);
-    procedure StringGrid1CellClick(const Column: TColumn; const Row: Integer);
-    procedure StringGrid1SelChanged(Sender: TObject);
-    procedure Rectangle6Click(Sender: TObject);
-    procedure Rectangle12Click(Sender: TObject);
     procedure Rectangle8Click(Sender: TObject);
   private
     LastTimeKeydown:TDatetime;
@@ -419,7 +378,6 @@ end;
 
 procedure TfrmCadFornecedor.FormShow(Sender: TObject);
 begin
-  layFormaPG.Visible := false;
   dbCtx.TFornecedores.Close;
   dbCtx.TFornecedores.Open;
   inherited;
@@ -437,43 +395,6 @@ begin
   edtRazaoSocial.Text      := '';
   edtInscricaoEstadual.Text:= '';
   cbxUF.ItemIndex          := -1;
-end;
-
-procedure TfrmCadFornecedor.Rectangle12Click(Sender: TObject);
-begin
- if edtCodigo.Text.Length=0 then
- begin
-   MyShowMessage('Informe o codigo!!',false);
-   Exit;
- end;
- if edtDescricao.Text.Length=0 then
- begin
-   MyShowMessage('Informe a Descrição',false);
-   Exit;
- end;
- dmCompras.AuxFormaPGcodigo.AsString       := edtCodigo.Text;
- dmCompras.AuxFormaPGdescricao.AsString    := edtDescricao.Text;
- try
-  dmCompras.AuxFormaPG.ApplyUpdates(-1);
-  myShowMessage('Cadastro realizado com sucesso!',false);
-  dmCompras.AbreFormaPagamento(dbCtx.TFornecedoresid.AsString);
-  layFormaPG.Visible := false;
- except
-  on E: Exception do
-   myShowMessage('Erro ao salvar Forma de pagamento:'+E.Message,false);
- end;
-end;
-
-procedure TfrmCadFornecedor.Rectangle6Click(Sender: TObject);
-begin
-  edtCodigo.Text    :='';
-  edtDescricao.Text :='';
-  dmCompras.AuxFormaPG.Close;
-  dmCompras.AuxFormaPG.Open;
-  dmCompras.AuxFormaPG.Insert;
-  dmCompras.AuxFormaPGidfornecedor.AsString := dbCtx.TFornecedoresid.AsString;
-  dmCompras.AuxFormaPGidusuario.AsString    :=  dbCtx.vIdUsuarioLogado;
-  layFormaPG.Visible := true;
 end;
 
 procedure TfrmCadFornecedor.Rectangle8Click(Sender: TObject);
@@ -500,23 +421,10 @@ begin
    end;
 end;
 
-procedure TfrmCadFornecedor.StringGrid1CellClick(const Column: TColumn;
-  const Row: Integer);
-begin
- if dbCtx.TFornecedoresid.AsString.Length>0 then
-  dmCompras.AbreFormaPagamento(dbCtx.TFornecedoresid.AsString);
-end;
-
 procedure TfrmCadFornecedor.StringGrid1CellDblClick(const Column: TColumn;
   const Row: Integer);
 begin
  Close;
-end;
-
-procedure TfrmCadFornecedor.StringGrid1SelChanged(Sender: TObject);
-begin
-  if dbCtx.TFornecedoresid.AsString.Length>0 then
-   dmCompras.AbreFormaPagamento(dbCtx.TFornecedoresid.AsString);
 end;
 
 function TfrmCadFornecedor.ValidarEMail(aStr: string): Boolean;

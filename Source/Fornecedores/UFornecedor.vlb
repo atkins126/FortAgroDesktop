@@ -476,51 +476,8 @@ Coordinates=966,2905,151,322
 [dbCtx.Embarque]
 Coordinates=335,1101,111,520
 
-[Label17]
-Coordinates=842,4252,60,58
-
-[Label14]
-Coordinates=1236,4252,60,58
-
-[Image8]
-Coordinates=970,4252,57,58
-
-[Rectangle6]
-Coordinates=664,4252,80,36
-
-[Layout10]
-Coordinates=595,4252,67,36
-
-[Layout3]
-Coordinates=526,4252,60,36
-
-[Image10]
-Coordinates=1098,4252,64,58
-
 [Label18]
 Coordinates=1029,4252,60,58
-
-[Label15]
-Coordinates=1167,4252,60,58
-
-[Rectangle1]
-Coordinates=348,4252,80,36
-
-[Rectangle8]
-Coordinates=259,4252,80,36
-
-[Rectangle4]
-Coordinates=170,4252,80,36
-
-[Image7]
-Coordinates=1374,4252,57,58
-
-[StringGrid2]
-Coordinates=753,4252,80,58
-Visible=True
-
-[Rectangle9]
-Coordinates=81,4252,80,36
 
 [BindSourceDB2]
 Coordinates=1605,1,108,300
@@ -529,5 +486,6 @@ Coordinates=1605,1,108,300
 Visible=False
 
 []
-Coordinates=437,4252,80,36
+Coordinates=526,4252,60,36
+Visible=True
 

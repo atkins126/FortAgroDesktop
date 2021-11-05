@@ -103,9 +103,6 @@ Coordinates=922,2063,116,33
 [TPedidoCompraRepsyncfaz]
 Coordinates=1102,729,151,33
 
-[TItensOrcamentoid]
-Coordinates=922,2115,108,33
-
 [TAuxOperacaoidusuarioalteracao]
 Coordinates=1100,781,179,33
 
@@ -117,9 +114,6 @@ Coordinates=1102,833,132,33
 
 [TPluviometriadatareg]
 Coordinates=922,2219,119,33
-
-[TItensOrcamentostatuspedido]
-Coordinates=1102,885,163,33
 
 [qryProdutosOperacaoproduto]
 Coordinates=1102,937,161,33
@@ -145,9 +139,6 @@ Coordinates=922,2427,119,33
 [qryProdutosOperacaoidoperacaotalhao]
 Coordinates=1327,1,208,33
 
-[TItensOrcamentoqtde]
-Coordinates=922,2479,120,33
-
 [TFornecedoresdataalteracao]
 Coordinates=1102,1145,155,33
 
@@ -168,9 +159,6 @@ Coordinates=1102,1353,164,33
 
 [TVazaoOperacaoquarentaltha]
 Coordinates=1102,1405,159,33
-
-[TItensOrcamentodatareg]
-Coordinates=1102,1457,136,33
 
 [TSafraid]
 Coordinates=543,1722,55,33
@@ -232,9 +220,6 @@ Coordinates=1102,2081,115,33
 [TAbastecimentoidoperador]
 Coordinates=1327,261,148,33
 
-[TItensOrcamentodesconto]
-Coordinates=1327,313,144,33
-
 [TPedidoComprasyncfaz]
 Coordinates=1102,2133,131,33
 
@@ -247,17 +232,11 @@ Coordinates=1327,417,207,33
 [TPluviometria]
 Coordinates=342,593,90,339
 
-[TItensOrcamentoidusuario]
-Coordinates=1327,469,145,33
-
 [TAuxTipoMaqVeicidsegmento]
 Coordinates=1327,521,161,33
 
 [TOperacaoSafraTalhaoobservacao]
 Coordinates=1327,573,184,33
-
-[TItensOrcamentoidusuarioalteracao]
-Coordinates=1327,625,190,33
 
 [TPedidoCompraidmaquina]
 Coordinates=1327,677,145,33
@@ -442,9 +421,6 @@ Coordinates=1603,261,203,33
 [QryMaquinaOperacaoobservacao]
 Coordinates=1603,313,178,33
 
-[TItensOrcamentoemailfornecedor]
-Coordinates=1603,365,179,33
-
 [TCentroCustosegmento]
 Coordinates=1327,2393,131,33
 
@@ -516,9 +492,6 @@ Coordinates=1327,2861,111,33
 
 [TItensPedidoidorcamento]
 Coordinates=1603,833,140,33
-
-[TItensOrcamentosyncaws]
-Coordinates=1603,885,141,33
 
 [TPluviometrossyncaws]
 Coordinates=1327,2913,128,33
@@ -763,9 +736,6 @@ Coordinates=1873,209,151,33
 [TAbastecimentosyncaws]
 Coordinates=1873,261,137,33
 
-[TItensOrcamentoidentificadorpedido]
-Coordinates=1873,313,194,33
-
 [TOcorrenciaOperacaodataalteracao]
 Coordinates=1873,365,188,33
 
@@ -829,17 +799,11 @@ Coordinates=394,3134,117,33
 [QryOperacaoSafraTalhaoidreceituario]
 Coordinates=1873,937,200,33
 
-[TItensOrcamentotelefonefornecedor]
-Coordinates=1873,989,192,33
-
 [TProdutosOperacaoid]
 Coordinates=265,3134,122,33
 
 [TMaquinasOperacaodata]
 Coordinates=1873,1041,136,33
-
-[TItensOrcamentonomefornecedor]
-Coordinates=1873,1093,180,33
 
 [TPluviometroTalhoes]
 Coordinates=804,978,119,249
@@ -1065,9 +1029,6 @@ Coordinates=941,3205,113,33
 
 [TVazaoOperacaosyncfaz]
 Coordinates=802,3192,135,33
-
-[TItensOrcamentoicmst]
-Coordinates=673,3205,125,33
 
 [TDetReceituarioidreceiturario]
 Coordinates=2137,937,159,33
@@ -1435,9 +1396,6 @@ Coordinates=2405,2341,190,33
 [TAuxCultivaresidusuario]
 Coordinates=2405,2393,136,33
 
-[TItensOrcamentoidproduto]
-Coordinates=2405,2445,147,33
-
 [TAuxCategoriasdataalteracao]
 Coordinates=2405,2497,159,33
 
@@ -1546,9 +1504,6 @@ Coordinates=1880,3347,77,33
 [TSafrastatus]
 Coordinates=1801,3347,76,33
 
-[TItensOrcamentonomeproduto]
-Coordinates=2662,521,165,33
-
 [TAbastecimentoOutrosdataalteracao]
 Coordinates=2662,573,194,33
 
@@ -1603,9 +1558,6 @@ Coordinates=2662,989,170,33
 [TUsuariosenha]
 Coordinates=860,3347,88,33
 
-[TItensOrcamentocodfabproduto]
-Coordinates=2662,1041,171,33
-
 [TAuxTipoMaqVeicidusuarioalteracao]
 Coordinates=2662,1093,195,33
 
@@ -1627,9 +1579,6 @@ Coordinates=2662,1145,166,33
 [TAbastecimentoOutrosidproduto]
 Coordinates=2662,1197,176,33
 
-[TItensOrcamentocpfcnpjfornecedor]
-Coordinates=2662,1249,189,33
-
 [TAuxSubGrupodataalteracao]
 Coordinates=2662,1301,156,33
 
@@ -1644,9 +1593,6 @@ Coordinates=2662,1405,161,33
 
 [TOrcamentostatus]
 Coordinates=97,3347,105,33
-
-[TItensOrcamentodiferencialalicota]
-Coordinates=2662,1457,183,33
 
 [TItensPedidoid]
 Coordinates=0,3314,88,33
@@ -1840,9 +1786,6 @@ Coordinates=460,3400,140,33
 [QryMaquinaOperacaohorainicio]
 Coordinates=281,3400,170,33
 
-[TItensOrcamentosyncfaz]
-Coordinates=2116,3471,136,33
-
 [TPluviometrosidusuarioalteracao]
 Coordinates=2915,209,177,33
 
@@ -1891,9 +1834,6 @@ Coordinates=2915,729,207,33
 [TAuxTipoOcorrenciaid]
 Coordinates=2915,781,125,33
 
-[TItensOrcamentovalortotal]
-Coordinates=2915,833,145,33
-
 [TMaquinasanomodelo]
 Coordinates=2915,885,123,33
 
@@ -1920,9 +1860,6 @@ Coordinates=2915,1197,212,33
 
 [TVazaoOperacaosetentaecincoltha]
 Coordinates=2915,1249,184,33
-
-[TItensOrcamentostatus]
-Coordinates=1560,3471,129,33
 
 [TProdutosOperacaodata]
 Coordinates=1421,3471,134,33
@@ -2131,9 +2068,6 @@ Coordinates=3196,521,148,33
 [TPedidoCompraflagurgente]
 Coordinates=3196,573,149,33
 
-[TItensOrcamentoipi]
-Coordinates=3196,625,111,33
-
 [TPluviometroTalhoesidusuarioalteracao]
 Coordinates=3196,677,210,33
 
@@ -2206,9 +2140,6 @@ Coordinates=422,1273,116,195
 [TLocalEstoqueidusuario]
 Coordinates=2945,3537,134,33
 
-[TItensOrcamentodataalteracao]
-Coordinates=3196,1301,165,33
-
 [TPluviometriastatus]
 Coordinates=1785,3509,112,33
 
@@ -2221,9 +2152,6 @@ Coordinates=1597,3509,84,33
 [TSetoresid]
 Coordinates=1528,3509,67,33
 
-[TItensOrcamentoidorcamento]
-Coordinates=3196,1405,160,33
-
 [TMaquinasano]
 Coordinates=1439,3509,86,33
 
@@ -2233,14 +2161,8 @@ Coordinates=3196,1457,143,33
 [qryProdutosOperacaodataalteracao]
 Coordinates=3196,1509,189,33
 
-[TItensOrcamentofrete]
-Coordinates=1310,3509,121,33
-
 [TProdutosidmarca]
 Coordinates=1201,3509,105,33
-
-[TItensOrcamentovalorunidade]
-Coordinates=3196,1561,163,33
 
 [TDetReceiturioTalhaosyncfaz]
 Coordinates=3196,1613,158,33
@@ -2323,9 +2245,6 @@ Coordinates=3196,2393,234,33
 [TAbastecimentostatus]
 Coordinates=3196,2445,124,33
 
-[TItensOrcamentodatapedido]
-Coordinates=3196,2497,153,33
-
 [TUsuarioimgass]
 Coordinates=3196,2549,94,33
 
@@ -2365,9 +2284,6 @@ Coordinates=3196,3017,68,33
 [TOrcamentoFornecedorestelefone_fixo]
 Coordinates=3196,3069,206,33
 
-[TItensOrcamentoobservacao]
-Coordinates=3196,3121,156,33
-
 [TAbastecimentoid]
 Coordinates=3196,3173,103,33
 
@@ -2384,5 +2300,5 @@ Coordinates=3196,3277,167,33
 Coordinates=798,1273,74,51
 
 []
-Coordinates=866,10,103,483
+Coordinates=922,2115,108,33
 

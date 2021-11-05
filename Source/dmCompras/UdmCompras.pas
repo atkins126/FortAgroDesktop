@@ -17,7 +17,6 @@ type
     AuxFormaPGidusuario: TIntegerField;
     AuxFormaPGdataalteracao: TSQLTimeStampField;
     AuxFormaPGidusuarioalteracao: TIntegerField;
-    AuxFormaPGidfornecedor: TIntegerField;
     AuxFormaPGcodigo: TWideStringField;
     AuxFormaPGdescricao: TWideStringField;
     AuxFormaPGsyncfaz: TIntegerField;
@@ -25,7 +24,7 @@ type
   private
     { Private declarations }
   public
-    procedure AbreFormaPagamento(id:string);
+    procedure AbreFormaPagamento();
   end;
 
 var
@@ -41,13 +40,13 @@ uses DataContext;
 
 { TdmCompras }
 
-procedure TdmCompras.AbreFormaPagamento(id: string);
+procedure TdmCompras.AbreFormaPagamento();
 begin
  with AuxFormaPG,AuxFormaPG.SQL do
  begin
    Clear;
    Add('select * from forma_pagamento_fornecedor');
-   Add('where idfornecedor='+id);
+   Add('where status=1');
    Open;
  end;
 end;

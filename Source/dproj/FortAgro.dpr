@@ -61,7 +61,8 @@ uses
   URevisaoMaquinas in '..\RevisaoMaquinas\URevisaoMaquinas.pas' {frmCadRevisaoMaquinas},
   USaidaEstoque in '..\Estoque\Saida\USaidaEstoque.pas' {frmSaidaEstoque},
   UGerencialEstoque in '..\Estoque\Gerenciamento\UGerencialEstoque.pas' {frmGerencialEstoque},
-  UServicoRevisao in '..\ServicoRevisao\UServicoRevisao.pas' {frmCadPadrao1};
+  UServicoRevisao in '..\ServicoRevisao\UServicoRevisao.pas' {frmCadPadrao1},
+  UFormaPgForn in '..\FormaPg\UFormaPgForn.pas' {frmCadFormaPG};
 
 {$R *.res}
 
@@ -79,5 +80,6 @@ begin
   Application.CreateForm(TfrmGerencialEstoque, frmGerencialEstoque);
   Application.CreateForm(TfrmCadPadrao1, frmCadPadrao1);
   Application.CreateForm(TfrmAbastecimento, frmAbastecimento);
+  Application.CreateForm(TfrmCadFormaPG, frmCadFormaPG);
   Application.Run;
 end.

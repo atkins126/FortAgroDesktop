@@ -152,7 +152,6 @@ type
     procedure chkInativoSwitch(Sender: TObject);
     procedure StringGrid1CellDblClick(const Column: TColumn;
       const Row: Integer);
-    procedure btnFecharClick(Sender: TObject);
     procedure StringGrid1CellClick(const Column: TColumn; const Row: Integer);
     procedure MenuItem2Click(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
@@ -177,11 +176,6 @@ uses DataContext, UPrincipal, UAuxMarcas, UAuxTipoMaquinaVeiculo, uFormat,
 
 procedure TfrmCadMaquinaVeiculo.btnAddClick(Sender: TObject);
 begin
-  if DataModule1.Sincronizando=1 then
-  begin
-    MyShowMessage('Aguarde Sincronizando Dados!',false);
-    Exit;
-  end;
   LimpaCampos;
   dbCtx.TMaquinas.Close;
   dbCtx.TMaquinas.Open;
@@ -318,11 +312,6 @@ end;
 
 procedure TfrmCadMaquinaVeiculo.btnDeletarClick(Sender: TObject);
 begin
-  if DataModule1.Sincronizando=1 then
-  begin
-    MyShowMessage('Aguarde Sincronizando Dados!',false);
-    Exit;
-  end;
    MyShowMessage('Deseja Realmente Deletar esse registro?',true);
    case frmPrincipal.vMsgConfirma of
      1:begin
@@ -336,11 +325,6 @@ begin
           MyShowMessage('Registro Excluido com sucesso!',false);
           dbCtx.TMaquinas.Close;
           dbCtx.TMaquinas.Open();
-//          if dbCtx.vTipoBDConfig=0 then
-//          TThread.CreateAnonymousThread(procedure()
-//          begin
-//             DataModule1.ReplicaMaquinaVeiculos('');
-//          end).Start;
         except
          on E : Exception do
           ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
@@ -353,11 +337,6 @@ procedure TfrmCadMaquinaVeiculo.btnEditarClick(Sender: TObject);
 var
  Stream : TMemoryStream;
 begin
- if DataModule1.Sincronizando=1 then
-  begin
-    MyShowMessage('Aguarde Sincronizando Dados!',false);
-    Exit;
-  end;
  cbxCategoria.ItemIndex       := dbCtx.TMaquinasidcategoria.AsInteger;
  edtTipo.Text                 := dbCtx.TMaquinastipo.AsString;
  vIdTipo                      := dbCtx.TMaquinasidtipo.AsString;
@@ -387,21 +366,6 @@ begin
   else
    imgProduto.Bitmap.Assign(nil);
   dbCtx.TMaquinas.Edit;
-  inherited;
-end;
-
-procedure TfrmCadMaquinaVeiculo.btnFecharClick(Sender: TObject);
-begin
-  if DataModule1.Sincronizando=1 then
-  begin
-    MyShowMessage('Aguarde Sincronizando Dados!',false);
-    Exit;
-  end;
-//  if dbCtx.vTipoBDConfig=0 then
-//  TThread.CreateAnonymousThread(procedure()
-//  begin
-//   DataModule1.ReplicaMaquinaVeiculos('');
-//  end).Start;
   inherited;
 end;
 
