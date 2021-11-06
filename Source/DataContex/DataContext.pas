@@ -468,23 +468,6 @@ type
     TServicosegmento: TWideMemoField;
     TServicodataprevista: TDateField;
     TOrcamento: TFDQuery;
-    TOrcamentoid: TIntegerField;
-    TOrcamentostatus: TIntegerField;
-    TOrcamentodatareg: TSQLTimeStampField;
-    TOrcamentoidusuario: TIntegerField;
-    TOrcamentodataalteracao: TSQLTimeStampField;
-    TOrcamentoidusuarioalteracao: TIntegerField;
-    TOrcamentoidfornecedor: TIntegerField;
-    TOrcamentoidpedido: TIntegerField;
-    TOrcamentoidentificador: TWideStringField;
-    TOrcamentodatapedido: TDateField;
-    TOrcamentofornecedor: TWideStringField;
-    TOrcamentoemail: TWideStringField;
-    TOrcamentocpf_cnpj: TWideStringField;
-    TOrcamentotelefone_fixo: TWideStringField;
-    TOrcamentoobservacao: TWideStringField;
-    TOrcamentostatusstr: TWideMemoField;
-    TOrcamentovalortotal: TWideMemoField;
     TItensOrcamento: TFDQuery;
     TOrcamentoFornecedores: TFDQuery;
     TOrcamentoFornecedoresid: TIntegerField;
@@ -563,7 +546,6 @@ type
     TPedidoComprasyncaws: TIntegerField;
     TItensPedidosyncaws: TIntegerField;
     TStatusPedidosyncaws: TIntegerField;
-    TOrcamentosyncaws: TIntegerField;
     qryProdutosOperacaoqtdeutilidado: TBCDField;
     qryProdutosOperacaosyncaws: TIntegerField;
     TProdutosdefensivos: TIntegerField;
@@ -628,7 +610,6 @@ type
     TPedidoComprasyncfaz: TIntegerField;
     TItensPedidosyncfaz: TIntegerField;
     TStatusPedidosyncfaz: TIntegerField;
-    TOrcamentosyncfaz: TIntegerField;
     TPedidoCompramaxidstatus: TIntegerField;
     TPedidoCompraRepmaxidstatus: TIntegerField;
     ScriptSetSequnce: TFDScript;
@@ -773,11 +754,6 @@ type
     TAbastecimentomaquinaprefixo: TWideStringField;
     TAbastecimentooperador: TWideStringField;
     TAbastecimentohorimetro: TBCDField;
-    TOrcamentodesconto: TBCDField;
-    TOrcamentoipi: TBCDField;
-    TOrcamentoicmst: TBCDField;
-    TOrcamentofrete: TBCDField;
-    TOrcamentodiferencialalicota: TBCDField;
     TDetReceituariofinalidade: TWideStringField;
     PgDriverLink: TFDPhysPgDriverLink;
     TUsuarioimgass: TBlobField;
@@ -872,9 +848,6 @@ type
     Tauxatividadeabastecimentosyncfaz: TIntegerField;
     TAbastecimentoidatividade: TIntegerField;
     TAbastecimentoatividade: TWideStringField;
-    TOrcamentoinscricaoestadual: TWideStringField;
-    TOrcamentocidade: TWideStringField;
-    TOrcamentocontatopessoa: TWideStringField;
     TItensPedidoitem: TLargeintField;
     TMPComparativo: TFDQuery;
     TMPComparativoid: TIntegerField;
@@ -959,8 +932,6 @@ type
     TReceituariocultura: TWideStringField;
     Contratosstatusstr: TWideMemoField;
     Contratossaldosc: TFMTBCDField;
-    TOrcamentoidformapagamento: TIntegerField;
-    TOrcamentoformapg: TWideMemoField;
     Contratosvendedor: TWideStringField;
     Contratosvalortotalsaca: TBCDField;
     Contratosvalorkg: TBCDField;
@@ -1102,6 +1073,45 @@ type
     TItensPedidooriginal: TIntegerField;
     TItensPedidomarca: TWideStringField;
     TItensOrcamentomarcanome: TWideStringField;
+    TOrcamentoid: TIntegerField;
+    TOrcamentostatus: TIntegerField;
+    TOrcamentodatareg: TSQLTimeStampField;
+    TOrcamentoidusuario: TIntegerField;
+    TOrcamentodataalteracao: TSQLTimeStampField;
+    TOrcamentoidusuarioalteracao: TIntegerField;
+    TOrcamentoidfornecedor: TIntegerField;
+    TOrcamentoidpedido: TIntegerField;
+    TOrcamentoobservacao: TWideStringField;
+    TOrcamentosyncaws: TIntegerField;
+    TOrcamentosyncfaz: TIntegerField;
+    TOrcamentodesconto: TBCDField;
+    TOrcamentoipi: TBCDField;
+    TOrcamentoicmst: TBCDField;
+    TOrcamentofrete: TBCDField;
+    TOrcamentodiferencialalicota: TBCDField;
+    TOrcamentoidformapagamento: TIntegerField;
+    TOrcamentostatusstr: TWideMemoField;
+    TOrcamentoidentificador: TWideStringField;
+    TOrcamentodatapedido: TDateField;
+    TOrcamentofornecedor: TWideStringField;
+    TOrcamentoemail: TWideStringField;
+    TOrcamentocpf_cnpj: TWideStringField;
+    TOrcamentotelefone_fixo: TWideStringField;
+    TOrcamentoinscricaoestadual: TWideStringField;
+    TOrcamentocidade: TWideStringField;
+    TOrcamentocontatopessoa: TWideStringField;
+    TOrcamentoformapg: TWideMemoField;
+    TOrcamentovalortotal: TFMTBCDField;
+    TOrcamentoitemfrete: TFMTBCDField;
+    TOrcamentoitemdesconto: TFMTBCDField;
+    TOrcamentoitemicmst: TFMTBCDField;
+    TOrcamentoitemipi: TFMTBCDField;
+    TOrcamentoitemdifal: TFMTBCDField;
+    TOrcamentovalorliquido: TFMTBCDField;
+    TValorLiquidoOrc: TFDQuery;
+    TValorLiquidoOrcvalorbruto: TFMTBCDField;
+    TValorLiquidoOrcvalorbrutomaisfrete: TFMTBCDField;
+    TValorLiquidoOrcvalorliquido: TFMTBCDField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1230,6 +1240,7 @@ type
     function  RetornaIdMaxNota:string;
     procedure DeletaPedido(idPedido:string);
     procedure AtaulizaValorMedioProdutoGeral;
+    procedure AbreValoresOrcamento(vIdOrc:string);
 
     procedure AtaulizaSaldoAtualCustoMedio(idProduto:string);
 
@@ -1374,6 +1385,10 @@ begin
  with TOrcamento,TOrcamento.SQL do
  begin
    Clear;
+   Add('select y.*,');
+   Add('((valortotal+itemfrete+itemipi+itemicmst+Itemdifal)-Itemdesconto)ValorLiquido');
+   Add('from');
+   Add('(');
    Add('select');
    Add('b.*,');
    Add('case');
@@ -1390,8 +1405,13 @@ begin
    Add('f.inscricaoestadual,');
    Add('f.cidade,');
    Add('f.contatopessoa,');
-   Add(QuotedStr('R$')+'|| cast((select sum(valortotal) from orcamentositens where status=1 and idorcamento=b.id)as varchar(10)) valorTotal,');
-   Add('fp.codigo||''-''||fp.descricao formapg');
+   Add('fp.codigo||''-''||fp.descricao formapg,');
+   Add('coalesce((select sum(valortotal) from orcamentositens where status=1 and idorcamento=b.id),0) valorTotal,');
+   Add('coalesce(b.frete,(select sum(frete) from orcamentositens where status=1 and idorcamento=b.id),0) Itemfrete,');
+   Add('coalesce(b.desconto,(select sum(desconto) from orcamentositens where status=1 and idorcamento=b.id),0)Itemdesconto,');
+   Add('coalesce((select sum(icmst) from orcamentositens where status=1 and idorcamento=b.id),0)Itemicmst,');
+   Add('coalesce((select sum(ipi) from orcamentositens where status=1 and idorcamento=b.id),0)Itemipi,');
+   Add('coalesce((select sum(diferencialalicota) from orcamentositens where status=1 and idorcamento=b.id),0)Itemdifal');
    Add('from orcamentos b');
    Add('join pedidocompra c on c.id=b.idpedido');
    Add('join fornecedor f on f.id=b.idfornecedor');
@@ -1400,6 +1420,7 @@ begin
    Add('and c.idSegmento='+vIdSegmento);
    Add('AND B.IdPedido='+vIdPedido);
    Add(vFiltro);
+   Add(')y');
    Open;
  end;
 end;
@@ -1591,6 +1612,7 @@ with TItensOrcamento,TItensOrcamento.SQL do
    Add('and b.id='+vFiltro);
    Add('order by Item');
    Open;
+   AbreValoresOrcamento(vFiltro);
  end;
 end;
 
@@ -1945,6 +1967,25 @@ begin
    Add('where a.status=1');
    if idPluvi.Length>0 then
     Add('and a.idpluviometro='+idPluvi);
+   Open;
+ end;
+end;
+
+procedure TdbCtx.AbreValoresOrcamento(vIdOrc: string);
+begin
+ with TValorLiquidoOrc,TValorLiquidoOrc.SQL do
+ begin
+   Clear;
+   Add('select');
+   Add('sum(o.valortotal) ValorBruto,');
+   Add('sum(o.valortotal)+sum(coalesce(o2.frete,o.frete,0))ValorBrutoMaisFrete,');
+   Add('sum(o.valortotal)+sum(coalesce(o2.frete,o.frete,0))+');
+   Add('sum(coalesce(o.icmst,0))+coalesce(sum(o.ipi),0)+');
+   Add('sum(coalesce(o.diferencialalicota,0))-');
+   Add('sum(coalesce(o.desconto,o2.desconto,0)) valorLiquido');
+   Add('from orcamentositens o');
+   Add('join orcamentos o2 on o.idorcamento=o2.id');
+   Add('where o.status=1 and idorcamento='+vIdOrc);
    Open;
  end;
 end;

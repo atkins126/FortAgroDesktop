@@ -590,6 +590,8 @@ type
     edtValorLiquidoItemOrc: TEdit;
     Label98: TLabel;
     OpenImg: TOpenDialog;
+    lblValorTotalMaisFrete: TLabel;
+    lblValorLiquido: TLabel;
     procedure btnAddClick(Sender: TObject);
     procedure EditButton1Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -3714,6 +3716,10 @@ var
  Valor,Valor1:Double;
 begin
  dbCtx.AbreItemsOrcamentos(dbCtx.TOrcamentoid.AsString);
+ lblTotalItens.Text           := 'Total Itens:'+intToStr(GridDetalhesOrcamento.RowCount);
+ lblValorTotal.Text           := 'Valor Bruto:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorbruto.AsFloat);
+ lblValorTotalMaisFrete.Text  := 'Valor Bruto + Frete:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorbrutomaisfrete.AsFloat);
+ lblValorLiquido.Text         := 'Valor Liquido:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorliquido.AsFloat);
  edtFormaPagamento.Text := dbCtx.TItensOrcamentoformapg.AsString;
  vIdFormaPg             := dbCtx.TItensOrcamentoidformapg.AsString;
  lblFornecedor.Text     := dbCtx.TItensOrcamentofornecedor.AsString;

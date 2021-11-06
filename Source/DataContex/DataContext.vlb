@@ -1,2304 +1,3178 @@
 ﻿[TUsuarioagronomo]
-Coordinates=922,1179,109,33
+Coordinates=922,1179,124,36
 
 [TPluviometriaid]
-Coordinates=922,1231,91,33
+Coordinates=922,1231,104,36
 
 [TAuxTipoOperacaoSolidoidusuario]
-Coordinates=1100,1,187,33
+Coordinates=1100,1,214,36
 
 [TPluviometrossetor]
-Coordinates=922,1283,111,33
+Coordinates=922,1283,126,36
 
 [TSafradataalteracao]
-Coordinates=922,1335,112,33
+Coordinates=922,1335,131,36
 
 [TOperacaoSafraTalhaofinalidade]
-Coordinates=1100,53,175,33
+Coordinates=1100,53,204,36
 
 [TServicoidsegmento]
-Coordinates=922,1387,115,33
+Coordinates=922,1387,132,36
 
 [TMaquinasOperacaodatareg]
-Coordinates=898,1439,152,33
+Coordinates=898,1439,178,36
 
 [TAuxGrupostatus]
-Coordinates=922,1491,101,33
-
-[TOrcamentodatapedido]
-Coordinates=922,1543,129,33
-
-[TOrcamentodatareg]
-Coordinates=922,1595,112,33
+Coordinates=922,1491,114,36
 
 [TAbastecimentoOutrossyncfaz]
-Coordinates=898,1647,166,33
+Coordinates=898,1647,190,36
 
 [TFornecedoressyncfaz]
-Coordinates=922,1699,126,33
+Coordinates=922,1699,145,36
 
 [TDetReceituarioidusuario]
-Coordinates=1102,105,139,33
+Coordinates=1102,105,160,36
 
 [TPluviometroTalhoesstatus]
-Coordinates=1102,157,149,33
+Coordinates=1102,157,171,36
 
 [TPluviometroTalhoestalhao]
-Coordinates=1102,209,149,33
+Coordinates=1102,209,171,36
 
 [TOrcamentoFornecedoresstatus]
-Coordinates=1102,261,173,33
+Coordinates=1102,261,199,36
 
 [TServicosegmento]
-Coordinates=922,1751,106,33
+Coordinates=922,1751,122,36
 
 [TDetReceiturioTalhaoareahe]
-Coordinates=1102,313,153,33
+Coordinates=1102,313,180,36
 
 [TAbastecimentoOutrosdatareg]
-Coordinates=1102,365,165,33
+Coordinates=1102,365,190,36
 
 [TLocalEstoquecombustivel]
-Coordinates=1102,417,148,33
+Coordinates=1102,417,168,36
 
 [TDetReceituarioid]
-Coordinates=922,1803,102,33
+Coordinates=922,1803,118,36
 
 [TOperadorMaquina]
-Coordinates=1027,593,108,285
+Coordinates=1027,593,126,344
 
 [TAuxCulturas]
-Coordinates=222,1273,90,195
+Coordinates=222,1273,108,234
 
 [TAuxCultivaresdataalteracao]
-Coordinates=1102,469,156,33
+Coordinates=1102,469,180,36
 
 [TOrcamentoFornecedoresidusuario]
-Coordinates=1100,521,189,33
+Coordinates=1100,521,217,36
 
 [TAuxTipoMaqVeicnome]
-Coordinates=922,1855,131,33
+Coordinates=922,1855,151,36
 
 [TProdutoscodigobarras]
-Coordinates=922,1907,131,33
+Coordinates=922,1907,148,36
 
 [QryOperacaoSafraTalhaoidcultura]
-Coordinates=1100,573,182,33
+Coordinates=1100,573,211,36
 
 [TItensPedidosyncaws]
-Coordinates=922,1959,121,33
+Coordinates=922,1959,139,36
 
 [qryOcorrenciaOperacaoidusuario]
-Coordinates=1100,625,178,33
+Coordinates=1100,625,204,36
 
 [TProdutosidgrupo]
-Coordinates=922,2011,104,33
+Coordinates=922,2011,117,36
 
 [TAuxCategoriasidusuario]
-Coordinates=1102,677,139,33
+Coordinates=1102,677,159,36
 
 [TAbastecimentohora]
-Coordinates=922,2063,116,33
+Coordinates=922,2063,133,36
 
 [TPedidoCompraRepsyncfaz]
-Coordinates=1102,729,151,33
+Coordinates=1102,729,175,36
 
 [TAuxOperacaoidusuarioalteracao]
-Coordinates=1100,781,179,33
-
-[TOrcamentoipi]
-Coordinates=922,2167,87,33
+Coordinates=1100,781,206,36
 
 [TAuxCultivaressyncaws]
-Coordinates=1102,833,132,33
+Coordinates=1102,833,151,36
 
 [TPluviometriadatareg]
-Coordinates=922,2219,119,33
+Coordinates=922,2219,137,36
 
 [qryProdutosOperacaoproduto]
-Coordinates=1102,937,161,33
+Coordinates=1102,937,184,36
 
 [TSetoresnome]
-Coordinates=922,2271,85,33
+Coordinates=922,2271,99,36
 
 [TItensPedidoidpedido]
-Coordinates=922,2323,121,33
+Coordinates=922,2323,139,36
 
 [TAreasidusuarioalteracao]
-Coordinates=1102,989,140,33
+Coordinates=1102,989,161,36
 
 [TUsuariodataalteracao]
-Coordinates=922,2375,125,33
+Coordinates=922,2375,145,36
 
 [TAuxTipoOperacaoSolidonome]
-Coordinates=1102,1041,168,33
+Coordinates=1102,1041,194,36
 
 [TFornecedoresstatus]
-Coordinates=922,2427,119,33
+Coordinates=922,2427,136,36
 
 [qryProdutosOperacaoidoperacaotalhao]
-Coordinates=1327,1,208,33
+Coordinates=1327,1,239,36
 
 [TFornecedoresdataalteracao]
-Coordinates=1102,1145,155,33
+Coordinates=1102,1145,180,36
 
 [QryOperacaoSafraTalhaostatus]
-Coordinates=1102,1197,168,33
+Coordinates=1102,1197,196,36
 
 [TOperadorMaquinanome]
-Coordinates=1102,1249,136,33
+Coordinates=1102,1249,158,36
 
 [QryOperacaoSafraTalhaoqualidadecobertura]
-Coordinates=1327,53,234,33
+Coordinates=1327,53,272,36
 
 [TPedidoCompraRepstatus]
-Coordinates=1102,1301,143,33
+Coordinates=1102,1301,166,36
 
 [QryMaquinaOperacaosyncaws]
-Coordinates=1102,1353,164,33
+Coordinates=1102,1353,190,36
 
 [TVazaoOperacaoquarentaltha]
-Coordinates=1102,1405,159,33
+Coordinates=1102,1405,187,36
 
 [TSafraid]
-Coordinates=543,1722,55,33
+Coordinates=543,1722,63,36
 
 [TOcorrenciaOperacaostatus]
-Coordinates=1102,1509,152,33
+Coordinates=1102,1509,176,36
 
 [QryMaquinaOperacaomaquina]
-Coordinates=1102,1561,163,33
+Coordinates=1102,1561,190,36
 
 [TAuxCategoriasid]
-Coordinates=922,2531,102,33
+Coordinates=922,2531,117,36
 
 [TAuxCategoriasnome]
-Coordinates=903,2566,120,33
+Coordinates=903,2566,139,36
 
 [TAbastecimentoidmaquina]
-Coordinates=1102,1613,145,33
+Coordinates=1102,1613,167,36
 
 [TAuxTipoOcorrenciadatareg]
-Coordinates=1102,1665,153,33
+Coordinates=1102,1665,176,36
 
 [TAuxMarcadataalteracao]
-Coordinates=1102,1717,136,33
+Coordinates=1102,1717,158,36
 
 [TAuxTipoOcorrenciaidusuario]
-Coordinates=1102,1769,162,33
+Coordinates=1102,1769,185,36
 
 [TAuxTipoServicoidusuario]
-Coordinates=1102,1821,145,33
+Coordinates=1102,1821,165,36
 
 [TOperacaoSafraTalhaooperacao]
-Coordinates=1102,1873,172,33
+Coordinates=1102,1873,202,36
 
 [TOrcamentoFornecedores]
-Coordinates=442,593,143,321
+Coordinates=442,593,165,388
 
 [TOperacaoSafraTalhaoid]
-Coordinates=1102,1925,136,33
+Coordinates=1102,1925,159,36
 
 [TAuxTipoMaqVeicstatus]
-Coordinates=1102,1977,133,33
+Coordinates=1102,1977,154,36
 
 [TPedidoCompraRepdataaprovacaosupervisor]
-Coordinates=1327,105,238,33
+Coordinates=1327,105,276,36
 
 [TAuxCulturasdatareg]
-Coordinates=77,2566,119,33
+Coordinates=77,2566,136,36
 
 [TProdutosOperacaodataalteracao]
-Coordinates=1327,157,179,33
+Coordinates=1327,157,208,36
 
 [TFornecedoressenha]
-Coordinates=1102,2029,118,33
+Coordinates=1102,2029,136,36
 
 [TProdutosreferencia]
-Coordinates=1102,2081,115,33
+Coordinates=1102,2081,131,36
 
 [TAbastecimentoidoperador]
-Coordinates=1327,261,148,33
+Coordinates=1327,261,169,36
 
 [TPedidoComprasyncfaz]
-Coordinates=1102,2133,131,33
+Coordinates=1102,2133,151,36
 
 [QryOperacaoSafraTalhaoidtalhao]
-Coordinates=1327,365,178,33
+Coordinates=1327,365,207,36
 
 [QryOperacaoSafraTalhaotipoterraaereo]
-Coordinates=1327,417,207,33
+Coordinates=1327,417,242,36
 
 [TPluviometria]
-Coordinates=342,593,90,339
+Coordinates=342,593,108,410
 
 [TAuxTipoMaqVeicidsegmento]
-Coordinates=1327,521,161,33
+Coordinates=1327,521,186,36
 
 [TOperacaoSafraTalhaoobservacao]
-Coordinates=1327,573,184,33
+Coordinates=1327,573,215,36
 
 [TPedidoCompraidmaquina]
-Coordinates=1327,677,145,33
+Coordinates=1327,677,167,36
 
 [TAuxTipoMaqVeicdatareg]
-Coordinates=1327,729,140,33
+Coordinates=1327,729,163,36
 
 [TItensPedidoobservacao]
-Coordinates=1102,2185,136,33
+Coordinates=1102,2185,157,36
 
 [TProdutosidcategoria]
-Coordinates=1102,2237,120,33
+Coordinates=1102,2237,137,36
 
 [TAuxCategoriassyncaws]
-Coordinates=1102,2289,136,33
+Coordinates=1102,2289,156,36
 
 [TSafraidusuario]
-Coordinates=1102,2341,92,33
+Coordinates=1102,2341,106,36
 
 [TDetReceiturioTalhaodataalteracao]
-Coordinates=1327,781,187,33
+Coordinates=1327,781,218,36
 
 [TPedidoCompraRepmaquinaveiculo]
-Coordinates=1327,833,191,33
+Coordinates=1327,833,221,36
 
 [TPluviometroTalhoesidusuario]
-Coordinates=1327,885,165,33
+Coordinates=1327,885,189,36
 
 [TAuxTipoCultivaredataalteracao]
-Coordinates=1327,937,172,33
+Coordinates=1327,937,199,36
 
 [qryProdutosOperacaodata]
-Coordinates=1327,989,144,33
+Coordinates=1327,989,165,36
 
 [TPluviometriasyncaws]
-Coordinates=1102,2393,125,33
+Coordinates=1102,2393,143,36
 
 [TVazaoOperacaostatus]
-Coordinates=1102,2445,128,33
+Coordinates=1102,2445,149,36
 
 [TUsuarioidsupervisor]
-Coordinates=1102,2497,120,33
+Coordinates=1102,2497,136,36
 
 [TOperadorMaquinaidusuarioalteracao]
-Coordinates=1327,1041,200,33
+Coordinates=1327,1041,231,36
 
 [ScriptSetSequnce]
-Coordinates=1102,2549,102,33
+Coordinates=1102,2549,117,36
 
 [TMaquinasOperacaoidusuarioalteracao]
-Coordinates=1327,1093,207,33
+Coordinates=1327,1093,240,36
 
 [TVazaoOperacaodatareg]
-Coordinates=1327,1145,135,33
+Coordinates=1327,1145,158,36
 
 [TProdutosdataalteracao]
-Coordinates=1327,1197,132,33
+Coordinates=1327,1197,152,36
 
 [TSetoresdataalteracao]
-Coordinates=1102,2601,124,33
+Coordinates=1102,2601,145,36
 
 [TReceituariodatareg]
-Coordinates=1102,2653,113,33
+Coordinates=1102,2653,131,36
 
 [QryMaquinaOperacaoidoperacaotalhao]
-Coordinates=1327,1249,206,33
+Coordinates=1327,1249,240,36
 
 [TOrcamentoFornecedoresuf]
-Coordinates=1327,1301,152,33
+Coordinates=1327,1301,176,36
 
 [TMaquinascombustivel]
-Coordinates=1327,1353,128,33
+Coordinates=1327,1353,146,36
 
 [TSetoreslatitude]
-Coordinates=1102,2705,95,33
+Coordinates=1102,2705,109,36
 
 [TItensPedidoiditem]
-Coordinates=1102,2757,109,33
+Coordinates=1102,2757,125,36
 
 [TFornecedoresnome]
-Coordinates=1102,2809,116,33
+Coordinates=1102,2809,133,36
 
 [QryOperacaoSafraTalhaoresponsavel]
-Coordinates=1327,1405,198,33
+Coordinates=1327,1405,231,36
 
 [TAuxCoberturadatareg]
-Coordinates=1102,2861,126,33
+Coordinates=1102,2861,145,36
 
 [TAuxTipoServicodataalteracao]
-Coordinates=1327,1457,165,33
+Coordinates=1327,1457,191,36
 
 [TAuxCulturassyncaws]
-Coordinates=1102,2913,124,33
+Coordinates=1102,2913,142,36
 
 [TAuxCultivaresidtipocultivar]
-Coordinates=1327,1509,154,33
+Coordinates=1327,1509,174,36
 
 [TItensPedidodatarecebimento]
-Coordinates=1327,1561,161,33
+Coordinates=1327,1561,186,36
 
 [TOperacaoSafraTalhaosyncfaz]
-Coordinates=1327,1613,164,33
+Coordinates=1327,1613,192,36
 
 [TTalhoesobservacao]
-Coordinates=1102,2965,116,33
+Coordinates=1102,2965,134,36
 
 [TPedidoCompraRepstatus_pedido]
-Coordinates=1327,1665,183,33
+Coordinates=1327,1665,211,36
 
 [TAreaslatitude]
-Coordinates=1013,2992,85,33
+Coordinates=1013,2992,98,36
 
 [TItensPedidoidusuariorecebimento]
-Coordinates=1327,1717,186,33
+Coordinates=1327,1717,214,36
 
 [QryOperacaoSafraTalhaooperacao]
-Coordinates=1327,1769,184,33
+Coordinates=1327,1769,215,36
 
 [TOcorrenciaOperacaotipoocorrencia]
-Coordinates=1327,1821,194,33
+Coordinates=1327,1821,223,36
 
 [TPedidoCompraidsolicitante]
-Coordinates=1327,1873,153,33
+Coordinates=1327,1873,176,36
 
 [TOperacaoSafraTalhaoidusuarioalteracao]
-Coordinates=1603,1,218,33
+Coordinates=1603,1,254,36
 
 [TOperadorMaquinaid]
-Coordinates=894,2992,117,33
+Coordinates=894,2992,136,36
 
 [TSafradatareg]
-Coordinates=805,2992,83,33
+Coordinates=805,2992,97,36
 
 [TMaquinasOperacaodataalteracao]
-Coordinates=1327,1925,182,33
+Coordinates=1327,1925,212,36
 
 [TReceituarioid]
-Coordinates=716,2992,85,33
+Coordinates=716,2992,98,36
 
 [TMaquinasidusuarioalteracao]
-Coordinates=1327,1977,159,33
+Coordinates=1327,1977,184,36
 
 [TAbastecimentoOutrossyncaws]
-Coordinates=1327,2029,171,33
+Coordinates=1327,2029,195,36
 
 [TOrcamentoFornecedoresdataalteracao]
-Coordinates=1603,53,209,33
+Coordinates=1603,53,243,36
 
 [TOperacaoSafraTalhaoarearealizada]
-Coordinates=1603,105,192,33
+Coordinates=1603,105,227,36
 
 [TAuxCulturasidusuarioalteracao]
-Coordinates=1327,2081,173,33
+Coordinates=1327,2081,198,36
 
 [TTalhoeslatitude]
-Coordinates=617,2992,96,33
+Coordinates=617,2992,110,36
 
 [TAuxTipoCultivareidusuario]
-Coordinates=1327,2133,152,33
+Coordinates=1327,2133,173,36
 
 [QryOperacaoSafraTalhaoidvariedade]
-Coordinates=1603,157,195,33
+Coordinates=1603,157,228,36
 
 [TPedidoCompraRepmaxidstatus]
-Coordinates=1327,2185,173,33
+Coordinates=1327,2185,200,36
 
 [TLocalEstoquesyncaws]
-Coordinates=1327,2237,131,33
+Coordinates=1327,2237,149,36
 
 [TUsuarioidusuarioalteracao]
-Coordinates=1327,2289,150,33
+Coordinates=1327,2289,172,36
 
 [TPedidoCompraRepdatareg]
-Coordinates=1327,2341,150,33
+Coordinates=1327,2341,175,36
 
 [TAuxCultivaresid]
-Coordinates=508,2992,99,33
+Coordinates=508,2992,112,36
 
 [TOcorrenciaOperacaoidtipoocorrencia]
-Coordinates=1603,261,203,33
+Coordinates=1603,261,233,36
 
 [QryMaquinaOperacaoobservacao]
-Coordinates=1603,313,178,33
+Coordinates=1603,313,207,36
 
 [TCentroCustosegmento]
-Coordinates=1327,2393,131,33
+Coordinates=1327,2393,151,36
 
 [TOperadorMaquinasyncaws]
-Coordinates=1327,2445,151,33
+Coordinates=1327,2445,175,36
 
 [QryOperacaoSafraTalhaofinalidade]
-Coordinates=1603,417,186,33
+Coordinates=1603,417,217,36
 
 [TProdutossyncaws]
-Coordinates=399,2992,108,33
+Coordinates=399,2992,123,36
 
 [TVazaoOperacao]
-Coordinates=10,593,97,375
+Coordinates=10,593,115,454
 
 [TVazaoOperacaoidusuario]
-Coordinates=1327,2497,144,33
+Coordinates=1327,2497,167,36
 
 [TUsuarioidsegmento]
-Coordinates=280,2992,116,33
+Coordinates=280,2992,133,36
 
 [TProdutosOperacaoidoperacaotalhao]
-Coordinates=1603,469,198,33
+Coordinates=1603,469,229,36
 
 [qryOcorrenciaOperacaodatareg]
-Coordinates=1327,2549,169,33
+Coordinates=1327,2549,195,36
 
 [TVazaoOperacaodataalteracao]
-Coordinates=1603,521,164,33
+Coordinates=1603,521,193,36
 
 [TItensPedidostatus]
-Coordinates=161,2992,109,33
+Coordinates=161,2992,125,36
 
 [TTalhoesdatareg]
-Coordinates=62,2992,96,33
+Coordinates=62,2992,112,36
 
 [TPedidoCompraRepidcategoria]
-Coordinates=1603,573,168,33
+Coordinates=1603,573,195,36
 
 [TFornecedoresidusuario]
-Coordinates=1327,2601,135,33
+Coordinates=1327,2601,154,36
 
 [TAuxCoberturadataalteracao]
-Coordinates=1603,625,155,33
+Coordinates=1603,625,180,36
 
 [TAuxTipoOperacaoSolidoidusuarioalteracao]
-Coordinates=1603,677,232,33
+Coordinates=1603,677,267,36
 
 [TPedidoCompraidsegmento]
-Coordinates=1603,729,151,33
+Coordinates=1603,729,174,36
 
 [TSetoresidusuario]
-Coordinates=1327,2653,104,33
+Coordinates=1327,2653,119,36
 
 [TAuxMarcaidusuario]
-Coordinates=1327,2705,116,33
-
-[TOrcamentofrete]
-Coordinates=1327,2757,97,33
+Coordinates=1327,2705,132,36
 
 [TServicodataalteracao]
-Coordinates=1327,2809,124,33
+Coordinates=1327,2809,143,36
 
 [TItensPedidounidademedida]
-Coordinates=1603,781,154,33
+Coordinates=1603,781,178,36
 
 [TProdutoscategoria]
-Coordinates=1327,2861,111,33
+Coordinates=1327,2861,127,36
 
 [TItensPedidoidorcamento]
-Coordinates=1603,833,140,33
+Coordinates=1603,833,161,36
 
 [TPluviometrossyncaws]
-Coordinates=1327,2913,128,33
+Coordinates=1327,2913,146,36
 
 [TPluviometroTalhoesdatareg]
-Coordinates=1603,937,156,33
+Coordinates=1603,937,180,36
 
 [TVazaoOperacaovinteltha]
-Coordinates=1603,989,140,33
+Coordinates=1603,989,163,36
 
 [TOperacaoSafraTalhaodatareg]
-Coordinates=1603,1041,164,33
+Coordinates=1603,1041,192,36
 
 [TPedidoCompraRepdataalteracao]
-Coordinates=1603,1093,179,33
+Coordinates=1603,1093,209,36
 
 [TAuxCulturasnome]
-Coordinates=1327,2965,109,33
+Coordinates=1327,2965,124,36
 
 [TReceituarioresponsavel]
-Coordinates=1603,1145,136,33
+Coordinates=1603,1145,157,36
 
 [TAuxMarcanome]
-Coordinates=1327,3017,97,33
+Coordinates=1327,3017,112,36
 
 [TAuxCultivaressyncfaz]
-Coordinates=1308,3063,127,33
+Coordinates=1308,3063,146,36
 
 [TAbastecimentooperador]
-Coordinates=1603,1197,139,33
+Coordinates=1603,1197,159,36
 
 [TReceituariosyncaws]
-Coordinates=1179,3063,119,33
+Coordinates=1179,3063,137,36
 
 [TSetoreslongitude]
-Coordinates=1070,3063,104,33
+Coordinates=1070,3063,119,36
 
 [TPedidoComprasolicitante]
-Coordinates=1603,1249,144,33
+Coordinates=1603,1249,166,36
 
 [TSafranome]
-Coordinates=523,1988,73,33
+Coordinates=523,1988,85,36
 
 [TSetoresidarea]
-Coordinates=981,3063,88,33
+Coordinates=981,3063,103,36
 
 [TAuxCultivares]
-Coordinates=466,978,90,267
+Coordinates=466,978,108,322
 
 [TLocalEstoque]
-Coordinates=704,978,90,267
+Coordinates=704,978,108,322
 
 [TPluviometroslatitude]
-Coordinates=852,3063,122,33
+Coordinates=852,3063,139,36
 
 [TSafradatainicio]
-Coordinates=753,3063,94,33
+Coordinates=753,3063,108,36
 
 [TStatusPedidoobservacao]
-Coordinates=1603,1301,143,33
+Coordinates=1603,1301,165,36
 
 [TDetReceiturioTalhaoidusuario]
-Coordinates=1603,1353,167,33
+Coordinates=1603,1353,192,36
 
 [TAuxSubGruposyncaws]
-Coordinates=1603,1405,133,33
+Coordinates=1603,1405,152,36
 
 [TDetReceiturioTalhaoidreceiturario]
-Coordinates=1603,1457,186,33
+Coordinates=1603,1457,215,36
 
 [TServicoid]
-Coordinates=0,1689,66,33
+Coordinates=0,1689,75,36
 
 [TCentroCusto]
-Coordinates=1033,978,90,231
+Coordinates=1033,978,108,278
 
 [TCentroCustoidusuarioalteracao]
-Coordinates=1603,1509,174,33
+Coordinates=1603,1509,200,36
 
 [TStatusPedidodataalteracao]
-Coordinates=1603,1561,152,33
+Coordinates=1603,1561,177,36
 
 [TTalhoesdataalteracao]
-Coordinates=624,3063,125,33
+Coordinates=624,3063,146,36
 
 [TAreasareahe]
-Coordinates=535,3063,82,33
+Coordinates=535,3063,96,36
 
 [TAuxCultivaresidusuarioalteracao]
-Coordinates=1603,1613,181,33
+Coordinates=1603,1613,208,36
 
 [TOperacaoSafraTalhaoidtipoaplicacaosolido]
-Coordinates=1603,1665,232,33
+Coordinates=1603,1665,268,36
 
 [TLocalEstoqueidsegmento]
-Coordinates=1603,1717,145,33
+Coordinates=1603,1717,167,36
 
 [TProdutossubgrupo]
-Coordinates=416,3063,113,33
+Coordinates=416,3063,127,36
 
 [qryOcorrenciaOperacaohora]
-Coordinates=1603,1769,154,33
+Coordinates=1603,1769,177,36
 
 [TStatusPedidosyncfaz]
-Coordinates=287,3063,124,33
+Coordinates=287,3063,142,36
 
 [TAuxSubGrupoidusuarioalteracao]
-Coordinates=1603,1821,182,33
+Coordinates=1603,1821,208,36
 
 [TAreasstatus]
-Coordinates=198,3063,79,33
+Coordinates=198,3063,90,36
 
 [QryOperacaoSafraTalhaoid]
-Coordinates=1603,1873,147,33
-
-[TOrcamentoidusuarioalteracao]
-Coordinates=1603,1977,166,33
+Coordinates=1603,1873,172,36
 
 [TAreasdatareg]
-Coordinates=109,3063,86,33
+Coordinates=109,3063,99,36
 
 [TItensPedidoNome]
-Coordinates=0,3030,107,33
+Coordinates=0,3030,124,36
 
 [TItensPedidovalorunidade]
-Coordinates=1603,2029,143,33
+Coordinates=1603,2029,164,36
 
 [QryOperacaoSafraTalhaodatainicio]
-Coordinates=1603,2081,186,33
+Coordinates=1603,2081,216,36
 
 [TMaquinasOperacaoobservacao]
-Coordinates=1603,2133,172,33
+Coordinates=1603,2133,201,36
 
 [TMaquinasidcategoria]
-Coordinates=1603,2185,123,33
+Coordinates=1603,2185,141,36
 
 [TCentroCustoidusuario]
-Coordinates=1603,2237,129,33
+Coordinates=1603,2237,147,36
 
 [TAreasidusuario]
-Coordinates=1603,2289,95,33
+Coordinates=1603,2289,108,36
 
 [TMaquinasvalor]
-Coordinates=1603,2341,92,33
+Coordinates=1603,2341,106,36
 
 [TOrcamento]
-Coordinates=1105,10,90,483
+Coordinates=1105,10,110,696
+Visible=True
 
 [TAuxCoberturanome]
-Coordinates=1603,2393,116,33
+Coordinates=1603,2393,133,36
 
 [TItensPedidodatareg]
-Coordinates=1603,2445,116,33
+Coordinates=1603,2445,134,36
 
 [TUsuariosegmentostr]
-Coordinates=1603,2497,120,33
+Coordinates=1603,2497,137,36
 
 [TMaquinasimg]
-Coordinates=1603,2549,86,33
+Coordinates=1603,2549,99,36
 
 [TAbastecimentocombustivel]
-Coordinates=1603,2601,154,33
+Coordinates=1603,2601,175,36
 
 [qryProdutosOperacaoobservacao]
-Coordinates=1873,1,180,33
-
-[TOrcamentodiferencialalicota]
-Coordinates=1603,2705,159,33
+Coordinates=1873,1,206,36
 
 [TAbastecimentoidusuario]
-Coordinates=1603,2757,140,33
+Coordinates=1603,2757,160,36
 
 [PgDriverLink]
-Coordinates=1603,2809,78,33
+Coordinates=1603,2809,88,36
 
 [TCentroCustostatus]
-Coordinates=1603,2861,113,33
+Coordinates=1603,2861,129,36
 
 [TPluviometriapluviometro]
-Coordinates=1603,2913,141,33
+Coordinates=1603,2913,160,36
 
 [TAuxTipoServicostatus]
-Coordinates=1603,2965,129,33
+Coordinates=1603,2965,147,36
 
 [TItensPedidotipo]
-Coordinates=1603,3017,97,33
+Coordinates=1603,3017,111,36
 
 [TOcorrenciaOperacao]
-Coordinates=695,593,122,303
+Coordinates=695,593,142,366
 
 [qryOcorrenciaOperacaoidtipoocorrencia]
-Coordinates=1873,53,212,33
+Coordinates=1873,53,243,36
 
 [TAuxCategorias]
-Coordinates=119,1273,93,213
-
-[TOrcamentoidfornecedor]
-Coordinates=1464,2992,137,33
+Coordinates=119,1273,108,256
 
 [TAuxTipoServico]
-Coordinates=10,1273,99,213
+Coordinates=10,1273,112,256
 
 [TAbastecimentoOutros]
-Coordinates=566,978,128,267
+Coordinates=566,978,146,322
 
 [TAuxTipoServicodatareg]
-Coordinates=1603,3069,136,33
+Coordinates=1603,3069,156,36
 
 [TLocalEstoquesyncfaz]
-Coordinates=1603,3121,125,33
+Coordinates=1603,3121,144,36
 
 [TAbastecimentoidusuarioalteracao]
-Coordinates=1873,105,186,33
+Coordinates=1873,105,213,36
 
 [TAreasresponsavel]
-Coordinates=1484,3134,109,33
+Coordinates=1484,3134,125,36
 
 [qryOcorrenciaOperacao]
-Coordinates=1145,593,132,285
+Coordinates=1145,593,152,344
 
 [TAuxTipoMaqVeicidusuario]
-Coordinates=1873,157,149,33
+Coordinates=1873,157,172,36
 
 [TTalhoes]
-Coordinates=242,593,90,357
+Coordinates=242,593,108,476
 
 [TProdutosnome]
-Coordinates=1385,3134,93,33
+Coordinates=1385,3134,106,36
 
 [TSetoresdatareg]
-Coordinates=1286,3134,95,33
-
-[TOrcamentofornecedor]
-Coordinates=1474,3088,128,33
+Coordinates=1286,3134,110,36
 
 [TProdutosidusuario]
-Coordinates=1167,3134,112,33
+Coordinates=1167,3134,126,36
 
 [TTalhoesidusuarioalteracao]
-Coordinates=1873,209,151,33
+Coordinates=1873,209,174,36
 
 [TAbastecimentosyncaws]
-Coordinates=1873,261,137,33
+Coordinates=1873,261,156,36
 
 [TOcorrenciaOperacaodataalteracao]
-Coordinates=1873,365,188,33
+Coordinates=1873,365,220,36
 
 [TTalhoestipo]
-Coordinates=1088,3134,78,33
+Coordinates=1088,3134,89,36
 
 [TAuxCultivaresstatus]
-Coordinates=959,3134,120,33
+Coordinates=959,3134,136,36
 
 [TAuxCoberturaid]
-Coordinates=860,3134,98,33
+Coordinates=860,3134,112,36
 
 [QryOperacaoSafraTalhaoreceituario]
-Coordinates=1873,469,191,33
+Coordinates=1873,469,222,36
 
 [TPedidoCompraidusuarioalteracao]
-Coordinates=1873,521,185,33
+Coordinates=1873,521,213,36
 
 [qryProdutosOperacaostatus]
-Coordinates=1873,573,153,33
+Coordinates=1873,573,175,36
 
 [TUsuariodatareg]
-Coordinates=761,3134,96,33
+Coordinates=761,3134,110,36
 
 [TProdutos]
-Coordinates=158,10,90,573
+Coordinates=158,10,108,696
 
 [TDetReceiturioTalhaoareahe_1]
-Coordinates=1873,625,165,33
+Coordinates=1873,625,194,36
 
 [TMaquinasOperacaohorastrabalhada]
-Coordinates=1873,677,195,33
+Coordinates=1873,677,227,36
 
 [TPedidoCompraRepidsupervisoraprovacao]
-Coordinates=1873,729,226,33
+Coordinates=1873,729,261,36
 
 [TAuxOperacao]
-Coordinates=698,1273,90,177
+Coordinates=698,1273,108,212
 
 [TItensPedidoqtdrealizada]
-Coordinates=1873,781,139,33
+Coordinates=1873,781,161,36
 
 [TTalhoesid]
-Coordinates=0,2533,68,33
-
-[TOrcamentoidusuario]
-Coordinates=632,3134,121,33
+Coordinates=0,2533,78,36
 
 [TAuxTipoCultivarestatus]
-Coordinates=1873,833,136,33
+Coordinates=1873,833,155,36
 
 [TProdutossegmento]
-Coordinates=513,3134,114,33
+Coordinates=513,3134,130,36
 
 [TOperacaoSafraTalhaoidresponsavel]
-Coordinates=1873,885,196,33
+Coordinates=1873,885,228,36
 
 [TAuxGrupoidusuario]
-Coordinates=394,3134,117,33
+Coordinates=394,3134,132,36
 
 [QryOperacaoSafraTalhaoidreceituario]
-Coordinates=1873,937,200,33
+Coordinates=1873,937,232,36
 
 [TProdutosOperacaoid]
-Coordinates=265,3134,122,33
+Coordinates=265,3134,140,36
 
 [TMaquinasOperacaodata]
-Coordinates=1873,1041,136,33
+Coordinates=1873,1041,159,36
 
 [TPluviometroTalhoes]
-Coordinates=804,978,119,249
+Coordinates=804,978,136,300
 
 [TMaquinaschassi]
-Coordinates=156,3134,100,33
+Coordinates=156,3134,115,36
 
 [TAuxCultivaresdatareg]
-Coordinates=27,3134,127,33
+Coordinates=27,3134,146,36
 
 [TFornecedorescidade]
-Coordinates=1873,1145,121,33
+Coordinates=1873,1145,139,36
 
 [TPedidoCompra]
-Coordinates=367,10,121,555
+Coordinates=367,10,145,762
 
 [TProdutosestoqueminimo]
-Coordinates=1873,1197,141,33
+Coordinates=1873,1197,161,36
 
 [TOperacaoSafraTalhaotipoterraaereo]
-Coordinates=1873,1249,196,33
+Coordinates=1873,1249,229,36
 
 [qryOcorrenciaOperacaoidoperacaotalhao]
-Coordinates=1873,1301,217,33
+Coordinates=1873,1301,251,36
 
 [TStatusPedidoidusuarioalteracao]
-Coordinates=1873,1353,178,33
+Coordinates=1873,1353,204,36
 
 [TAuxCulturasstatus]
-Coordinates=1873,1405,112,33
+Coordinates=1873,1405,127,36
 
 [TPedidoCompraRepdescricaoservico]
-Coordinates=1873,1457,197,33
+Coordinates=1873,1457,227,36
 
 [TAreas]
-Coordinates=927,593,90,303
+Coordinates=927,593,108,366
 
 [QryMaquinaOperacaodata]
-Coordinates=1873,1509,142,33
+Coordinates=1873,1509,166,36
 
 [TOperacaoSafraTalhaoidoperacao]
-Coordinates=1873,1561,182,33
+Coordinates=1873,1561,212,36
 
 [TMaquinascombustivelstr]
-Coordinates=1873,1613,141,33
+Coordinates=1873,1613,161,36
 
 [TProdutosid]
-Coordinates=1873,1665,74,33
+Coordinates=1873,1665,84,36
 
 [TPedidoCompraidservico]
-Coordinates=1873,1717,139,33
+Coordinates=1873,1717,159,36
 
 [TAbastecimentovolumelt]
-Coordinates=1873,1769,136,33
+Coordinates=1873,1769,155,36
 
 [TPluviometriaidusuarioalteracao]
-Coordinates=1873,1821,174,33
+Coordinates=1873,1821,199,36
 
 [TVazaoOperacaoid]
-Coordinates=1873,1873,107,33
+Coordinates=1873,1873,125,36
 
 [TAuxCulturasidusuario]
-Coordinates=1873,1925,128,33
+Coordinates=1873,1925,145,36
 
 [TPedidoCompraRepsyncaws]
-Coordinates=1873,1977,156,33
+Coordinates=1873,1977,180,36
 
 [TOperacaoSafraTalhaoareaprevista]
-Coordinates=1873,2029,187,33
+Coordinates=1873,2029,220,36
 
 [vQry]
-Coordinates=882,1273,40,51
+Coordinates=882,1273,42,58
 
 [TOcorrenciaOperacaodescricao]
-Coordinates=1873,2081,170,33
-
-[TOrcamentoobservacao]
-Coordinates=1873,2133,132,33
+Coordinates=1873,2081,197,36
 
 [QryMaquinaOperacaoid]
-Coordinates=1873,2185,130,33
+Coordinates=1873,2185,151,36
 
 [TUsuariotipostr]
-Coordinates=1873,2237,91,33
+Coordinates=1873,2237,102,36
 
 [QryMaquinaOperacaohoraparada]
-Coordinates=1873,2289,177,33
+Coordinates=1873,2289,206,36
 
 [TAbastecimentomaquinaprefixo]
-Coordinates=1873,2341,171,33
+Coordinates=1873,2341,195,36
 
 [qryOcorrenciaOperacaodataocorrencia]
-Coordinates=1873,2393,206,33
-
-[TOrcamentoidpedido]
-Coordinates=1873,2445,117,33
+Coordinates=1873,2393,237,36
 
 [TUsuariostatus]
-Coordinates=1873,2497,89,33
+Coordinates=1873,2497,101,36
 
 [TSetoresareanome]
-Coordinates=1873,2549,107,33
+Coordinates=1873,2549,124,36
 
 [TReceituarioidresponsavel]
-Coordinates=1873,2601,145,33
+Coordinates=1873,2601,167,36
 
 [TPedidoCompradatapedido]
-Coordinates=1873,2653,148,33
+Coordinates=1873,2653,171,36
 
 [TOperacaoSafraTalhaoidsafra]
-Coordinates=1873,2705,160,33
+Coordinates=1873,2705,188,36
 
 [qryOcorrenciaOperacaoidusuarioalteracao]
-Coordinates=2137,1,223,33
+Coordinates=2137,1,257,36
 
 [TAuxTipoCultivareidusuarioalteracao]
-Coordinates=1873,2757,197,33
+Coordinates=1873,2757,226,36
 
 [TPedidoCompramaquinaveiculo]
-Coordinates=1873,2809,171,33
+Coordinates=1873,2809,197,36
 
 [TReceituarioidusuarioalteracao]
-Coordinates=1873,2861,168,33
+Coordinates=1873,2861,193,36
 
 [TDetReceituarioidusuarioalteracao]
-Coordinates=1873,2913,184,33
+Coordinates=1873,2913,213,36
 
 [TLocalEstoqueid]
-Coordinates=1873,2965,97,33
+Coordinates=1873,2965,110,36
 
 [qryProdutosOperacaodatareg]
-Coordinates=1873,3017,160,33
+Coordinates=1873,3017,184,36
 
 [TPluviometroTalhoesdataalteracao]
-Coordinates=2137,53,185,33
+Coordinates=2137,53,214,36
 
 [TAuxTipoOcorrenciastatus]
-Coordinates=1873,3069,146,33
+Coordinates=1873,3069,167,36
 
 [TAuxOperacaonome]
-Coordinates=1873,3121,115,33
+Coordinates=1873,3121,132,36
 
 [TPedidoCompradatareg]
-Coordinates=1873,3173,131,33
+Coordinates=1873,3173,151,36
 
 [TAbastecimentoOutrosid]
-Coordinates=2137,105,137,33
+Coordinates=2137,105,156,36
 
 [TDetReceituarioqtdporhe]
-Coordinates=2137,157,137,33
+Coordinates=2137,157,158,36
 
 [TDetReceituariosyncfaz]
-Coordinates=1734,3192,131,33
+Coordinates=1734,3192,151,36
 
 [TProdutosOperacaoobservacao]
-Coordinates=2137,209,170,33
-
-[TOrcamentosyncaws]
-Coordinates=1615,3205,117,33
+Coordinates=2137,209,196,36
 
 [TServico]
-Coordinates=595,593,90,303
+Coordinates=595,593,108,366
 
 [TAuxTipoMaqVeic]
-Coordinates=1133,978,103,213
+Coordinates=1133,978,119,256
 
 [TItensPedidoidusuario]
-Coordinates=1486,3205,125,33
+Coordinates=1486,3205,143,36
 
 [TOperadorMaquinadatareg]
-Coordinates=2137,261,145,33
+Coordinates=2137,261,169,36
 
 [QryMaquinaOperacao]
-Coordinates=1409,10,121,375
+Coordinates=1409,10,141,454
 
 [TUsuarionome]
-Coordinates=1397,3205,86,33
+Coordinates=1397,3205,99,36
 
 [qryProdutosOperacaoidusuarioalteracao]
-Coordinates=2137,313,214,33
+Coordinates=2137,313,246,36
 
 [TPluviometriaidpluviometro]
-Coordinates=2137,365,150,33
+Coordinates=2137,365,170,36
 
 [TFornecedorestelefone_fixo]
-Coordinates=2137,417,152,33
+Coordinates=2137,417,175,36
 
 [TAuxTipoCultivaredatareg]
-Coordinates=2137,469,143,33
+Coordinates=2137,469,164,36
 
 [TOrcamentoFornecedoresdatareg]
-Coordinates=2137,521,180,33
+Coordinates=2137,521,209,36
 
 [TAbastecimentodataalteracao]
-Coordinates=2137,573,160,33
+Coordinates=2137,573,185,36
 
 [TAbastecimentodataabastecimento]
-Coordinates=2137,625,187,33
+Coordinates=2137,625,216,36
 
 [TMaquinasid]
-Coordinates=1318,3205,77,33
+Coordinates=1318,3205,88,36
 
 [QryOperacaoSafraTalhaoidusuario]
-Coordinates=2137,677,184,33
+Coordinates=2137,677,214,36
 
 [TItensPedidovalortotal]
-Coordinates=1189,3205,125,33
+Coordinates=1189,3205,143,36
 
 [QryMaquinaOperacaodataalteracao]
-Coordinates=2137,729,187,33
+Coordinates=2137,729,219,36
 
 [TDetReceiturioTalhaoidusuarioalteracao]
-Coordinates=2137,781,212,33
+Coordinates=2137,781,246,36
 
 [qryOcorrenciaOperacaodataalteracao]
-Coordinates=2137,833,198,33
+Coordinates=2137,833,230,36
 
 [TPluviometriaidtalhao]
-Coordinates=1060,3205,121,33
+Coordinates=1060,3205,139,36
 
 [TAuxGruposyncaws]
-Coordinates=941,3205,113,33
+Coordinates=941,3205,129,36
 
 [TVazaoOperacaosyncfaz]
-Coordinates=802,3192,135,33
+Coordinates=802,3192,158,36
 
 [TDetReceituarioidreceiturario]
-Coordinates=2137,937,159,33
+Coordinates=2137,937,183,36
 
 [TPedidoCompraidsupervisoraprovacao]
-Coordinates=2137,989,207,33
+Coordinates=2137,989,237,36
 
 [TDetReceituariofinalidade]
-Coordinates=2137,1041,141,33
+Coordinates=2137,1041,163,36
 
 [QryOperacaoSafraTalhaosyncaws]
-Coordinates=2137,1093,181,33
+Coordinates=2137,1093,211,36
 
 [TPluviometriadataalteracao]
-Coordinates=2137,1145,148,33
+Coordinates=2137,1145,172,36
 
 [TPedidoCompracategoria]
-Coordinates=2137,1197,139,33
+Coordinates=2137,1197,161,36
 
 [TAreasidresponsavel]
-Coordinates=554,3205,118,33
+Coordinates=554,3205,135,36
 
 [TReceituario]
-Coordinates=933,978,90,249
+Coordinates=933,978,112,432
 
 [TAuxTipoCultivaresyncfaz]
-Coordinates=2137,1301,143,33
+Coordinates=2137,1301,164,36
 
 [TPedidoCompraRepidmaquina]
-Coordinates=2137,1353,164,33
+Coordinates=2137,1353,191,36
 
 [TStatusPedido]
-Coordinates=133,978,90,285
+Coordinates=133,978,108,344
 
 [TPedidoCompraRepdataaprovacaodiretoria]
-Coordinates=2137,1405,227,33
+Coordinates=2137,1405,263,36
 
 [TPedidoCompraRepdatapedido]
-Coordinates=2137,1509,168,33
+Coordinates=2137,1509,195,36
 
 [TAuxCoberturasyncaws]
-Coordinates=415,3192,132,33
+Coordinates=415,3192,151,36
 
 [TPedidoCompradataalteracao]
-Coordinates=2137,1561,160,33
+Coordinates=2137,1561,186,36
 
 [TAuxCoberturastatus]
-Coordinates=286,3205,119,33
+Coordinates=286,3205,136,36
 
 [TOrcamentoFornecedoresidorcamento]
-Coordinates=2137,1613,204,33
+Coordinates=2137,1613,236,36
 
 [TOperacaoSafraTalhaodataalteracao]
-Coordinates=2137,1665,193,33
+Coordinates=2137,1665,227,36
 
 [TReceituariosyncfaz]
-Coordinates=167,3205,114,33
+Coordinates=167,3205,131,36
 
 [TPedidoCompramaxidstatus]
-Coordinates=2137,1717,153,33
+Coordinates=2137,1717,176,36
 
 [TOcorrenciaOperacaohora]
-Coordinates=2137,1769,144,33
+Coordinates=2137,1769,167,36
 
 [TOperacaoSafraTalhaoidusuario]
-Coordinates=2137,1821,173,33
+Coordinates=2137,1821,201,36
 
 [TPedidoCompraRepidusuarioalteracao]
-Coordinates=2137,1873,204,33
+Coordinates=2137,1873,237,36
 
 [TPedidoComprastatus]
-Coordinates=38,3205,124,33
+Coordinates=38,3205,142,36
 
 [TMaquinasprefixo]
-Coordinates=2137,1925,102,33
+Coordinates=2137,1925,117,36
 
 [TPedidoComprasyncaws]
-Coordinates=2137,1977,136,33
+Coordinates=2137,1977,157,36
 
 [TOperacaoSafraTalhaodatainicio]
-Coordinates=2137,2029,175,33
+Coordinates=2137,2029,204,36
 
 [QryOperacaoSafraTalhaoidusuarioalteracao]
-Coordinates=2137,2081,230,33
+Coordinates=2137,2081,267,36
 
 [QryOperacaoSafraTalhaoidresponsavel]
-Coordinates=2137,2133,207,33
+Coordinates=2137,2133,241,36
 
 [TMaquinastipo]
-Coordinates=2137,2185,87,33
-
-[TOrcamentostatusstr]
-Coordinates=2137,2237,118,33
+Coordinates=2137,2185,99,36
 
 [TDetReceituariodataalteracao]
-Coordinates=2137,2289,159,33
+Coordinates=2137,2289,186,36
 
 [TOrcamentoFornecedorescontatopessoa]
-Coordinates=2137,2341,215,33
+Coordinates=2137,2341,248,36
 
 [qryProdutosOperacaosyncaws]
-Coordinates=2137,2393,166,33
+Coordinates=2137,2393,189,36
 
 [TPedidoCompradataaprovacaosupervisor]
-Coordinates=2137,2445,219,33
+Coordinates=2137,2445,252,36
 
 [TMaquinasOperacaohoraparada]
-Coordinates=2137,2497,171,33
+Coordinates=2137,2497,200,36
 
 [TPluviometrosdataalteracao]
-Coordinates=2137,2549,152,33
+Coordinates=2137,2549,175,36
 
 [TDetReceituariodatareg]
-Coordinates=2137,2601,130,33
+Coordinates=2137,2601,151,36
 
 [TItensPedidoobservacaorecebimento]
-Coordinates=2137,2653,197,33
+Coordinates=2137,2653,228,36
 
 [TProdutosOperacaoproduto]
-Coordinates=2137,2705,152,33
+Coordinates=2137,2705,174,36
 
 [TPedidoCompraRepidusuario]
-Coordinates=2137,2757,159,33
+Coordinates=2137,2757,184,36
 
 [TItensPedidoquantidade]
-Coordinates=2137,2809,133,33
+Coordinates=2137,2809,154,36
 
 [TAbastecimentoidlocalestoque]
-Coordinates=2137,2861,166,33
+Coordinates=2137,2861,190,36
 
 [TMaquinasmodelo]
-Coordinates=2137,2913,104,33
+Coordinates=2137,2913,120,36
 
 [TAuxCultivaresciclo]
-Coordinates=2137,2965,113,33
+Coordinates=2137,2965,128,36
 
 [TMaquinasstatus]
-Coordinates=2137,3017,98,33
+Coordinates=2137,3017,112,36
 
 [TSetoresidusuarioalteracao]
-Coordinates=2137,3069,150,33
+Coordinates=2137,3069,172,36
 
 [TSetoresstatus]
-Coordinates=2137,3121,88,33
+Coordinates=2137,3121,101,36
 
 [TMaquinasOperacaomaquina]
-Coordinates=2137,3173,158,33
+Coordinates=2137,3173,183,36
 
 [qryProdutosOperacaoid]
-Coordinates=2137,3225,132,33
+Coordinates=2137,3225,150,36
 
 [TAuxOperacaoid]
-Coordinates=2118,3276,96,33
+Coordinates=2118,3276,111,36
 
 [QryOperacaoSafraTalhao]
-Coordinates=10,10,138,573
+Coordinates=10,10,162,762
 
 [TVazaoOperacaoidusuarioalteracao]
-Coordinates=2405,1,189,33
+Coordinates=2405,1,220,36
 
 [TAuxTipoOperacaoSolidostatus]
-Coordinates=2405,53,171,33
+Coordinates=2405,53,196,36
 
 [TDetReceituarioproduto]
-Coordinates=1979,3276,132,33
+Coordinates=1979,3276,151,36
 
 [TProdutosidusuarioalteracao]
-Coordinates=2405,105,157,33
+Coordinates=2405,105,179,36
 
 [TOcorrenciaOperacaodatareg]
-Coordinates=2405,157,159,33
+Coordinates=2405,157,185,36
 
 [TOperacaoSafraTalhaostatus]
-Coordinates=2405,209,157,33
+Coordinates=2405,209,183,36
 
 [QryOperacaoSafraTalhaoidcobertura]
-Coordinates=2405,261,195,33
+Coordinates=2405,261,226,36
 
 [TPedidoCompraReptiposervico]
-Coordinates=2405,313,168,33
+Coordinates=2405,313,193,36
 
 [TAuxTipoCultivareid]
-Coordinates=1860,3276,115,33
+Coordinates=1860,3276,131,36
 
 [QryMaquinaOperacaostatus]
-Coordinates=2405,365,151,33
+Coordinates=2405,365,175,36
 
 [QryMaquinaOperacaooperador]
-Coordinates=2405,417,166,33
+Coordinates=2405,417,192,36
 
 [TPluviometrosid]
-Coordinates=1761,3276,95,33
+Coordinates=1761,3276,107,36
 
 [TPedidoCompraRepcategoria]
-Coordinates=2405,469,159,33
+Coordinates=2405,469,184,36
 
 [TItensPedidoidusuarioalteracao]
-Coordinates=2405,521,170,33
+Coordinates=2405,521,196,36
 
 [TAuxGrupodatareg]
-Coordinates=1652,3276,108,33
+Coordinates=1652,3276,124,36
 
 [TAbastecimentoOutrosidusuarioalteracao]
-Coordinates=2405,573,219,33
-
-[TOrcamentoicmst]
-Coordinates=1543,3276,101,33
+Coordinates=2405,573,252,36
 
 [TProdutoscodigofabricante]
-Coordinates=2405,625,148,33
+Coordinates=2405,625,169,36
 
 [TPedidoCompraRepflagurgente]
-Coordinates=2405,677,169,33
+Coordinates=2405,677,196,36
 
 [TMaquinasOperacaohorafim]
-Coordinates=2405,729,153,33
+Coordinates=2405,729,177,36
 
 [TCentroCustoid]
-Coordinates=1444,3276,92,33
+Coordinates=1444,3276,105,36
 
 [TProdutosobservacao]
-Coordinates=1315,3276,123,33
+Coordinates=1315,3276,140,36
 
 [TOrcamentoFornecedorescpf_cnpj]
-Coordinates=2405,833,185,33
+Coordinates=2405,833,213,36
 
 [TFornecedoresemail]
-Coordinates=1196,3276,115,33
+Coordinates=1196,3276,132,36
 
 [TStatusPedidodatareg]
-Coordinates=1067,3276,123,33
+Coordinates=1067,3276,142,36
 
 [TAreasid]
-Coordinates=0,1955,58,33
+Coordinates=0,1955,66,36
 
 [TProdutosnumeroserie]
-Coordinates=938,3276,127,33
+Coordinates=938,3276,145,36
 
 [qryOcorrenciaOperacaostatus]
-Coordinates=2405,885,162,33
+Coordinates=2405,885,186,36
 
 [TOrcamentoFornecedoresid]
-Coordinates=2405,937,152,33
+Coordinates=2405,937,175,36
 
 [TOcorrenciaOperacaoid]
-Coordinates=799,3276,131,33
+Coordinates=799,3276,152,36
 
 [IdHTTP1]
-Coordinates=702,2566,56,33
+Coordinates=702,2566,66,36
 
 [TTalhoesqrcode]
-Coordinates=700,3276,93,33
+Coordinates=700,3276,107,36
 
 [TFornecedoresidusuarioalteracao]
-Coordinates=2405,989,180,33
+Coordinates=2405,989,207,36
 
 [TOperacaoSafraTalhaoidreceituario]
-Coordinates=2405,1041,188,33
+Coordinates=2405,1041,219,36
 
 [TAbastecimentoOutrosidabastecimento]
-Coordinates=2405,1093,209,33
-
-[TOrcamentodataalteracao]
-Coordinates=2405,1145,141,33
+Coordinates=2405,1093,240,36
 
 [TLocalEstoqueidusuarioalteracao]
-Coordinates=2405,1197,179,33
+Coordinates=2405,1197,206,36
 
 [TOrcamentoFornecedorescidade]
-Coordinates=2405,1249,175,33
+Coordinates=2405,1249,203,36
 
 [TAreassyncaws]
-Coordinates=601,3276,92,33
+Coordinates=601,3276,105,36
 
 [TAuxTipoCultivaresyncaws]
-Coordinates=2405,1301,148,33
+Coordinates=2405,1301,170,36
 
 [TAuxSubGrupo]
-Coordinates=1561,978,90,213
+Coordinates=1561,978,108,256
 
 [TProdutosdatareg]
-Coordinates=492,3276,103,33
+Coordinates=492,3276,117,36
 
 [TPluviometroTalhoessyncfaz]
-Coordinates=2405,1353,156,33
+Coordinates=2405,1353,180,36
 
 [TPedidoCompraiddiretoriaaprovacao]
-Coordinates=2405,1405,195,33
+Coordinates=2405,1405,225,36
 
 [TItensPedido]
-Coordinates=979,10,116,483
+Coordinates=979,10,138,674
 
 [TTalhoesidusuario]
-Coordinates=383,3276,105,33
+Coordinates=383,3276,121,36
 
 [TOcorrenciaOperacaoidusuarioalteracao]
-Coordinates=2405,1457,214,33
+Coordinates=2405,1457,247,36
 
 [TAuxSubGrupostatus]
-Coordinates=254,3276,120,33
+Coordinates=254,3276,137,36
 
 [TDetReceiturioTalhaotalhao]
-Coordinates=2405,1509,151,33
+Coordinates=2405,1509,175,36
 
 [TDetReceiturioTalhaodatareg]
-Coordinates=2405,1561,157,33
+Coordinates=2405,1561,184,36
 
 [TProdutosOperacaoidusuarioalteracao]
-Coordinates=2405,1613,204,33
+Coordinates=2405,1613,236,36
 
 [TProdutosOperacaoqtdeutilidado]
-Coordinates=2405,1665,178,33
+Coordinates=2405,1665,203,36
 
 [TAuxTipoCultivare]
-Coordinates=1446,978,105,213
+Coordinates=1446,978,121,256
 
 [TVazaoOperacaodezltha]
-Coordinates=115,3276,133,33
+Coordinates=115,3276,156,36
 
 [TAbastecimentodatareg]
-Coordinates=2405,1717,131,33
+Coordinates=2405,1717,151,36
 
 [TOperacaoSafraTalhaoidcobertura]
-Coordinates=2405,1769,183,33
+Coordinates=2405,1769,213,36
 
 [TCentroCustonome]
-Coordinates=0,3243,110,33
+Coordinates=0,3243,126,36
 
 [TOcorrenciaOperacaoidusuario]
-Coordinates=2405,1821,168,33
+Coordinates=2405,1821,194,36
 
 [TVazaoOperacaoquinzeltha]
-Coordinates=2405,1873,148,33
+Coordinates=2405,1873,174,36
 
 [TLocalEstoquedataalteracao]
-Coordinates=2405,1925,154,33
-
-[TOrcamentosyncfaz]
-Coordinates=2405,1977,112,33
+Coordinates=2405,1925,178,36
 
 [TAbastecimentoOutrosquantidade]
-Coordinates=2405,2029,183,33
+Coordinates=2405,2029,210,36
 
 [TItensOrcamento]
-Coordinates=258,10,99,555
+Coordinates=258,10,114,982
 
 [TLocalEstoquedatareg]
-Coordinates=2405,2081,125,33
+Coordinates=2405,2081,144,36
 
 [TOperadorMaquinarg]
-Coordinates=2405,2133,119,33
+Coordinates=2405,2133,137,36
 
 [TMaquinasOperacaoid]
-Coordinates=2405,2237,124,33
+Coordinates=2405,2237,144,36
 
 [TLocalEstoquesegmento]
-Coordinates=2405,2289,136,33
+Coordinates=2405,2289,156,36
 
 [TMaquinasOperacao]
-Coordinates=117,593,115,357
+Coordinates=117,593,134,432
 
 [TAuxTipoServicoidusuarioalteracao]
-Coordinates=2405,2341,190,33
+Coordinates=2405,2341,218,36
 
 [TAuxCultivaresidusuario]
-Coordinates=2405,2393,136,33
+Coordinates=2405,2393,154,36
 
 [TAuxCategoriasdataalteracao]
-Coordinates=2405,2497,159,33
+Coordinates=2405,2497,185,36
 
 [TMaquinasidusuario]
-Coordinates=2405,2549,114,33
+Coordinates=2405,2549,130,36
 
 [TPluviometros]
-Coordinates=1520,593,90,285
+Coordinates=1520,593,108,344
 
 [QryOperacaoSafraTalhaosyncfaz]
-Coordinates=2405,2601,176,33
+Coordinates=2405,2601,205,36
 
 [QryMaquinaOperacaohorafim]
-Coordinates=2405,2653,159,33
+Coordinates=2405,2653,184,36
 
 [QryMaquinaOperacaoidmaquina]
-Coordinates=2405,2705,172,33
+Coordinates=2405,2705,200,36
 
 [TPedidoCompraRepid]
-Coordinates=2405,2757,122,33
+Coordinates=2405,2757,141,36
 
 [TDetReceituariosyncaws]
-Coordinates=2405,2809,136,33
+Coordinates=2405,2809,157,36
 
 [TMaquinasmarca]
-Coordinates=2405,2861,98,33
+Coordinates=2405,2861,114,36
 
 [TPedidoCompraRepidsegmento]
-Coordinates=2405,2913,171,33
+Coordinates=2405,2913,198,36
 
 [TVazaoOperacaocincoltha]
-Coordinates=2405,2965,143,33
+Coordinates=2405,2965,166,36
 
 [TServicoresponsavel]
-Coordinates=2405,3017,117,33
+Coordinates=2405,3017,135,36
 
 [TAuxMarca]
-Coordinates=1246,978,90,213
+Coordinates=1246,978,108,256
 
 [TStatusPedidoidusuario]
-Coordinates=2405,3069,132,33
+Coordinates=2405,3069,151,36
 
 [TAuxTipoMaqVeicid]
-Coordinates=2405,3121,112,33
+Coordinates=2405,3121,130,36
 
 [TAuxTipoServicoidsegmento]
-Coordinates=2405,3173,156,33
+Coordinates=2405,3173,179,36
 
 [TFornecedorescpf_cnpj]
-Coordinates=2405,3225,131,33
+Coordinates=2405,3225,150,36
 
 [QryMaquinaOperacaohoratotal]
-Coordinates=2405,3277,165,33
+Coordinates=2405,3277,191,36
 
 [TPluviometroTalhoesidpluviometro]
-Coordinates=2662,1,187,33
+Coordinates=2662,1,213,36
 
 [TAuxCategoriasdatareg]
-Coordinates=2405,3329,130,33
+Coordinates=2405,3329,150,36
 
 [QryMaquinaOperacaodatareg]
-Coordinates=2246,3296,158,33
+Coordinates=2246,3296,184,36
 
 [TServicoidtipo]
-Coordinates=2316,3347,85,33
+Coordinates=2316,3347,96,36
 
 [TStatusPedidodatastatus]
-Coordinates=2662,105,137,33
+Coordinates=2662,105,158,36
 
 [TOperacaoSafraTalhaosyncaws]
-Coordinates=2662,157,170,33
+Coordinates=2662,157,198,36
 
 [TPedidoCompraRepidsolicitante]
-Coordinates=2662,209,173,33
+Coordinates=2662,209,199,36
 
 [TStatusPedidostatus]
-Coordinates=2197,3347,116,33
+Coordinates=2197,3347,133,36
 
 [TOperadorMaquinacelular]
-Coordinates=2662,261,141,33
+Coordinates=2662,261,164,36
 
 [TPedidoCompraRepiddiretoriaaprovacao]
-Coordinates=2662,313,215,33
+Coordinates=2662,313,248,36
 
 [TPedidoCompraRepsolicitante]
-Coordinates=2662,365,164,33
+Coordinates=2662,365,189,36
 
 [TPedidoCompraidentificador]
-Coordinates=2662,417,155,33
+Coordinates=2662,417,178,36
 
 [TLocalEstoquestatus]
-Coordinates=2078,3347,118,33
+Coordinates=2078,3347,135,36
 
 [TPedidoCompraRep]
-Coordinates=498,10,121,555
+Coordinates=498,10,145,674
 
 [TPluviometrosnome]
-Coordinates=1959,3347,113,33
+Coordinates=1959,3347,129,36
 
 [qryProdutosOperacaoqtdeutilidado]
-Coordinates=2662,469,187,33
+Coordinates=2662,469,214,36
 
 [TUsuariotipo]
-Coordinates=1880,3347,77,33
+Coordinates=1880,3347,88,36
 
 [TSafrastatus]
-Coordinates=1801,3347,76,33
+Coordinates=1801,3347,88,36
 
 [TAbastecimentoOutrosdataalteracao]
-Coordinates=2662,573,194,33
+Coordinates=2662,573,224,36
 
 [TOrcamentoFornecedorescelular]
-Coordinates=2662,625,176,33
+Coordinates=2662,625,203,36
 
 [TAuxGrupoid]
-Coordinates=1712,3347,80,33
+Coordinates=1712,3347,90,36
 
 [TFornecedorescelular]
-Coordinates=1583,3347,121,33
+Coordinates=1583,3347,140,36
 
 [TAuxSubGrupoid]
-Coordinates=1474,3347,99,33
+Coordinates=1474,3347,113,36
 
 [TProdutosOperacaosyncaws]
-Coordinates=2662,729,156,33
+Coordinates=2662,729,179,36
 
 [TPedidoCompraid]
-Coordinates=1365,3347,103,33
+Coordinates=1365,3347,118,36
 
 [TUsuariosyncaws]
-Coordinates=1256,3347,101,33
+Coordinates=1256,3347,116,36
 
 [TAuxTipoOcorrenciaidusuarioalteracao]
-Coordinates=2662,781,207,33
+Coordinates=2662,781,238,36
 
 [TSetoressyncaws]
-Coordinates=1147,3347,101,33
+Coordinates=1147,3347,116,36
 
 [TSafraobservacao]
-Coordinates=1038,3347,103,33
+Coordinates=1038,3347,119,36
 
 [TProdutosOperacaoidusuario]
-Coordinates=2662,833,159,33
+Coordinates=2662,833,183,36
 
 [QryMaquinaOperacaoidusuario]
-Coordinates=2662,885,167,33
+Coordinates=2662,885,193,36
 
 [TAuxTipoOcorrenciasyncaws]
-Coordinates=2662,937,159,33
+Coordinates=2662,937,182,36
 
 [TDetReceiturioTalhao]
-Coordinates=1390,593,120,285
+Coordinates=1390,593,140,344
 
 [TSafrasyncfaz]
-Coordinates=949,3347,84,33
+Coordinates=949,3347,97,36
 
 [TOrcamentoFornecedoresnome]
-Coordinates=2662,989,170,33
+Coordinates=2662,989,197,36
 
 [TUsuariosenha]
-Coordinates=860,3347,88,33
+Coordinates=860,3347,102,36
 
 [TAuxTipoMaqVeicidusuarioalteracao]
-Coordinates=2662,1093,195,33
+Coordinates=2662,1093,225,36
 
 [TAuxOperacaostatus]
-Coordinates=741,3347,117,33
+Coordinates=741,3347,135,36
 
 [TReceituarionome]
-Coordinates=632,3347,104,33
+Coordinates=632,3347,120,36
 
 [TMaquinasidmarca]
-Coordinates=523,3347,107,33
+Coordinates=523,3347,124,36
 
 [TReceituariostatus]
-Coordinates=414,3347,107,33
+Coordinates=414,3347,122,36
 
 [TOperacaoSafraTalhaoidtalhao]
-Coordinates=2662,1145,166,33
+Coordinates=2662,1145,194,36
 
 [TAbastecimentoOutrosidproduto]
-Coordinates=2662,1197,176,33
+Coordinates=2662,1197,200,36
 
 [TAuxSubGrupodataalteracao]
-Coordinates=2662,1301,156,33
+Coordinates=2662,1301,181,36
 
 [TFornecedoresinscricaoestadual]
-Coordinates=2662,1353,175,33
+Coordinates=2662,1353,201,36
 
 [TServicodatareg]
-Coordinates=206,3347,95,33
+Coordinates=206,3347,109,36
 
 [TFornecedorescontatopessoa]
-Coordinates=2662,1405,161,33
-
-[TOrcamentostatus]
-Coordinates=97,3347,105,33
+Coordinates=2662,1405,185,36
 
 [TItensPedidoid]
-Coordinates=0,3314,88,33
+Coordinates=0,3314,101,36
 
 [TStatusPedidonomestatus]
-Coordinates=2662,1509,144,33
+Coordinates=2662,1509,165,36
 
 [TAbastecimentoOutrosproduto]
-Coordinates=2662,1561,167,33
+Coordinates=2662,1561,190,36
 
 [TFornecedoressyncaws]
-Coordinates=2662,1613,131,33
+Coordinates=2662,1613,151,36
 
 [TAbastecimento]
-Coordinates=1205,10,94,411
-
-[TOrcamentoemail]
-Coordinates=2662,1665,101,33
+Coordinates=1205,10,111,564
 
 [TPluviometroTalhoesidtalhao]
-Coordinates=2662,1717,158,33
+Coordinates=2662,1717,182,36
 
 [TVazaoOperacaosyncaws]
-Coordinates=2662,1769,140,33
+Coordinates=2662,1769,164,36
 
 [TAbastecimentolocalestoquenome]
-Coordinates=2662,1821,184,33
-
-[TOrcamentotelefone_fixo]
-Coordinates=2662,1925,138,33
+Coordinates=2662,1821,212,36
 
 [TAbastecimentocombustivelnome]
-Coordinates=2662,1977,182,33
+Coordinates=2662,1977,207,36
 
 [TUsuariousuario]
-Coordinates=2662,2029,96,33
+Coordinates=2662,2029,109,36
 
 [TAuxOperacaodatareg]
-Coordinates=2662,2081,124,33
+Coordinates=2662,2081,144,36
 
 [TAuxMarcadatareg]
-Coordinates=2662,2133,107,33
+Coordinates=2662,2133,124,36
 
 [TStatusPedidoid]
-Coordinates=2662,2237,95,33
+Coordinates=2662,2237,109,36
 
 [TAuxTipoMaqVeicsyncaws]
-Coordinates=2662,2341,146,33
+Coordinates=2662,2341,168,36
 
 [TReceituariodataalteracao]
-Coordinates=2662,2393,143,33
+Coordinates=2662,2393,166,36
 
 [TPluviometriahora]
-Coordinates=2662,2445,104,33
+Coordinates=2662,2445,119,36
 
 [TOcorrenciaOperacaosyncaws]
-Coordinates=2662,2497,165,33
+Coordinates=2662,2497,191,36
 
 [TSafraidusuarioalteracao]
-Coordinates=2662,2549,137,33
+Coordinates=2662,2549,159,36
 
 [qryOcorrenciaOperacaodata]
-Coordinates=2662,2601,153,33
+Coordinates=2662,2601,177,36
 
 [TAuxCoberturaidusuarioalteracao]
-Coordinates=2662,2653,180,33
+Coordinates=2662,2653,207,36
 
 [TServicostatus]
-Coordinates=2662,2705,88,33
+Coordinates=2662,2705,100,36
 
 [TProdutosidsegmento]
-Coordinates=2662,2757,123,33
+Coordinates=2662,2757,140,36
 
 [TTalhoesidsetor]
-Coordinates=2662,2809,93,33
+Coordinates=2662,2809,107,36
 
 [TAuxMarcaid]
-Coordinates=2662,2861,79,33
+Coordinates=2662,2861,90,36
 
 [TAuxSubGruponome]
-Coordinates=2662,2913,117,33
+Coordinates=2662,2913,135,36
 
 [TDetReceituariostatus]
-Coordinates=2662,2965,123,33
+Coordinates=2662,2965,142,36
 
 [TPluviometriasetor]
-Coordinates=2662,3017,107,33
+Coordinates=2662,3017,122,36
 
 [TAuxTipoMaqVeicdataalteracao]
-Coordinates=2662,3069,170,33
+Coordinates=2662,3069,197,36
 
 [TPluviometriatalhao]
-Coordinates=2662,3121,112,33
+Coordinates=2662,3121,129,36
 
 [TSafra]
-Coordinates=233,978,90,285
+Coordinates=233,978,108,344
 
 [TAuxTipoCultivarenome]
-Coordinates=2662,3173,133,33
+Coordinates=2662,3173,152,36
 
 [TOperadorMaquinacnh]
-Coordinates=2662,3225,127,33
+Coordinates=2662,3225,146,36
 
 [QryOperacaoSafraTalhaodatafim]
-Coordinates=2662,3277,175,33
+Coordinates=2662,3277,204,36
 
 [TMaquinasOperacaohorainicio]
-Coordinates=2662,3329,164,33
+Coordinates=2662,3329,190,36
 
 [TProdutosimg]
-Coordinates=2662,3381,84,33
+Coordinates=2662,3381,94,36
 
 [TProdutosgrupo]
-Coordinates=2643,3418,95,33
+Coordinates=2643,3418,107,36
 
 [QryOperacaoSafraTalhaoidtipoaplicacaosolido]
-Coordinates=2915,1,243,33
+Coordinates=2915,1,281,36
 
 [TPluviometriaidusuario]
-Coordinates=2514,3418,128,33
+Coordinates=2514,3418,146,36
 
 [TAuxTipoOperacaoSolidodatareg]
-Coordinates=2915,53,178,33
+Coordinates=2915,53,205,36
 
 [TProdutosOperacao]
-Coordinates=10,978,113,285
+Coordinates=10,978,130,344
 
 [TProdutosOperacaoidproduto]
-Coordinates=2345,3400,161,33
+Coordinates=2345,3400,184,36
 
 [TAbastecimentohorimetro]
-Coordinates=2196,3400,142,33
+Coordinates=2196,3400,162,36
 
 [TServicoidusuario]
-Coordinates=2087,3418,104,33
+Coordinates=2087,3418,118,36
 
 [TAuxTipoServicoid]
-Coordinates=1809,3418,108,33
+Coordinates=1809,3418,123,36
 
 [TMaquinassyncfaz]
-Coordinates=1700,3418,105,33
+Coordinates=1700,3418,122,36
 
 [TDetReceiturioTalhaoid]
-Coordinates=2662,3470,129,33
+Coordinates=2662,3470,150,36
 
 [TPluviometrosdatareg]
-Coordinates=1571,3418,123,33
+Coordinates=1571,3418,140,36
 
 [TReceituarioidusuario]
-Coordinates=1442,3418,123,33
+Coordinates=1442,3418,140,36
 
 [TProdutosidsubgrupo]
-Coordinates=1313,3418,122,33
+Coordinates=1313,3418,137,36
 
 [TAuxTipoOperacaoSolidodataalteracao]
-Coordinates=2915,105,207,33
+Coordinates=2915,105,240,36
 
 [QryOperacaoSafraTalhaoidoperacao]
-Coordinates=2915,157,193,33
+Coordinates=2915,157,225,36
 
 [TFornecedoresdatareg]
-Coordinates=1184,3418,125,33
-
-[TOrcamentocpf_cnpj]
-Coordinates=1065,3418,117,33
-
-[TOrcamentoid]
-Coordinates=976,3418,84,33
+Coordinates=1184,3418,145,36
 
 [TMaquinasidsegmento]
-Coordinates=847,3418,125,33
+Coordinates=847,3418,144,36
 
 [TProdutospesoembalagem]
-Coordinates=698,3400,146,33
+Coordinates=698,3400,168,36
 
 [TPluviometriadatacoleta]
-Coordinates=2523,3471,133,33
+Coordinates=2523,3471,153,36
 
 [TProdutostipo]
-Coordinates=609,3418,84,33
+Coordinates=609,3418,95,36
 
 [TAuxGrupoidsegmento]
-Coordinates=2394,3471,128,33
+Coordinates=2394,3471,146,36
 
 [TVazaoOperacaocemltha]
-Coordinates=2255,3471,136,33
+Coordinates=2255,3471,160,36
 
 [TPedidoCompraidusuario]
-Coordinates=460,3400,140,33
+Coordinates=460,3400,160,36
 
 [QryMaquinaOperacaohorainicio]
-Coordinates=281,3400,170,33
+Coordinates=281,3400,196,36
 
 [TPluviometrosidusuarioalteracao]
-Coordinates=2915,209,177,33
+Coordinates=2915,209,202,36
 
 [TAreaslongitude]
-Coordinates=182,3418,95,33
+Coordinates=182,3418,108,36
 
 [TPedidoCompradataaprovacaodiretoria]
-Coordinates=2915,261,207,33
+Coordinates=2915,261,240,36
 
 [TAuxGrupo]
-Coordinates=1346,978,90,213
+Coordinates=1346,978,108,256
 
 [TVazaoOperacaocinquentaltha]
-Coordinates=2915,313,164,33
+Coordinates=2915,313,192,36
 
 [QryOperacaoSafraTalhaoarearealizada]
-Coordinates=2915,365,203,33
+Coordinates=2915,365,240,36
 
 [TVazaoOperacaoidoperacaotalhao]
-Coordinates=2915,417,183,33
+Coordinates=2915,417,214,36
 
 [TMaquinasOperacaooperador]
-Coordinates=2915,469,160,33
+Coordinates=2915,469,186,36
 
 [TUsuarioabastecimento]
-Coordinates=1977,3471,131,33
+Coordinates=1977,3471,150,36
 
 [TOperadorMaquinaidusuario]
-Coordinates=2915,521,155,33
+Coordinates=2915,521,178,36
 
 [QryOperacaoSafraTalhaocultura]
-Coordinates=2915,573,172,33
+Coordinates=2915,573,200,36
 
 [TItensPedidocodigofabricante]
-Coordinates=2915,625,161,33
+Coordinates=2915,625,185,36
 
 [TStatusPedidosyncaws]
-Coordinates=1838,3471,129,33
+Coordinates=1838,3471,148,36
 
 [TProdutosstatus]
-Coordinates=2915,677,96,33
+Coordinates=2915,677,108,36
 
 [TOcorrenciaOperacaoidoperacaotalhao]
-Coordinates=2915,729,207,33
+Coordinates=2915,729,240,36
 
 [TAuxTipoOcorrenciaid]
-Coordinates=2915,781,125,33
+Coordinates=2915,781,143,36
 
 [TMaquinasanomodelo]
-Coordinates=2915,885,123,33
+Coordinates=2915,885,141,36
 
 [TMaquinasOperacaostatus]
-Coordinates=2915,937,145,33
+Coordinates=2915,937,169,36
 
 [TAuxCategoriasstatus]
-Coordinates=2915,989,123,33
+Coordinates=2915,989,141,36
 
 [TMaquinasOperacaosyncaws]
-Coordinates=2915,1041,158,33
+Coordinates=2915,1041,183,36
 
 [TTalhoeslongitude]
-Coordinates=2915,1093,105,33
+Coordinates=2915,1093,121,36
 
 [TMaquinasnumeroserie]
-Coordinates=1699,3471,129,33
+Coordinates=1699,3471,149,36
 
 [TPluviometrosstatus]
-Coordinates=2915,1145,116,33
+Coordinates=2915,1145,131,36
 
 [QryMaquinaOperacaoidusuarioalteracao]
-Coordinates=2915,1197,212,33
+Coordinates=2915,1197,246,36
 
 [TVazaoOperacaosetentaecincoltha]
-Coordinates=2915,1249,184,33
+Coordinates=2915,1249,215,36
 
 [TProdutosOperacaodata]
-Coordinates=1421,3471,134,33
+Coordinates=1421,3471,155,36
 
 [TServicodataprevista]
-Coordinates=2915,1301,118,33
+Coordinates=2915,1301,136,36
 
 [TOperacaoSafraTalhaoidcultura]
-Coordinates=2915,1353,170,33
+Coordinates=2915,1353,198,36
 
 [TServicotipo]
-Coordinates=2915,1405,76,33
+Coordinates=2915,1405,86,36
 
 [TPedidoCompraRepidentificador]
-Coordinates=2915,1457,175,33
+Coordinates=2915,1457,201,36
 
 [TAuxGruponome]
-Coordinates=2915,1509,98,33
+Coordinates=2915,1509,112,36
 
 [TMaquinasdataalteracao]
-Coordinates=1282,3471,134,33
+Coordinates=1282,3471,156,36
 
 [TCentroCustoidsegmento]
-Coordinates=2915,1561,140,33
+Coordinates=2915,1561,161,36
 
 [TPluviometrossyncfaz]
-Coordinates=2915,1613,123,33
+Coordinates=2915,1613,140,36
 
 [TTalhoesstatus]
-Coordinates=2915,1665,89,33
+Coordinates=2915,1665,103,36
 
 [TAuxGrupoidusuarioalteracao]
-Coordinates=2915,1717,162,33
+Coordinates=2915,1717,186,36
 
 [TPedidoCompradescricaoservico]
-Coordinates=2915,1769,178,33
+Coordinates=2915,1769,204,36
 
 [TCentroCustodatareg]
-Coordinates=2915,1821,120,33
+Coordinates=2915,1821,138,36
 
 [TTalhoessyncaws]
-Coordinates=2915,1873,102,33
+Coordinates=2915,1873,117,36
 
 [TAuxTipoOperacaoSolido]
-Coordinates=548,1273,140,177
+Coordinates=548,1273,162,212
 
 [TDetReceiturioTalhaosyncaws]
-Coordinates=2915,1925,163,33
+Coordinates=2915,1925,189,36
 
 [TAuxOperacaoidusuario]
-Coordinates=1143,3471,133,33
+Coordinates=1143,3471,153,36
 
 [TAuxSubGrupoidsegmento]
-Coordinates=2915,2029,148,33
+Coordinates=2915,2029,169,36
 
 [qryProdutosOperacaoidusuario]
-Coordinates=2915,2081,169,33
+Coordinates=2915,2081,193,36
 
 [qryOcorrenciaOperacaoid]
-Coordinates=2915,2133,141,33
+Coordinates=2915,2133,162,36
 
 [qryProdutosOperacao]
-Coordinates=333,978,123,285
+Coordinates=333,978,140,344
 
 [QryOperacaoSafraTalhaoareaprevista]
-Coordinates=2915,2185,199,33
+Coordinates=2915,2185,233,36
 
 [TVazaoOperacaotrintaltha]
-Coordinates=2915,2237,141,33
+Coordinates=2915,2237,165,36
 
 [TAuxOperacaodataalteracao]
-Coordinates=2915,2289,154,33
+Coordinates=2915,2289,179,36
 
 [TTalhoesareahe]
-Coordinates=2915,2341,92,33
+Coordinates=2915,2341,108,36
 
 [TProdutosdefensivos]
-Coordinates=2915,2393,119,33
+Coordinates=2915,2393,135,36
 
 [TOperadorMaquinacpf]
-Coordinates=2915,2445,124,33
+Coordinates=2915,2445,143,36
 
 [TOperadorMaquinastatus]
-Coordinates=2915,2497,139,33
+Coordinates=2915,2497,160,36
 
 [TPluviometroslongitude]
-Coordinates=865,3471,132,33
+Coordinates=865,3471,149,36
 
 [TOperacaoSafraTalhaoidvariedade]
-Coordinates=2915,2549,184,33
+Coordinates=2915,2549,215,36
 
 [TAuxTipoServicosyncaws]
-Coordinates=2915,2601,141,33
+Coordinates=2915,2601,162,36
 
 [TAreassyncfaz]
-Coordinates=2915,2653,87,33
+Coordinates=2915,2653,99,36
 
 [TSafradatafim]
-Coordinates=2915,2705,83,33
+Coordinates=2915,2705,95,36
 
 [QryOperacaoSafraTalhaoobservacao]
-Coordinates=2915,2757,195,33
+Coordinates=2915,2757,228,36
 
 [TDetReceiturioTalhaoidtalhao]
-Coordinates=2915,2809,160,33
+Coordinates=2915,2809,185,36
 
 [TPedidoCompratiposervico]
-Coordinates=2915,2861,148,33
+Coordinates=2915,2861,170,36
 
 [TServicosyncaws]
-Coordinates=2915,2913,100,33
+Coordinates=2915,2913,114,36
 
 [TServicoidusuarioalteracao]
-Coordinates=2915,2965,149,33
+Coordinates=2915,2965,171,36
 
 [TItensPedidodataalteracao]
-Coordinates=2915,3017,145,33
+Coordinates=2915,3017,169,36
 
 [TAuxGrupodataalteracao]
-Coordinates=2915,3069,137,33
+Coordinates=2915,3069,158,36
 
 [TStatusPedidoidpedido]
-Coordinates=726,3471,129,33
+Coordinates=726,3471,148,36
 
 [TProdutosOperacaodatareg]
-Coordinates=2915,3173,150,33
+Coordinates=2915,3173,174,36
 
 [TUsuario]
-Coordinates=1540,10,90,375
+Coordinates=1540,10,128,718
 
 [TAbastecimentosyncfaz]
-Coordinates=587,3471,132,33
+Coordinates=587,3471,151,36
 
 [TPluviometriavolumemm]
-Coordinates=448,3471,136,33
+Coordinates=448,3471,156,36
 
 [TDetReceiturioTalhaostatus]
-Coordinates=2915,3225,151,33
+Coordinates=2915,3225,174,36
 
 [TFornecedores]
-Coordinates=1309,10,90,393
+Coordinates=1309,10,108,476
 
 [TServicodescricao]
-Coordinates=2915,3277,105,33
+Coordinates=2915,3277,121,36
 
 [TOperacaoSafraTalhao]
-Coordinates=629,10,127,519
+Coordinates=629,10,149,630
 
 [TAuxTipoServiconome]
-Coordinates=2915,3329,126,33
+Coordinates=2915,3329,144,36
 
 [TPluviometriasyncfaz]
-Coordinates=2915,3381,120,33
+Coordinates=2915,3381,137,36
 
 [QryMaquinaOperacaohorastrabalhada]
-Coordinates=3196,53,201,33
+Coordinates=3196,53,234,36
 
 [TOrcamentoFornecedoresemail]
-Coordinates=2915,3433,169,33
+Coordinates=2915,3433,196,36
 
 [TCentroCustodataalteracao]
-Coordinates=2915,3485,149,33
+Coordinates=2915,3485,173,36
 
 [TAuxSubGrupodatareg]
-Coordinates=3196,105,127,33
+Coordinates=3196,105,146,36
 
 [TMaquinas]
-Coordinates=766,10,90,501
+Coordinates=766,10,143,740
 
 [TProdutosunidademedida]
-Coordinates=3196,157,141,33
-
-[TOrcamentoidentificador]
-Coordinates=309,3471,136,33
+Coordinates=3196,157,162,36
 
 [TMaquinassyncaws]
-Coordinates=2796,3489,111,33
+Coordinates=2796,3489,127,36
 
 [TOcorrenciaOperacaodataocorrencia]
-Coordinates=3196,209,196,33
+Coordinates=3196,209,227,36
 
 [qryOcorrenciaOperacaodescricao]
-Coordinates=3196,261,180,33
+Coordinates=3196,261,207,36
 
 [TFornecedoresuf]
-Coordinates=210,3489,98,33
+Coordinates=210,3489,112,36
 
 [TAreasdataalteracao]
-Coordinates=91,3489,115,33
+Coordinates=91,3489,134,36
 
 [TPluviometrosidsetor]
-Coordinates=3196,313,120,33
+Coordinates=3196,313,136,36
 
 [TOperacaoSafraTalhaoqualidadecobertura]
-Coordinates=3196,365,222,33
+Coordinates=3196,365,259,36
 
 [QryOperacaoSafraTalhaodatareg]
-Coordinates=3196,417,175,33
+Coordinates=3196,417,205,36
 
 [TMaquinasidtipo]
-Coordinates=3196,469,96,33
+Coordinates=3196,469,109,36
 
 [TPedidoCompraidcategoria]
-Coordinates=3196,521,148,33
+Coordinates=3196,521,171,36
 
 [TPedidoCompraflagurgente]
-Coordinates=3196,573,149,33
+Coordinates=3196,573,172,36
 
 [TPluviometroTalhoesidusuarioalteracao]
-Coordinates=3196,677,210,33
+Coordinates=3196,677,242,36
 
 [QryOperacaoSafraTalhaodataalteracao]
-Coordinates=3196,729,204,33
+Coordinates=3196,729,240,36
 
 [TAuxCoberturaidusuario]
-Coordinates=0,3438,135,33
+Coordinates=0,3438,154,36
 
 [TOperadorMaquinadataalteracao]
-Coordinates=3196,781,175,33
+Coordinates=3196,781,204,36
 
 [TAuxCategoriasidsegmento]
-Coordinates=3196,833,151,33
+Coordinates=3196,833,173,36
 
 [TStatusPedidoidstatus]
-Coordinates=2667,3509,125,33
+Coordinates=2667,3509,143,36
 
 [TMaquinasplaca]
-Coordinates=2568,3509,94,33
+Coordinates=2568,3509,109,36
 
 [TAuxCulturasid]
-Coordinates=2469,3509,91,33
+Coordinates=2469,3509,103,36
 
 [TAuxCultivarestipo]
-Coordinates=2360,3509,108,33
+Coordinates=2360,3509,123,36
 
 [TPedidoComprastatus_pedido]
-Coordinates=3196,885,163,33
+Coordinates=3196,885,188,36
 
 [TDetReceituarioidproduto]
-Coordinates=3196,937,141,33
+Coordinates=3196,937,161,36
 
 [TAuxMarcastatus]
-Coordinates=2251,3509,100,33
+Coordinates=2251,3509,114,36
 
 [TFornecedoresrazaosocial]
-Coordinates=3196,989,144,33
+Coordinates=3196,989,167,36
 
 [TItensPedidorecebido]
-Coordinates=2122,3509,121,33
+Coordinates=2122,3509,140,36
 
 [TAuxCategoriasidusuarioalteracao]
-Coordinates=3196,1041,184,33
+Coordinates=3196,1041,212,36
 
 [TOperadorMaquinasyncfaz]
-Coordinates=3196,1093,146,33
+Coordinates=3196,1093,169,36
 
 [TItensPedidosyncfaz]
-Coordinates=2003,3509,116,33
+Coordinates=2003,3509,134,36
 
 [TDetReceituario]
-Coordinates=1287,593,93,285
+Coordinates=1287,593,108,344
 
 [TSetoresareahe]
-Coordinates=1904,3509,91,33
+Coordinates=1904,3509,107,36
 
 [TAuxMarcaidusuarioalteracao]
-Coordinates=3196,1145,161,33
+Coordinates=3196,1145,186,36
 
 [TPedidoCompracancelado]
-Coordinates=3196,1197,144,33
+Coordinates=3196,1197,166,36
 
 [TAbastecimentoOutrosstatus]
-Coordinates=3196,1249,158,33
+Coordinates=3196,1249,180,36
 
 [TAuxTipoOcorrencia]
-Coordinates=422,1273,116,195
+Coordinates=422,1273,132,234
 
 [TLocalEstoqueidusuario]
-Coordinates=2945,3537,134,33
+Coordinates=2945,3537,153,36
 
 [TPluviometriastatus]
-Coordinates=1785,3509,112,33
+Coordinates=1785,3509,128,36
 
 [TTalhoessyncfaz]
-Coordinates=1686,3509,97,33
+Coordinates=1686,3509,112,36
 
 [TTalhoessetor]
-Coordinates=1597,3509,84,33
+Coordinates=1597,3509,97,36
 
 [TSetoresid]
-Coordinates=1528,3509,67,33
+Coordinates=1528,3509,77,36
 
 [TMaquinasano]
-Coordinates=1439,3509,86,33
+Coordinates=1439,3509,99,36
 
 [TOcorrenciaOperacaodata]
-Coordinates=3196,1457,143,33
+Coordinates=3196,1457,167,36
 
 [qryProdutosOperacaodataalteracao]
-Coordinates=3196,1509,189,33
+Coordinates=3196,1509,218,36
 
 [TProdutosidmarca]
-Coordinates=1201,3509,105,33
+Coordinates=1201,3509,119,36
 
 [TDetReceiturioTalhaosyncfaz]
-Coordinates=3196,1613,158,33
+Coordinates=3196,1613,183,36
 
 [TAuxCultivaresnome]
-Coordinates=1082,3509,117,33
+Coordinates=1082,3509,134,36
 
 [TOperacaoSafraTalhaodatafim]
-Coordinates=3196,1665,163,33
+Coordinates=3196,1665,191,36
 
 [TAuxCobertura]
-Coordinates=322,1273,90,195
+Coordinates=322,1273,108,234
 
 [qryOcorrenciaOperacaotipoocorrencia]
-Coordinates=3196,1717,203,33
+Coordinates=3196,1717,233,36
 
 [TAuxMarcasyncaws]
-Coordinates=963,3509,112,33
+Coordinates=963,3509,129,36
 
 [TMaquinasdatareg]
-Coordinates=854,3509,105,33
+Coordinates=854,3509,122,36
 
 [TAuxMarcaidsegmento]
-Coordinates=725,3509,127,33
+Coordinates=725,3509,146,36
 
 [TAuxTipoOperacaoSolidoid]
-Coordinates=3196,1769,149,33
+Coordinates=3196,1769,172,36
 
 [TUsuarioidusuario]
-Coordinates=616,3509,105,33
+Coordinates=616,3509,119,36
 
 [TLocalEstoquenome]
-Coordinates=497,3509,115,33
-
-[TOrcamentovalortotal]
-Coordinates=3196,1821,121,33
+Coordinates=497,3509,132,36
 
 [TPluviometroTalhoesid]
-Coordinates=2815,3560,128,33
+Coordinates=2815,3560,146,36
 
 [TFornecedoresid]
-Coordinates=398,3509,97,33
+Coordinates=398,3509,112,36
 
 [qryProdutosOperacaoidproduto]
-Coordinates=3196,1873,171,33
+Coordinates=3196,1873,194,36
 
 [TSafrasyncaws]
-Coordinates=3196,1925,89,33
+Coordinates=3196,1925,102,36
 
 [TCentroCustosyncaws]
-Coordinates=3196,1977,125,33
+Coordinates=3196,1977,144,36
 
 [TSetores]
-Coordinates=827,593,90,303
+Coordinates=827,593,108,366
 
 [TProdutosOperacaostatus]
-Coordinates=3196,2029,143,33
+Coordinates=3196,2029,164,36
 
 [TAuxTipoOcorrenciadataalteracao]
-Coordinates=3196,2081,182,33
+Coordinates=3196,2081,211,36
 
 [TAuxTipoOcorrencianome]
-Coordinates=3196,2133,143,33
+Coordinates=3196,2133,164,36
 
 [TPedidoCompraRepcancelado]
-Coordinates=3196,2185,163,33
+Coordinates=3196,2185,190,36
 
 [TMaquinasOperacaoidoperacaotalhao]
-Coordinates=3196,2237,200,33
+Coordinates=3196,2237,233,36
 
 [TPluviometroTalhoessyncaws]
-Coordinates=3196,2289,162,33
+Coordinates=3196,2289,185,36
 
 [TMaquinasOperacaoidusuario]
-Coordinates=3196,2341,162,33
+Coordinates=3196,2341,187,36
 
 [TOrcamentoFornecedoresidusuarioalteracao]
-Coordinates=3196,2393,234,33
+Coordinates=3196,2393,271,36
 
 [TAbastecimentostatus]
-Coordinates=3196,2445,124,33
+Coordinates=3196,2445,142,36
 
 [TUsuarioimgass]
-Coordinates=3196,2549,94,33
+Coordinates=3196,2549,107,36
 
 [TAreasnome]
-Coordinates=319,3509,76,33
+Coordinates=319,3509,88,36
 
 [TPedidoCompraRepidservico]
-Coordinates=3196,2601,158,33
+Coordinates=3196,2601,182,36
 
 [TPluviometrosidusuario]
-Coordinates=2676,3560,132,33
-
-[TOrcamentodesconto]
-Coordinates=3196,2653,120,33
+Coordinates=2676,3560,149,36
 
 [TAbastecimentoOutrosidusuario]
-Coordinates=3196,2705,174,33
+Coordinates=3196,2705,198,36
 
 [TSafrastatusnome]
-Coordinates=3196,2757,104,33
+Coordinates=3196,2757,119,36
 
 [TTalhoesnome]
-Coordinates=3196,2809,87,33
+Coordinates=3196,2809,100,36
 
 [TAuxCulturasdataalteracao]
-Coordinates=3196,2861,148,33
+Coordinates=3196,2861,171,36
 
 [TProdutosmarca]
-Coordinates=3196,2913,96,33
+Coordinates=3196,2913,109,36
 
 [TSetoressyncfaz]
-Coordinates=3196,2965,96,33
+Coordinates=3196,2965,110,36
 
 [TUsuarioid]
-Coordinates=3196,3017,68,33
+Coordinates=3196,3017,77,36
 
 [TOrcamentoFornecedorestelefone_fixo]
-Coordinates=3196,3069,206,33
+Coordinates=3196,3069,238,36
 
 [TAbastecimentoid]
-Coordinates=3196,3173,103,33
+Coordinates=3196,3173,118,36
 
 [QryOperacaoSafraTalhaoidsafra]
-Coordinates=3196,3225,172,33
+Coordinates=3196,3225,200,36
 
 [TAuxSubGrupoidusuario]
-Coordinates=2537,3560,136,33
+Coordinates=2537,3560,155,36
 
 [TMaquinasOperacaoidmaquina]
-Coordinates=3196,3277,167,33
+Coordinates=3196,3277,194,36
 
 [TAuxPragas]
-Coordinates=798,1273,74,51
+Coordinates=798,1273,108,300
 
 []
-Coordinates=922,2115,108,33
+Coordinates=976,3418,96,36
+
+[Contratossaldo]
+Coordinates=947,2118,101,36
+
+[TEstoqueSaidaidlocalestoque]
+Coordinates=733,2216,185,36
+
+[TMovLocalEstoque]
+Coordinates=250,1360,124,432
+
+[Embarqueimp]
+Coordinates=634,2216,94,36
+
+[TMovLocalEstoqueid]
+Coordinates=290,2216,134,36
+
+[TPedidoCompraidcentrocusto]
+Coordinates=101,2216,185,36
+
+[Embarquedataembarque]
+Coordinates=763,2391,156,36
+
+[Contratosvalortotalembarque]
+Coordinates=1605,1928,181,36
+
+[TAuxPragaTipodataalteracao]
+Coordinates=574,2391,182,36
+
+[TAuxPragasid]
+Coordinates=0,2180,95,36
+
+[TItensOrcamentoobservacao]
+Coordinates=385,2391,180,36
+
+[Compradoresidusuarioalteracao]
+Coordinates=186,2391,198,36
+
+[Embarquenumeronf]
+Coordinates=57,2391,128,36
+
+[TUsuariopulverizacao]
+Coordinates=773,2501,139,36
+
+[TEstoqueSaidastatus]
+Coordinates=634,2501,137,36
+
+[TItensOrcamentoidmarca]
+Coordinates=1909,316,159,36
+
+[TnotaFiscalIntemprodutounidade]
+Coordinates=2172,888,203,36
+
+[Contratoscultura]
+Coordinates=1191,1460,109,36
+
+[TEstoqueSaidaidcentrocusto]
+Coordinates=1909,420,179,36
+
+[Compradoresinscricaoestadual]
+Coordinates=1909,992,192,36
+
+[TItensOrcamentonomefornecedor]
+Coordinates=2172,1252,207,36
+
+[TItensOrcamentoemailfornecedor]
+Coordinates=2172,1460,206,36
+
+[TItensOrcamentodatareg]
+Coordinates=475,2501,157,36
+
+[Compradoresstatus]
+Coordinates=346,2501,127,36
+
+[Contratosidcomprador]
+Coordinates=197,2501,142,36
+
+[TMPComparativovalortotal]
+Coordinates=1909,1096,167,36
+
+[TMaquinascheck]
+Coordinates=1706,212,111,36
+
+[TMonitoramentotagfechamento]
+Coordinates=2442,784,193,36
+
+[TMonitoramentohorainicio]
+Coordinates=2442,2188,164,36
+
+[TEstoqueEntradapesoembalagem]
+Coordinates=2442,2448,209,36
+
+[TItensOrcamentodataalteracao]
+Coordinates=2695,56,192,36
+
+[TnotaFiscalIntemdatareg]
+Coordinates=943,2607,157,36
+
+[TItensPedidoidmarca]
+Coordinates=804,2607,136,36
+
+[TMaquinashorimetroultimarev]
+Coordinates=2695,524,185,36
+
+[TMonitoramentoValorescaracteristicastr]
+Coordinates=3234,1,243,36
+
+[Contratosvalorkg]
+Coordinates=1706,368,112,36
+
+[TEstoqueSaidaproduto]
+Coordinates=655,2607,146,36
+
+[TnotaFiscalIntemidusuarioalteracao]
+Coordinates=2695,680,219,36
+
+[TUsuarioabastecimentoexterno]
+Coordinates=2695,1044,193,36
+
+[TnotaFiscalIntemprodutoid]
+Coordinates=2695,1252,167,36
+
+[TItensOrcamentomarcanome]
+Coordinates=2695,1460,181,36
+
+[TMovLocalEstoquedatamov]
+Coordinates=2695,1876,173,36
+
+[TEstoqueEntradanumeronf]
+Coordinates=2695,2188,169,36
+
+[TMovLocalEstoqueqtde]
+Coordinates=496,2607,149,36
+
+[TEstoqueEntrada]
+Coordinates=12,1567,116,564
+
+[TAbastecimentoidatividade]
+Coordinates=2695,2292,169,36
+
+[TItensOrcamentooriginal]
+Coordinates=337,2607,156,36
+
+[Compradoresrazaosocial]
+Coordinates=178,2607,157,36
+
+[TEstoqueSaidaid]
+Coordinates=1706,888,112,36
+
+[TItensOrcamentostatuspedido]
+Coordinates=2952,836,187,36
+
+[TAuxPragaTiposyncaws]
+Coordinates=19,2607,153,36
+
+[TAuxPragasdataalteracao]
+Coordinates=3234,628,163,36
+
+[TPedidoCompraobservacao]
+Coordinates=3234,1304,174,36
+
+[TItensOrcamentoimg]
+Coordinates=1464,2681,134,36
+
+[TPedidoCompracentrocusto]
+Coordinates=923,2681,174,36
+
+[TAuxPragassyncaws]
+Coordinates=784,2681,134,36
+
+[TAuxPragaTipoidusuarioalteracao]
+Coordinates=3234,1359,209,36
+
+[TMonitoramentodatamonitoramento]
+Coordinates=3234,1414,219,36
+
+[Embarque]
+Coordinates=0,0,108,542
+
+[TAuxPragaTipodatareg]
+Coordinates=635,2681,147,36
+
+[TMovLocalEstoquehora]
+Coordinates=476,2681,150,36
+
+[TItensOrcamentoid]
+Coordinates=347,2681,124,36
+
+[TEstoqueEntradasyncfaz]
+Coordinates=3234,1564,158,36
+
+[TItensOrcamentofrete]
+Coordinates=198,2681,140,36
+
+[TAbastecimentoobs]
+Coordinates=69,2681,128,36
+
+[TnotaFiscalIntemidnota]
+Coordinates=3234,2500,149,36
+
+[Embarqueavar]
+Coordinates=1433,483,99,36
+
+[Embarquequeb]
+Coordinates=88,2501,102,36
+
+[Tauxatividadeabastecimentodatareg]
+Coordinates=3515,1,222,36
+
+[TAuxPragasnome]
+Coordinates=1706,2552,117,36
+
+[TMonitoramentoidtalhao]
+Coordinates=3515,56,153,36
+
+[Embarqueid]
+Coordinates=545,2216,84,36
+
+[TMonitoramentotagabertura]
+Coordinates=3515,111,174,36
+
+[Contratosnumerocontrato]
+Coordinates=3515,166,160,36
+
+[TItensOrcamentoitem]
+Coordinates=2266,2987,138,36
+
+[Contratoscomprador]
+Coordinates=3515,221,132,36
+
+[TConfigsyncfaz]
+Coordinates=1494,2607,103,36
+
+[TEstoqueSaida]
+Coordinates=379,1,123,542
+
+[TEstoqueSaidasyncaws]
+Coordinates=3515,276,151,36
+
+[TMaquinasdepreciacao]
+Coordinates=3515,331,148,36
+
+[TItensOrcamentoidusuarioalteracao]
+Coordinates=3515,386,219,36
+
+[TMPComparativoid]
+Coordinates=1474,2779,124,36
+
+[TMonitoramentosyncaws]
+Coordinates=3515,441,157,36
+
+[Tauxatividadeabastecimentoidusuario]
+Coordinates=3515,496,231,36
+
+[TItensOrcamentoipi]
+Coordinates=973,2779,127,36
+
+[Embarqueliquido]
+Coordinates=854,2779,111,36
+
+[TMovLocalEstoqueidusuario]
+Coordinates=3515,551,177,36
+
+[TItensOrcamentotelefonefornecedor]
+Coordinates=3515,606,221,36
+
+[TMovLocalEstoqueidproduto]
+Coordinates=3515,716,178,36
+
+[TEstoqueEntradaidfornecedor]
+Coordinates=3515,771,186,36
+
+[TUsuarioplantio]
+Coordinates=1764,2779,105,36
+
+[TUsuariomonitoramentopragas]
+Coordinates=3515,826,192,36
+
+[TItensOrcamentovalorunidade]
+Coordinates=3515,881,188,36
+
+[TAuxPragasidusuario]
+Coordinates=715,2779,137,36
+
+[Embarquebruto]
+Coordinates=606,2779,103,36
+
+[TItensOrcamentoidproduto]
+Coordinates=3515,936,168,36
+
+[Compradoressenha]
+Coordinates=477,2779,127,36
+
+[TEstoqueEntradadatareg]
+Coordinates=3515,991,158,36
+
+[TnotaFiscalIntemdataalteracao]
+Coordinates=3515,1046,192,36
+
+[Embarquestatus]
+Coordinates=368,2779,108,36
+
+[Embarquedataalteracao]
+Coordinates=209,2779,152,36
+
+[TEstoqueEntradaidcentrocusto]
+Coordinates=3515,1101,191,36
+
+[Embarqueverd]
+Coordinates=100,2779,99,36
+
+[Compradorestelefone_fixo]
+Coordinates=3515,1156,165,36
+
+[TUsuarioarmazem]
+Coordinates=1474,2883,120,36
+
+[TMaquinasultimarevisao]
+Coordinates=3515,1211,154,36
+
+[TEstoqueEntradadataalteracao]
+Coordinates=3515,1266,193,36
+
+[Tauxatividadeabastecimentonome]
+Coordinates=3515,1321,210,36
+
+[Compradoresidusuario]
+Coordinates=3515,1376,145,36
+
+[TMovLocalEstoquedataalteracao]
+Coordinates=3515,1431,202,36
+
+[Contratosvendedor]
+Coordinates=3515,1486,124,36
+
+[TItensOrcamentooriginalstr]
+Coordinates=3515,1541,170,36
+
+[TMPComparativo]
+Coordinates=429,2031,114,322
+
+[TEstoqueEntradadataentradaestoque]
+Coordinates=3515,1596,229,36
+
+[TMonitoramentoValoreslongitude]
+Coordinates=3515,1651,204,36
+
+[Compradoresdataalteracao]
+Coordinates=3515,1706,170,36
+
+[Contratostotalembarquevolume]
+Coordinates=3515,1816,194,36
+
+[TEstoqueEntradaidusuario]
+Coordinates=3515,1871,167,36
+
+[TEstoqueEntradaidpedido]
+Coordinates=3515,1926,163,36
+
+[Contratosvalortotalsaca]
+Coordinates=3515,1981,150,36
+
+[TMonitoramentoidusuario]
+Coordinates=3515,2036,161,36
+
+[TnotaFiscalIntempesoembalagem]
+Coordinates=3515,2091,208,36
+
+[TEstoqueEntradaidusuarioalteracao]
+Coordinates=3515,2146,220,36
+
+[TItensOrcamentoidorcamento]
+Coordinates=3515,2201,184,36
+
+[TItensOrcamentoformapg]
+Coordinates=3515,2256,161,36
+
+[TItensOrcamentonomeproduto]
+Coordinates=3515,2311,189,36
+
+[Embarquedatareg]
+Coordinates=983,2883,117,36
+
+[Embarqueplaca]
+Coordinates=1764,2883,104,36
+
+[TItensOrcamentocodfabproduto]
+Coordinates=3515,2366,196,36
+
+[TEstoqueSaidatipo_baixa]
+Coordinates=3515,2421,161,36
+
+[TItensOrcamentoidentificadorpedido]
+Coordinates=3515,2476,222,36
+
+[TnotaFiscalIntemstatus]
+Coordinates=834,2883,148,36
+
+[Contratosstatus]
+Coordinates=725,2883,105,36
+
+[TItensPedidoitem]
+Coordinates=606,2883,115,36
+
+[TAuxPragasstatus]
+Coordinates=477,2883,119,36
+
+[TMonitoramentoValorespraga]
+Coordinates=3515,2531,185,36
+
+[TMonitoramentotipoabertura]
+Coordinates=3515,2586,177,36
+
+[Embarquetara]
+Coordinates=0,2743,96,36
+
+[Contratossafra]
+Coordinates=368,2883,99,36
+
+[Tauxatividadeabastecimentodataalteracao]
+Coordinates=3505,2641,257,36
+
+[TnotaFiscalIntemidlocalestoque]
+Coordinates=3515,2696,196,36
+
+[Contratosdataalteracao]
+Coordinates=3515,2751,148,36
+
+[FDConPG]
+Coordinates=1114,1460,73,36
+
+[Contratosidusuario]
+Coordinates=3515,2806,123,36
+
+[TMPComparativoqtd]
+Coordinates=3515,2861,132,36
+
+[TEstoqueEntradaid]
+Coordinates=3515,2916,125,36
+
+[TItensOrcamentodescontogeral]
+Coordinates=3515,2971,195,36
+
+[TEstoqueSaidaunidademedida]
+Coordinates=3515,3026,190,36
+
+[TEstoqueEntradadataemissao]
+Coordinates=3515,3081,187,36
+
+[TItensOrcamentounidademedida]
+Coordinates=3800,1,202,36
+
+[TEstoqueSaidadatasaidaestoque]
+Coordinates=3800,56,204,36
+
+[TItensOrcamentofornecedor]
+Coordinates=3800,111,175,36
+
+[TReceituariocultura]
+Coordinates=3515,3136,127,36
+
+[Compradoressyncfaz]
+Coordinates=3515,3191,136,36
+
+[TUsuariosyncfaz]
+Coordinates=249,2883,110,36
+
+[TItensOrcamentovalortotal]
+Coordinates=3800,166,166,36
+
+[Contratosvalorsaldo]
+Coordinates=3800,221,129,36
+
+[Contratosdatareg]
+Coordinates=130,2883,114,36
+
+[TnotaFiscalIntemqtditens]
+Coordinates=3800,276,159,36
+
+[TEstoqueSaidavalorsaida]
+Coordinates=3800,331,161,36
+
+[TMovLocalEstoqueidlocalestoqueorigem]
+Coordinates=3800,386,246,36
+
+[TConfigtipodb]
+Coordinates=31,2883,95,36
+
+[TMovLocalEstoquesyncaws]
+Coordinates=3800,441,173,36
+
+[TReceituarioobservacao]
+Coordinates=3800,496,154,36
+
+[TMPComparativovalorunitario]
+Coordinates=3800,551,185,36
+
+[Contratostotalcompravolume]
+Coordinates=3800,606,179,36
+
+[TEstoqueSaidadataalteracao]
+Coordinates=3800,661,180,36
+
+[Compradorescontatopessoa]
+Coordinates=3800,716,176,36
+
+[TItensOrcamentoicmst]
+Coordinates=3800,771,144,36
+
+[TItensOrcamentoidusuario]
+Coordinates=3800,826,166,36
+
+[TMonitoramentohorafim]
+Coordinates=3800,881,151,36
+
+[TMPComparativounidademedida]
+Coordinates=3800,936,202,36
+
+[TUsuariocolheita]
+Coordinates=1754,2987,111,36
+
+[Compradores]
+Coordinates=379,1000,108,476
+
+[TItensOrcamentomarca]
+Coordinates=3800,991,149,36
+
+[TItensOrcamentodatapedido]
+Coordinates=3800,1046,177,36
+
+[Contratosid]
+Coordinates=1238,2681,80,36
+
+[TItensOrcamentovalordesconto]
+Coordinates=3800,1101,194,36
+
+[Tauxatividadeabastecimentostatus]
+Coordinates=3800,1156,213,36
+
+[TMonitoramentoValores]
+Coordinates=681,1779,152,212
+
+[TItensOrcamentocpfcnpjfornecedor]
+Coordinates=3800,1211,216,36
+
+[TItensOrcamentofretegeral]
+Coordinates=3800,1266,168,36
+
+[TItensOrcamentoqtde]
+Coordinates=3800,1321,139,36
+
+[TMovLocalEstoqueidusuarioalteracao]
+Coordinates=3800,1376,230,36
+
+[TnotaFiscalIntemidproduto]
+Coordinates=3800,1431,167,36
+
+[TMonitoramentoValoresid]
+Coordinates=3800,1486,162,36
+
+[TnotaFiscalIntemunidademedida]
+Coordinates=3800,1541,201,36
+
+[Tauxatividadeabastecimentoid]
+Coordinates=3800,1596,189,36
+
+[Contratostotalembarquesacos]
+Coordinates=3800,1651,186,36
+
+[Embarquevalornf]
+Coordinates=3234,3124,112,36
+
+[Compradoressyncaws]
+Coordinates=3800,1706,141,36
+
+[TUsuariotokenappcompras]
+Coordinates=3800,1761,169,36
+
+[TConfigpecuaria]
+Coordinates=3515,3246,109,36
+
+[TMaquinashorimetroproximarevisao]
+Coordinates=3800,1816,220,36
+
+[QryOperacaoSafraTalhaovariedade]
+Coordinates=3800,1871,218,36
+
+[TnotaFiscalIntemprodutofabricante]
+Coordinates=3800,1926,214,36
+
+[TReceituariodataprevaplicacao]
+Coordinates=3800,1981,192,36
+
+[TMonitoramentostatus]
+Coordinates=3800,2036,142,36
+
+[TMonitoramentoid]
+Coordinates=3496,3299,118,36
+
+[TUsuariotokenapp]
+Coordinates=3067,3299,120,36
+
+[TAuxPragaTiposyncfaz]
+Coordinates=3800,2091,147,36
+
+[TTalhoesCheck]
+Coordinates=3800,2146,104,36
+
+[TnotaFiscalIntemsyncfaz]
+Coordinates=3800,2201,157,36
+
+[TnotaFiscalIntemvalortotalnf]
+Coordinates=3800,2256,177,36
+
+[TAuxPragasidusuarioalteracao]
+Coordinates=3800,2311,191,36
+
+[TEstoqueSaidalocalestoque]
+Coordinates=3800,2366,175,36
+
+[Embarquesyncfaz]
+Coordinates=3800,2421,117,36
+
+[TEstoqueSaidacentrocusto]
+Coordinates=3800,2476,169,36
+
+[TReceituariodatarecomendacao]
+Coordinates=3800,2531,197,36
+
+[TItensPedidomarca]
+Coordinates=3800,2586,126,36
+
+[TMovLocalEstoquelocaldestino]
+Coordinates=3800,2641,193,36
+
+[Compradoresuf]
+Coordinates=3800,2696,103,36
+
+[TMonitoramentodataalteracao]
+Coordinates=3800,2751,186,36
+
+[Contratossyncaws]
+Coordinates=3800,2806,119,36
+
+[TMPComparativoidorcamento]
+Coordinates=3800,2861,185,36
+
+[Contratosidcultura]
+Coordinates=3800,2916,119,36
+
+[TAbastecimentoatividade]
+Coordinates=3800,2971,159,36
+
+[TnotaFiscalIntemitem]
+Coordinates=3800,3026,138,36
+
+[TUsuariopluviometria]
+Coordinates=3800,3081,136,36
+
+[Compradoresemail]
+Coordinates=3800,3136,123,36
+
+[TEstoqueSaidaidusuarioalteracao]
+Coordinates=4084,1,208,36
+
+[TItensOrcamentosyncaws]
+Coordinates=3800,3191,163,36
+
+[Contratossaldosc]
+Coordinates=3800,3246,114,36
+
+[TMonitoramentoValoreslatitude]
+Coordinates=4084,56,194,36
+
+[TItensPedidooriginal]
+Coordinates=3781,3299,132,36
+
+[TEstoqueSaidatipostr]
+Coordinates=3642,3299,138,36
+
+[TAuxPragaTiponome]
+Coordinates=4084,111,136,36
+
+[TEstoqueSaidasyncfaz]
+Coordinates=4084,166,146,36
+
+[TMonitoramentotalhao]
+Coordinates=4084,221,143,36
+
+[TEstoqueEntradaidlocalestoque]
+Coordinates=4084,276,197,36
+
+[TEstoqueEntradaidproduto]
+Coordinates=4084,331,168,36
+
+[TMonitoramentoValorescontagem]
+Coordinates=4084,386,208,36
+
+[Tauxatividadeabastecimentosyncfaz]
+Coordinates=4084,441,222,36
+
+[TItensOrcamentodiferencialalicota]
+Coordinates=4084,496,211,36
+
+[TEstoqueEntradavalortotalnf]
+Coordinates=4084,551,178,36
+
+[TAuxPragaTipostatus]
+Coordinates=4084,606,138,36
+
+[Compradoresid]
+Coordinates=3800,3354,102,36
+
+[TConfig]
+Coordinates=875,1873,64,146
+
+[TMonitoramento]
+Coordinates=131,1360,113,432
+
+[Contratosidusuarioalteracao]
+Coordinates=4084,716,176,36
+
+[TMonitoramentoValoresponto]
+Coordinates=4084,771,184,36
+
+[TMovLocalEstoquelocalorigem]
+Coordinates=4084,826,190,36
+
+[TEstoqueEntradaqtditens]
+Coordinates=4084,881,160,36
+
+[TMPComparativoitem]
+Coordinates=4084,991,139,36
+
+[Embarquesyncaws]
+Coordinates=4084,1046,123,36
+
+[Compradorescpf_cnpj]
+Coordinates=4084,1101,140,36
+
+[TMonitoramentoresponsavel]
+Coordinates=4084,1156,177,36
+
+[TEstoqueSaidadatareg]
+Coordinates=4084,1211,146,36
+
+[TnotaFiscalIntem]
+Coordinates=410,1495,113,498
+
+[TAuxPragaTipo]
+Coordinates=681,1504,108,256
+
+[TMovLocalEstoquesyncfaz]
+Coordinates=4084,1266,168,36
+
+[Embarqueidusuario]
+Coordinates=4084,1321,126,36
+
+[Embarquehorabarque]
+Coordinates=4084,1376,139,36
+
+[TEstoqueEntradaunidademedida]
+Coordinates=4084,1431,202,36
+
+[TAuxPragaTipoid]
+Coordinates=3781,3403,114,36
+
+[Compradoresdatareg]
+Coordinates=4084,1486,136,36
+
+[TnotaFiscalIntemsyncaws]
+Coordinates=4084,1541,163,36
+
+[TMovLocalEstoqueidlocalestoquedetino]
+Coordinates=4084,1596,242,36
+
+[Compradorescidade]
+Coordinates=4084,1651,130,36
+
+[TMonitoramentoidusuarioalteracao]
+Coordinates=4084,1706,214,36
+
+[TAuxPragassyncfaz]
+Coordinates=4084,1761,129,36
+
+[TMovLocalEstoquedatareg]
+Coordinates=4084,1816,168,36
+
+[TReceituarioidcultura]
+Coordinates=4084,1871,137,36
+
+[Contratosstatusstr]
+Coordinates=3652,3403,119,36
+
+[TEstoqueSaidaidusuario]
+Coordinates=4084,1926,155,36
+
+[TEstoqueEntradastatus]
+Coordinates=4084,1981,149,36
+
+[TEstoqueSaidaidproduto]
+Coordinates=4084,2036,156,36
+
+[Embarqueidusuarioalteracao]
+Coordinates=4084,2091,179,36
+
+[QryOperacaoSafraTalhaotipoopesolido]
+Coordinates=4084,2146,238,36
+
+[Tauxatividadeabastecimento]
+Coordinates=850,1598,178,256
+
+[TReceituariostatusstr]
+Coordinates=4084,2201,137,36
+
+[TEstoqueEntradatipo]
+Coordinates=4084,2256,135,36
+
+[TEstoqueSaidaprodutocodfabricante]
+Coordinates=4084,2311,223,36
+
+[TAuxPragastipo]
+Coordinates=3543,3403,106,36
+
+[Embarqueumid]
+Coordinates=3434,3403,101,36
+
+[TItensOrcamentosyncfaz]
+Coordinates=4084,2366,157,36
+
+[TEstoqueEntradacentrocusto]
+Coordinates=4084,2421,181,36
+
+[TMPComparativoidproduto]
+Coordinates=4084,2476,168,36
+
+[TAuxPragasidtipo]
+Coordinates=3315,3403,116,36
+
+[TUsuariomanutencaomaquinas]
+Coordinates=4084,2531,193,36
+
+[TMPComparativocodfabricante]
+Coordinates=4084,2586,192,36
+
+[Contratostotalcomprasacos]
+Coordinates=4084,2641,171,36
+
+[TMPComparativodescricao]
+Coordinates=4084,2696,169,36
+
+[Contratosidsafra]
+Coordinates=3196,3403,109,36
+
+[TEstoqueSaidaqtditens]
+Coordinates=4084,2751,148,36
+
+[TMPComparativofornecedor]
+Coordinates=4084,2806,176,36
+
+[TEstoqueEntradasyncaws]
+Coordinates=4084,2861,164,36
+
+[TEstoqueEntradafornecedor]
+Coordinates=4084,2916,176,36
+
+[TMaquinasvidautil]
+Coordinates=2786,3403,119,36
+
+[Tauxatividadeabastecimentoidusuarioalteracao]
+Coordinates=4364,1,284,36
+
+[TAuxPragaTipoidusuario]
+Coordinates=4084,2971,156,36
+
+[Compradorescelular]
+Coordinates=4084,3026,130,36
+
+[TConfigagricultura]
+Coordinates=1958,3403,120,36
+
+[TAuxPragasdatareg]
+Coordinates=4084,3081,129,36
+
+[TItensOrcamentostatus]
+Coordinates=4084,3136,148,36
+
+[TMovLocalEstoqueproduto]
+Coordinates=4084,3191,168,36
+
+[TnotaFiscalIntemprodutonome]
+Coordinates=4084,3246,189,36
+
+[Contratos]
+Coordinates=550,1526,125,652
+
+[QryOperacaoSafraTalhaocobertura]
+Coordinates=4364,56,216,36
+
+[TnotaFiscalIntemid]
+Coordinates=4084,3301,124,36
+
+[TMovLocalEstoquestatus]
+Coordinates=3915,3299,159,36
+
+[TMonitoramentodatareg]
+Coordinates=4112,3356,152,36
+
+[Tauxatividadeabastecimentosyncaws]
+Coordinates=4364,111,228,36
+
+[Compradoresnome]
+Coordinates=4084,3403,124,36
+
+[Embarqueidcontrato]
+Coordinates=3945,3403,130,36
+
+[TMonitoramentosyncfaz]
+Coordinates=4364,166,152,36
+
+[TUsuarioaplicacaosolido]
+Coordinates=4364,221,155,36
+
+[TPedidoCompraidpropriedade]
+Coordinates=4364,276,187,36
+
+[TEstoqueSaidaidresponsavel]
+Coordinates=4364,331,182,36
+
+[Contratossyncfaz]
+Coordinates=4084,3458,114,36
+
+[TTalhoesqrcodesaida]
+Coordinates=4364,386,138,36
+
+[TItensOrcamentoidformapg]
+Coordinates=4364,441,171,36
+
+[TItensOrcamentodesconto]
+Coordinates=4364,496,166,36
+
+[TnotaFiscalIntemidusuario]
+Coordinates=4364,551,166,36
+
+[TMPComparativoidfornecedor]
+Coordinates=4364,606,186,36
 

@@ -3014,7 +3014,10 @@ object dbCtx: TdbCtx
     CachedUpdates = True
     Connection = FDConPG
     SQL.Strings = (
-      'select'
+      
+        'select y.*,((valortotal+itemfrete+itemipi+itemicmst+Itemdifal)-I' +
+        'temdesconto)ValorLiquido from '
+      '(select'
       'b.*,'
       'case'
       ' when b.status=1 then '#39'Solicita'#231#227'o'#39
@@ -3030,18 +3033,32 @@ object dbCtx: TdbCtx
       'f.inscricaoestadual,'
       'f.cidade,'
       'f.contatopessoa,'
+      'fp.codigo||'#39'-'#39'||fp.descricao formapg,'
       
-        #39'R$'#39'||cast((select sum(valortotal) from orcamentositens where st' +
-        'atus=1 and idorcamento=b.id)as varchar(10)) valorTotal,'
-      'fp.codigo||'#39'-'#39'||fp.descricao formapg'
+        'coalesce((select sum(valortotal) from orcamentositens where stat' +
+        'us=1 and idorcamento=b.id),0) valorTotal,'
+      
+        'coalesce(b.frete,(select sum(frete) from orcamentositens where s' +
+        'tatus=1 and idorcamento=b.id),0) Itemfrete,'
+      
+        'coalesce(b.desconto,(select sum(desconto) from orcamentositens w' +
+        'here status=1 and idorcamento=b.id),0)Itemdesconto,'
+      
+        'coalesce((select sum(icmst) from orcamentositens where status=1 ' +
+        'and idorcamento=b.id),0)Itemicmst,'
+      
+        'coalesce((select sum(ipi) from orcamentositens where status=1 an' +
+        'd idorcamento=b.id),0)Itemipi,'
+      
+        'coalesce((select sum(diferencialalicota) from orcamentositens wh' +
+        'ere status=1 and idorcamento=b.id),0)Itemdifal'
       'from orcamentos b'
       'join pedidocompra c on c.id=b.idpedido'
       'join fornecedor f on f.id=b.idfornecedor'
       
         'left join forma_pagamento_fornecedor fp on fp.id=b.idformapagame' +
         'nto'
-      'where b.status>-1'
-      'and c.idSegmento=0')
+      'where b.status>-1)y')
     Left = 456
     Top = 184
     object TOrcamentoid: TIntegerField
@@ -3077,57 +3094,10 @@ object dbCtx: TdbCtx
       FieldName = 'idpedido'
       Origin = 'idpedido'
     end
-    object TOrcamentoidentificador: TWideStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'identificador'
-      Origin = 'identificador'
-    end
-    object TOrcamentodatapedido: TDateField
-      AutoGenerateValue = arDefault
-      FieldName = 'datapedido'
-      Origin = 'datapedido'
-    end
-    object TOrcamentofornecedor: TWideStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'fornecedor'
-      Origin = 'fornecedor'
-      Size = 100
-    end
-    object TOrcamentoemail: TWideStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'email'
-      Origin = 'email'
-      Size = 100
-    end
-    object TOrcamentocpf_cnpj: TWideStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'cpf_cnpj'
-      Origin = 'cpf_cnpj'
-      Size = 30
-    end
-    object TOrcamentotelefone_fixo: TWideStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'telefone_fixo'
-      Origin = 'telefone_fixo'
-    end
     object TOrcamentoobservacao: TWideStringField
       FieldName = 'observacao'
       Origin = 'observacao'
       Size = 100
-    end
-    object TOrcamentostatusstr: TWideMemoField
-      AutoGenerateValue = arDefault
-      FieldName = 'statusstr'
-      Origin = 'statusstr'
-      ReadOnly = True
-      BlobType = ftWideMemo
-    end
-    object TOrcamentovalortotal: TWideMemoField
-      AutoGenerateValue = arDefault
-      FieldName = 'valortotal'
-      Origin = 'valortotal'
-      ReadOnly = True
-      BlobType = ftWideMemo
     end
     object TOrcamentosyncaws: TIntegerField
       FieldName = 'syncaws'
@@ -3167,6 +3137,50 @@ object dbCtx: TdbCtx
       Precision = 15
       Size = 3
     end
+    object TOrcamentoidformapagamento: TIntegerField
+      FieldName = 'idformapagamento'
+      Origin = 'idformapagamento'
+    end
+    object TOrcamentostatusstr: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'statusstr'
+      Origin = 'statusstr'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TOrcamentoidentificador: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'identificador'
+      Origin = 'identificador'
+    end
+    object TOrcamentodatapedido: TDateField
+      AutoGenerateValue = arDefault
+      FieldName = 'datapedido'
+      Origin = 'datapedido'
+    end
+    object TOrcamentofornecedor: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'fornecedor'
+      Origin = 'fornecedor'
+      Size = 100
+    end
+    object TOrcamentoemail: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 100
+    end
+    object TOrcamentocpf_cnpj: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'cpf_cnpj'
+      Origin = 'cpf_cnpj'
+      Size = 30
+    end
+    object TOrcamentotelefone_fixo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'telefone_fixo'
+      Origin = 'telefone_fixo'
+    end
     object TOrcamentoinscricaoestadual: TWideStringField
       AutoGenerateValue = arDefault
       FieldName = 'inscricaoestadual'
@@ -3184,16 +3198,68 @@ object dbCtx: TdbCtx
       Origin = 'contatopessoa'
       Size = 100
     end
-    object TOrcamentoidformapagamento: TIntegerField
-      FieldName = 'idformapagamento'
-      Origin = 'idformapagamento'
-    end
     object TOrcamentoformapg: TWideMemoField
       AutoGenerateValue = arDefault
       FieldName = 'formapg'
       Origin = 'formapg'
       ReadOnly = True
       BlobType = ftWideMemo
+    end
+    object TOrcamentovalortotal: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valortotal'
+      Origin = 'valortotal'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TOrcamentoitemfrete: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'itemfrete'
+      Origin = 'itemfrete'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TOrcamentoitemdesconto: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'itemdesconto'
+      Origin = 'itemdesconto'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TOrcamentoitemicmst: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'itemicmst'
+      Origin = 'itemicmst'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TOrcamentoitemipi: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'itemipi'
+      Origin = 'itemipi'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TOrcamentoitemdifal: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'itemdifal'
+      Origin = 'itemdifal'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TOrcamentovalorliquido: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorliquido'
+      Origin = 'valorliquido'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
   end
   object TItensOrcamento: TFDQuery
@@ -5678,6 +5744,48 @@ object dbCtx: TdbCtx
     object TConfigpecuaria: TIntegerField
       FieldName = 'pecuaria'
       Origin = 'pecuaria'
+    end
+  end
+  object TValorLiquidoOrc: TFDQuery
+    Connection = FDConPG
+    SQL.Strings = (
+      'select '
+      ' sum(o.valortotal) ValorBruto,'
+      
+        ' sum(o.valortotal)+sum(coalesce(o2.frete,o.frete,0))ValorBrutoMa' +
+        'isFrete,'
+      ' sum(o.valortotal)+sum(coalesce(o2.frete,o.frete,0))+'
+      ' sum(coalesce(o.icmst,0))+coalesce(sum(o.ipi),0)+'
+      ' sum(coalesce(o.diferencialalicota,0))-'
+      ' sum(coalesce(o.desconto,o2.desconto,0)) valorLiquido'
+      'from orcamentositens o'
+      'join orcamentos o2 on o.idorcamento=o2.id'
+      'where idorcamento =322')
+    Left = 392
+    Top = 224
+    object TValorLiquidoOrcvalorbruto: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorbruto'
+      Origin = 'valorbruto'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TValorLiquidoOrcvalorbrutomaisfrete: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorbrutomaisfrete'
+      Origin = 'valorbrutomaisfrete'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TValorLiquidoOrcvalorliquido: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorliquido'
+      Origin = 'valorliquido'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
   end
 end
