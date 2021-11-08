@@ -1028,51 +1028,9 @@ type
     TPedidoCompraidcentrocusto: TIntegerField;
     TPedidoCompraidpropriedade: TIntegerField;
     TPedidoCompracentrocusto: TWideStringField;
-    TItensOrcamentoitem: TLargeintField;
-    TItensOrcamentoid: TIntegerField;
-    TItensOrcamentostatus: TIntegerField;
-    TItensOrcamentodatareg: TSQLTimeStampField;
-    TItensOrcamentoidusuario: TIntegerField;
-    TItensOrcamentodataalteracao: TSQLTimeStampField;
-    TItensOrcamentoidusuarioalteracao: TIntegerField;
-    TItensOrcamentoidorcamento: TIntegerField;
-    TItensOrcamentoidproduto: TIntegerField;
-    TItensOrcamentovalorunidade: TBCDField;
-    TItensOrcamentovalortotal: TBCDField;
-    TItensOrcamentoobservacao: TWideStringField;
-    TItensOrcamentoqtde: TIntegerField;
-    TItensOrcamentosyncaws: TIntegerField;
-    TItensOrcamentosyncfaz: TIntegerField;
-    TItensOrcamentodesconto: TBCDField;
-    TItensOrcamentoipi: TBCDField;
-    TItensOrcamentoicmst: TBCDField;
-    TItensOrcamentofrete: TBCDField;
-    TItensOrcamentodiferencialalicota: TBCDField;
-    TItensOrcamentomarca: TWideStringField;
-    TItensOrcamentoidmarca: TIntegerField;
-    TItensOrcamentooriginal: TIntegerField;
-    TItensOrcamentounidademedida: TWideMemoField;
-    TItensOrcamentoimg: TBlobField;
-    TItensOrcamentoidentificadorpedido: TWideStringField;
-    TItensOrcamentodatapedido: TDateField;
-    TItensOrcamentostatuspedido: TIntegerField;
-    TItensOrcamentonomefornecedor: TWideStringField;
-    TItensOrcamentotelefonefornecedor: TWideStringField;
-    TItensOrcamentoemailfornecedor: TWideStringField;
-    TItensOrcamentocpfcnpjfornecedor: TWideStringField;
-    TItensOrcamentonomeproduto: TWideStringField;
-    TItensOrcamentocodfabproduto: TWideStringField;
-    TItensOrcamentovalordesconto: TFMTBCDField;
-    TItensOrcamentooriginalstr: TWideMemoField;
-    TItensOrcamentoformapg: TWideMemoField;
-    TItensOrcamentoidformapg: TIntegerField;
-    TItensOrcamentofornecedor: TWideStringField;
-    TItensOrcamentofretegeral: TBCDField;
-    TItensOrcamentodescontogeral: TBCDField;
     TItensPedidoidmarca: TIntegerField;
     TItensPedidooriginal: TIntegerField;
     TItensPedidomarca: TWideStringField;
-    TItensOrcamentomarcanome: TWideStringField;
     TOrcamentoid: TIntegerField;
     TOrcamentostatus: TIntegerField;
     TOrcamentodatareg: TSQLTimeStampField;
@@ -1112,6 +1070,118 @@ type
     TValorLiquidoOrcvalorbruto: TFMTBCDField;
     TValorLiquidoOrcvalorbrutomaisfrete: TFMTBCDField;
     TValorLiquidoOrcvalorliquido: TFMTBCDField;
+    TOrcamentosenha: TWideStringField;
+    TItensOrcamentoitem: TLargeintField;
+    TItensOrcamentoid: TIntegerField;
+    TItensOrcamentostatus: TIntegerField;
+    TItensOrcamentodatareg: TSQLTimeStampField;
+    TItensOrcamentoidusuario: TIntegerField;
+    TItensOrcamentodataalteracao: TSQLTimeStampField;
+    TItensOrcamentoidusuarioalteracao: TIntegerField;
+    TItensOrcamentoidorcamento: TIntegerField;
+    TItensOrcamentoidproduto: TIntegerField;
+    TItensOrcamentovalorunidade: TBCDField;
+    TItensOrcamentoobservacao: TWideStringField;
+    TItensOrcamentoqtde: TIntegerField;
+    TItensOrcamentosyncaws: TIntegerField;
+    TItensOrcamentosyncfaz: TIntegerField;
+    TItensOrcamentodesconto: TFMTBCDField;
+    TItensOrcamentodescontogeral: TFMTBCDField;
+    TItensOrcamentoipi: TFMTBCDField;
+    TItensOrcamentoicmst: TFMTBCDField;
+    TItensOrcamentofrete: TFMTBCDField;
+    TItensOrcamentofretegeral: TFMTBCDField;
+    TItensOrcamentodiferencialalicota: TFMTBCDField;
+    TItensOrcamentomarca: TWideStringField;
+    TItensOrcamentoidmarca: TIntegerField;
+    TItensOrcamentooriginal: TIntegerField;
+    TItensOrcamentounidademedida: TWideMemoField;
+    TItensOrcamentoimg: TBlobField;
+    TItensOrcamentoidentificadorpedido: TWideStringField;
+    TItensOrcamentodatapedido: TDateField;
+    TItensOrcamentostatuspedido: TIntegerField;
+    TItensOrcamentonomefornecedor: TWideStringField;
+    TItensOrcamentotelefonefornecedor: TWideStringField;
+    TItensOrcamentoemailfornecedor: TWideStringField;
+    TItensOrcamentocpfcnpjfornecedor: TWideStringField;
+    TItensOrcamentonomeproduto: TWideStringField;
+    TItensOrcamentocodfabproduto: TWideStringField;
+    TItensOrcamentounidademedida_1: TWideStringField;
+    TItensOrcamentovalortotal: TBCDField;
+    TItensOrcamentooriginalstr: TWideMemoField;
+    TItensOrcamentoformapg: TWideMemoField;
+    TItensOrcamentoidformapg: TIntegerField;
+    TItensOrcamentofornecedor: TWideStringField;
+    TItensOrcamentomarcanome: TWideStringField;
+    TItensOrcamentovalorbrutomaisfrete: TFMTBCDField;
+    TItensOrcamentovalorliquido: TFMTBCDField;
+    TItensOrcamentoInsert: TFDQuery;
+    TItensOrcamentoInsertid: TIntegerField;
+    TItensOrcamentoInsertstatus: TIntegerField;
+    TItensOrcamentoInsertdatareg: TSQLTimeStampField;
+    TItensOrcamentoInsertidusuario: TIntegerField;
+    TItensOrcamentoInsertdataalteracao: TSQLTimeStampField;
+    TItensOrcamentoInsertidusuarioalteracao: TIntegerField;
+    TItensOrcamentoInsertidorcamento: TIntegerField;
+    TItensOrcamentoInsertidproduto: TIntegerField;
+    TItensOrcamentoInsertvalorunidade: TBCDField;
+    TItensOrcamentoInsertvalortotal: TBCDField;
+    TItensOrcamentoInsertobservacao: TWideStringField;
+    TItensOrcamentoInsertqtde: TIntegerField;
+    TItensOrcamentoInsertsyncaws: TIntegerField;
+    TItensOrcamentoInsertsyncfaz: TIntegerField;
+    TItensOrcamentoInsertdesconto: TBCDField;
+    TItensOrcamentoInsertipi: TBCDField;
+    TItensOrcamentoInserticmst: TBCDField;
+    TItensOrcamentoInsertfrete: TBCDField;
+    TItensOrcamentoInsertdiferencialalicota: TBCDField;
+    TItensOrcamentoInsertmarca: TWideStringField;
+    TItensOrcamentoInsertidmarca: TIntegerField;
+    TItensOrcamentoInsertoriginal: TIntegerField;
+    TItensOrcamentoInsertunidademedida: TWideMemoField;
+    TItensOrcamentoInsertimg: TBlobField;
+    TPropriedade: TFDQuery;
+    TPropriedadeid: TIntegerField;
+    TPropriedadestatus: TIntegerField;
+    TPropriedadedatareg: TSQLTimeStampField;
+    TPropriedadeidusuario: TIntegerField;
+    TPropriedadedataalteracao: TSQLTimeStampField;
+    TPropriedadeidusuarioalteracao: TIntegerField;
+    TPropriedadenome: TWideStringField;
+    TPropriedadecidade: TWideStringField;
+    TPropriedadeuf: TWideStringField;
+    TPropriedadecpf_cnpj: TWideStringField;
+    TPropriedadetelefone_fixo: TWideStringField;
+    TPropriedadecelular: TWideStringField;
+    TPropriedadeemail: TWideStringField;
+    TPropriedadesyncaws: TIntegerField;
+    TPropriedaderazaosocial: TWideStringField;
+    TPropriedadeinscricaoestadual: TWideStringField;
+    TPropriedadeenderecocobranca: TWideStringField;
+    TPropriedadeenderecofaturamento: TWideStringField;
+    TPropriedadeagenciabanco1: TWideStringField;
+    TPropriedadebanco1: TWideStringField;
+    TPropriedadeconta1: TWideStringField;
+    TPropriedadeagenciabanco2: TWideStringField;
+    TPropriedadebanco2: TWideStringField;
+    TPropriedadeconta2: TWideStringField;
+    TPropriedaderefcomercial1: TWideStringField;
+    TPropriedaderefcomercialfone1: TWideStringField;
+    TPropriedaderefcomerciacontaro1: TWideStringField;
+    TPropriedaderefcomercial2: TWideStringField;
+    TPropriedaderefcomercialfone2: TWideStringField;
+    TPropriedaderefcomerciacontaro2: TWideStringField;
+    TPropriedaderefcomercial3: TWideStringField;
+    TPropriedaderefcomercialfone3: TWideStringField;
+    TPropriedaderefcomerciacontaro3: TWideStringField;
+    TPropriedaderefcomercial4: TWideStringField;
+    TPropriedaderefcomercialfone4: TWideStringField;
+    TPropriedaderefcomerciacontaro4: TWideStringField;
+    TPropriedadeemailenvionota1: TWideStringField;
+    TPropriedadeemailenvionota2: TWideStringField;
+    TPropriedadeemailenvionota3: TWideStringField;
+    TPropriedadesyncfaz: TIntegerField;
+    TPedidoComprapropriedadenome: TWideStringField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1155,6 +1225,8 @@ type
     procedure ContratosReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure EmbarqueReconcileError(DataSet: TFDDataSet; E: EFDException;
+      UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
+    procedure TPropriedadeReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
   private
     { Private declarations }
@@ -1241,8 +1313,9 @@ type
     procedure DeletaPedido(idPedido:string);
     procedure AtaulizaValorMedioProdutoGeral;
     procedure AbreValoresOrcamento(vIdOrc:string);
-
-    procedure AtaulizaSaldoAtualCustoMedio(idProduto:string);
+    procedure AtaulizaSaldoAtualCustoMedio(idProduto: string);
+    function  AbreItenOrcamentoEdit(idItem:string):Boolean;
+    procedure AbrePropriedade(vIdPropriedade:string);
 
   end;
 var
@@ -1400,6 +1473,7 @@ begin
    Add('c.datapedido,');
    Add('f.nome Fornecedor,');
    Add('f.email,');
+   Add('f.senha,');
    Add('f.cpf_cnpj,');
    Add('f.telefone_fixo,');
    Add('f.inscricaoestadual,');
@@ -1577,9 +1651,29 @@ begin
 with TItensOrcamento,TItensOrcamento.SQL do
  begin
    Clear;
-   Add('select');
-   Add('ROW_NUMBER () OVER (ORDER BY a.id)Item,');
-   Add(' a.*,');
+   Add('select y.*,');
+   Add(' (y.valorTotal+y.frete)valorBrutoMaisFrete,');
+   Add(' (y.valorTotal+y.frete+y.ipi+y.icmst+y.diferencialalicota)-(y.desconto)valorLiquido');
+   Add('from');
+   Add('(select');
+   Add('ROW_NUMBER () OVER (ORDER BY a.id)Item ,');
+   Add(' a.id,a.status,a.datareg,a.idusuario,');
+   Add(' a.dataalteracao,a.idusuarioalteracao,');
+   Add(' a.idorcamento,a.idproduto,a.valorunidade,');
+   Add(' a.observacao,a.qtde,a.syncaws,');
+   Add(' a.syncfaz,');
+   Add(' coalesce(a.desconto,0)desconto,');
+   Add(' coalesce(nullif(b.desconto,0),coalesce((select sum(coalesce(desconto,0)) from orcamentositens  where status>-1 and idorcamento=b.id and id=a.id),0))descontoGeral,');
+   Add(' coalesce(nullif(b.frete,0),coalesce((select sum(coalesce(frete,0)) from orcamentositens  where status>-1 and idorcamento=b.id and id=a.id),0))freteGeral,');
+   Add(' coalesce(a.ipi,0)ipi,');
+   Add(' coalesce(a.icmst,0)icmst,');
+   Add(' coalesce(a.frete,0)frete,');
+   Add(' coalesce(a.diferencialalicota,0)diferencialalicota,');
+   Add(' a.marca,');
+   Add(' a.idmarca,');
+   Add(' a.original,');
+   Add(' a.unidademedida,');
+   Add(' a.img,');
    Add(' c.identificador identificadorPedido,');
    Add(' c.datapedido DataPedido,');
    Add(' c.status StatusPedido,');
@@ -1590,29 +1684,40 @@ with TItensOrcamento,TItensOrcamento.SQL do
    Add(' e.Nome NomeProduto,');
    Add(' e.codigofabricante CodFabProduto,');
    Add(' e.unidademedida,');
-   Add('(a.valortotal-coalesce(a.desconto,0))ValorDesconto,');
-   Add('fp.codigo||''-''||fp.descricao formapg,');
-   Add('case');
-   Add(' when original=1 then ''ORIGINAL''');
-   Add(' when original=0 then ''PARALELO''');
-   Add('end originalStr,');
-   Add('fp.id idFormaPg,');
-   Add('d.nome Fornecedor,');
-   Add('b.frete freteGeral,');
-   Add('b.desconto descontoGeral,');
-   Add('am.nome marcanome');
+   Add(' a.valortotal,');
+   Add(' case');
+   Add('   when original=1 then ''ORIGINAL''');
+   Add('   when original=0 then ''PARALELO''');
+   Add(' end originalStr,');
+   Add(' fpf.codigo||''-''||fpf.descricao FormaPG,');
+   Add(' fpf.id idFormaPg,');
+   Add(' d.nome Fornecedor,');
+   Add(' am.nome marcanome');
    Add('from public.orcamentosItens a');
    Add('join orcamentos b on   b.id=a.idorcamento');
+   Add('left join forma_pagamento_fornecedor fpf on fpf.id=b.idformapagamento');
    Add('join pedidocompra c on c.id=b.idpedido');
    Add('join fornecedor d on   d.id=b.idfornecedor');
    Add('join produtos e on      e.Id=a.idproduto');
-   Add('left join forma_pagamento_fornecedor fp on fp.id=b.idformapagamento');
    Add('left join auxmarcas am on am.id=a.idmarca');
    Add('where b.status>-1 and a.status>-1');
-   Add('and b.id='+vFiltro);
+   Add('and idorcamento='+vFiltro);
    Add('order by Item');
+   Add(')y');
    Open;
    AbreValoresOrcamento(vFiltro);
+ end;
+end;
+
+function TdbCtx.AbreItenOrcamentoEdit(idItem: string): Boolean;
+begin
+ with TItensOrcamentoInsert,TItensOrcamentoInsert.SQL do
+ begin
+   Clear;
+   Add('select * from orcamentositens');
+   Add('where id='+idItem);
+   Open;
+   Result := TItensOrcamentoInsert.IsEmpty;
  end;
 end;
 
@@ -1693,7 +1798,8 @@ begin
    Add('asr.Nome TipoServico,');
    Add('sr.Descricao DescricaoServico,');
    Add('(select max(idstatus) from pedidostatus where status=1 and idpedido=a.id)maxidstatus,');
-   Add('c.nome centrocusto');
+   Add('c.nome centrocusto,');
+   Add('p2.nome PropriedadeNome');
    Add('from pedidocompra a');
    Add('join usuario u on u.Id=a.idsolicitante');
    Add('left join maquinaveiculo m on m.id=a.idmaquina');
@@ -1701,6 +1807,7 @@ begin
    Add('left join servico sr on a.idServico=sr.id');
    Add('left join AuxTipoServico asr on asr.id=sr.idTipo');
    Add('left join centrocusto c on c.id=a.idcentrocusto');
+   Add('left join propriedade p2 on a.idpropriedade=p2.id');
    Add('where a.status>=0 and a.idsegmento='+vIdSegmento);
    if vFiltro.Length>0 then
     Add(vFiltro);
@@ -1849,6 +1956,17 @@ begin
    AdD('ORDER BY PR.ID DESC');
    TProdutos.SQL.Text;
   Open;
+ end;
+end;
+
+procedure TdbCtx.AbrePropriedade(vIdPropriedade: string);
+begin
+ with TPropriedade,TPropriedade.SQL do
+ begin
+   Clear;
+   Add('select * from propriedade');
+   Add('where id='+vIdPropriedade);
+   Open;
  end;
 end;
 
@@ -2396,6 +2514,7 @@ begin
    end;
  end;
 end;
+
 
 
 procedure TdbCtx.AtualizaSaldoContrato(idContrato: string);
@@ -3020,6 +3139,13 @@ end;
 
 procedure TdbCtx.TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
   UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
+begin
+ ShowMessage(e.Message);
+end;
+
+procedure TdbCtx.TPropriedadeReconcileError(DataSet: TFDDataSet;
+  E: EFDException; UpdateKind: TFDDatSRowState;
+  var Action: TFDDAptReconcileAction);
 begin
  ShowMessage(e.Message);
 end;

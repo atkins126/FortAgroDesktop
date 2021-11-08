@@ -62,7 +62,8 @@ uses
   USaidaEstoque in '..\Estoque\Saida\USaidaEstoque.pas' {frmSaidaEstoque},
   UGerencialEstoque in '..\Estoque\Gerenciamento\UGerencialEstoque.pas' {frmGerencialEstoque},
   UServicoRevisao in '..\ServicoRevisao\UServicoRevisao.pas' {frmCadPadrao1},
-  UFormaPgForn in '..\FormaPg\UFormaPgForn.pas' {frmCadFormaPG};
+  UFormaPgForn in '..\FormaPg\UFormaPgForn.pas' {frmCadFormaPG},
+  UPropriedade in '..\Propriedades\UPropriedade.pas' {frmpropriedade};
 
 {$R *.res}
 
@@ -81,5 +82,6 @@ begin
   Application.CreateForm(TfrmCadPadrao1, frmCadPadrao1);
   Application.CreateForm(TfrmAbastecimento, frmAbastecimento);
   Application.CreateForm(TfrmCadFormaPG, frmCadFormaPG);
+  Application.CreateForm(Tfrmpropriedade, frmpropriedade);
   Application.Run;
 end.

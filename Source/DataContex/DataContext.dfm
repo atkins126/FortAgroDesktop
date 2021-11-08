@@ -2334,7 +2334,7 @@ object dbCtx: TdbCtx
         '(select max(idstatus) from pedidostatus where status=1 and idped' +
         'ido=a.id)maxidstatus,'
       'c.nome centrocusto,'
-      'p2.id idpropriedade '
+      'p2.nome PropriedadeNome '
       'from pedidocompra a '
       'join usuario u on u.Id=a.idsolicitante'
       'left join maquinaveiculo m on m.id=a.idmaquina'
@@ -2494,6 +2494,12 @@ object dbCtx: TdbCtx
       FieldName = 'centrocusto'
       Origin = 'centrocusto'
       Size = 50
+    end
+    object TPedidoComprapropriedadenome: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'propriedadenome'
+      Origin = 'propriedadenome'
+      Size = 100
     end
   end
   object TItensPedido: TFDQuery
@@ -3011,6 +3017,7 @@ object dbCtx: TdbCtx
     end
   end
   object TOrcamento: TFDQuery
+    Active = True
     CachedUpdates = True
     Connection = FDConPG
     SQL.Strings = (
@@ -3028,6 +3035,7 @@ object dbCtx: TdbCtx
       'c.datapedido,'
       'f.nome Fornecedor,'
       'f.email,'
+      'f.senha,'
       'f.cpf_cnpj,'
       'f.telefone_fixo,'
       'f.inscricaoestadual,'
@@ -3261,14 +3269,55 @@ object dbCtx: TdbCtx
       Precision = 64
       Size = 0
     end
+    object TOrcamentosenha: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'senha'
+      Origin = 'senha'
+    end
   end
   object TItensOrcamento: TFDQuery
     CachedUpdates = True
     Connection = FDConPG
     SQL.Strings = (
-      'select'
+      'select y.*, '
+      ' (y.valorTotal+y.freteGeral)valorBrutoMaisFrete,'
+      
+        ' (y.valorTotal+y.freteGeral+y.ipi+y.icmst+y.diferencialalicota)-' +
+        '(y.descontoGeral)valorLiquido'
+      'from'
+      '(select'
       'ROW_NUMBER () OVER (ORDER BY a.id)Item ,'
-      'a.*,'
+      ' a.id,a.status,a.datareg,a.idusuario,'
+      ' a.dataalteracao,a.idusuarioalteracao,'
+      ' a.idorcamento,a.idproduto,a.valorunidade,'
+      ' a.observacao,a.qtde,a.syncaws,'
+      ' a.syncfaz,'
+      ' coalesce(a.desconto,0)desconto,'
+      ' coalesce(nullif('
+      
+        '  coalesce(nullif(b.desconto,0),0)/(select count(*) from orcamen' +
+        'tositens  where status>-1 and idorcamento=b.id and id=a.id),0),'
+      
+        '  coalesce((select sum(coalesce(desconto,0)) from orcamentositen' +
+        's  where status>-1 and idorcamento=b.id and id=a.id),0))desconto' +
+        'Geral, '
+      ' coalesce(a.ipi,0)ipi,'
+      ' coalesce(a.icmst,0)icmst,'
+      ' coalesce(a.frete,0)frete,'
+      ' coalesce(nullif('
+      
+        '  coalesce(nullif(b.frete,0),0)/(select count(*) from orcamentos' +
+        'itens  where status>-1 and idorcamento=b.id and id=a.id),0),'
+      
+        '  coalesce((select sum(coalesce(frete,0)) from orcamentositens  ' +
+        'where status>-1 and idorcamento=b.id and id=a.id),0))freteGeral,' +
+        ' '
+      ' coalesce(a.diferencialalicota,0)diferencialalicota,'
+      ' a.marca,'
+      ' a.idmarca,'
+      ' a.original,'
+      ' a.unidademedida,'
+      ' a.img,'
       ' c.identificador identificadorPedido,'
       ' c.datapedido DataPedido,'
       ' c.status StatusPedido,'
@@ -3279,7 +3328,7 @@ object dbCtx: TdbCtx
       ' e.Nome NomeProduto,'
       ' e.codigofabricante CodFabProduto,'
       ' e.unidademedida,'
-      '(a.valortotal-coalesce(a.desconto,0)) ValorDesconto,'
+      ' a.valortotal,'
       ' case'
       '   when original=1 then '#39'ORIGINAL'#39
       '   when original=0 then '#39'PARALELO'#39
@@ -3287,8 +3336,6 @@ object dbCtx: TdbCtx
       ' fpf.codigo||'#39'-'#39'||fpf.descricao FormaPG,'
       ' fpf.id idFormaPg,'
       ' d.nome Fornecedor,'
-      ' b.frete freteGeral,'
-      ' b.desconto descontoGeral,'
       ' am.nome marcanome'
       'from public.orcamentosItens a'
       'join orcamentos b on   b.id=a.idorcamento'
@@ -3300,10 +3347,10 @@ object dbCtx: TdbCtx
       'join produtos e on      e.Id=a.idproduto'
       'left join auxmarcas am on am.id=a.idmarca'
       'where b.status>-1 and a.status>-1'
-      'and idorcamento=318'
+      'and idorcamento=323)y'
       ''
       '')
-    Left = 456
+    Left = 448
     Top = 240
     object TItensOrcamentoitem: TLargeintField
       AutoGenerateValue = arDefault
@@ -3350,12 +3397,6 @@ object dbCtx: TdbCtx
       Precision = 15
       Size = 2
     end
-    object TItensOrcamentovalortotal: TBCDField
-      FieldName = 'valortotal'
-      Origin = 'valortotal'
-      Precision = 15
-      Size = 2
-    end
     object TItensOrcamentoobservacao: TWideStringField
       FieldName = 'observacao'
       Origin = 'observacao'
@@ -3373,35 +3414,61 @@ object dbCtx: TdbCtx
       FieldName = 'syncfaz'
       Origin = 'syncfaz'
     end
-    object TItensOrcamentodesconto: TBCDField
+    object TItensOrcamentodesconto: TFMTBCDField
+      AutoGenerateValue = arDefault
       FieldName = 'desconto'
       Origin = 'desconto'
-      Precision = 15
-      Size = 3
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
-    object TItensOrcamentoipi: TBCDField
+    object TItensOrcamentodescontogeral: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'descontogeral'
+      Origin = 'descontogeral'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentoipi: TFMTBCDField
+      AutoGenerateValue = arDefault
       FieldName = 'ipi'
       Origin = 'ipi'
-      Precision = 15
-      Size = 3
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
-    object TItensOrcamentoicmst: TBCDField
+    object TItensOrcamentoicmst: TFMTBCDField
+      AutoGenerateValue = arDefault
       FieldName = 'icmst'
       Origin = 'icmst'
-      Precision = 15
-      Size = 3
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
-    object TItensOrcamentofrete: TBCDField
+    object TItensOrcamentofrete: TFMTBCDField
+      AutoGenerateValue = arDefault
       FieldName = 'frete'
       Origin = 'frete'
-      Precision = 15
-      Size = 3
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
-    object TItensOrcamentodiferencialalicota: TBCDField
+    object TItensOrcamentofretegeral: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'fretegeral'
+      Origin = 'fretegeral'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentodiferencialalicota: TFMTBCDField
+      AutoGenerateValue = arDefault
       FieldName = 'diferencialalicota'
       Origin = 'diferencialalicota'
-      Precision = 15
-      Size = 3
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
     object TItensOrcamentomarca: TWideStringField
       FieldName = 'marca'
@@ -3475,13 +3542,17 @@ object dbCtx: TdbCtx
       Origin = 'codfabproduto'
       Size = 30
     end
-    object TItensOrcamentovalordesconto: TFMTBCDField
+    object TItensOrcamentounidademedida_1: TWideStringField
       AutoGenerateValue = arDefault
-      FieldName = 'valordesconto'
-      Origin = 'valordesconto'
-      ReadOnly = True
-      Precision = 64
-      Size = 0
+      FieldName = 'unidademedida_1'
+      Origin = 'unidademedida'
+      Size = 10
+    end
+    object TItensOrcamentovalortotal: TBCDField
+      FieldName = 'valortotal'
+      Origin = 'valortotal'
+      Precision = 15
+      Size = 2
     end
     object TItensOrcamentooriginalstr: TWideMemoField
       AutoGenerateValue = arDefault
@@ -3508,25 +3579,27 @@ object dbCtx: TdbCtx
       Origin = 'fornecedor'
       Size = 100
     end
-    object TItensOrcamentofretegeral: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'fretegeral'
-      Origin = 'fretegeral'
-      Precision = 15
-      Size = 3
-    end
-    object TItensOrcamentodescontogeral: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'descontogeral'
-      Origin = 'descontogeral'
-      Precision = 15
-      Size = 3
-    end
     object TItensOrcamentomarcanome: TWideStringField
       AutoGenerateValue = arDefault
       FieldName = 'marcanome'
       Origin = 'marcanome'
       Size = 50
+    end
+    object TItensOrcamentovalorbrutomaisfrete: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorbrutomaisfrete'
+      Origin = 'valorbrutomaisfrete'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentovalorliquido: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorliquido'
+      Origin = 'valorliquido'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
   end
   object TOrcamentoFornecedores: TFDQuery
@@ -3805,7 +3878,7 @@ object dbCtx: TdbCtx
       'select * from OperadorMaquinas'
       'where status=1')
     Left = 456
-    Top = 304
+    Top = 352
     object TOperadorMaquinaid: TIntegerField
       FieldName = 'id'
       Origin = 'id'
@@ -3869,7 +3942,7 @@ object dbCtx: TdbCtx
       'select * from auxTipoCultivar'
       'where status=1')
     Left = 456
-    Top = 360
+    Top = 408
     object TAuxTipoCultivareid: TIntegerField
       FieldName = 'id'
       Origin = 'id'
@@ -4566,7 +4639,7 @@ object dbCtx: TdbCtx
       'join usuario c on c.id=a.idusuario'
       'where a.status=1')
     Left = 456
-    Top = 416
+    Top = 464
     object TMonitoramentoid: TIntegerField
       FieldName = 'id'
       Origin = 'id'
@@ -4668,7 +4741,7 @@ object dbCtx: TdbCtx
       'join monitoramentopragaspontos b on b.id=a.idponto'
       'order by b.ponto')
     Left = 448
-    Top = 472
+    Top = 520
     object TMonitoramentoValoresponto: TWideStringField
       FieldName = 'ponto'
       Origin = 'ponto'
@@ -5762,7 +5835,7 @@ object dbCtx: TdbCtx
       'join orcamentos o2 on o.idorcamento=o2.id'
       'where idorcamento =322')
     Left = 392
-    Top = 224
+    Top = 96
     object TValorLiquidoOrcvalorbruto: TFMTBCDField
       AutoGenerateValue = arDefault
       FieldName = 'valorbruto'
@@ -5786,6 +5859,322 @@ object dbCtx: TdbCtx
       ReadOnly = True
       Precision = 64
       Size = 0
+    end
+  end
+  object TItensOrcamentoInsert: TFDQuery
+    CachedUpdates = True
+    Connection = FDConPG
+    SQL.Strings = (
+      'select * from orcamentositens'
+      'where status=-200')
+    Left = 448
+    Top = 288
+    object TItensOrcamentoInsertid: TIntegerField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object TItensOrcamentoInsertstatus: TIntegerField
+      FieldName = 'status'
+      Origin = 'status'
+    end
+    object TItensOrcamentoInsertdatareg: TSQLTimeStampField
+      FieldName = 'datareg'
+      Origin = 'datareg'
+    end
+    object TItensOrcamentoInsertidusuario: TIntegerField
+      FieldName = 'idusuario'
+      Origin = 'idusuario'
+    end
+    object TItensOrcamentoInsertdataalteracao: TSQLTimeStampField
+      FieldName = 'dataalteracao'
+      Origin = 'dataalteracao'
+    end
+    object TItensOrcamentoInsertidusuarioalteracao: TIntegerField
+      FieldName = 'idusuarioalteracao'
+      Origin = 'idusuarioalteracao'
+    end
+    object TItensOrcamentoInsertidorcamento: TIntegerField
+      FieldName = 'idorcamento'
+      Origin = 'idorcamento'
+    end
+    object TItensOrcamentoInsertidproduto: TIntegerField
+      FieldName = 'idproduto'
+      Origin = 'idproduto'
+    end
+    object TItensOrcamentoInsertvalorunidade: TBCDField
+      FieldName = 'valorunidade'
+      Origin = 'valorunidade'
+      Precision = 15
+      Size = 2
+    end
+    object TItensOrcamentoInsertvalortotal: TBCDField
+      FieldName = 'valortotal'
+      Origin = 'valortotal'
+      Precision = 15
+      Size = 2
+    end
+    object TItensOrcamentoInsertobservacao: TWideStringField
+      FieldName = 'observacao'
+      Origin = 'observacao'
+      Size = 100
+    end
+    object TItensOrcamentoInsertqtde: TIntegerField
+      FieldName = 'qtde'
+      Origin = 'qtde'
+    end
+    object TItensOrcamentoInsertsyncaws: TIntegerField
+      FieldName = 'syncaws'
+      Origin = 'syncaws'
+    end
+    object TItensOrcamentoInsertsyncfaz: TIntegerField
+      FieldName = 'syncfaz'
+      Origin = 'syncfaz'
+    end
+    object TItensOrcamentoInsertdesconto: TBCDField
+      FieldName = 'desconto'
+      Origin = 'desconto'
+      Precision = 15
+      Size = 3
+    end
+    object TItensOrcamentoInsertipi: TBCDField
+      FieldName = 'ipi'
+      Origin = 'ipi'
+      Precision = 15
+      Size = 3
+    end
+    object TItensOrcamentoInserticmst: TBCDField
+      FieldName = 'icmst'
+      Origin = 'icmst'
+      Precision = 15
+      Size = 3
+    end
+    object TItensOrcamentoInsertfrete: TBCDField
+      FieldName = 'frete'
+      Origin = 'frete'
+      Precision = 15
+      Size = 3
+    end
+    object TItensOrcamentoInsertdiferencialalicota: TBCDField
+      FieldName = 'diferencialalicota'
+      Origin = 'diferencialalicota'
+      Precision = 15
+      Size = 3
+    end
+    object TItensOrcamentoInsertmarca: TWideStringField
+      FieldName = 'marca'
+      Origin = 'marca'
+      Size = 100
+    end
+    object TItensOrcamentoInsertidmarca: TIntegerField
+      FieldName = 'idmarca'
+      Origin = 'idmarca'
+    end
+    object TItensOrcamentoInsertoriginal: TIntegerField
+      FieldName = 'original'
+      Origin = 'original'
+    end
+    object TItensOrcamentoInsertunidademedida: TWideMemoField
+      FieldName = 'unidademedida'
+      Origin = 'unidademedida'
+      BlobType = ftWideMemo
+    end
+    object TItensOrcamentoInsertimg: TBlobField
+      FieldName = 'img'
+      Origin = 'img'
+    end
+  end
+  object TPropriedade: TFDQuery
+    CachedUpdates = True
+    OnReconcileError = TPropriedadeReconcileError
+    Connection = FDConPG
+    SQL.Strings = (
+      'select * from propriedade'
+      'where status=1')
+    Left = 696
+    Top = 368
+    object TPropriedadeid: TIntegerField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object TPropriedadestatus: TIntegerField
+      FieldName = 'status'
+      Origin = 'status'
+    end
+    object TPropriedadedatareg: TSQLTimeStampField
+      FieldName = 'datareg'
+      Origin = 'datareg'
+    end
+    object TPropriedadeidusuario: TIntegerField
+      FieldName = 'idusuario'
+      Origin = 'idusuario'
+    end
+    object TPropriedadedataalteracao: TSQLTimeStampField
+      FieldName = 'dataalteracao'
+      Origin = 'dataalteracao'
+    end
+    object TPropriedadeidusuarioalteracao: TIntegerField
+      FieldName = 'idusuarioalteracao'
+      Origin = 'idusuarioalteracao'
+    end
+    object TPropriedadenome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 100
+    end
+    object TPropriedadecidade: TWideStringField
+      FieldName = 'cidade'
+      Origin = 'cidade'
+      Size = 100
+    end
+    object TPropriedadeuf: TWideStringField
+      FieldName = 'uf'
+      Origin = 'uf'
+      FixedChar = True
+      Size = 2
+    end
+    object TPropriedadecpf_cnpj: TWideStringField
+      FieldName = 'cpf_cnpj'
+      Origin = 'cpf_cnpj'
+      Size = 30
+    end
+    object TPropriedadetelefone_fixo: TWideStringField
+      FieldName = 'telefone_fixo'
+      Origin = 'telefone_fixo'
+    end
+    object TPropriedadecelular: TWideStringField
+      FieldName = 'celular'
+      Origin = 'celular'
+    end
+    object TPropriedadeemail: TWideStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 100
+    end
+    object TPropriedadesyncaws: TIntegerField
+      FieldName = 'syncaws'
+      Origin = 'syncaws'
+    end
+    object TPropriedaderazaosocial: TWideStringField
+      FieldName = 'razaosocial'
+      Origin = 'razaosocial'
+      Size = 100
+    end
+    object TPropriedadeinscricaoestadual: TWideStringField
+      FieldName = 'inscricaoestadual'
+      Origin = 'inscricaoestadual'
+    end
+    object TPropriedadeenderecocobranca: TWideStringField
+      FieldName = 'enderecocobranca'
+      Origin = 'enderecocobranca'
+      Size = 200
+    end
+    object TPropriedadeenderecofaturamento: TWideStringField
+      FieldName = 'enderecofaturamento'
+      Origin = 'enderecofaturamento'
+      Size = 200
+    end
+    object TPropriedadeagenciabanco1: TWideStringField
+      FieldName = 'agenciabanco1'
+      Origin = 'agenciabanco1'
+      Size = 50
+    end
+    object TPropriedadebanco1: TWideStringField
+      FieldName = 'banco1'
+      Origin = 'banco1'
+      Size = 50
+    end
+    object TPropriedadeconta1: TWideStringField
+      FieldName = 'conta1'
+      Origin = 'conta1'
+      Size = 50
+    end
+    object TPropriedadeagenciabanco2: TWideStringField
+      FieldName = 'agenciabanco2'
+      Origin = 'agenciabanco2'
+      Size = 50
+    end
+    object TPropriedadebanco2: TWideStringField
+      FieldName = 'banco2'
+      Origin = 'banco2'
+      Size = 50
+    end
+    object TPropriedadeconta2: TWideStringField
+      FieldName = 'conta2'
+      Origin = 'conta2'
+      Size = 50
+    end
+    object TPropriedaderefcomercial1: TWideStringField
+      FieldName = 'refcomercial1'
+      Origin = 'refcomercial1'
+      Size = 100
+    end
+    object TPropriedaderefcomercialfone1: TWideStringField
+      FieldName = 'refcomercialfone1'
+      Origin = 'refcomercialfone1'
+    end
+    object TPropriedaderefcomerciacontaro1: TWideStringField
+      FieldName = 'refcomerciacontaro1'
+      Origin = 'refcomerciacontaro1'
+    end
+    object TPropriedaderefcomercial2: TWideStringField
+      FieldName = 'refcomercial2'
+      Origin = 'refcomercial2'
+      Size = 100
+    end
+    object TPropriedaderefcomercialfone2: TWideStringField
+      FieldName = 'refcomercialfone2'
+      Origin = 'refcomercialfone2'
+    end
+    object TPropriedaderefcomerciacontaro2: TWideStringField
+      FieldName = 'refcomerciacontaro2'
+      Origin = 'refcomerciacontaro2'
+    end
+    object TPropriedaderefcomercial3: TWideStringField
+      FieldName = 'refcomercial3'
+      Origin = 'refcomercial3'
+      Size = 100
+    end
+    object TPropriedaderefcomercialfone3: TWideStringField
+      FieldName = 'refcomercialfone3'
+      Origin = 'refcomercialfone3'
+    end
+    object TPropriedaderefcomerciacontaro3: TWideStringField
+      FieldName = 'refcomerciacontaro3'
+      Origin = 'refcomerciacontaro3'
+    end
+    object TPropriedaderefcomercial4: TWideStringField
+      FieldName = 'refcomercial4'
+      Origin = 'refcomercial4'
+      Size = 100
+    end
+    object TPropriedaderefcomercialfone4: TWideStringField
+      FieldName = 'refcomercialfone4'
+      Origin = 'refcomercialfone4'
+    end
+    object TPropriedaderefcomerciacontaro4: TWideStringField
+      FieldName = 'refcomerciacontaro4'
+      Origin = 'refcomerciacontaro4'
+    end
+    object TPropriedadeemailenvionota1: TWideStringField
+      FieldName = 'emailenvionota1'
+      Origin = 'emailenvionota1'
+      Size = 100
+    end
+    object TPropriedadeemailenvionota2: TWideStringField
+      FieldName = 'emailenvionota2'
+      Origin = 'emailenvionota2'
+      Size = 100
+    end
+    object TPropriedadeemailenvionota3: TWideStringField
+      FieldName = 'emailenvionota3'
+      Origin = 'emailenvionota3'
+      Size = 100
+    end
+    object TPropriedadesyncfaz: TIntegerField
+      FieldName = 'syncfaz'
+      Origin = 'syncfaz'
     end
   end
 end

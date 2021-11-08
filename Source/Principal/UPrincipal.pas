@@ -217,6 +217,8 @@ type
     imgLub: TImage;
     imgObs: TImage;
     imgChk: TImage;
+    TreeViewItem11: TTreeViewItem;
+    Image69: TImage;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
@@ -285,6 +287,7 @@ type
     procedure TreeCadManutencaoClick(Sender: TObject);
     procedure TreeSaidaEstoqueClick(Sender: TObject);
     procedure TreeGerenciamentoEstoqueClick(Sender: TObject);
+    procedure TreeViewItem11Click(Sender: TObject);
   private
     vWebBrowser:TWebBrowser;
     procedure FechaMnu;
@@ -316,7 +319,8 @@ uses UMsgDlg, UCadPadrao, DataContext, UUsuarios, UAuxMarcas,
   UAbastecimento, UAuxPragas, UMonitoramento, UAuxPragaTipo, UAuxTipoCultivar,
   UdmReport, UDmReports, UItensRevisao, UCadRevisao, UMovEntreLocalEstoque,
   UAuxAtividadeAbastecimento, UListaOrcamentos, UComprador, UContratosSafra,
-  URevisaoMaquinas, USaidaEstoque, UGerencialEstoque;
+  URevisaoMaquinas, USaidaEstoque, UGerencialEstoque, UPropriedade,
+  UFormaPgForn;
 
 procedure TfrmPrincipal.Notificacao(Titulo,Notificacao:string);
 var
@@ -489,6 +493,7 @@ end;
 
 procedure TfrmPrincipal.FormShow(Sender: TObject);
 begin
+  TreeView1.CollapseAll;
   layDash.Visible := false;
   laySync.Visible := false;
   dbCtx.AbreSystemConfig;
@@ -1080,6 +1085,18 @@ begin
   finally
     AnimationPrincipal.Start;
     frmAuxVariedades.Free;
+  end;
+end;
+
+procedure TfrmPrincipal.TreeViewItem11Click(Sender: TObject);
+begin
+  frmpropriedade := Tfrmpropriedade.Create(Self);
+  try
+    layMnuPrincipal.Opacity :=0;
+    frmpropriedade.ShowModal;
+  finally
+    AnimationPrincipal.Start;
+    frmpropriedade.Free;
   end;
 end;
 

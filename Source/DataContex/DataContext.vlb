@@ -1325,9 +1325,6 @@ Coordinates=2405,1925,178,36
 [TAbastecimentoOutrosquantidade]
 Coordinates=2405,2029,210,36
 
-[TItensOrcamento]
-Coordinates=258,10,114,982
-
 [TLocalEstoquedatareg]
 Coordinates=2405,2081,144,36
 
@@ -2229,7 +2226,7 @@ Coordinates=3196,3277,194,36
 Coordinates=798,1273,108,300
 
 []
-Coordinates=976,3418,96,36
+Coordinates=2266,2987,138,36
 
 [Contratossaldo]
 Coordinates=947,2118,101,36
@@ -2261,9 +2258,6 @@ Coordinates=574,2391,182,36
 [TAuxPragasid]
 Coordinates=0,2180,95,36
 
-[TItensOrcamentoobservacao]
-Coordinates=385,2391,180,36
-
 [Compradoresidusuarioalteracao]
 Coordinates=186,2391,198,36
 
@@ -2276,9 +2270,6 @@ Coordinates=773,2501,139,36
 [TEstoqueSaidastatus]
 Coordinates=634,2501,137,36
 
-[TItensOrcamentoidmarca]
-Coordinates=1909,316,159,36
-
 [TnotaFiscalIntemprodutounidade]
 Coordinates=2172,888,203,36
 
@@ -2290,15 +2281,6 @@ Coordinates=1909,420,179,36
 
 [Compradoresinscricaoestadual]
 Coordinates=1909,992,192,36
-
-[TItensOrcamentonomefornecedor]
-Coordinates=2172,1252,207,36
-
-[TItensOrcamentoemailfornecedor]
-Coordinates=2172,1460,206,36
-
-[TItensOrcamentodatareg]
-Coordinates=475,2501,157,36
 
 [Compradoresstatus]
 Coordinates=346,2501,127,36
@@ -2320,9 +2302,6 @@ Coordinates=2442,2188,164,36
 
 [TEstoqueEntradapesoembalagem]
 Coordinates=2442,2448,209,36
-
-[TItensOrcamentodataalteracao]
-Coordinates=2695,56,192,36
 
 [TnotaFiscalIntemdatareg]
 Coordinates=943,2607,157,36
@@ -2351,9 +2330,6 @@ Coordinates=2695,1044,193,36
 [TnotaFiscalIntemprodutoid]
 Coordinates=2695,1252,167,36
 
-[TItensOrcamentomarcanome]
-Coordinates=2695,1460,181,36
-
 [TMovLocalEstoquedatamov]
 Coordinates=2695,1876,173,36
 
@@ -2369,17 +2345,11 @@ Coordinates=12,1567,116,564
 [TAbastecimentoidatividade]
 Coordinates=2695,2292,169,36
 
-[TItensOrcamentooriginal]
-Coordinates=337,2607,156,36
-
 [Compradoresrazaosocial]
 Coordinates=178,2607,157,36
 
 [TEstoqueSaidaid]
 Coordinates=1706,888,112,36
-
-[TItensOrcamentostatuspedido]
-Coordinates=2952,836,187,36
 
 [TAuxPragaTiposyncaws]
 Coordinates=19,2607,153,36
@@ -2389,9 +2359,6 @@ Coordinates=3234,628,163,36
 
 [TPedidoCompraobservacao]
 Coordinates=3234,1304,174,36
-
-[TItensOrcamentoimg]
-Coordinates=1464,2681,134,36
 
 [TPedidoCompracentrocusto]
 Coordinates=923,2681,174,36
@@ -2414,14 +2381,8 @@ Coordinates=635,2681,147,36
 [TMovLocalEstoquehora]
 Coordinates=476,2681,150,36
 
-[TItensOrcamentoid]
-Coordinates=347,2681,124,36
-
 [TEstoqueEntradasyncfaz]
 Coordinates=3234,1564,158,36
-
-[TItensOrcamentofrete]
-Coordinates=198,2681,140,36
 
 [TAbastecimentoobs]
 Coordinates=69,2681,128,36
@@ -2453,9 +2414,6 @@ Coordinates=3515,111,174,36
 [Contratosnumerocontrato]
 Coordinates=3515,166,160,36
 
-[TItensOrcamentoitem]
-Coordinates=2266,2987,138,36
-
 [Contratoscomprador]
 Coordinates=3515,221,132,36
 
@@ -2471,9 +2429,6 @@ Coordinates=3515,276,151,36
 [TMaquinasdepreciacao]
 Coordinates=3515,331,148,36
 
-[TItensOrcamentoidusuarioalteracao]
-Coordinates=3515,386,219,36
-
 [TMPComparativoid]
 Coordinates=1474,2779,124,36
 
@@ -2483,17 +2438,11 @@ Coordinates=3515,441,157,36
 [Tauxatividadeabastecimentoidusuario]
 Coordinates=3515,496,231,36
 
-[TItensOrcamentoipi]
-Coordinates=973,2779,127,36
-
 [Embarqueliquido]
 Coordinates=854,2779,111,36
 
 [TMovLocalEstoqueidusuario]
 Coordinates=3515,551,177,36
-
-[TItensOrcamentotelefonefornecedor]
-Coordinates=3515,606,221,36
 
 [TMovLocalEstoqueidproduto]
 Coordinates=3515,716,178,36
@@ -2507,17 +2456,11 @@ Coordinates=1764,2779,105,36
 [TUsuariomonitoramentopragas]
 Coordinates=3515,826,192,36
 
-[TItensOrcamentovalorunidade]
-Coordinates=3515,881,188,36
-
 [TAuxPragasidusuario]
 Coordinates=715,2779,137,36
 
 [Embarquebruto]
 Coordinates=606,2779,103,36
-
-[TItensOrcamentoidproduto]
-Coordinates=3515,936,168,36
 
 [Compradoressenha]
 Coordinates=477,2779,127,36
@@ -2564,9 +2507,6 @@ Coordinates=3515,1431,202,36
 [Contratosvendedor]
 Coordinates=3515,1486,124,36
 
-[TItensOrcamentooriginalstr]
-Coordinates=3515,1541,170,36
-
 [TMPComparativo]
 Coordinates=429,2031,114,322
 
@@ -2600,29 +2540,14 @@ Coordinates=3515,2091,208,36
 [TEstoqueEntradaidusuarioalteracao]
 Coordinates=3515,2146,220,36
 
-[TItensOrcamentoidorcamento]
-Coordinates=3515,2201,184,36
-
-[TItensOrcamentoformapg]
-Coordinates=3515,2256,161,36
-
-[TItensOrcamentonomeproduto]
-Coordinates=3515,2311,189,36
-
 [Embarquedatareg]
 Coordinates=983,2883,117,36
 
 [Embarqueplaca]
 Coordinates=1764,2883,104,36
 
-[TItensOrcamentocodfabproduto]
-Coordinates=3515,2366,196,36
-
 [TEstoqueSaidatipo_baixa]
 Coordinates=3515,2421,161,36
-
-[TItensOrcamentoidentificadorpedido]
-Coordinates=3515,2476,222,36
 
 [TnotaFiscalIntemstatus]
 Coordinates=834,2883,148,36
@@ -2669,23 +2594,14 @@ Coordinates=3515,2861,132,36
 [TEstoqueEntradaid]
 Coordinates=3515,2916,125,36
 
-[TItensOrcamentodescontogeral]
-Coordinates=3515,2971,195,36
-
 [TEstoqueSaidaunidademedida]
 Coordinates=3515,3026,190,36
 
 [TEstoqueEntradadataemissao]
 Coordinates=3515,3081,187,36
 
-[TItensOrcamentounidademedida]
-Coordinates=3800,1,202,36
-
 [TEstoqueSaidadatasaidaestoque]
 Coordinates=3800,56,204,36
-
-[TItensOrcamentofornecedor]
-Coordinates=3800,111,175,36
 
 [TReceituariocultura]
 Coordinates=3515,3136,127,36
@@ -2695,9 +2611,6 @@ Coordinates=3515,3191,136,36
 
 [TUsuariosyncfaz]
 Coordinates=249,2883,110,36
-
-[TItensOrcamentovalortotal]
-Coordinates=3800,166,166,36
 
 [Contratosvalorsaldo]
 Coordinates=3800,221,129,36
@@ -2735,12 +2648,6 @@ Coordinates=3800,661,180,36
 [Compradorescontatopessoa]
 Coordinates=3800,716,176,36
 
-[TItensOrcamentoicmst]
-Coordinates=3800,771,144,36
-
-[TItensOrcamentoidusuario]
-Coordinates=3800,826,166,36
-
 [TMonitoramentohorafim]
 Coordinates=3800,881,151,36
 
@@ -2753,32 +2660,14 @@ Coordinates=1754,2987,111,36
 [Compradores]
 Coordinates=379,1000,108,476
 
-[TItensOrcamentomarca]
-Coordinates=3800,991,149,36
-
-[TItensOrcamentodatapedido]
-Coordinates=3800,1046,177,36
-
 [Contratosid]
 Coordinates=1238,2681,80,36
-
-[TItensOrcamentovalordesconto]
-Coordinates=3800,1101,194,36
 
 [Tauxatividadeabastecimentostatus]
 Coordinates=3800,1156,213,36
 
 [TMonitoramentoValores]
 Coordinates=681,1779,152,212
-
-[TItensOrcamentocpfcnpjfornecedor]
-Coordinates=3800,1211,216,36
-
-[TItensOrcamentofretegeral]
-Coordinates=3800,1266,168,36
-
-[TItensOrcamentoqtde]
-Coordinates=3800,1321,139,36
 
 [TMovLocalEstoqueidusuarioalteracao]
 Coordinates=3800,1376,230,36
@@ -2894,9 +2783,6 @@ Coordinates=3800,3136,123,36
 [TEstoqueSaidaidusuarioalteracao]
 Coordinates=4084,1,208,36
 
-[TItensOrcamentosyncaws]
-Coordinates=3800,3191,163,36
-
 [Contratossaldosc]
 Coordinates=3800,3246,114,36
 
@@ -2929,9 +2815,6 @@ Coordinates=4084,386,208,36
 
 [Tauxatividadeabastecimentosyncfaz]
 Coordinates=4084,441,222,36
-
-[TItensOrcamentodiferencialalicota]
-Coordinates=4084,496,211,36
 
 [TEstoqueEntradavalortotalnf]
 Coordinates=4084,551,178,36
@@ -3056,9 +2939,6 @@ Coordinates=3543,3403,106,36
 [Embarqueumid]
 Coordinates=3434,3403,101,36
 
-[TItensOrcamentosyncfaz]
-Coordinates=4084,2366,157,36
-
 [TEstoqueEntradacentrocusto]
 Coordinates=4084,2421,181,36
 
@@ -3113,9 +2993,6 @@ Coordinates=1958,3403,120,36
 [TAuxPragasdatareg]
 Coordinates=4084,3081,129,36
 
-[TItensOrcamentostatus]
-Coordinates=4084,3136,148,36
-
 [TMovLocalEstoqueproduto]
 Coordinates=4084,3191,168,36
 
@@ -3164,15 +3041,12 @@ Coordinates=4084,3458,114,36
 [TTalhoesqrcodesaida]
 Coordinates=4364,386,138,36
 
-[TItensOrcamentoidformapg]
-Coordinates=4364,441,171,36
-
-[TItensOrcamentodesconto]
-Coordinates=4364,496,166,36
-
 [TnotaFiscalIntemidusuario]
 Coordinates=4364,551,166,36
 
 [TMPComparativoidfornecedor]
 Coordinates=4364,606,186,36
+
+[TItensOrcamento]
+Coordinates=258,10,114,982
 

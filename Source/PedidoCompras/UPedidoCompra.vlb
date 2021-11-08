@@ -1291,10 +1291,6 @@ Coordinates=2064,1,173,36
 [dbCtx.qryOcorrenciaOperacao]
 Coordinates=1527,3330,189,344
 
-[dbCtx.TItensOrcamento]
-Coordinates=527,2271,151,36
-Visible=False
-
 [EditButton1]
 Coordinates=2138,298,81,36
 
@@ -1620,4 +1616,8 @@ Coordinates=78,627,125,652
 
 [BindSourceDB6]
 Coordinates=527,2271,138,784
+
+[dbCtx.TItensOrcamento]
+Coordinates=527,2271,151,36
+Visible=False
 

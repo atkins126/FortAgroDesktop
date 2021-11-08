@@ -1,0 +1,48 @@
+ALTER TABLE public.orcamentos ALTER COLUMN frete SET DEFAULT 0;
+ALTER TABLE public.orcamentos ALTER COLUMN desconto SET DEFAULT 0;
+
+CREATE OR REPLACE FUNCTION public.atualizaValorDescontoFreteItens()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+ declare qtdItens numeric(15,3);
+ declare valorDesconto numeric(15,3);
+ declare valorFrete numeric(15,3);
+BEGIN   
+ valorDesconto =0;
+ valorfrete    =0;
+ if new.desconto<>old.desconto then
+   if new.desconto >0 then
+     select 
+      count(*) 
+     from orcamentositens 
+    where status >-1 and idorcamento =new.id
+    into qtdItens;  
+    valorDesconto = new.desconto/qtdItens;  
+   else
+    valorDesconto =0;
+   end if;
+ end if;
+ if new.frete<>old.frete then
+   if new.desconto >0 then
+     select 
+      count(*) 
+     from orcamentositens 
+    where status >-1 and idorcamento =new.id
+    into qtdItens;  
+    valorFrete = new.frete/qtdItens;  
+   else
+    valorFrete =0;
+   end if;
+ end if;
+ update orcamentositens  set frete=valorfrete,desconto=valordesconto 
+ where status>-1 and idorcamento=new.id;
+ RETURN null;
+end;
+$function$
+
+
+create trigger trigger_atualizaValorDescontoFreteItens after
+update
+ on
+  public.orcamentos for each row execute function atualizaValorDescontoFreteItens()
