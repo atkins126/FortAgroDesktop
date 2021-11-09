@@ -22,6 +22,8 @@ BEGIN
    else
     valorDesconto =0;
    end if;
+   update orcamentositens  set desconto=valordesconto 
+   where status>-1 and idorcamento=new.id;
  end if;
  if new.frete<>old.frete then
    if new.desconto >0 then
@@ -34,9 +36,9 @@ BEGIN
    else
     valorFrete =0;
    end if;
+  update orcamentositens  set frete=valorfrete
+  where status>-1 and idorcamento=new.id;
  end if;
- update orcamentositens  set frete=valorfrete,desconto=valordesconto 
- where status>-1 and idorcamento=new.id;
  RETURN null;
 end;
 $function$
@@ -46,3 +48,146 @@ create trigger trigger_atualizaValorDescontoFreteItens after
 update
  on
   public.orcamentos for each row execute function atualizaValorDescontoFreteItens()
+
+
+CREATE OR REPLACE FUNCTION public.atualizaValorTotalItemOrcamento()
+ RETURNS trigger
+ LANGUAGE plpgsql
+AS $function$
+ declare qtdItens numeric(15,3);
+ declare valorDesconto numeric(15,3);
+ declare valorFrete numeric(15,3);
+BEGIN   
+ if (new.valorunidade<>old.valorunidade) or (new.qtde<>old.qtde)then
+   update orcamentositens set valortotal=new.valorunidade*new.qtde
+   where id=new.id;
+ end if;
+ RETURN null;
+end;
+$function$
+
+
+
+CREATE OR REPLACE VIEW public.relatoriocomparativo
+AS SELECT o.id,
+    o.status,
+    o.datareg,
+    o.idusuario,
+    o.dataalteracao,
+    o.idusuarioalteracao,
+    o.item,
+    o.idproduto,
+    o.idpedido,
+    o.idfornecedor1,
+    o.vlfornecedor1,
+    o.idfornecedor2,
+    o.vlfornecedor2,
+    o.idfornecedor3,
+    o.vlfornecedor3,
+    o.idfornecedor4,
+    o.vlfornecedor4,
+    o.idfornecedor5,
+    o.vlfornecedor5,
+    o.qtde,
+    o.idorcamentoforn1,
+    o.idorcamentoforn2,
+    o.idorcamentoforn3,
+    o.idorcamentoforn4,
+    o.idorcamentoforn5,
+    orc1.frete AS fretetotalforn1,
+    orc2.frete AS fretetotalforn2,
+    orc3.frete AS fretetotalforn3,
+    orc4.frete AS fretetotalforn4,
+    orc5.frete AS fretetotalforn5,
+    orc1.desconto AS descontototalforn1,
+    orc2.desconto AS descontototalforn2,
+    orc3.desconto AS descontototalforn3,
+    orc4.desconto AS descontototalforn4,
+    orc5.desconto AS descontototalforn5,
+    ori1.frete AS freteitemforn1,
+    ori2.frete AS freteitemforn2,
+    ori3.frete AS freteitemforn3,
+    ori4.frete AS freteitemforn4,
+    ori5.frete AS freteitemforn5,
+    ori1.desconto AS descontoitemforn1,
+    ori2.desconto AS descontoitemforn2,
+    ori3.desconto AS descontoitemforn3,
+    ori4.desconto AS descontoitemforn4,
+    ori5.desconto AS descontoitemforn5,
+    o.vlfornecedor1 * o.qtde::numeric AS valortotal_1,
+    o.vlfornecedor2 * o.qtde::numeric AS valortotal_2,
+    o.vlfornecedor3 * o.qtde::numeric AS valortotal_3,
+    o.vlfornecedor4 * o.qtde::numeric AS valortotal_4,
+    o.vlfornecedor5 * o.qtde::numeric AS valortotal_5,
+    p2.identificador,
+    p2.datapedido,
+    u.nome AS solicitante,
+        CASE
+            WHEN p2.idcategoria = 0 THEN 'ESTOQUE'::text
+            WHEN p2.idcategoria = 1 THEN 'APLICAÇÃO DIRETA'::text
+            ELSE NULL::text
+        END AS aplicacao,
+    p.nome AS produto,
+    p.codigofabricante,
+    p.unidademedida,
+    f1.nome AS nomefornecedor1,
+    f2.nome AS nomefornecedor2,
+    f3.nome AS nomefornecedor3,
+    f4.nome AS nomefornecedor4,
+    f5.nome AS nomefornecedor5,
+    ori1.marca AS marcaforn1,
+    ori2.marca AS marcaforn2,
+    ori3.marca AS marcaforn3,
+    ori4.marca AS marcaforn4,
+    ori5.marca AS marcaforn5,
+    COALESCE(ori1.frete, 0::numeric) AS freteforn1,
+    COALESCE(ori2.frete, 0::numeric) AS freteforn2,
+    COALESCE(ori3.frete, 0::numeric) AS freteforn3,
+    COALESCE(ori4.frete, 0::numeric) AS freteforn4,
+    COALESCE(ori5.frete, 0::numeric) AS freteforn5,
+    COALESCE(ori1.icmst, 0::numeric) AS icmstforn1,
+    COALESCE(ori2.icmst, 0::numeric) AS icmstforn2,
+    COALESCE(ori3.icmst, 0::numeric) AS icmstforn3,
+    COALESCE(ori4.icmst, 0::numeric) AS icmstforn4,
+    COALESCE(ori5.icmst, 0::numeric) AS icmstforn5,
+    COALESCE(ori1.diferencialalicota, 0::numeric) AS difalforn1,
+    COALESCE(ori2.diferencialalicota, 0::numeric) AS difalforn2,
+    COALESCE(ori3.diferencialalicota, 0::numeric) AS difalforn3,
+    COALESCE(ori4.diferencialalicota, 0::numeric) AS difalforn4,
+    COALESCE(ori5.diferencialalicota, 0::numeric) AS difalforn5,
+    COALESCE(ori1.ipi, 0::numeric) AS ipiforn1,
+    COALESCE(ori2.ipi, 0::numeric) AS ipiforn2,
+    COALESCE(ori3.ipi, 0::numeric) AS ipiforn3,
+    COALESCE(ori4.ipi, 0::numeric) AS ipiforn4,
+    COALESCE(ori5.ipi, 0::numeric) AS ipiforn5,
+    COALESCE(ori1.desconto, 0::numeric) AS descontoforn1,
+    COALESCE(ori2.desconto, 0::numeric) AS descontoforn2,
+    COALESCE(ori3.desconto, 0::numeric) AS descontoforn3,
+    COALESCE(ori4.desconto, 0::numeric) AS descontoforn4,
+    COALESCE(ori5.desconto, 0::numeric) AS descontoforn5,
+    o.vlfornecedor1 * o.qtde::numeric - COALESCE(ori1.desconto, 0::numeric) + COALESCE(NULLIF(ori1.frete, 0::numeric)) AS valortotaldesconto_1,
+    o.vlfornecedor2 * o.qtde::numeric - COALESCE(ori2.desconto, 0::numeric) + COALESCE(NULLIF(ori1.frete, 0::numeric)) AS valortotaldesconto_2,
+    o.vlfornecedor3 * o.qtde::numeric - COALESCE(ori3.desconto, 0::numeric) + COALESCE(NULLIF(ori1.frete, 0::numeric)) AS valortotaldesconto_3,
+    o.vlfornecedor4 * o.qtde::numeric - COALESCE(ori4.desconto, 0::numeric) + COALESCE(NULLIF(ori1.frete, 0::numeric)) AS valortotaldesconto_4,
+    o.vlfornecedor5 * o.qtde::numeric - COALESCE(ori5.desconto, 0::numeric) + COALESCE(NULLIF(ori1.frete, 0::numeric)) AS valortotaldesconto_5
+   FROM orcamentocomparativo o
+     JOIN pedidocompra p2 ON p2.id = o.idpedido
+     JOIN usuario u ON u.id = p2.idusuario
+     JOIN produtos p ON p.id = o.idproduto
+     LEFT JOIN fornecedor f1 ON f1.id = o.idfornecedor1
+     LEFT JOIN fornecedor f2 ON f2.id = o.idfornecedor2
+     LEFT JOIN fornecedor f3 ON f3.id = o.idfornecedor3
+     LEFT JOIN fornecedor f4 ON f4.id = o.idfornecedor4
+     LEFT JOIN fornecedor f5 ON f5.id = o.idfornecedor5
+     LEFT JOIN orcamentos orc1 ON orc1.id = o.idorcamentoforn1
+     LEFT JOIN orcamentos orc2 ON orc2.id = o.idorcamentoforn2
+     LEFT JOIN orcamentos orc3 ON orc3.id = o.idorcamentoforn3
+     LEFT JOIN orcamentos orc4 ON orc4.id = o.idorcamentoforn4
+     LEFT JOIN orcamentos orc5 ON orc5.id = o.idorcamentoforn5
+     LEFT JOIN orcamentositens ori1 ON ori1.idorcamento = orc1.id AND ori1.idproduto = o.idproduto
+     LEFT JOIN orcamentositens ori2 ON ori2.idorcamento = orc2.id AND ori2.idproduto = o.idproduto
+     LEFT JOIN orcamentositens ori3 ON ori3.idorcamento = orc3.id AND ori3.idproduto = o.idproduto
+     LEFT JOIN orcamentositens ori4 ON ori4.idorcamento = orc4.id AND ori4.idproduto = o.idproduto
+     LEFT JOIN orcamentositens ori5 ON ori5.idorcamento = orc5.id AND ori5.idproduto = o.idproduto;
+
+

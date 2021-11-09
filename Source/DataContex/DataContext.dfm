@@ -2508,7 +2508,11 @@ object dbCtx: TdbCtx
     SQL.Strings = (
       
         'select  ROW_NUMBER () OVER (ORDER BY i.id)Item ,i.*,p.Nome,p.cod' +
-        'igofabricante,am.nome marca '
+        'igofabricante,am.nome marca,'
+      'case'
+      ' when original=1 then '#39'ORIGINAL'#39
+      ' else '#39'PARALELO'#39
+      'end originalStr '
       'from pedidocompraitems i '
       'join produtos p on i.iditem=p.Id'
       'left join auxmarcas am on am.id=i.idmarca'
@@ -2641,6 +2645,13 @@ object dbCtx: TdbCtx
       FieldName = 'marca'
       Origin = 'marca'
       Size = 50
+    end
+    object TItensPedidooriginalstr: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'originalstr'
+      Origin = 'originalstr'
+      ReadOnly = True
+      BlobType = ftWideMemo
     end
   end
   object TStatusPedido: TFDQuery
@@ -3017,7 +3028,6 @@ object dbCtx: TdbCtx
     end
   end
   object TOrcamento: TFDQuery
-    Active = True
     CachedUpdates = True
     Connection = FDConPG
     SQL.Strings = (
@@ -3293,26 +3303,16 @@ object dbCtx: TdbCtx
       ' a.observacao,a.qtde,a.syncaws,'
       ' a.syncfaz,'
       ' coalesce(a.desconto,0)desconto,'
-      ' coalesce(nullif('
-      
-        '  coalesce(nullif(b.desconto,0),0)/(select count(*) from orcamen' +
-        'tositens  where status>-1 and idorcamento=b.id and id=a.id),0),'
-      
-        '  coalesce((select sum(coalesce(desconto,0)) from orcamentositen' +
-        's  where status>-1 and idorcamento=b.id and id=a.id),0))desconto' +
-        'Geral, '
       ' coalesce(a.ipi,0)ipi,'
       ' coalesce(a.icmst,0)icmst,'
       ' coalesce(a.frete,0)frete,'
-      ' coalesce(nullif('
-      
-        '  coalesce(nullif(b.frete,0),0)/(select count(*) from orcamentos' +
-        'itens  where status>-1 and idorcamento=b.id and id=a.id),0),'
-      
-        '  coalesce((select sum(coalesce(frete,0)) from orcamentositens  ' +
-        'where status>-1 and idorcamento=b.id and id=a.id),0))freteGeral,' +
-        ' '
       ' coalesce(a.diferencialalicota,0)diferencialalicota,'
+      
+        ' (select sum(coalesce(frete,0)) from orcamentositens where idorc' +
+        'amento=b.id) freteGeral,'
+      
+        ' (select sum(coalesce(desconto,0)) from orcamentositens where id' +
+        'orcamento=b.id) descontoGeral,'
       ' a.marca,'
       ' a.idmarca,'
       ' a.original,'
@@ -3347,9 +3347,7 @@ object dbCtx: TdbCtx
       'join produtos e on      e.Id=a.idproduto'
       'left join auxmarcas am on am.id=a.idmarca'
       'where b.status>-1 and a.status>-1'
-      'and idorcamento=323)y'
-      ''
-      '')
+      'and idorcamento=328)y')
     Left = 448
     Top = 240
     object TItensOrcamentoitem: TLargeintField
@@ -3605,9 +3603,25 @@ object dbCtx: TdbCtx
   object TOrcamentoFornecedores: TFDQuery
     Connection = FDConPG
     SQL.Strings = (
-      'select b.*,a.Id IdOrcamento from orcamentos a '
+      'select b.*,a.Id IdOrcamento,'
+      
+        '(select sum(valortotal) from orcamentositens where status=1 and ' +
+        'idorcamento=a.id)valortotal,'
+      '(select (sum(coalesce(valortotal,0))+'
+      ' sum(coalesce(frete,0))+'
+      ' sum(coalesce(ipi,0))+'
+      ' sum(coalesce(icmst,0))+'
+      ' sum(coalesce(diferencialalicota,0)))-sum(coalesce(desconto,0))'
+      
+        ' from orcamentositens where status=1 and idorcamento=a.id)valorL' +
+        'iquido,'
+      'fpf.codigo||'#39'-'#39'||fpf.descricao FormaPg '
+      'from orcamentos a '
       'join fornecedor b on a.idfornecedor=b.id '
-      'where idpedido=10'
+      
+        'left join forma_pagamento_fornecedor fpf on a.idformapagamento=f' +
+        'pf.id'
+      'where idpedido=2146'
       'and a.status>-1')
     Left = 720
     Top = 72
@@ -3679,6 +3693,29 @@ object dbCtx: TdbCtx
       AutoGenerateValue = arDefault
       FieldName = 'idorcamento'
       Origin = 'idorcamento'
+    end
+    object TOrcamentoFornecedoresvalortotal: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valortotal'
+      Origin = 'valortotal'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TOrcamentoFornecedoresformapg: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'formapg'
+      Origin = 'formapg'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TOrcamentoFornecedoresvalorliquido: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorliquido'
+      Origin = 'valorliquido'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
     end
   end
   object TAuxCobertura: TFDQuery
@@ -4566,7 +4603,6 @@ object dbCtx: TdbCtx
     end
   end
   object PgDriverLink: TFDPhysPgDriverLink
-    VendorLib = 'E:\Projetos2021\Fortaleza\Deploy\libpq.dll'
     Left = 1144
     Top = 312
   end
@@ -4835,7 +4871,6 @@ object dbCtx: TdbCtx
       'Password=Dev#110485'
       'Pooled='
       'DriverID=PG')
-    Connected = True
     LoginPrompt = False
     Left = 1144
     Top = 264

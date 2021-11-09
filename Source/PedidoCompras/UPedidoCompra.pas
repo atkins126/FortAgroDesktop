@@ -446,10 +446,6 @@ type
     Label60: TLabel;
     edtFormaPagamento: TEdit;
     btnBuscaFormaPG: TEditButton;
-    btnFinalizaOrcamento: TRectangle;
-    Label61: TLabel;
-    btnAprovaOrcamento: TRectangle;
-    Label62: TLabel;
     GroupBox1: TGroupBox;
     Label63: TLabel;
     Label64: TLabel;
@@ -595,6 +591,18 @@ type
     edtPropriedadeDestino: TEdit;
     EditButton8: TEditButton;
     EditButton4: TEditButton;
+    StringColumn5: TStringColumn;
+    StringColumn6: TStringColumn;
+    btnFinalizaOrcamento: TRectangle;
+    Label61: TLabel;
+    btnAprovaOrcamento: TRectangle;
+    Label62: TLabel;
+    btnEditaOrcamento: TRectangle;
+    Image56: TImage;
+    Label100: TLabel;
+    btnSalvarOrcamento: TRectangle;
+    Image57: TImage;
+    Label101: TLabel;
     procedure btnAddClick(Sender: TObject);
     procedure EditButton1Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -648,7 +656,6 @@ type
     procedure Rectangle33Click(Sender: TObject);
     procedure StringGrid1CellDblClick(const Column: TColumn;
       const Row: Integer);
-    procedure Image29Click(Sender: TObject);
     procedure Rectangle35Click(Sender: TObject);
     procedure edtFornecedorFChangeTracking(Sender: TObject);
     procedure cbxStatusOrcamentoChange(Sender: TObject);
@@ -710,6 +717,10 @@ type
     procedure edtDescontoitemOrcamentoEnter(Sender: TObject);
     procedure edtFreteItemOrcamentoEnter(Sender: TObject);
     procedure EditButton8Click(Sender: TObject);
+    procedure btnEditaOrcamentoClick(Sender: TObject);
+    procedure btnSalvarOrcamentoClick(Sender: TObject);
+    procedure Image41Click(Sender: TObject);
+    procedure Image29Click(Sender: TObject);
   private
     { Private declarations }
     LastTimeKeydown:TDatetime;
@@ -886,20 +897,11 @@ end;
 
 procedure TfrmCadPedidos.btnAprovaOrcamentoClick(Sender: TObject);
 begin
-   dbCtx.TOrcamento.Edit;
-   if edtFreteGeral.Text.Length>0 then
-    dbCtx.TOrcamentofrete.AsString := edtFreteGeral.Text;
-   if edtDescontoGeral.Text.Length>0 then
-    dbCtx.TOrcamentodesconto.AsString := edtDescontoGeral.Text;
-   if edtFormaPagamento.Text.Length>0 then
-    dbCtx.TOrcamentoidformapagamento.AsString := vIdFormaPg;
-   try
-     dbCtx.TOrcamento.ApplyUpdates(-1);
-   except
-    on E: Exception do
-      myShowMessage('Erro ao salvar Item:'+E.Message,false);
+   if btnSalvarOrcamento.Enabled then
+   begin
+    MyShowMessage('Salve as alteraçoes do orçamento antes de prosseguir',false);
+    Exit;
    end;
-
    MyShowMessage('Deseja aprovar esse orçamento? O valores dos itens do pedido serão atualizados',true);
    if frmPrincipal.vMsgConfirma=1 then
    begin
@@ -1113,6 +1115,15 @@ begin
   dbCtx.TItensPedido.Edit;
 end;
 
+procedure TfrmCadPedidos.btnEditaOrcamentoClick(Sender: TObject);
+begin
+ edtFormaPagamento.Enabled    := true;
+ edtDescontoGeral.Enabled     := true;
+ edtFreteGeral.Enabled        := true;
+ btnEditaOrcamento.Enabled    := false;
+ btnSalvarOrcamento.Enabled   := true;
+end;
+
 procedure TfrmCadPedidos.btnEditarClick(Sender: TObject);
 begin
   if vIdPedido.Length=0 then
@@ -1240,15 +1251,12 @@ end;
 
 procedure TfrmCadPedidos.btnFinalizaOrcamentoClick(Sender: TObject);
 begin
-   dbCtx.TOrcamento.Edit;
-   if edtFreteGeral.Text.Length>0 then
-    dbCtx.TOrcamentofrete.AsString := edtFreteGeral.Text;
-   if edtDescontoGeral.Text.Length>0 then
-    dbCtx.TOrcamentodesconto.AsString := edtDescontoGeral.Text;
-   if edtFormaPagamento.Text.Length>0 then
-    dbCtx.TOrcamentoidformapagamento.AsString := vIdFormaPg;
+   if btnSalvarOrcamento.Enabled then
+   begin
+    MyShowMessage('Salve as alteraçoes do orçamento antes de prosseguir',false);
+    Exit;
+   end;
    try
-     dbCtx.TOrcamento.ApplyUpdates(-1);
      MyShowMessage('Deseja realmente Finalizar esse orçamento?',true);
      if frmPrincipal.vMsgConfirma=1 then
      begin
@@ -1280,9 +1288,19 @@ procedure TfrmCadPedidos.btnImprimirClick(Sender: TObject);
 begin
  dbCtx.AbreItemsOrcamentos(dbCtx.TOrcamentoid.AsString);
  case dbctx.TOrcamentostatus.AsInteger  of
-    1: dmReport.ppRepOrcamento.Print;
-    2: dmReport.ppRepOrcamento.Print;
+    1:begin
+       dmReport.ppRepOrcamento.ShowPrintDialog := true;
+       dmReport.ppRepOrcamento.DeviceType      := 'Screen';
+       dmReport.ppRepOrcamento.Print;
+      end;
+    2:begin
+       dmReport.ppRepOrcamento.ShowPrintDialog := true;
+       dmReport.ppRepOrcamento.DeviceType      := 'Screen';
+       dmReport.ppRepOrcamento.Print;
+      end;
     3:begin
+        dmReport.ppRepOrcamento.ShowPrintDialog := true;
+        dmReport.ppRepOrdemCompra.DeviceType   := 'Screen';
         dbCtx.AbrePropriedade(vIdPropriedade);
         dmReport.ppRepOrdemCompra.Print;
       end;
@@ -1296,15 +1314,7 @@ end;
 
 procedure TfrmCadPedidos.btnMudaStatusClick(Sender: TObject);
 begin
- dbCtx.TOrcamento.Edit;
- if edtFreteGeral.Text.Length>0 then
-  dbCtx.TOrcamentofrete.AsString := edtFreteGeral.Text;
- if edtDescontoGeral.Text.Length>0 then
-  dbCtx.TOrcamentodesconto.AsString := edtDescontoGeral.Text;
- if edtFormaPagamento.Text.Length>0 then
-  dbCtx.TOrcamentoidformapagamento.AsString := vIdFormaPg;
  try
-   dbCtx.TOrcamento.ApplyUpdates(-1);
    Filtro;
    myShowMessage('Registro Atualizado com Sucesso',false);
    MudarAba(tbiCotacoes,sender);
@@ -1520,10 +1530,69 @@ begin
   end;
 end;
 
+procedure TfrmCadPedidos.btnSalvarOrcamentoClick(Sender: TObject);
+var
+ vDesconto,vFrete,idFormaPG:string;
+begin
+ if edtDescontoGeral.Text.Length>0 then
+  vDesconto := StringReplace(edtDescontoGeral.Text,',','.',[rfReplaceAll])
+ else
+  vDesconto :='0';
+
+ if edtFreteGeral.Text.Length>0 then
+  vFrete := StringReplace(edtFreteGeral.Text,',','.',[rfReplaceAll])
+ else
+  vFrete :='0';
+
+ if edtFormaPagamento.Text.Length>0 then
+  idFormaPG:= vIdFormaPg
+ else
+  idFormaPG:='0';
+ try
+  dbCtx.AtualizaOrcamentoDescontoFreteFormaPG(
+  dbCtx.TOrcamentoid.AsString,
+  vDesconto,
+  vFrete,
+  idFormaPG,
+  IntToStr(GridDetalhesOrcamento.RowCount));
+  edtFormaPagamento.Enabled  := false;
+  edtDescontoGeral.Enabled   := false;
+  edtFreteGeral.Enabled      := false;
+  btnEditaOrcamento.Enabled  := true;
+  btnSalvarOrcamento.Enabled := false;
+  MyShowMessage('Orcamento Atualizado com Sucesso!',false);
+  dbCtx.AbreItemsOrcamentos(dbCtx.TOrcamentoid.AsString);
+  lblTotalItens.Text           := 'Total Itens:'+intToStr(GridDetalhesOrcamento.RowCount);
+  lblValorTotal.Text           := 'Valor Bruto:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorbruto.AsFloat);
+  lblValorTotalMaisFrete.Text  := 'Valor Bruto + Frete:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorbrutomaisfrete.AsFloat);
+  lblValorLiquido.Text         := 'Valor Liquido:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorliquido.AsFloat);
+  edtFormaPagamento.Text := dbCtx.TItensOrcamentoformapg.AsString;
+  vIdFormaPg             := dbCtx.TItensOrcamentoidformapg.AsString;
+  lblFornecedor.Text     := dbCtx.TItensOrcamentofornecedor.AsString;
+  edtFreteGeral.Text     := dbCtx.TItensOrcamentofretegeral.AsString;
+  edtDescontoGeral.Text  := dbCtx.TItensOrcamentoDescontogeral.AsString;
+ except
+  on E: Exception do
+   myShowMessage('Erro ao salvar Item:'+E.Message,false);
+ end;
+end;
+
 procedure TfrmCadPedidos.btnSalvatemOrcamentoClick(Sender: TObject);
 var
  Stream : TMemoryStream;
 begin
+  if edValorUnitarioItemOrcamento.Text.Length =0 then
+  begin
+    MyShowMessage('Informe o Valor da Unidade*',false);
+    edValorUnitarioItemOrcamento.SetFocus;
+    Exit;
+  end;
+  if edtitemOrcamento.Text.Length =0 then
+  begin
+    MyShowMessage('Informe o Item*',false);
+    edtitemOrcamento.SetFocus;
+    Exit;
+  end;
   if edtitemOrcamento.Text.Length =0 then
   begin
     MyShowMessage('Informe o Item*',false);
@@ -1562,6 +1631,7 @@ begin
   dbCtx.TItensOrcamentoInsertipi.AsString                := edtIpiItemOrcamento.Text;
   dbCtx.TItensOrcamentoInsertidorcamento.AsString        := dbCtx.TOrcamentoid.AsString;
   dbCtx.TItensOrcamentoInsertdiferencialalicota.AsString := edtDifalItemOrcamento.Text;
+//  dbCtx.TItensOrcamentoInsertvalortotal.AsString         := edtValorTotaltemOrcamento.Text;
   if edtMarcaItemOrcamento.Text.Length>0 then
    dbCtx.TItensOrcamentoInsertidmarca.AsString           := vIdMarcaItemOrcamento;
   if rdParalelotemOrcamento.IsChecked=true then
@@ -1580,6 +1650,15 @@ begin
    MyShowMessage('Item registrado com sucesso!',false);
    layItemOrcamento.Visible := false;
    dbCtx.AbreItemsOrcamentos(dbCtx.TOrcamentoid.AsString);
+   lblTotalItens.Text           := 'Total Itens:'+intToStr(GridDetalhesOrcamento.RowCount);
+   lblValorTotal.Text           := 'Valor Bruto:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorbruto.AsFloat);
+   lblValorTotalMaisFrete.Text  := 'Valor Bruto + Frete:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorbrutomaisfrete.AsFloat);
+   lblValorLiquido.Text         := 'Valor Liquido:'+FormatFloat('R$####,##0.00',dbCtx.TValorLiquidoOrcvalorliquido.AsFloat);
+   edtFormaPagamento.Text       := dbCtx.TItensOrcamentoformapg.AsString;
+   vIdFormaPg                   := dbCtx.TItensOrcamentoidformapg.AsString;
+   lblFornecedor.Text           := dbCtx.TItensOrcamentofornecedor.AsString;
+   edtFreteGeral.Text           := dbCtx.TItensOrcamentofretegeral.AsString;
+   edtDescontoGeral.Text        := dbCtx.TItensOrcamentoDescontogeral.AsString;
   except
   on E: Exception do
     myShowMessage('Erro ao salvar Item:'+E.Message,false);
@@ -2053,10 +2132,31 @@ begin
    dbCtx.AbreItemPedidos(vIPedido);
    dbCtx.AbrirFornecedoresOrcamento(vIdPedido);
    dbCtx.TOrcamentoFornecedores.First;
-   x :=6;
+   x :=8;
+   gridComparativo.Columns[8].Header    :='';
+   gridComparativo.Columns[8].Tag       :=0;
+   gridComparativo.Columns[8].TagString :='';
+
+   gridComparativo.Columns[9].Header    :='';
+   gridComparativo.Columns[9].Tag       :=0;
+   gridComparativo.Columns[9].TagString :='';
+
+   gridComparativo.Columns[10].Header    :='';
+   gridComparativo.Columns[10].Tag       :=0;
+   gridComparativo.Columns[10].TagString :='';
+
+   gridComparativo.Columns[11].Header    :='';
+   gridComparativo.Columns[11].Tag       :=0;
+   gridComparativo.Columns[11].TagString :='';
+
+   gridComparativo.Columns[12].Header    :='';
+   gridComparativo.Columns[12].Tag       :=0;
+   gridComparativo.Columns[12].TagString :='';
+
    while not dbCtx.TOrcamentoFornecedores.eof do
    begin
-     gridComparativo.Columns[X].Header    := dbCtx.TOrcamentoFornecedoresnome.AsString;
+     gridComparativo.Columns[X].Header    := dbCtx.TOrcamentoFornecedoresnome.AsString+
+      '-TOTAL:'+FormatFloat('R$####,##0.00',dbCtx.TOrcamentoFornecedoresvalortotal.AsFloat);
      gridComparativo.Columns[X].Tag       := dbCtx.TOrcamentoFornecedoresid.AsInteger;
      gridComparativo.Columns[X].TagString := dbCtx.TOrcamentoFornecedoresidorcamento.AsString;
      INC(X);
@@ -2068,13 +2168,15 @@ begin
    begin
      vRow := gridComparativo.RowCount+1;
      gridComparativo.RowCount := vRow;
-     gridComparativo.Cells[0,vRow-1]:= dbCtx.TItensPedidoIditem.AsString;
+     gridComparativo.Cells[0,vRow-1]:= dbCtx.TItensPedidoiditem.AsString;
      gridComparativo.Cells[1,vRow-1]:= dbCtx.TItensPedidoItem.AsString;
      gridComparativo.Cells[2,vRow-1]:= dbCtx.TItensPedidoquantidade.AsString;
      gridComparativo.Cells[3,vRow-1]:= dbCtx.TItensPedidounidademedida.AsString;
      gridComparativo.Cells[4,vRow-1]:= dbCtx.TItensPedidocodigofabricante.AsString;
      gridComparativo.Cells[5,vRow-1]:= dbCtx.TItensPedidoNome.AsString;
-     x :=6;
+     gridComparativo.Cells[6,vRow-1]:= dbCtx.TItensPedidomarca.AsString;
+     gridComparativo.Cells[7,vRow-1]:= dbCtx.TItensPedidooriginalstr.AsString;
+     x :=8;
      for I := 0 to dbCtx.TOrcamentoFornecedores.RecordCount-1 do
      begin
       gridComparativo.Cells[x,vRow-1]:= dbCtx.RetornaValorItemOrecamento(
@@ -2672,28 +2774,24 @@ begin
           Open;
           while not vQry1.Eof do
           begin
-            dbCtx.TItensOrcamento.Close;
-            dbCtx.TItensOrcamento.Open;
-            dbCtx.TItensOrcamento.Insert;
-            dbCtx.TItensOrcamentoidusuario.AsString    := dbCtx.vIdUsuarioLogado;
-            dbCtx.TItensOrcamentoidorcamento.AsString  := vIdOrcamento;
-            dbCtx.TItensOrcamentoidproduto.AsString    := vQry1.FieldByName('idproduto').AsString;
-            dbCtx.TItensOrcamentoqtde.AsString         := vQry1.FieldByName('qtde').AsString;
-            dbCtx.TItensOrcamentovalorunidade.AsString := vQry1.FieldByName('valorunidade').AsString;
-            dbCtx.TItensOrcamentovalortotal.AsString   := vQry1.FieldByName('valortotal').AsString;
-            dbCtx.TItensOrcamentodesconto.AsString     := vQry1.FieldByName('desconto').AsString;
-            dbCtx.TItensOrcamentoipi.AsString          := vQry1.FieldByName('ipi').AsString;
-            dbCtx.TItensOrcamentofrete.AsString        := vQry1.FieldByName('frete').AsString;
-            dbCtx.TItensOrcamentoicmst.AsString        := vQry1.FieldByName('icmst').AsString;
-            dbCtx.TItensOrcamentoobservacao.AsString   := vQry1.FieldByName('observacao').AsString;
-            dbCtx.TItensOrcamentodiferencialalicota.AsString   := vQry1.FieldByName('diferencialalicota').AsString;
-            if dbCtx.vTipoBDConfig=2 then
-             dbCtx.TItensOrcamentosyncFaz.AsInteger :=1
-            else
-             dbCtx.TItensOrcamentosyncFaz.AsInteger :=0;
-            
-
-            dbCtx.TItensOrcamento.ApplyUpdates(-1);
+            dbCtx.TItensOrcamentoInsert.Close;
+            dbCtx.TItensOrcamentoInsert.Open;
+            dbCtx.TItensOrcamentoInsert.Insert;
+            dbCtx.TItensOrcamentoInsertidusuario.AsString    := dbCtx.vIdUsuarioLogado;
+            dbCtx.TItensOrcamentoInsertidorcamento.AsString  := vIdOrcamento;
+            dbCtx.TItensOrcamentoInsertidproduto.AsString    := vQry1.FieldByName('idproduto').AsString;
+            dbCtx.TItensOrcamentoInsertqtde.AsString         := vQry1.FieldByName('qtde').AsString;
+            dbCtx.TItensOrcamentoInsertvalorunidade.AsString := vQry1.FieldByName('valorunidade').AsString;
+            dbCtx.TItensOrcamentoInsertvalortotal.AsString   := vQry1.FieldByName('valortotal').AsString;
+            dbCtx.TItensOrcamentoInsertdesconto.AsString     := vQry1.FieldByName('desconto').AsString;
+            dbCtx.TItensOrcamentoInsertipi.AsString          := vQry1.FieldByName('ipi').AsString;
+            dbCtx.TItensOrcamentoInsertfrete.AsString        := vQry1.FieldByName('frete').AsString;
+            dbCtx.TItensOrcamentoInserticmst.AsString        := vQry1.FieldByName('icmst').AsString;
+            dbCtx.TItensOrcamentoInsertobservacao.AsString           := vQry1.FieldByName('observacao').AsString;
+            dbCtx.TItensOrcamentoInsertdiferencialalicota.AsString   := vQry1.FieldByName('diferencialalicota').AsString;
+            dbCtx.TItensOrcamentoInsertunidademedida.AsString        := vQry1.FieldByName('unidademedida').AsString;
+            dbCtx.TItensOrcamentoInsertsyncFaz.AsInteger :=0;
+            dbCtx.TItensOrcamentoInsert.ApplyUpdates(-1);
             vQry1.Next;
           end;
         end;
@@ -2936,7 +3034,17 @@ end;
 
 procedure TfrmCadPedidos.Image29Click(Sender: TObject);
 begin
- MudarAba(tbiCotacoes,sender);
+ if btnSalvarOrcamento.Enabled then
+ begin
+  MyShowMessage('Deseja Descartar as alteraçoes feitas no orcamento?',true);
+  case frmPrincipal.vMsgConfirma of
+   1:begin
+      MudarAba(tbiCotacoes,sender);
+     end;
+  end;
+ end
+ else
+  MudarAba(tbiCotacoes,sender);
 end;
 
 procedure TfrmCadPedidos.Image31Click(Sender: TObject);
@@ -2952,6 +3060,11 @@ end;
 procedure TfrmCadPedidos.Image40Click(Sender: TObject);
 begin
   layNovoOrcamento.Visible := false;
+end;
+
+procedure TfrmCadPedidos.Image41Click(Sender: TObject);
+begin
+  MudarAba(tbiCotacoes,sender);
 end;
 
 procedure TfrmCadPedidos.Image53Click(Sender: TObject);
@@ -2979,6 +3092,8 @@ begin
   edtValorUni.Text           :='';
   edtItemPedido.Text         :='';
   edtValorTotalItem.Text     :='';
+  edtMarcaItemPedido.Text    :='';
+//  rdOriginal.IsCh
   edtObsItem.Lines.Clear;
 end;
 
@@ -3111,14 +3226,19 @@ begin
    begin
      dmReport.ppRepOrcamento.ShowPrintDialog := false;
      dmReport.ppRepOrcamento.DeviceType      := 'PDF';
-     dmReport.ppRepOrcamento.TextFileName    := DirSolicitacao+'_'+dbCtx.TOrcamentoid.AsString+'.PDF';
+     dmReport.ppRepOrcamento.TextFileName    := DirSolicitacao+'Solicitacao_Compra_'+dbCtx.TOrcamentoid.AsString+'.PDF';
      dmReport.ppRepOrcamento.Print;
      SendEmailOS(dbCtx.TOrcamentoemail.AsString,
-      DirSolicitacao+'_'+dbCtx.TOrcamentoid.AsString+'.PDF','');
+      DirSolicitacao+'Solicitacao_Compra_'+dbCtx.TOrcamentoid.AsString+'.PDF','');
    end
    else
    begin
-    myShowMessage(EnviaEmailReport(dbCtx.TOrcamentoid.AsString),false);
+     dmReport.ppRepOrdemCompra.ShowPrintDialog := false;
+     dmReport.ppRepOrdemCompra.DeviceType      := 'PDF';
+     dmReport.ppRepOrdemCompra.TextFileName    := DirOrdem+'Ordem_Compra_'+dbCtx.TOrcamentoid.AsString+'.PDF';
+     dmReport.ppRepOrdemCompra.Print;
+     SendEmailOS(dbCtx.TOrcamentoemail.AsString,
+      DirOrdem+'Ordem_Compra_'+dbCtx.TOrcamentoid.AsString+'.PDF','');
    end;
  end;
 end;
@@ -3199,9 +3319,9 @@ begin
   IdSMTP.Port := 465;
   IdSMTP.Host := 'smtp.gmail.com';
 //  IdSMTP.Username := 'orcamentosffg@gmail.com';
-  IdSMTP.Username := 'relatoriosfield@gmail.com';
+  IdSMTP.Username := 'fortagroorcamentos@gmail.com';
 //  IdSMTP.Password := '#ffg#2020';
-  IdSMTP.Password := '#field2021';
+  IdSMTP.Password := 'Ffg_2021';
   IdMessage.From.Address := Destinatario;
   IdMessage.From.Name := 'Relatórios FieldPec';
   IdMessage.Recipients.Add.Text := Destinatario;
@@ -3218,9 +3338,20 @@ begin
   IdMessage.Encoding := meMIME;
   IdText := TIdText.Create(IdMessage.MessageParts);
   if dbCtx.TOrcamentostatus.AsInteger<>3 then
-   IdText.Body.Add('Solicitação de Compra')
+  begin
+   IdText.Body.Add('Boa tarde,'+#13+
+   'Solicito através desse, uma cotação de valores dos itens vinculados ao Orçamento de Código:'+#13+
+   dbCtx.TOrcamentoid.AsString+#13+
+   'Acesse o sistema de Orçamentos online pelo link:'+#13+
+   'http://54.198.102.100/OrcamentosFFG'+#13+
+   'Login:'+dbCtx.TOrcamentoemail.AsString+#13+
+   'Senha:'+dbCtx.TOrcamentosenha.AsString+#13+
+   'Preencha o valor unitário e acrescente uma observação caso seja necessário.'+#13+
+   'Desde já a equipe de compras Fortaleza do Guaporé Agropastoril agradece a atenção.')
+  end
   else
    IdText.Body.Add('Ordem de Compra');
+
   IdText.ContentType := 'text/plain; charset=iso-8859-1';
   sAnexo := Anexo;
   if FileExists(sAnexo) then
@@ -3759,6 +3890,11 @@ end;
 
 procedure TfrmCadPedidos.Rectangle44Click(Sender: TObject);
 begin
+  if btnSalvarOrcamento.Enabled then
+  begin
+    MyShowMessage('Salve as alteraçoes do orçamento antes de prosseguir',false);
+    Exit;
+  end;
   LimpaCamposItemOrcamento;
   dbCtx.TItensOrcamentoInsert.Close;
   dbCtx.TItensOrcamentoInsert.Open;
@@ -3770,6 +3906,11 @@ procedure TfrmCadPedidos.btnEditarItemOrcClick(Sender: TObject);
 var
  Stream : TMemoryStream;
 begin
+ if btnSalvarOrcamento.Enabled then
+ begin
+  MyShowMessage('Salve as alteraçoes do orçamento antes de prosseguir',false);
+  Exit;
+ end;
  if not dbCtx.AbreItenOrcamentoEdit(dbCtx.TItensOrcamentoid.AsString)then
  begin
    dbCtx.TItensOrcamentoInsert.Edit;
@@ -3817,7 +3958,7 @@ var
  I,X:integer;
 begin
  dbCtx.DeletaComparativo;
- X :=6;
+ X :=8;
  for I := 0 to gridComparativo.RowCount-1 do
  begin
    TComparativo.Close;
@@ -3829,39 +3970,35 @@ begin
    TComparativoidproduto.AsString        := gridComparativo.Cells[0,I];
    TComparativoqtde.AsString             := gridComparativo.Cells[2,I];
 
-   if gridComparativo.Columns[6].Tag>0 then
-   begin
-    TComparativoidfornecedor1.AsInteger    := gridComparativo.Columns[6].Tag;
-    TComparativovlfornecedor1.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[6,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
-    TComparativoidorcamentoforn1.AsString  := gridComparativo.Columns[6].TagString;
-   end;
-
-   if gridComparativo.Columns[7].Tag>0 then
-   begin
-    TComparativoidfornecedor2.AsInteger    := gridComparativo.Columns[7].Tag;
-    TComparativovlfornecedor2.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[7,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
-    TComparativoidorcamentoforn2.AsString  := gridComparativo.Columns[7].TagString;
-   end;
-
    if gridComparativo.Columns[8].Tag>0 then
    begin
-    TComparativoidfornecedor3.AsInteger    := gridComparativo.Columns[8].Tag;
-    TComparativovlfornecedor3.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[8,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
-    TComparativoidorcamentoforn3.AsString  := gridComparativo.Columns[8].TagString;
+    TComparativoidfornecedor1.AsInteger    := gridComparativo.Columns[8].Tag;
+    TComparativovlfornecedor1.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[8,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
+    TComparativoidorcamentoforn1.AsString  := gridComparativo.Columns[8].TagString;
    end;
-
    if gridComparativo.Columns[9].Tag>0 then
    begin
-    TComparativoidfornecedor4.AsInteger    := gridComparativo.Columns[9].Tag;
-    TComparativovlfornecedor4.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[9,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
-    TComparativoidorcamentoforn4.AsString  := gridComparativo.Columns[9].TagString;
+    TComparativoidfornecedor2.AsInteger    := gridComparativo.Columns[9].Tag;
+    TComparativovlfornecedor2.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[9,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
+    TComparativoidorcamentoforn2.AsString  := gridComparativo.Columns[9].TagString;
    end;
-
    if gridComparativo.Columns[10].Tag>0 then
    begin
-    TComparativoidfornecedor5.AsInteger    := gridComparativo.Columns[10].Tag;
-    TComparativovlfornecedor5.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[10,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
-    TComparativoidorcamentoforn5.AsString  := gridComparativo.Columns[10].TagString;
+    TComparativoidfornecedor3.AsInteger    := gridComparativo.Columns[10].Tag;
+    TComparativovlfornecedor3.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[10,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
+    TComparativoidorcamentoforn3.AsString  := gridComparativo.Columns[10].TagString;
+   end;
+   if gridComparativo.Columns[11].Tag>0 then
+   begin
+    TComparativoidfornecedor4.AsInteger    := gridComparativo.Columns[11].Tag;
+    TComparativovlfornecedor4.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[11,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
+    TComparativoidorcamentoforn4.AsString  := gridComparativo.Columns[11].TagString;
+   end;
+   if gridComparativo.Columns[12].Tag>0 then
+   begin
+    TComparativoidfornecedor5.AsInteger    := gridComparativo.Columns[12].Tag;
+    TComparativovlfornecedor5.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[12,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
+    TComparativoidorcamentoforn5.AsString  := gridComparativo.Columns[12].TagString;
    end;
    TComparativo.ApplyUpdates(-1);
  end;
@@ -3916,6 +4053,13 @@ begin
  lblFornecedor.Text     := dbCtx.TItensOrcamentofornecedor.AsString;
  edtFreteGeral.Text     := dbCtx.TItensOrcamentofretegeral.AsString;
  edtDescontoGeral.Text  := dbCtx.TItensOrcamentoDescontogeral.AsString;
+
+ edtFormaPagamento.Enabled    := false;
+ edtDescontoGeral.Enabled     := false;
+ edtFreteGeral.Enabled        := false;
+ btnSalvarOrcamento.Enabled   := false;
+ btnEditaOrcamento.Enabled    := true;
+
  tbPrincipal.ActiveTab  := TabItem3;
 end;
 

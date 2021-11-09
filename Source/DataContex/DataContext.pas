@@ -1182,6 +1182,10 @@ type
     TPropriedadeemailenvionota3: TWideStringField;
     TPropriedadesyncfaz: TIntegerField;
     TPedidoComprapropriedadenome: TWideStringField;
+    TItensPedidooriginalstr: TWideMemoField;
+    TOrcamentoFornecedoresvalortotal: TFMTBCDField;
+    TOrcamentoFornecedoresformapg: TWideMemoField;
+    TOrcamentoFornecedoresvalorliquido: TFMTBCDField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1313,9 +1317,11 @@ type
     procedure DeletaPedido(idPedido:string);
     procedure AtaulizaValorMedioProdutoGeral;
     procedure AbreValoresOrcamento(vIdOrc:string);
+    function  RetornaValorLiquidoForn(vIdOrc,vIDForn: string):string;
     procedure AtaulizaSaldoAtualCustoMedio(idProduto: string);
     function  AbreItenOrcamentoEdit(idItem:string):Boolean;
     procedure AbrePropriedade(vIdPropriedade:string);
+    procedure AtualizaOrcamentoDescontoFreteFormaPG(idOrcamento,desconto,frete,idFormaPG,QtdItens:String);
 
   end;
 var
@@ -1637,7 +1643,11 @@ begin
  begin
    Clear;
    Add('select ROW_NUMBER () OVER (ORDER BY i.id)Item ,i.*,');
-   Add('p.Nome,p.codigofabricante,am.nome marca');
+   Add('p.Nome,p.codigofabricante,am.nome marca,');
+   Add('case');
+   Add('when original=1 then ''ORIGINAL''');
+   Add('else ''PARALELO''');
+   Add('end originalStr');
    Add('from pedidocompraitems i');
    Add('join produtos p on i.iditem=p.Id');
    Add('left join auxmarcas am on am.id=i.idmarca');
@@ -1648,12 +1658,12 @@ end;
 
 procedure TdbCtx.AbreItemsOrcamentos(vFiltro: string);
 begin
-with TItensOrcamento,TItensOrcamento.SQL do
+ with TItensOrcamento,TItensOrcamento.SQL do
  begin
    Clear;
    Add('select y.*,');
-   Add(' (y.valorTotal+y.frete)valorBrutoMaisFrete,');
-   Add(' (y.valorTotal+y.frete+y.ipi+y.icmst+y.diferencialalicota)-(y.desconto)valorLiquido');
+   Add('y.valorTotal+y.frete valorBrutoMaisFrete,');
+   Add('((y.valorTotal+y.frete+y.ipi+y.icmst+y.diferencialalicota)-y.desconto)valorLiquido');
    Add('from');
    Add('(select');
    Add('ROW_NUMBER () OVER (ORDER BY a.id)Item ,');
@@ -1663,8 +1673,8 @@ with TItensOrcamento,TItensOrcamento.SQL do
    Add(' a.observacao,a.qtde,a.syncaws,');
    Add(' a.syncfaz,');
    Add(' coalesce(a.desconto,0)desconto,');
-   Add(' coalesce(nullif(b.desconto,0),coalesce((select sum(coalesce(desconto,0)) from orcamentositens  where status>-1 and idorcamento=b.id and id=a.id),0))descontoGeral,');
-   Add(' coalesce(nullif(b.frete,0),coalesce((select sum(coalesce(frete,0)) from orcamentositens  where status>-1 and idorcamento=b.id and id=a.id),0))freteGeral,');
+   Add('(select sum(coalesce(frete,0)) from orcamentositens where idorcamento=b.id) freteGeral,');
+   Add('(select sum(coalesce(desconto,0)) from orcamentositens where idorcamento=b.id) descontoGeral,');
    Add(' coalesce(a.ipi,0)ipi,');
    Add(' coalesce(a.icmst,0)icmst,');
    Add(' coalesce(a.frete,0)frete,');
@@ -2096,15 +2106,37 @@ begin
    Clear;
    Add('select');
    Add('sum(o.valortotal) ValorBruto,');
-   Add('sum(o.valortotal)+sum(coalesce(o2.frete,o.frete,0))ValorBrutoMaisFrete,');
-   Add('sum(o.valortotal)+sum(coalesce(o2.frete,o.frete,0))+');
+   Add('sum(o.valortotal)+sum(coalesce(o.frete,0))ValorBrutoMaisFrete,');
+   Add('sum(o.valortotal)+sum(coalesce(o.frete,0))+');
    Add('sum(coalesce(o.icmst,0))+coalesce(sum(o.ipi),0)+');
    Add('sum(coalesce(o.diferencialalicota,0))-');
-   Add('sum(coalesce(o.desconto,o2.desconto,0)) valorLiquido');
+   Add('sum(coalesce(o.desconto,0)) valorLiquido');
+   Add('from orcamentositens o');
+   Add('join orcamentos o2 on o.idorcamento=o2.id');
+   Add('where o.status>-1 and idorcamento='+vIdOrc);
+   Open;
+ end;
+end;
+
+function TdbCtx.RetornaValorLiquidoForn(vIdOrc,vIDForn: string):string;
+begin
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('select');
+   Add('sum(o.valortotal)+sum(coalesce(o.frete,0))+');
+   Add('sum(coalesce(o.icmst,0))+coalesce(sum(o.ipi),0)+');
+   Add('sum(coalesce(o.diferencialalicota,0))-');
+   Add('sum(coalesce(o.desconto,0)) valorLiquido');
    Add('from orcamentositens o');
    Add('join orcamentos o2 on o.idorcamento=o2.id');
    Add('where o.status=1 and idorcamento='+vIdOrc);
+   Add('and o2.idfornecedor='+vIDForn);
    Open;
+   if IsEmpty then
+    Result :='R$0,00'
+   else
+    Result := FormatFloat('R$####,##0.00',vQry.FieldByName('valorLiquido').AsFloat);
  end;
 end;
 
@@ -2138,10 +2170,20 @@ begin
  with TOrcamentoFornecedores,TOrcamentoFornecedores.SQL do
  begin
    Clear;
-   Add('select b.*,a.Id IdOrcamento from orcamentos a');
+   Add('select b.*,a.Id IdOrcamento,');
+   Add('(select sum(valortotal) from orcamentositens where status>-1 and idorcamento=a.id)valortotal,');
+   Add('(select (sum(coalesce(valortotal,0))+');
+   Add('sum(coalesce(frete,0))+');
+   Add('sum(coalesce(ipi,0))+');
+   Add('sum(coalesce(icmst,0))+');
+   Add('sum(coalesce(diferencialalicota,0)))-sum(coalesce(desconto,0))');
+   Add('from orcamentositens where status>-1 and idorcamento=a.id)valorLiquido,');
+   Add('fpf.codigo||''-''||fpf.descricao FormaPg');
+   Add('from orcamentos a');
    Add('join fornecedor b on a.idfornecedor=b.id');
+   Add('left join forma_pagamento_fornecedor fpf on a.idformapagamento=fpf.id');
    Add('where idpedido='+vIdPedido);
-   Add('and a.status=1');
+   Add('and a.status>-1');
    Open;
  end;
 end;
@@ -2247,10 +2289,15 @@ begin
      dbCtx.TItensPedido.Close;
      dbCtx.TItensPedido.Open;
      dbCtx.TItensPedido.Insert;
-     dbCtx.TItensPedidoidpedido.AsString      := vQryLoop.FieldByName('idpedido').AsString;
-     dbCtx.TItensPedidoiditem.AsString        := vQryLoop.FieldByName('idproduto').AsString;
-     dbCtx.TItensPedidounidademedida.AsString := vQryLoop.FieldByName('unidademedida').AsString;
-     dbCtx.TItensPedidoquantidade.AsString    := vQryLoop.FieldByName('qtde').AsString;
+     dbCtx.TItensPedidoidpedido.AsString                     := vQryLoop.FieldByName('idpedido').AsString;
+     dbCtx.TItensPedidoiditem.AsString                       := vQryLoop.FieldByName('idproduto').AsString;
+     dbCtx.TItensPedidounidademedida.AsString                := vQryLoop.FieldByName('unidademedida').AsString;
+     dbCtx.TItensPedidoquantidade.AsString                   := vQryLoop.FieldByName('qtde').AsString;
+     dbCtx.TItensOrcamentoipi.AsString                       := vQryLoop.FieldByName('ipi').AsString;
+     dbCtx.TItensOrcamentodiferencialalicota.AsString        := vQryLoop.FieldByName('diferencialalicota').AsString;
+     dbCtx.TItensOrcamentoicmst.AsString                     := vQryLoop.FieldByName('icmst').AsString;
+     dbCtx.TItensOrcamentofrete.AsString                     := vQryLoop.FieldByName('frete').AsString;
+     dbCtx.TItensOrcamentodesconto.AsString                  := vQryLoop.FieldByName('desconto').AsString;
      if vQryLoop.FieldByName('valorunidade').AsString.Length>0 then
       dbCtx.TItensPedidovalorunidade.AsString := vQryLoop.FieldByName('valorunidade').AsString;
      dbCtx.TItensPedidoobservacao.AsString    := vQryLoop.FieldByName('observacao').AsString;
@@ -2516,6 +2563,44 @@ begin
 end;
 
 
+
+procedure TdbCtx.AtualizaOrcamentoDescontoFreteFormaPG(idOrcamento, desconto,
+  frete, idFormaPG,QtdItens: String);
+var
+ vQryAux:TFDQuery;
+ vValorDesconto,vValorFrete:double;
+begin
+ vQryAux := TFDQuery.Create(nil);
+ vQryAux.Connection := FDConPG;
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('update orcamentos set desconto='+desconto);
+   Add(',frete='+frete);
+   Add(',idformapagamento='+idFormaPG);
+   Add('where id='+idOrcamento);
+   try
+    vQry.ExecSQL;
+    desconto       := StringReplace(desconto,'.',',',[rfReplaceAll]);
+    frete          := StringReplace(frete,'.',',',[rfReplaceAll]);
+
+    vValorDesconto := strToFloat(desconto)/+strToFloat(QtdItens);
+    vValorFrete    := strToFloat(frete)/+strToFloat(QtdItens);
+    Clear;
+    Add('update orcamentositens set desconto=:desconto');
+    Add(',frete=:frete');
+    Add('where idorcamento='+idOrcamento);
+    ParamByName('desconto').AsFloat := vValorDesconto;
+    ParamByName('frete').AsFloat    := vValorFrete;
+    vQry.ExecSQL;
+   except
+    on e : Exception do
+     begin
+      ShowMessage(e.Message);
+     end;
+   end
+ end;
+end;
 
 procedure TdbCtx.AtualizaSaldoContrato(idContrato: string);
 var
