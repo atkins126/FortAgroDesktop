@@ -110,6 +110,7 @@ type
     edtCodFabF: TEdit;
     chkInativoF: TCheckBox;
     chkDefensivos: TCheckBox;
+    btnBuscarLista: TButton;
     procedure FormShow(Sender: TObject);
     procedure edtEstoqueMinKeyDown(Sender: TObject; var Key: Word;
       var KeyChar: Char; Shift: TShiftState);
@@ -124,13 +125,9 @@ type
     procedure btnDeletarClick(Sender: TObject);
     procedure StringGrid1CellDblClick(const Column: TColumn;
       const Row: Integer);
-    procedure cbxSegmentoFChange(Sender: TObject);
     procedure EditButton1Click(Sender: TObject);
     procedure EditButton3Click(Sender: TObject);
     procedure EditButton2Click(Sender: TObject);
-    procedure edtCodFabFChange(Sender: TObject);
-    procedure edtCodFabFExit(Sender: TObject);
-    procedure chkInativoFChange(Sender: TObject);
     procedure EditButton4Click(Sender: TObject);
     procedure cbxUnidadeMedidaKeyDown(Sender: TObject; var Key: Word;
       var KeyChar: Char; Shift: TShiftState);
@@ -146,10 +143,9 @@ type
     procedure ClearEditButton4Click(Sender: TObject);
     procedure btnConfirmaClick(Sender: TObject);
     procedure cbxSegmentoChange(Sender: TObject);
-    procedure edtCodFabFKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+    procedure btnBuscarListaClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
-    procedure edtNomeFiltroKeyUp(Sender: TObject; var Key: Word;
-      var KeyChar: Char; Shift: TShiftState);
   private
     LastTimeKeydown:TDatetime;
     Keys:string;
@@ -448,11 +444,6 @@ begin
  chkDefensivos.Visible   := cbxSegmento.ItemIndex=1
 end;
 
-procedure TfrmCadProdutos.cbxSegmentoFChange(Sender: TObject);
-begin
- Filtro;
-end;
-
 procedure TfrmCadProdutos.cbxUnidadeMedidaKeyDown(Sender: TObject;
   var Key: Word; var KeyChar: Char; Shift: TShiftState);
 var
@@ -475,50 +466,24 @@ begin
   inherited;
 end;
 
-procedure TfrmCadProdutos.chkInativoFChange(Sender: TObject);
-begin
- Filtro;
-end;
-
 procedure TfrmCadProdutos.ClearEditButton1Click(Sender: TObject);
 begin
  EdtCategoriaF.Text:='';
- Filtro;
 end;
 
 procedure TfrmCadProdutos.ClearEditButton2Click(Sender: TObject);
 begin
  edtGrupoF.Text:='';
- Filtro;
 end;
 
 procedure TfrmCadProdutos.ClearEditButton3Click(Sender: TObject);
 begin
  edtSubGrupo.Text :='';
- Filtro;
 end;
 
 procedure TfrmCadProdutos.ClearEditButton4Click(Sender: TObject);
 begin
  edtMarcaF.Text :='';
- Filtro;
-end;
-
-procedure TfrmCadProdutos.edtCodFabFChange(Sender: TObject);
-begin
-  Filtro;
-end;
-
-procedure TfrmCadProdutos.edtCodFabFExit(Sender: TObject);
-begin
- Filtro;
-end;
-
-procedure TfrmCadProdutos.edtCodFabFKeyUp(Sender: TObject; var Key: Word;
-  var KeyChar: Char; Shift: TShiftState);
-begin
- if key=13 then
-   Filtro;
 end;
 
 procedure TfrmCadProdutos.EditButton1Click(Sender: TObject);
@@ -604,11 +569,11 @@ begin
   ).Start;
 end;
 
-procedure TfrmCadProdutos.edtNomeFiltroKeyUp(Sender: TObject; var Key: Word;
+procedure TfrmCadProdutos.FormKeyUp(Sender: TObject; var Key: Word;
   var KeyChar: Char; Shift: TShiftState);
 begin
-if key=13 then
-   Filtro;
+ if(key=13) and (tbPrincipal.TabIndex=0) then
+  Filtro;
 end;
 
 procedure TfrmCadProdutos.FormShow(Sender: TObject);
@@ -630,6 +595,7 @@ begin
     inherited;
    end);
  end).Start;
+ inherited;
 end;
 
 procedure TfrmCadProdutos.Image10Click(Sender: TObject);
@@ -678,7 +644,6 @@ begin
     vIdCategoriaF              := dbCtx.TAuxCategoriasid.AsString;
     frmAuxCategoriasProd.Free;
   end;
-  Filtro;
 end;
 
 procedure TfrmCadProdutos.btnBuscaGrupoClick(Sender: TObject);
@@ -691,7 +656,11 @@ begin
     vIdGrupoF                   := dbCtx.TAuxGrupoid.AsString;
     frmAuxGrupo.Free;
   end;
-  filtro;
+end;
+
+procedure TfrmCadProdutos.btnBuscarListaClick(Sender: TObject);
+begin
+ Filtro;
 end;
 
 procedure TfrmCadProdutos.btnBuscarMarcaFClick(Sender: TObject);
@@ -704,7 +673,6 @@ begin
     vIdMarcaF              := dbCtx.TAuxMarcaid.AsString;
     frmCadAuxMarcas.Free;
   end;
-  filtro;
 end;
 
 procedure TfrmCadProdutos.btnBuscaSubGrupoClick(Sender: TObject);
@@ -717,7 +685,6 @@ begin
     vIdSubGrupoF                   := dbCtx.TAuxSubGrupoid.AsString;
     frmAuxSubGrupo.Free;
   end;
-  Filtro;
 end;
 
 procedure TfrmCadProdutos.StringGrid1CellDblClick(const Column: TColumn;

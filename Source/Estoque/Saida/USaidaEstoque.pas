@@ -3,7 +3,7 @@ unit USaidaEstoque;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UCadPadrao, System.Rtti, FMX.Grid.Style, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
@@ -13,7 +13,7 @@ uses
   FMX.Controls.Presentation, FMX.Objects, FMX.Layouts, FMX.ListBox,
   Fmx.Bind.Grid, System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
   Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope,
-  FMX.DateTimeCtrls;
+  FMX.DateTimeCtrls,Winapi.Windows;
 
 type
   TfrmSaidaEstoque = class(TfrmCadPadrao)
@@ -25,7 +25,7 @@ type
     Layout48000000000: TLayout;
     cbxCurralPastoGrupo: TComboBox;
     LayValueDadosPasto: TLayout;
-    Layout1: TLayout;
+    layProduto: TLayout;
     Rectangle1: TRectangle;
     Layout2: TLayout;
     Layout3: TLayout;
@@ -79,7 +79,6 @@ type
     edtAteF: TDateEdit;
     Label9: TLabel;
     edtDataSaida: TDateEdit;
-    Layout15: TLayout;
     Rectangle3: TRectangle;
     Layout16: TLayout;
     Layout17: TLayout;
@@ -90,9 +89,55 @@ type
     ComboBox3: TComboBox;
     Layout20: TLayout;
     edtResponsavel: TEdit;
+    edtObservacao: TEdit;
     EditButton4: TEditButton;
     Label14: TLabel;
     cbxTipoSaidaF: TComboBox;
+    layReceituario: TLayout;
+    Label15: TLabel;
+    Label22: TLabel;
+    edtReceituario: TEdit;
+    EditButton5: TEditButton;
+    gridIntenRec: TStringGrid;
+    Label16: TLabel;
+    Label23: TLabel;
+    edtSaldoAtual: TEdit;
+    tbiDevolucao: TTabItem;
+    Rectangle4: TRectangle;
+    ToolBar4: TToolBar;
+    Image7: TImage;
+    Label24: TLabel;
+    Rectangle5: TRectangle;
+    Layout1: TLayout;
+    Label25: TLabel;
+    edtNumRecDevolucao: TEdit;
+    btnBuscaBaixaReceituario: TEditButton;
+    gridDevolucao: TStringGrid;
+    edtNumReceituario: TEdit;
+    Layout15: TLayout;
+    Rectangle6: TRectangle;
+    Label26: TLabel;
+    Image8: TImage;
+    btnConfirmaDevolucao: TRectangle;
+    Label27: TLabel;
+    Image9: TImage;
+    btnDevolucaoQuimico: TRectangle;
+    Image10: TImage;
+    Label28: TLabel;
+    StringColumn1: TStringColumn;
+    StringColumn2: TStringColumn;
+    StringColumn3: TStringColumn;
+    StringColumn4: TStringColumn;
+    StringColumn5: TStringColumn;
+    StringColumn7: TStringColumn;
+    StringColumn8: TStringColumn;
+    StringColumn9: TStringColumn;
+    FloatColumn1: TFloatColumn;
+    StringColumn6: TStringColumn;
+    FloatColumn2: TFloatColumn;
+    FloatColumn3: TFloatColumn;
+    StringColumn10: TStringColumn;
+    StringColumn11: TStringColumn;
     procedure EditButton1Click(Sender: TObject);
     procedure EditButton2Click(Sender: TObject);
     procedure EditButton3Click(Sender: TObject);
@@ -101,22 +146,25 @@ type
 
     procedure btnBuscaCategoriaFClick(Sender: TObject);
     procedure SearchEditButton1Click(Sender: TObject);
-    procedure ClearEditButton1Click(Sender: TObject);
-    procedure ClearEditButton2Click(Sender: TObject);
-    procedure edtNomeFiltroChangeTracking(Sender: TObject);
-    procedure edtCodFabFChangeTracking(Sender: TObject);
     procedure chkPeriodoEntradaFChange(Sender: TObject);
-    procedure edtDeFClosePicker(Sender: TObject);
-    procedure edtAteFClosePicker(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
     procedure EditButton4Click(Sender: TObject);
-    procedure cbxTipoSaidaFChange(Sender: TObject);
+    procedure edtqtdKeyDown(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
+    procedure cbxTipoSaidaChange(Sender: TObject);
+    procedure EditButton5Click(Sender: TObject);
+    procedure btnBuscaBaixaReceituarioClick(Sender: TObject);
+    procedure btnDevolucaoQuimicoClick(Sender: TObject);
+    procedure btnConfirmaDevolucaoClick(Sender: TObject);
+    procedure btnBuscarListaClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
   private
     procedure Filtro;
   public
-    vIdProduto,vIdCentroCusto,vIdLocalEstoque,vIDResponsavel:string;
+    vIdReceituario,vIdProdutoSelect,vIdCentroCusto,vIdLocalEstoque,vIDResponsavel:string;
     procedure LimpaCampos;
   end;
 
@@ -128,7 +176,7 @@ implementation
 {$R *.fmx}
 
 uses UProdutos, DataContext, UCentrodeCusto, LocalEstoque, UPrincipal,
-  UUsuarios;
+  UUsuarios, UReceituario;
 
 procedure TfrmSaidaEstoque.btnAddClick(Sender: TObject);
 begin
@@ -136,18 +184,101 @@ begin
   dbCtx.TEstoqueSaida.Close;
   dbCtx.TEstoqueSaida.Open;
   dbCtx.TEstoqueSaida.Insert;
+  cbxTipoSaida.ItemIndex :=-1;
   inherited;
 end;
 
 procedure TfrmSaidaEstoque.LimpaCampos;
 begin
+ gridIntenRec.RowCount      := 0;
  edtDataSaida.Date          := date;
  edtProduto.Text            := '';
- cbxUnidadeMedida.ItemIndex :=-1;
- edtqtd.Text                :='0';
+ cbxUnidadeMedida.ItemIndex := -1;
+ edtqtd.Text                := '0';
  edtCentroCusto.Text        := '';
  edtLocalEstoque.Text       := '';
  edtResponsavel.Text        := '';
+ edtObservacao.Text         := '';
+ edtSaldoAtual.Text         := '';
+end;
+
+procedure TfrmSaidaEstoque.btnConfirmaDevolucaoClick(Sender: TObject);
+var
+ I:integer;
+ vIdBaixa,vIdReceituario,
+ qtdRetirada,QtdeDevolvida:string;
+begin
+ edtNumRecDevolucao.SetFocus;
+ try
+   for I := 0 to gridDevolucao.RowCount-1 do
+   begin
+     vIdBaixa         := gridDevolucao.Cells[0,I];
+     vIdReceituario   := gridDevolucao.Cells[1,I];
+     vIdProdutoSelect := gridDevolucao.Cells[8,I];
+     qtdRetirada      := gridDevolucao.Cells[3,I];
+     QtdeDevolvida    := gridDevolucao.Cells[7,I];
+     if (QtdeDevolvida<>'0') and (QtdeDevolvida.Length>0) then
+     begin
+      dbCtx.AtualizaBaixaEstoque(vIdBaixa,StringReplace(QtdeDevolvida,',','.',[rfReplaceAll]));
+      dbCtx.TTableDevolucao.Close;
+      dbCtx.TTableDevolucao.Open;
+      dbCtx.TTableDevolucao.Insert;
+      dbCtx.TTableDevolucaoidusuario.AsString     := dbCtx.vIdUsuarioLogado;
+      dbCtx.TTableDevolucaoidbaixa.AsString       := vIdBaixa;
+      dbCtx.TTableDevolucaoidreceituario.AsString := vIdReceituario;
+      dbCtx.TTableDevolucaoidproduto.AsString     := vIdProdutoSelect;
+      dbCtx.TTableDevolucaoqtdretirada.AsString   := qtdRetirada;
+      dbCtx.TTableDevolucaoqtddevolvida.AsString  := QtdeDevolvida;
+      try
+       dbCtx.TTableDevolucao.ApplyUpdates(-1);
+      except
+      on E: Exception do
+         ShowMessage('Erro ao salvar Registro:'+E.Message);
+      end;
+     end;
+   end;
+   MyShowMessage('Devolução realizada com sucesso!',false);
+   MudarAba(tbiLista,sender);
+ except
+ on E: Exception do
+    ShowMessage('Erro ao salvar Registro:'+E.Message);
+ end;
+end;
+
+procedure TfrmSaidaEstoque.btnBuscaBaixaReceituarioClick(Sender: TObject);
+var
+ I:integer;
+begin
+ if edtNumRecDevolucao.Text.Length=0 then
+ begin
+   MyShowMessage('Informe o numero do Receituário',false);
+   Exit;
+ end;
+ dbCtx.AbreDevolucaoQuimico(edtNumRecDevolucao.Text);
+ if dbCtx.TDevolucaoQuimico.IsEmpty then
+ begin
+   MyShowMessage('Nenhuma Retirada encotrada!',false);
+   Exit;
+ end
+ else
+ begin
+  I :=0;
+  gridDevolucao.RowCount   := dbCtx.TDevolucaoQuimico.RecordCount;
+  while not dbCtx.TDevolucaoQuimico.Eof do
+  begin
+    gridDevolucao.Cells[0,I] := dbCtx.TDevolucaoQuimicoidbaixa.AsString;
+    gridDevolucao.Cells[1,I] := dbCtx.TDevolucaoQuimicoidreceiturario.AsString;
+    gridDevolucao.Cells[2,I] := dbCtx.TDevolucaoQuimicoproduto.AsString;
+    gridDevolucao.Cells[3,I] := dbCtx.TDevolucaoQuimicototalreceitado.AsString;
+    gridDevolucao.Cells[4,I] := dbCtx.TDevolucaoQuimicoqtderetirada.AsString;
+    gridDevolucao.Cells[5,I] := dbCtx.TDevolucaoQuimicoqtdutilizada.AsString;
+    gridDevolucao.Cells[6,I] := dbCtx.TDevolucaoQuimicosaldo.AsString;
+    gridDevolucao.Cells[7,I] := '0';
+    gridDevolucao.Cells[8,I] := dbCtx.TDevolucaoQuimicoidproduto.AsString;
+    INC(I);
+    dbCtx.TDevolucaoQuimico.Next;
+  end;
+ end;
 end;
 
 procedure TfrmSaidaEstoque.btnBuscaCategoriaFClick(Sender: TObject);
@@ -157,12 +288,19 @@ begin
     frmCentroCusto.ShowModal;
   finally
     edtCentroCustoF.Text := dbCtx.TCentroCustonome.AsString;
-    Filtro;
   end;
 end;
 
-procedure TfrmSaidaEstoque.btnDeletarClick(Sender: TObject);
+procedure TfrmSaidaEstoque.btnBuscarListaClick(Sender: TObject);
 begin
+ Filtro;
+end;
+
+procedure TfrmSaidaEstoque.btnDeletarClick(Sender: TObject);
+var
+ vidProduto:string;
+begin
+   vidProduto:=  dbCtx.TEstoqueSaidaidproduto.AsString;
    MyShowMessage('Deseja Realmente Deletar esse registro?',true);
    case frmPrincipal.vMsgConfirma of
      1:begin
@@ -175,6 +313,7 @@ begin
           dbCtx.TEstoqueSaidasyncaws.AsInteger            :=0;
           dbCtx.TEstoqueSaida.ApplyUpdates(-1);
           MyShowMessage('Registro Excluido com sucesso!',false);
+          dbCtx.AtaulizaSaldoAtualCustoMedio(vidProduto);
           dbCtx.TEstoqueSaida.Close;
           dbCtx.TEstoqueSaida.Open();
         except
@@ -185,10 +324,23 @@ begin
    end;
 end;
 
+procedure TfrmSaidaEstoque.btnDevolucaoQuimicoClick(Sender: TObject);
+begin
+ edtNumRecDevolucao.Text :='';
+ gridDevolucao.RowCount  := 0;
+ MudarAba(tbiDevolucao,sender);
+end;
+
 procedure TfrmSaidaEstoque.btnEditarClick(Sender: TObject);
 begin
   dbCtx.TEstoqueSaida.Edit;
-  vIdProduto                                         := dbCtx.TEstoqueSaidaidproduto.AsString;
+  if dbCtx.TEstoqueSaidatipo_baixa.AsInteger=2 then
+   cbxTipoSaida.ItemIndex :=0
+  else
+   cbxTipoSaida.ItemIndex := dbCtx.TEstoqueSaidatipo_baixa.AsInteger;
+
+
+  vIdProdutoSelect                                   := StringGrid1.Cells[0,StringGrid1.Row];
   edtProduto.Text                                    := dbCtx.TEstoqueSaidaproduto.AsString;
   edtDataSaida.Date                                  := dbCtx.TEstoqueSaidadatasaidaestoque.AsDateTime;
   edtqtd.Text                                        := dbCtx.TEstoqueSaidaqtditens.AsString;
@@ -197,66 +349,131 @@ begin
   edtLocalEstoque.Text                               := dbCtx.TEstoqueSaidalocalestoque.AsString;
   vIdCentroCusto                                     := dbCtx.TEstoqueSaidaidcentrocusto.AsString;
   edtCentroCusto.Text                                := dbCtx.TEstoqueSaidacentrocusto.AsString;
-  cbxTipoSaida.ItemIndex                             := dbCtx.TEstoqueSaidatipo_baixa.AsInteger            ;
+  vIDResponsavel                                     := dbCtx.TEstoqueSaidaidresponsavel.AsString;
+  edtResponsavel.Text                                := dbCtx.TEstoqueSaidaresponsavel.AsString;
   inherited;
 end;
 
 procedure TfrmSaidaEstoque.btnSalvarClick(Sender: TObject);
+var
+ I:integer;
+ vUnidadeMedida:string;
+ vQtdBaixada:Double;
 begin
   if cbxTipoSaida.ItemIndex=-1 then
   begin
     MyShowMessage('Informe a tipo de baixa!',false);
     Exit;
   end;
-  if edtProduto.Text.Length=0 then
-  begin
-    MyShowMessage('Informe o produto!',false);
-    Exit;
-  end;
-  if cbxUnidadeMedida.ItemIndex=-1 then
-  begin
-    MyShowMessage('Informe a unidade de medida!',false);
-    Exit;
-  end;
-  if edtResponsavel.Text.Length=0 then
-  begin
-    MyShowMessage('Informe o Responsavel!',false);
-    Exit;
-  end;
- if dbCtx.TEstoqueSaida.State=dsInsert then
+
+ if cbxTipoSaida.ItemIndex<> 2 then
  begin
-   dbCtx.TEstoqueSaidaidusuario.AsString := dbCtx.vIdUsuarioLogado;
- end;
- if dbCtx.TEstoqueSaida.State=dsEdit then
+    if edtProduto.Text.Length=0 then
+    begin
+      MyShowMessage('Informe o produto!',false);
+      Exit;
+    end;
+
+    if edtResponsavel.Text.Length=0 then
+    begin
+      MyShowMessage('Informe o Responsavel!',false);
+      Exit;
+    end;
+   if dbCtx.TEstoqueSaida.State=dsInsert then
+   begin
+     dbCtx.TEstoqueSaidaidusuario.AsString := dbCtx.vIdUsuarioLogado;
+     if cbxUnidadeMedida.ItemIndex=-1 then
+     begin
+       MyShowMessage('Informe a unidade de medida!',false);
+       Exit;
+     end;
+   end;
+   if dbCtx.TEstoqueSaida.State=dsEdit then
+   begin
+     dbCtx.TEstoqueSaidaidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
+     dbCtx.TEstoqueSaidadataalteracao.AsDateTime    := now;
+     dbCtx.AlteraFlaSynAWS_ZERO('estoquesaida',dbCtx.TEstoqueSaidaID.AsString);
+   end;
+   dbCtx.TEstoqueSaidaidproduto.AsString                 := vIdProdutoSelect;
+   dbCtx.TEstoqueSaidadatasaidaestoque.AsDateTime        := edtDataSaida.Date;
+   dbCtx.TEstoqueSaidaqtditens.AsFloat                   := strToFloat(edtqtd.Text);
+   dbCtx.TEstoqueSaidaunidademedida.AsString             := cbxUnidadeMedida.Selected.Text;
+   dbCtx.TEstoqueSaidaidlocalestoque.AsString            := vIdLocalEstoque;
+   dbCtx.TEstoqueSaidaidcentrocusto.AsString             := vIdCentroCusto;
+   dbCtx.TEstoqueSaidaidresponsavel.AsString             := vIDResponsavel;
+   dbCtx.TEstoqueSaidatipo_baixa.AsInteger               := cbxTipoSaida.ItemIndex;
+   dbCtx.TEstoqueSaidavalorsaida.AsFloat                 := dbCtx.RetornaCustoMedioProduto(vIdProdutoSelect);
+   try
+    dbCtx.TEstoqueSaida.ApplyUpdates(-1);
+    dbCtx.AtaulizaSaldoAtualCustoMedio(vIdProdutoSelect);
+    MyShowMessage('Baixa realizada com sucesso!',false);
+    Filtro;
+    inherited;
+   except
+   on E: Exception do
+      ShowMessage('Erro ao salvar Registro:'+E.Message);
+   end;
+ end//se for receituario
+ else
  begin
-   dbCtx.TEstoqueSaidaidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
-   dbCtx.TEstoqueSaidadataalteracao.AsDateTime    := now;
-   dbCtx.AlteraFlaSynAWS_ZERO('estoquesaida',dbCtx.TEstoqueSaidaID.AsString);
- end;
- dbCtx.TEstoqueSaidaidproduto.AsString                 := vIdProduto;
- dbCtx.TEstoqueSaidadatasaidaestoque.AsDateTime        := edtDataSaida.Date;
- dbCtx.TEstoqueSaidaqtditens.AsString                  := StringReplace(edtqtd.Text,',','.',[rfReplaceAll]);
- dbCtx.TEstoqueSaidaunidademedida.AsString             := cbxUnidadeMedida.Selected.Text;
- dbCtx.TEstoqueSaidaidlocalestoque.AsString            := vIdLocalEstoque;
- dbCtx.TEstoqueSaidaidcentrocusto.AsString             := vIdCentroCusto;
- dbCtx.TEstoqueSaidaidresponsavel.AsString             := vIDResponsavel;
- dbCtx.TEstoqueSaidatipo_baixa.AsInteger               := cbxTipoSaida.ItemIndex;
- dbCtx.TEstoqueSaidavalorsaida.AsFloat                 := dbCtx.RetornaCustoMedioProduto(vIdProduto);
- try
-  dbCtx.TEstoqueSaida.ApplyUpdates(-1);
-  dbCtx.AtaulizaSaldoAtualCustoMedio(vIdProduto);
-  MyShowMessage('Baixa realizada com sucesso!',false);
-  dbCtx.AbreSaidaEstoque(dbCtx.vIdSegmento,'');
-  inherited;
- except
- on E: Exception do
-    ShowMessage('Erro ao salvar Registro:'+E.Message);
+   if edtResponsavel.Text.Length=0 then
+   begin
+     MyShowMessage('Informe o Responsavel!',false);
+     Exit;
+   end;
+   try
+     for I := 0 to gridIntenRec.RowCount-1 do
+     begin
+       vIdProdutoSelect     := gridIntenRec.Cells[3,I];
+       vUnidadeMedida := gridIntenRec.Cells[4,I];
+       vQtdBaixada    := StrToFloat(gridIntenRec.Cells[2,I]);
+       if vQtdBaixada>0 then
+       begin
+        dbCtx.TEstoqueSaida.Close;
+        dbCtx.TEstoqueSaida.Open;
+        dbCtx.TEstoqueSaida.Insert;
+        dbCtx.TEstoqueSaidaidproduto.AsString                 := vIdProdutoSelect;
+        dbCtx.TEstoqueSaidadatasaidaestoque.AsDateTime        := edtDataSaida.Date;
+        dbCtx.TEstoqueSaidaqtditens.AsFloat                   := vQtdBaixada;
+        dbCtx.TEstoqueSaidaunidademedida.AsString             := vUnidadeMedida;
+        dbCtx.TEstoqueSaidaidlocalestoque.AsString            := vIdLocalEstoque;
+        dbCtx.TEstoqueSaidaidcentrocusto.AsString             := vIdCentroCusto;
+        dbCtx.TEstoqueSaidaidresponsavel.AsString             := vIDResponsavel;
+        dbCtx.TEstoqueSaidatipo_baixa.AsInteger               := cbxTipoSaida.ItemIndex;
+        dbCtx.TEstoqueSaidaidreceiturario.AsString            := vIdReceituario;
+        dbCtx.TEstoqueSaidavalorsaida.AsFloat                 := dbCtx.RetornaCustoMedioProduto(vIdProdutoSelect);
+        try
+         dbCtx.TEstoqueSaida.ApplyUpdates(-1);
+         dbCtx.AtaulizaSaldoAtualCustoMedio(vIdProdutoSelect);
+        except
+        on E: Exception do
+           ShowMessage('Erro ao salvar Registro:'+E.Message);
+        end;
+       end;
+     end;
+     MyShowMessage('Baixa realizada com sucesso!',false);
+     Filtro;
+     inherited;
+   except
+   on E: Exception do
+      ShowMessage('Erro ao salvar Registro:'+E.Message);
+   end;
  end;
 end;
 
-procedure TfrmSaidaEstoque.cbxTipoSaidaFChange(Sender: TObject);
+procedure TfrmSaidaEstoque.cbxTipoSaidaChange(Sender: TObject);
 begin
- Filtro;
+ if cbxTipoSaida.ItemIndex=2 then
+ begin
+  layReceituario.Visible  := true;
+  layProduto.Visible      := false;
+  layProduto.Visible      := false;
+ end
+ else
+ begin
+  layProduto.Visible      := true;
+  layProduto.Visible      := true;
+ end;
 end;
 
 procedure TfrmSaidaEstoque.chkPeriodoEntradaFChange(Sender: TObject);
@@ -265,26 +482,15 @@ begin
  edtDeF.Enabled  := chkPeriodoEntradaF.IsChecked;
 end;
 
-procedure TfrmSaidaEstoque.ClearEditButton1Click(Sender: TObject);
-begin
-  inherited;
-  Filtro;
-end;
-
-procedure TfrmSaidaEstoque.ClearEditButton2Click(Sender: TObject);
-begin
-  inherited;
-  Filtro;
-end;
-
 procedure TfrmSaidaEstoque.EditButton1Click(Sender: TObject);
 begin
   frmCadProdutos := TfrmCadProdutos.Create(Self);
   try
     frmCadProdutos.ShowModal;
   finally
-    vIdProduto         := dbCtx.TProdutosid.AsString;
-    edtProduto.Text    := dbCtx.TProdutosnome.AsString;
+    vIdProdutoSelect         := dbCtx.TProdutosid.AsString;
+    edtSaldoAtual.Text       := dbCtx.AtaulizaSaldoAtualCustoMedio(vIdProdutoSelect);
+    edtProduto.Text          := dbCtx.TProdutosnome.AsString;
     if dbCtx.TProdutosunidademedida.AsString.Length>0 then
      cbxUnidadeMedida.ItemIndex := cbxUnidadeMedida.Items.IndexOf(dbCtx.TProdutosunidademedida.AsString)
   end;
@@ -318,30 +524,47 @@ begin
   try
     frmUsuarios.ShowModal;
   finally
-    vIDResponsavel        := dbCtx.TUsuarioid.AsString;
-    edtResponsavel.Text   := dbCtx.TUsuarionome.AsString;
+    vIDResponsavel        := frmUsuarios.vIdUsuario;
+    edtResponsavel.Text   := frmUsuarios.vNomeUsuario;
     frmUsuarios.Free;
   end;
 end;
 
-procedure TfrmSaidaEstoque.edtAteFClosePicker(Sender: TObject);
+procedure TfrmSaidaEstoque.EditButton5Click(Sender: TObject);
+var
+ I:integer;
+ vAreaTotal :Double;
 begin
-  filtro;
+  frmReceituario := TfrmReceituario.Create(Self);
+  try
+    frmReceituario.ShowModal;
+  finally
+    vIdReceituario         := dbCtx.TReceituarioid.AsString;
+    edtReceituario.Text    := dbCtx.TReceituarionome.AsString;
+    dbCtx.TDetReceituario.First;
+    vAreaTotal             := frmReceituario.vAreaTotal;
+    I :=0;
+    gridIntenRec.RowCount   := dbCtx.TDetReceituario.RecordCount;
+    while not dbCtx.TDetReceituario.Eof do
+    begin
+      gridIntenRec.Cells[0,I] := dbCtx.TDetReceituarioproduto.AsString;
+      gridIntenRec.Cells[1,I] := FormatFloat('####,##0.00',(dbCtx.TDetReceituarioqtdporhe.AsFloat * vAreaTotal));
+      gridIntenRec.Cells[2,I] := FormatFloat('####,##0.00',(dbCtx.TDetReceituarioqtdporhe.AsFloat * vAreaTotal));
+      gridIntenRec.Cells[3,I] := dbCtx.TDetReceituarioidproduto.AsString;
+      gridIntenRec.Cells[4,I] := dbCtx.TDetReceituariounidademedida.AsString;
+      INC(I);
+      dbCtx.TDetReceituario.Next;
+    end;
+  end;
 end;
 
-procedure TfrmSaidaEstoque.edtCodFabFChangeTracking(Sender: TObject);
+procedure TfrmSaidaEstoque.edtqtdKeyDown(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
 begin
- Filtro;
-end;
-
-procedure TfrmSaidaEstoque.edtDeFClosePicker(Sender: TObject);
-begin
-  filtro;
-end;
-
-procedure TfrmSaidaEstoque.edtNomeFiltroChangeTracking(Sender: TObject);
-begin
-  Filtro;
+ if((keyChar in ['0'..'9',','] = false) and (word(key) <> vk_back)) then
+ begin
+   KeyChar := #0;
+ end;
 end;
 
 procedure TfrmSaidaEstoque.Filtro;
@@ -357,6 +580,8 @@ begin
    vFiltro := vFiltro+ 'AND d.nome ='+QuotedStr(EdtCentroCustoF.Text);
  if edtLocalEstoqueF.Text.Length>0 then
    vFiltro := vFiltro+ 'AND c.nome ='+QuotedStr(edtLocalEstoqueF.Text);
+ if edtNumReceituario.Text.Length>0 then
+   vFiltro := vFiltro+ 'AND a.idreceiturario ='+edtNumReceituario.Text;
  if cbxTipoSaidaF.ItemIndex>0 then
  begin
    if cbxTipoSaidaF.ItemIndex=1 then
@@ -367,27 +592,39 @@ begin
 
  if chkPeriodoEntradaF.IsChecked then
  begin
-   vFiltro := vFiltro+ 'AND a.dataentradaestoque between '+QuotedStr(FormatDateTime('yyyy-mm-dd',edtDeF.Date))
+   vFiltro := vFiltro+ 'AND a.datasaidaestoque between '+QuotedStr(FormatDateTime('yyyy-mm-dd',edtDeF.Date))
    +' and '+QuotedStr(FormatDateTime('yyyy-mm-dd',edtAteF.Date));
  end;
  dbCtx.AbreSaidaEstoque(dbCtx.vIdSegmento,vFiltro);
+ lblTotalRegistro.Text := intToStr(dbCtx.TEstoqueSaida.RecordCount);
+end;
+
+procedure TfrmSaidaEstoque.FormKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+  if(key=13) and (tbPrincipal.TabIndex=0) then
+   Filtro;
 end;
 
 procedure TfrmSaidaEstoque.FormShow(Sender: TObject);
 begin
-  edtAteF.Enabled := chkPeriodoEntradaF.IsChecked;
-  edtDeF.Enabled  := chkPeriodoEntradaF.IsChecked;
-  lblBuscar.Text     := 'Filtros';
-  lblAdd.Text        := 'Adicionar';
-  lblEdit.Text       := 'Editar';
-  lblDeleta.Text     := 'Deletar';
-  layListaMnu.Width  := 150;
+  chkPeriodoEntradaF.IsChecked := true;
+  layReceituario.Visible  := false;
+  edtAteF.Enabled         := chkPeriodoEntradaF.IsChecked;
+  edtDeF.Enabled          := chkPeriodoEntradaF.IsChecked;
+  lblBuscar.Text          := 'Filtros';
+  lblAdd.Text             := 'Adicionar';
+  lblEdit.Text            := 'Editar';
+  lblDeleta.Text          := 'Deletar';
+  layListaMnu.Width       := 150;
   tbPrincipal.TabPosition := TTabPosition.None;
   tbPrincipal.ActiveTab   := tbiLista;
-  layListaMnu.Enabled     := dbCtx.vTipoBDConfig=2;
-  edtAteF.Enabled := false;
-  edtDeF.Enabled  := false;
-  dbCtx.AbreSaidaEstoque(dbCtx.vIdSegmento,'');
+  layListaMnu.Enabled     := true;
+  edtAteF.Enabled         := true;
+  edtDeF.Enabled          := true;
+  edtDeF.Date             := date-7;
+  edtAteF.Date            := date;
+  Filtro;
 end;
 
 procedure TfrmSaidaEstoque.SearchEditButton1Click(Sender: TObject);
@@ -397,8 +634,8 @@ begin
     frmLocalEstoque.ShowModal;
   finally
     edtLocalEstoqueF.Text := dbCtx.TLocalEstoqueNome.AsString;
-    Filtro;
   end;
 end;
 
 end.
+

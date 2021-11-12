@@ -638,9 +638,6 @@ begin
   cbxResponsavel.Items.Add('Todos');
   dbCtx.TUsuario.Close;
   dbCtx.TUsuario.Open;
-  dbCtx.TUsuario.Filtered := false;
-  dbCtx.TUsuario.Filter   := 'idsegmento=1';
-  dbCtx.TUsuario.Filtered := true;
   dbCtx.TUsuario.First;
   while not dbCtx.TUsuario.Eof do
   begin

@@ -443,9 +443,6 @@ begin
   chkAbasExterno.Visible  := dbCtx.vTipoDB=0;
   dbCtx.TUsuario.Close;
   dbCtx.TUsuario.Open;
-  dbCtx.TUsuario.Filtered  := false;
-  dbCtx.TUsuario.Filter    := 'idsegmento='+dbCtx.vIdSegmento;
-  dbCtx.TUsuario.Filtered  := true;
   lblTotalRegistro.Text    := intToStr(StringGrid1.RowCount);
 
 end;

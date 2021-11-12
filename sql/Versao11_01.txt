@@ -50,21 +50,22 @@ update
   public.orcamentos for each row execute function atualizaValorDescontoFreteItens()
 
 
-CREATE OR REPLACE FUNCTION public.atualizaValorTotalItemOrcamento()
+CREATE OR REPLACE FUNCTION public.alteraflagsyncorcamento()
  RETURNS trigger
  LANGUAGE plpgsql
-AS $function$
- declare qtdItens numeric(15,3);
- declare valorDesconto numeric(15,3);
- declare valorFrete numeric(15,3);
-BEGIN   
- if (new.valorunidade<>old.valorunidade) or (new.qtde<>old.qtde)then
-   update orcamentositens set valortotal=new.valorunidade*new.qtde
-   where id=new.id;
- end if;
- RETURN null;
-end;
-$function$
+AS $function$ 
+BEGIN
+ if (new.valorunidade<>old.valorunidade)or (new.qtde<>old.qtde) then
+ begin
+   update orcamentositens set syncaws=0,syncfaz=0,valortotal=valorunidade*qtde 
+   where id=OLD.id;
+ end;
+END IF;
+RETURN NEW;
+END;
+ $function$
+;
+
 
 
 

@@ -920,9 +920,6 @@ Coordinates=1873,3173,151,36
 [TAbastecimentoOutrosid]
 Coordinates=2137,105,156,36
 
-[TDetReceituarioqtdporhe]
-Coordinates=2137,157,158,36
-
 [TDetReceituariosyncfaz]
 Coordinates=1734,3192,151,36
 
@@ -1114,9 +1111,6 @@ Coordinates=2137,2705,174,36
 
 [TPedidoCompraRepidusuario]
 Coordinates=2137,2757,184,36
-
-[TItensPedidoquantidade]
-Coordinates=2137,2809,154,36
 
 [TAbastecimentoidlocalestoque]
 Coordinates=2137,2861,190,36
@@ -2226,7 +2220,7 @@ Coordinates=3196,3277,194,36
 Coordinates=798,1273,108,300
 
 []
-Coordinates=2266,2987,138,36
+Coordinates=3515,2861,132,36
 
 [Contratossaldo]
 Coordinates=947,2118,101,36
@@ -2587,9 +2581,6 @@ Coordinates=1114,1460,73,36
 
 [Contratosidusuario]
 Coordinates=3515,2806,123,36
-
-[TMPComparativoqtd]
-Coordinates=3515,2861,132,36
 
 [TEstoqueEntradaid]
 Coordinates=3515,2916,125,36

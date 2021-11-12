@@ -94,7 +94,7 @@ type
     Rectangle2: TRectangle;
     Rectangle3: TRectangle;
     Rectangle4: TRectangle;
-    lblMenu: TLabel;
+    lblMenu : TLabel;
     lblVersao: TLabel;
     lblVersao2: TLabel;
     ShadowEffect1: TShadowEffect;

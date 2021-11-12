@@ -167,6 +167,7 @@ Coordinates=1804,1278,155,285
 
 [dbCtx.TUsuario]
 Coordinates=214,798,91,375
+Visible=False
 
 [edtObservacaoAtividade]
 Coordinates=1452,2256,135,51

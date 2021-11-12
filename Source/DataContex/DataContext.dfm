@@ -1,6 +1,6 @@
 object dbCtx: TdbCtx
   OldCreateOrder = False
-  Height = 544
+  Height = 612
   Width = 1282
   object vQry: TFDQuery
     Connection = FDConPG
@@ -326,6 +326,33 @@ object dbCtx: TdbCtx
     object TProdutosdefensivos: TIntegerField
       FieldName = 'defensivos'
       Origin = 'defensivos'
+    end
+    object TProdutossyncfaz: TIntegerField
+      FieldName = 'syncfaz'
+      Origin = 'syncfaz'
+    end
+    object TProdutoscustomedio: TBCDField
+      FieldName = 'customedio'
+      Origin = 'customedio'
+      Precision = 15
+    end
+    object TProdutossaldoatual: TBCDField
+      FieldName = 'saldoatual'
+      Origin = 'saldoatual'
+      Precision = 15
+    end
+    object TProdutoslocalestoqueplateleira: TWideStringField
+      FieldName = 'localestoqueplateleira'
+      Origin = 'localestoqueplateleira'
+      Size = 50
+    end
+    object TProdutoslocalestoquenivel: TWideStringField
+      FieldName = 'localestoquenivel'
+      Origin = 'localestoquenivel'
+    end
+    object TProdutoslocalestoquegaveta: TWideStringField
+      FieldName = 'localestoquegaveta'
+      Origin = 'localestoquegaveta'
     end
   end
   object TFornecedores: TFDQuery
@@ -683,6 +710,16 @@ object dbCtx: TdbCtx
       Origin = 'horimetroproximarevisao'
       Precision = 15
       Size = 3
+    end
+    object TMaquinashorimetro: TBCDField
+      FieldName = 'horimetro'
+      Origin = 'horimetro'
+      Precision = 15
+      Size = 3
+    end
+    object TMaquinashorimetroxkm: TIntegerField
+      FieldName = 'horimetroxkm'
+      Origin = 'horimetroxkm'
     end
   end
   object TAuxCulturas: TFDQuery
@@ -2100,7 +2137,8 @@ object dbCtx: TdbCtx
     SQL.Strings = (
       'select '
       ' d.*,'
-      ' p.nome Produto'
+      ' p.nome Produto,'
+      ' p.UnidadeMedida'
       'from DetReceiturario d'
       'join produtos p on d.idproduto=p.id'
       'where d.status=1')
@@ -2135,12 +2173,6 @@ object dbCtx: TdbCtx
       FieldName = 'idreceiturario'
       Origin = 'idreceiturario'
     end
-    object TDetReceituarioqtdporhe: TBCDField
-      FieldName = 'qtdporhe'
-      Origin = 'qtdporhe'
-      Precision = 15
-      Size = 2
-    end
     object TDetReceituarioidproduto: TIntegerField
       FieldName = 'idproduto'
       Origin = 'idproduto'
@@ -2163,6 +2195,16 @@ object dbCtx: TdbCtx
       FieldName = 'finalidade'
       Origin = 'finalidade'
       Size = 100
+    end
+    object TDetReceituarioqtdporhe: TBCDField
+      FieldName = 'qtdporhe'
+      Precision = 15
+    end
+    object TDetReceituariounidademedida: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'unidademedida'
+      Origin = 'unidademedida'
+      Size = 10
     end
   end
   object TAuxGrupo: TFDQuery
@@ -2327,14 +2369,18 @@ object dbCtx: TdbCtx
       ' when a.status=6 then '#39'PEDIDO FINALIZADO PARCIAL'#39
       ' when a.status=7 then '#39'PEDIDO FINALIZADO'#39
       'end STATUS_PEDIDO,'
-      'am.nome||'#39'-'#39'|| m.modelo MaquinaVeiculo,'
+      'm.prefixo||'#39'-'#39'||am.nome||'#39'-'#39'|| m.modelo MaquinaVeiculo,'
       'asr.Nome TipoServico,'
       'sr.Descricao DescricaoServico,'
       
         '(select max(idstatus) from pedidostatus where status=1 and idped' +
         'ido=a.id)maxidstatus,'
       'c.nome centrocusto,'
-      'p2.nome PropriedadeNome '
+      'p2.nome PropriedadeNome,'
+      'case'
+      ' when flagurgente=0 then '#39'NORMAL'#39
+      ' when flagurgente=1 then '#39'URGENTE'#39
+      'end flagUrgenteStr '
       'from pedidocompra a '
       'join usuario u on u.Id=a.idsolicitante'
       'left join maquinaveiculo m on m.id=a.idmaquina'
@@ -2501,6 +2547,17 @@ object dbCtx: TdbCtx
       Origin = 'propriedadenome'
       Size = 100
     end
+    object TPedidoComprasetor: TWideStringField
+      FieldName = 'setor'
+      Origin = 'setor'
+    end
+    object TPedidoCompraflagurgentestr: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'flagurgentestr'
+      Origin = 'flagurgentestr'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
   end
   object TItensPedido: TFDQuery
     CachedUpdates = True
@@ -2562,10 +2619,6 @@ object dbCtx: TdbCtx
       FieldName = 'Nome'
       Origin = '"Nome"'
       Size = 50
-    end
-    object TItensPedidoquantidade: TIntegerField
-      FieldName = 'quantidade'
-      Origin = 'quantidade'
     end
     object TItensPedidounidademedida: TWideStringField
       FieldName = 'unidademedida'
@@ -2652,6 +2705,11 @@ object dbCtx: TdbCtx
       Origin = 'originalstr'
       ReadOnly = True
       BlobType = ftWideMemo
+    end
+    object TItensPedidoquantidade: TFMTBCDField
+      FieldName = 'quantidade'
+      Precision = 64
+      Size = 0
     end
   end
   object TStatusPedido: TFDQuery
@@ -2757,7 +2815,11 @@ object dbCtx: TdbCtx
       'sr.Descricao DescricaoServico,'
       
         '(select max(idstatus) from pedidostatus where status=1 and idped' +
-        'ido=a.id)maxidstatus '
+        'ido=a.id)maxidstatus,'
+      'case'
+      ' when flagurgente=0 then '#39'NORMAL'#39
+      ' when flagurgente=1 then '#39'URGENTE'#39
+      'end flagUrgenteStr  '
       'from pedidocompra a '
       'join usuario u on u.Id=a.idsolicitante'
       'left join maquinaveiculo m on m.id=a.idmaquina'
@@ -2896,6 +2958,30 @@ object dbCtx: TdbCtx
       FieldName = 'maxidstatus'
       Origin = 'maxidstatus'
       ReadOnly = True
+    end
+    object TPedidoCompraRepobservacao: TWideStringField
+      FieldName = 'observacao'
+      Origin = 'observacao'
+      Size = 100
+    end
+    object TPedidoCompraRepidcentrocusto: TIntegerField
+      FieldName = 'idcentrocusto'
+      Origin = 'idcentrocusto'
+    end
+    object TPedidoCompraRepidpropriedade: TIntegerField
+      FieldName = 'idpropriedade'
+      Origin = 'idpropriedade'
+    end
+    object TPedidoCompraRepsetor: TWideStringField
+      FieldName = 'setor'
+      Origin = 'setor'
+    end
+    object TPedidoCompraRepflagurgentestr: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'flagurgentestr'
+      Origin = 'flagurgentestr'
+      ReadOnly = True
+      BlobType = ftWideMemo
     end
   end
   object TAuxTipoServico: TFDQuery
@@ -3069,14 +3155,17 @@ object dbCtx: TdbCtx
         'd idorcamento=b.id),0)Itemipi,'
       
         'coalesce((select sum(diferencialalicota) from orcamentositens wh' +
-        'ere status=1 and idorcamento=b.id),0)Itemdifal'
+        'ere status=1 and idorcamento=b.id),0)Itemdifal,'
+      'b.responsavelcompra,'
+      'b.dataprevitaentrega,'
+      'b.datacompra'
       'from orcamentos b'
       'join pedidocompra c on c.id=b.idpedido'
       'join fornecedor f on f.id=b.idfornecedor'
       
         'left join forma_pagamento_fornecedor fp on fp.id=b.idformapagame' +
         'nto'
-      'where b.status>-1)y')
+      'where b.status>-1 and b.id=355)y')
     Left = 456
     Top = 184
     object TOrcamentoid: TIntegerField
@@ -3284,6 +3373,19 @@ object dbCtx: TdbCtx
       FieldName = 'senha'
       Origin = 'senha'
     end
+    object TOrcamentodatacompra: TDateField
+      FieldName = 'datacompra'
+      Origin = 'datacompra'
+    end
+    object TOrcamentoresponsavelcompra: TWideStringField
+      FieldName = 'responsavelcompra'
+      Origin = 'responsavelcompra'
+      Size = 100
+    end
+    object TOrcamentodataprevitaentrega: TDateField
+      FieldName = 'dataprevitaentrega'
+      Origin = 'dataprevitaentrega'
+    end
   end
   object TItensOrcamento: TFDQuery
     CachedUpdates = True
@@ -3399,10 +3501,6 @@ object dbCtx: TdbCtx
       FieldName = 'observacao'
       Origin = 'observacao'
       Size = 100
-    end
-    object TItensOrcamentoqtde: TIntegerField
-      FieldName = 'qtde'
-      Origin = 'qtde'
     end
     object TItensOrcamentosyncaws: TIntegerField
       FieldName = 'syncaws'
@@ -3596,6 +3694,11 @@ object dbCtx: TdbCtx
       FieldName = 'valorliquido'
       Origin = 'valorliquido'
       ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentoqtde: TFMTBCDField
+      FieldName = 'qtde'
       Precision = 64
       Size = 0
     end
@@ -4865,7 +4968,7 @@ object dbCtx: TdbCtx
   end
   object FDConPG: TFDConnection
     Params.Strings = (
-      'Database=Aws03112021'
+      'Database=AFortAgroFaz'
       'Server=127.0.0.1'
       'User_Name=postgres'
       'Password=Dev#110485'
@@ -5030,10 +5133,6 @@ object dbCtx: TdbCtx
       FieldName = 'item'
       Origin = 'item'
     end
-    object TMPComparativoqtd: TIntegerField
-      FieldName = 'qtd'
-      Origin = 'qtd'
-    end
     object TMPComparativounidademedida: TWideStringField
       FieldName = 'unidademedida'
       Origin = 'unidademedida'
@@ -5075,6 +5174,17 @@ object dbCtx: TdbCtx
     object TMPComparativoidfornecedor: TIntegerField
       FieldName = 'idfornecedor'
       Origin = 'idfornecedor'
+    end
+    object TMPComparativoqtd: TFMTBCDField
+      FieldName = 'qtd'
+      Precision = 64
+      Size = 0
+    end
+    object TMPComparativoidmarca: TIntegerField
+      FieldName = 'idmarca'
+    end
+    object TMPComparativooriginal: TIntegerField
+      FieldName = 'original'
     end
   end
   object Compradores: TFDQuery
@@ -5475,6 +5585,7 @@ object dbCtx: TdbCtx
   end
   object TEstoqueSaida: TFDQuery
     CachedUpdates = True
+    OnReconcileError = TEstoqueSaidaReconcileError
     Connection = FDConPG
     SQL.Strings = (
       'select '
@@ -5486,11 +5597,13 @@ object dbCtx: TdbCtx
       ' case'
       '   when tipo_baixa=0 then '#39'Baixa Estoque'#39
       '   when tipo_baixa=1 then '#39'Acerto Estoque'#39' '
-      ' end TipoStr'
+      ' end TipoStr,'
+      ' u.Nome Responsavel'
       'from estoquesaida a '
       'join localestoque c on c.id=a.idlocalestoque'
       'join centrocusto d on d.id=a.idcentrocusto'
       'join produtos e on e.id=a.idproduto'
+      'join usuario u on a.idresponsavel=u.id'
       'where a.status=1')
     Left = 952
     Top = 200
@@ -5597,6 +5710,29 @@ object dbCtx: TdbCtx
       Origin = 'valorsaida'
       Precision = 15
       Size = 3
+    end
+    object TEstoqueSaidaidabastecimento: TIntegerField
+      FieldName = 'idabastecimento'
+      Origin = 'idabastecimento'
+    end
+    object TEstoqueSaidaidreceiturario: TIntegerField
+      FieldName = 'idreceiturario'
+      Origin = 'idreceiturario'
+    end
+    object TEstoqueSaidaidlocaldestino: TIntegerField
+      FieldName = 'idlocaldestino'
+      Origin = 'idlocaldestino'
+    end
+    object TEstoqueSaidaobs: TWideStringField
+      FieldName = 'obs'
+      Origin = 'obs'
+      Size = 100
+    end
+    object TEstoqueSaidaresponsavel: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'responsavel'
+      Origin = 'responsavel'
+      Size = 100
     end
   end
   object TnotaFiscalIntem: TFDQuery
@@ -5954,10 +6090,6 @@ object dbCtx: TdbCtx
       Origin = 'observacao'
       Size = 100
     end
-    object TItensOrcamentoInsertqtde: TIntegerField
-      FieldName = 'qtde'
-      Origin = 'qtde'
-    end
     object TItensOrcamentoInsertsyncaws: TIntegerField
       FieldName = 'syncaws'
       Origin = 'syncaws'
@@ -6017,6 +6149,24 @@ object dbCtx: TdbCtx
     object TItensOrcamentoInsertimg: TBlobField
       FieldName = 'img'
       Origin = 'img'
+    end
+    object TItensOrcamentoInsertqtde: TFMTBCDField
+      FieldName = 'qtde'
+      Origin = 'qtde'
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentoInsertdescontorateio: TBCDField
+      FieldName = 'descontorateio'
+      Origin = 'descontorateio'
+      Precision = 15
+      Size = 3
+    end
+    object TItensOrcamentoInsertfreterateio: TBCDField
+      FieldName = 'freterateio'
+      Origin = 'freterateio'
+      Precision = 15
+      Size = 3
     end
   end
   object TPropriedade: TFDQuery
@@ -6210,6 +6360,169 @@ object dbCtx: TdbCtx
     object TPropriedadesyncfaz: TIntegerField
       FieldName = 'syncfaz'
       Origin = 'syncfaz'
+    end
+  end
+  object TTableDevolucao: TFDQuery
+    CachedUpdates = True
+    Connection = FDConPG
+    SQL.Strings = (
+      'select * from devolucaoquimico d '
+      'where status=1')
+    Left = 776
+    Top = 368
+    object TTableDevolucaoid: TIntegerField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object TTableDevolucaostatus: TIntegerField
+      FieldName = 'status'
+      Origin = 'status'
+    end
+    object TTableDevolucaodatareg: TSQLTimeStampField
+      FieldName = 'datareg'
+      Origin = 'datareg'
+    end
+    object TTableDevolucaoidusuario: TIntegerField
+      FieldName = 'idusuario'
+      Origin = 'idusuario'
+    end
+    object TTableDevolucaodataalteracao: TSQLTimeStampField
+      FieldName = 'dataalteracao'
+      Origin = 'dataalteracao'
+    end
+    object TTableDevolucaoidusuarioalteracao: TIntegerField
+      FieldName = 'idusuarioalteracao'
+      Origin = 'idusuarioalteracao'
+    end
+    object TTableDevolucaoidbaixa: TIntegerField
+      FieldName = 'idbaixa'
+      Origin = 'idbaixa'
+    end
+    object TTableDevolucaoidreceituario: TIntegerField
+      FieldName = 'idreceituario'
+      Origin = 'idreceituario'
+    end
+    object TTableDevolucaoidproduto: TIntegerField
+      FieldName = 'idproduto'
+      Origin = 'idproduto'
+    end
+    object TTableDevolucaoqtdretirada: TBCDField
+      FieldName = 'qtdretirada'
+      Origin = 'qtdretirada'
+      Precision = 15
+      Size = 3
+    end
+    object TTableDevolucaoqtddevolvida: TBCDField
+      FieldName = 'qtddevolvida'
+      Origin = 'qtddevolvida'
+      Precision = 15
+      Size = 3
+    end
+    object TTableDevolucaodatadevolucao: TDateField
+      FieldName = 'datadevolucao'
+      Origin = 'datadevolucao'
+    end
+    object TTableDevolucaosyncaws: TIntegerField
+      FieldName = 'syncaws'
+      Origin = 'syncaws'
+    end
+    object TTableDevolucaosyncfaz: TIntegerField
+      FieldName = 'syncfaz'
+      Origin = 'syncfaz'
+    end
+  end
+  object TDevolucaoQuimico: TFDQuery
+    Connection = FDConPG
+    SQL.Strings = (
+      'select '
+      ' y.*, '
+      ' qtderetirada-qtdutilizada saldo,'#39'0'#39' qtddevolvida'
+      'from '
+      '(select '
+      ' e.id idbaixa,'
+      ' e.idreceiturario,'
+      ' p.nome produto,'
+      ' p.id idproduto,'
+      ' (select '
+      '   d.qtdporhe *'
+      '   coalesce((select sum(areahe) '
+      
+        '   from detreceiturariotalhao where status =1 and idreceiturario' +
+        '=e.idreceiturario),0) '
+      ' from detreceiturario d  '
+      ' where idreceiturario=e.idreceiturario and status =1'
+      ' and d.idproduto=e.idproduto) totalreceitado,'
+      ' e.qtditens qtderetirada,'
+      
+        ' coalesce((select sum(d.qtdeutilidado) from operacaosafratalhao ' +
+        'o '
+      
+        ' join detoperacaosafratalhaoprodutos d on d.idoperacaotalhao=o.i' +
+        'd '
+      
+        ' where idreceituario =e.idreceiturario and d.idproduto=e.idprodu' +
+        'to),0) qtdutilizada'
+      'from estoquesaida e '
+      'join produtos p on p.id=e.idproduto'
+      'where idreceiturario=201513)y')
+    Left = 776
+    Top = 432
+    object TDevolucaoQuimicoidbaixa: TIntegerField
+      FieldName = 'idbaixa'
+      Origin = 'idbaixa'
+    end
+    object TDevolucaoQuimicoidreceiturario: TIntegerField
+      FieldName = 'idreceiturario'
+      Origin = 'idreceiturario'
+    end
+    object TDevolucaoQuimicoproduto: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'produto'
+      Origin = 'produto'
+      Size = 50
+    end
+    object TDevolucaoQuimicototalreceitado: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'totalreceitado'
+      Origin = 'totalreceitado'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TDevolucaoQuimicoqtderetirada: TFMTBCDField
+      FieldName = 'qtderetirada'
+      Origin = 'qtderetirada'
+      Precision = 18
+      Size = 2
+    end
+    object TDevolucaoQuimicoqtdutilizada: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdutilizada'
+      Origin = 'qtdutilizada'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TDevolucaoQuimicosaldo: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'saldo'
+      Origin = 'saldo'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TDevolucaoQuimicoqtddevolvida: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtddevolvida'
+      Origin = 'qtddevolvida'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TDevolucaoQuimicoidproduto: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'idproduto'
+      Origin = 'idproduto'
     end
   end
 end

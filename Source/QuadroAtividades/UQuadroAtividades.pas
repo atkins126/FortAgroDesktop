@@ -1320,7 +1320,6 @@ begin
        TabAux.TabPosition       := TTabPosition.None;
        btnAddAtividade.Enabled  := false;
        CarregaSetor;
-       GeraLista('');
        dbCtx.TSafra.Close;
        dbCtx.TSafra.Open;
        dbCtx.TSafra.Filtered := false;

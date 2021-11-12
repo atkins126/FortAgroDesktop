@@ -421,9 +421,6 @@ Coordinates=471,1659,64,58
 [Layout39]
 Coordinates=1480,1266,67,36
 
-[Label22]
-Coordinates=540,309,60,58
-
 [Label34]
 Coordinates=540,771,60,58
 
@@ -1341,7 +1338,7 @@ Coordinates=1906,2212,60,36
 Coordinates=159,3563,168,674
 
 []
-Coordinates=381,408,60,58
+Coordinates=597,1156,105,36
 Visible=True
 
 [Image48]
@@ -1473,29 +1470,11 @@ Coordinates=233,519,158,256
 [Animacao]
 Coordinates=775,3334,72,36
 
-[TComparativoidorcamentoforn1]
-Coordinates=179,2606,195,36
-
 [StringColumn32]
 Coordinates=65,1460,107,36
 
-[TComparativoidpedido]
-Coordinates=30,2606,144,36
-
 [StringColumn30]
 Coordinates=1527,2146,107,36
-
-[TComparativoidusuario]
-Coordinates=1790,3044,148,36
-
-[TComparativoidorcamentoforn3]
-Coordinates=1972,1915,195,36
-
-[TComparativoidorcamentoforn2]
-Coordinates=1972,2146,195,36
-
-[TComparativoid]
-Coordinates=597,1156,105,36
 
 [StringColumn33]
 Coordinates=358,3651,107,36
@@ -1509,47 +1488,20 @@ Coordinates=1754,166,107,36
 [StringColumn31]
 Coordinates=1754,606,107,36
 
-[TComparativoidusuarioalteracao]
-Coordinates=1972,2916,201,36
-
 [StringColumn27]
 Coordinates=1754,661,107,36
-
-[TComparativoidfornecedor3]
-Coordinates=1906,2971,174,36
 
 [StringColumn28]
 Coordinates=1754,716,107,36
 
-[TComparativoidorcamentoforn5]
-Coordinates=1972,3026,195,36
-
-[TComparativoidfornecedor4]
-Coordinates=1906,3099,174,36
-
 [StringColumn35]
 Coordinates=1754,826,107,36
-
-[TComparativoidfornecedor5]
-Coordinates=1906,3154,174,36
 
 [dbCtx.Embarque]
 Coordinates=303,2026,111,542
 
-[TComparativoidorcamentoforn4]
-Coordinates=1972,3209,195,36
-
-[TComparativoidfornecedor1]
-Coordinates=1906,3264,174,36
-
 [StringColumn26]
 Coordinates=1754,936,107,36
-
-[TComparativovlfornecedor2]
-Coordinates=1906,3319,173,36
-
-[TComparativodataalteracao]
-Coordinates=1906,3374,173,36
 
 [dbCtx.TMPComparativo]
 Coordinates=144,2026,151,322
@@ -1560,29 +1512,11 @@ Coordinates=1754,1266,107,36
 [dbCtx.TEstoqueSaida]
 Coordinates=127,1,139,542
 
-[TComparativovlfornecedor1]
-Coordinates=1906,3429,173,36
-
-[TComparativoqtde]
-Coordinates=1287,3517,120,36
-
-[TComparativovlfornecedor4]
-Coordinates=1906,3484,173,36
-
-[TComparativovlfornecedor3]
-Coordinates=1906,3539,173,36
-
 [StringColumn34]
 Coordinates=1754,1376,107,36
 
-[TComparativoitem]
-Coordinates=1556,111,120,36
-
 [dbCtx.Compradores]
 Coordinates=285,1,129,476
-
-[TComparativoidproduto]
-Coordinates=1790,3209,149,36
 
 [StringColumn21]
 Coordinates=1754,1541,107,36
@@ -1590,23 +1524,11 @@ Coordinates=1754,1541,107,36
 [StringColumn23]
 Coordinates=1754,1706,107,36
 
-[TComparativovlfornecedor5]
-Coordinates=1906,3594,173,36
-
-[TComparativostatus]
-Coordinates=1754,2201,130,36
-
-[TComparativoidfornecedor2]
-Coordinates=1906,3649,174,36
-
 [dbCtx.TnotaFiscalIntem]
 Coordinates=530,1,151,498
 
 [dbCtx.TConfig]
 Coordinates=597,518,97,146
-
-[TComparativodatareg]
-Coordinates=1760,3651,139,36
 
 [TComparativo]
 Coordinates=0,0,108,608
@@ -1620,4 +1542,7 @@ Coordinates=527,2271,138,784
 [dbCtx.TItensOrcamento]
 Coordinates=527,2271,151,36
 Visible=False
+
+[lblCotacoes]
+Coordinates=540,309,60,58
 

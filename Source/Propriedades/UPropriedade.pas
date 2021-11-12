@@ -31,7 +31,6 @@ type
     Label5: TLabel;
     Label6: TLabel;
     Label13: TLabel;
-    cbxUF: TComboBox;
     edtCpfCnpj: TEdit;
     edtInscricaoEstadual: TEdit;
     Layout3: TLayout;
@@ -65,6 +64,8 @@ type
     LinkFillControlToField1: TLinkFillControlToField;
     LinkGridToDataSourceBindSourceDB1: TLinkGridToDataSource;
     edtTab: TEdit;
+    cbxUf: TComboBox;
+    LinkFillControlToField2: TLinkFillControlToField;
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -72,6 +73,7 @@ type
     procedure btnSalvarClick(Sender: TObject);
     procedure StringGrid1CellDblClick(const Column: TColumn;
       const Row: Integer);
+    procedure edtNomeFiltroChangeTracking(Sender: TObject);
   private
     { Private declarations }
   public
@@ -167,10 +169,28 @@ begin
 
  try
   dbCtx.TPropriedade.ApplyUpdates(-1);
+  dbCtx.TPropriedade.Close;
+  dbCtx.TPropriedade.Open;
   inherited;
  except
   on E : Exception do
    ShowMessage(E.ClassName+' error raised, with message : '+E.Message)
+ end;
+end;
+
+procedure Tfrmpropriedade.edtNomeFiltroChangeTracking(Sender: TObject);
+begin
+ if edtNomeFiltro.Text.Length>0 then
+ begin
+   dbCtx.TPropriedade.Filtered := false;
+   dbCtx.TPropriedade.Filter   := 'NOME LIKE '+QuotedStr('%'+edtNomeFiltro.Text+'%');
+   dbCtx.TPropriedade.Filtered := true;
+ end
+ else
+ begin
+   dbCtx.TPropriedade.Filtered := false;
+   dbCtx.TPropriedade.Close;
+   dbCtx.TPropriedade.Open;
  end;
 end;
 

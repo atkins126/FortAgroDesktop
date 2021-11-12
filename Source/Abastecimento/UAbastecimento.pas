@@ -3,7 +3,7 @@ unit UAbastecimento;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UCadPadrao, System.Rtti, FMX.Grid.Style, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
@@ -115,6 +115,7 @@ type
     Label21: TLabel;
     cbxBombaF: TComboBox;
     Rectangle5: TRectangle;
+    btnListaComFoto: TRectangle;
     Image9: TImage;
     Label23: TLabel;
     layExtrato: TLayout;
@@ -141,9 +142,11 @@ type
     Image15: TImage;
     Label32: TLabel;
     cbxTipoRelatorio: TComboBox;
-    btnBuscarLista: TButton;
-    cbxAtividadeF: TComboBox;
     Label34: TLabel;
+    cbxAtividadeF: TComboBox;
+    btnBuscarLista: TButton;
+    Label35: TLabel;
+    chkAbastecimentoExterno: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure edtVolumeLitrosChangeTracking(Sender: TObject);
@@ -178,10 +181,9 @@ type
     procedure rdCombustivelChange(Sender: TObject);
     procedure rdBombaChange(Sender: TObject);
     procedure cbxTipoRelatorioChange(Sender: TObject);
-    procedure btnBuscarListaClick(Sender: TObject);
-    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
-      Shift: TShiftState);
+    procedure btnListaComFotoClick(Sender: TObject);
     procedure cbxAtividadeFChange(Sender: TObject);
+    procedure btnBuscarListaClick(Sender: TObject);
   private
     vIdMaquina,vIdOperador,vIdLocalEstoque,vIDProduto,vIdAtividade,
     vCombustivelEx,vBombaEx:string;
@@ -223,7 +225,7 @@ end;
 
 procedure TfrmAbastecimento.btnBuscarListaClick(Sender: TObject);
 begin
- Filtro;
+  Filtro;
 end;
 
 procedure TfrmAbastecimento.btnConfirmaPluviClick(Sender: TObject);
@@ -265,11 +267,11 @@ begin
         dbCtx.TAbastecimentoIdUsuarioAlteracao.AsString  := dbCtx.vIdUsuarioLogado;
         dbCtx.TAbastecimentoDataAlteracao.AsDateTime     := now;
         dbCtx.AlteraFlaSynAWS_ZERO('abastecimento',dbCtx.TAbastecimentoID.AsString);
+        dbCtx.TAbastecimentosyncaws.AsInteger            :=0;
         try
-          dbCtx.TAbastecimentosyncaws.AsInteger            :=0;
           dbCtx.TAbastecimento.ApplyUpdates(-1);
+          dbCtx.DeletaSaidaAbastecimento(dbCtx.TAbastecimentoid.AsString);
           MyShowMessage('Registro Excluido com sucesso!',false);
-          dbCtx.AbreAbastecimento('');
           Filtro;
         except
          on E : Exception do
@@ -292,7 +294,7 @@ begin
  vIdOperador               := dbCtx.TAbastecimentoidoperador.AsString;
  edtOperador.Text          := dbCtx.TAbastecimentooperador.AsString;
  edtVolumeLitros.Text      := dbCtx.TAbastecimentovolumelt.AsString;
- cbxCombustivel.ItemIndex  := dbCtx.TAbastecimentocombustivel.AsInteger;
+ cbxCombustivel.ItemIndex  := cbxCombustivel.Items.IndexOf(dbCtx.TAbastecimentocombustivelnome.AsString);
  edtHorimetro.Text         := dbCtx.TAbastecimentohorimetro.AsString;
  edtObs.Text               := dbCtx.TAbastecimentoobs.AsString;
  inherited;
@@ -351,9 +353,18 @@ begin
 
 end;
 
+procedure TfrmAbastecimento.btnListaComFotoClick(Sender: TObject);
+begin
+ dmReport.ppLblPeriodoLista.Text := 'De '+edtDataInicio.Text+' Ate '+edtDataFim.Text;
+ BindSourceDB1.DataSet:= nil;
+ dmReport.ppRepListaFoto.print;
+ BindSourceDB1.DataSet:= dbCtx.TAbastecimento;
+end;
+
 procedure TfrmAbastecimento.btnSalvarClick(Sender: TObject);
 var
- IdCombustivel:string;
+ IdCombustivel,vIdMax:string;
+ vEdit:Integer;
 begin
   if edtMaquina.Text.Length=0 then
   begin
@@ -394,12 +405,16 @@ begin
     Exit;
   end;
   if dbCtx.TAbastecimento.State=dsInsert then
-   dbCtx.TAbastecimentoidusuario.AsString := dbCtx.vIdUsuarioLogado
+  begin
+   dbCtx.TAbastecimentoidusuario.AsString := dbCtx.vIdUsuarioLogado;
+   vEdit:=0;
+  end
   else
   begin
     dbCtx.TAbastecimentoidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
     dbCtx.TAbastecimentodataalteracao.AsDateTime    := now;
     dbCtx.AlteraFlaSynAWS_ZERO('abastecimento',dbCtx.TAbastecimentoID.AsString);
+    vEdit:=1;
   end;
   dbCtx.TAbastecimentoidAtividade.AsString        := vIdAtividade;
   dbCtx.TAbastecimentoidlocalestoque.AsString     := vIdLocalEstoque;
@@ -414,12 +429,22 @@ begin
    dbCtx.TAbastecimentoobs.AsString := edtObs.Text;
   try
    dbCtx.TAbastecimento.ApplyUpdates(-1);
-   dbCtx.InsereSaidaAbastecimento(
-    FormatDateTime('yyyy-mm-dd',edtDataAbastecimento.DateTime),'1',
-    vIdLocalEstoque,
-    IdCombustivel,
-    edtVolumeLitros.Text,'0');
-   dbCtx.AbreAbastecimento('');
+   if vEdit=0 then
+   begin
+    vIdMax := dbCtx.RetornaMaxId('abastecimento');
+    dbCtx.InsereSaidaAbastecimento(
+      FormatDateTime('yyyy-mm-dd',edtDataAbastecimento.DateTime),'1',
+      vIdLocalEstoque,
+      IdCombustivel,
+      edtVolumeLitros.Text,'0',vIdMax);
+   end
+   else
+   begin
+    dbCtx.AtualizaSaidaAbastecimento(FormatDateTime('yyyy-mm-dd',
+      edtDataAbastecimento.DateTime).QuotedString,'1',vIdLocalEstoque,IdCombustivel,
+      edtVolumeLitros.Text,'0',dbCtx.TAbastecimentoid.AsString);
+   end;
+   Filtro;
    SomarColunasGrid;
    inherited;
   except
@@ -440,9 +465,8 @@ begin
  cbxBombaF.Items.Add('Todas');
 
  cbxAtividadeF.Items.Clear;
+ cbxAtividadeF.Items.Clear;
  cbxAtividadeF.Items.Add('Todas');
-
-
  with vQry,vQry.SQL do
  begin
    Clear;
@@ -461,8 +485,8 @@ begin
    end;
 
    Clear;
-   Add('select * from auxatividadeabastecimento a');
-   Add('where status =1');
+   Add('select * from auxatividadeabastecimento');
+   Add('where status=1');
    Open;
    while not vQry.Eof do
    begin
@@ -471,8 +495,8 @@ begin
      vQry.Next;
    end;
  end;
- cbxAtividadeF.ItemIndex :=0;
  cbxBombaF.ItemIndex :=0;
+ cbxAtividadeF.ItemIndex :=0;
 end;
 
 procedure TfrmAbastecimento.cbxAtividadeFChange(Sender: TObject);
@@ -513,13 +537,13 @@ end;
 
 procedure TfrmAbastecimento.cbxTipoRelatorioChange(Sender: TObject);
 begin
- if (cbxTipoRelatorio.ItemIndex=1) or (cbxTipoRelatorio.ItemIndex=2) then
+ if (cbxTipoRelatorio.ItemIndex=1) then
    gpPeriodo.Enabled := true
  else
    gpPeriodo.Enabled      := false;
- rdCombustivel.Enabled    := cbxTipoRelatorio.ItemIndex<>2;
- cbxCombustivelEx.Enabled := cbxTipoRelatorio.ItemIndex<>2;
- rdBomba.IsChecked        := cbxTipoRelatorio.ItemIndex=2;
+ rdCombustivel.Enabled    := cbxTipoRelatorio.ItemIndex<>1;
+ cbxCombustivelEx.Enabled := cbxTipoRelatorio.ItemIndex<>1;
+ rdBomba.IsChecked        := cbxTipoRelatorio.ItemIndex=1;
 end;
 
 procedure TfrmAbastecimento.EditButton1Click(Sender: TObject);
@@ -617,24 +641,29 @@ begin
   vFiltro := vFiltro+' and a.combustivel=3396';
  if cbxBombaF.ItemIndex>0 then
   vFiltro := vFiltro+' and b.id='+vIdLocalEstoque;
+ if chkAbastecimentoExterno.IsChecked then
+  vFiltro := vFiltro+' and externo=1';
  if cbxAtividadeF.ItemIndex>0 then
-  vFiltro := vFiltro+' and h.id='+vIdAtividade;
+  vFiltro := vFiltro+' and a.idatividade='+vIdAtividade;
+
  vFiltro  := vFiltro+' and a.dataabastecimento between '+FormatDateTime('yyyy-mm-dd',edtDataInicio.Date).QuotedString+' and '+
  FormatDateTime('yyyy-mm-dd',edtDataFim.Date).QuotedString;
  dbCtx.AbreAbastecimento(vFiltro);
  SomarColunasGrid;
 end;
 
-procedure TfrmAbastecimento.FormKeyUp(Sender: TObject; var Key: Word;
-  var KeyChar: Char; Shift: TShiftState);
-begin
- if key=13 then
-  if tbPrincipal.TabIndex=0 then
-   Filtro;
-end;
-
 procedure TfrmAbastecimento.FormShow(Sender: TObject);
 begin
+  if dbCtx.vTipoDB=0 then
+  begin
+   chkAbastecimentoExterno.Visible := true;
+   btnListaComFoto.Visible  := true
+  end
+  else
+  begin
+    chkAbastecimentoExterno.Visible := false;
+    btnListaComFoto.Visible := false;
+  end;
   layExtrato.Visible        := false;
   layNewOutros.Visible      := false;
   CarregaLocalEstoque;
@@ -653,7 +682,6 @@ begin
   btnEditar.Enabled       := true;
   tbPrincipal.TabPosition := TTabPosition.None;
   tbPrincipal.ActiveTab   := tbiLista;
-  StringGrid2.RowCount    := 0;
 end;
 
 procedure TfrmAbastecimento.Image13Click(Sender: TObject);
@@ -682,34 +710,6 @@ begin
     MyShowMessage('Informe o tipo de Relatório (Extrato ou Saldo Atual)',false);
     Exit;
   end;
-
-  if cbxTipoRelatorio.ItemIndex=1 then
-  begin
-    if(rdBomba.IsChecked=false)and(rdCombustivel.IsChecked=false)  then
-    begin
-      MyShowMessage('Informe o tipo Por Bomba ou Por Combustivel',false);
-      Exit;
-    end;
-    if(rdBomba.IsChecked)and(cbxBombaEx.ItemIndex=-1)  then
-    begin
-      MyShowMessage('Informe a Bomba Combustivel',false);
-      Exit;
-    end;
-    if(rdCombustivel.IsChecked)and(cbxCombustivelEx.ItemIndex=-1)  then
-    begin
-      MyShowMessage('Informe o Combustivel',false);
-      Exit;
-    end;
-    if rdBomba.IsChecked then
-      dmReport.AbreExtratoBomba(vBombaEx, cbxBombaEx.Selected.Text,
-      edtExDataIni.Text,
-      edtExDataFim.Text);
-
-     if rdCombustivel.IsChecked then
-      dmReport.AbreExtratoCombustivel(vCombustivelEx,cbxCombustivelEx.Selected.Text,
-      edtExDataIni.Text,
-      edtExDataFim.Text);
-  end;
   if cbxTipoRelatorio.ItemIndex=0 then
   begin
     if rdBomba.IsChecked then
@@ -720,7 +720,9 @@ begin
         Exit;
       end
       else
-       vFiltro := ' and localestoque='+cbxBombaEx.Selected.Text.QuotedString;
+      begin
+       dmReport.AbreSaldoAtualCombustivel(vBombaEx);
+      end;
     end;
     if rdCombustivel.IsChecked then
     begin
@@ -730,11 +732,13 @@ begin
         Exit;
       end
       else
-       vFiltro := ' and entrada.produto='+cbxCombustivelEx.Selected.Text.QuotedString;
+      begin
+       dmReport.AbreSaldoAtualCombustivel(vCombustivelEx);
+      end;
     end;
-    dmReport.AbreSaldoAtualCombustivel(vFiltro);
+
   end;
-  if cbxTipoRelatorio.ItemIndex=2 then
+  if cbxTipoRelatorio.ItemIndex=1 then
   begin
     if cbxBombaEx.ItemIndex=-1 then
     begin
@@ -782,7 +786,7 @@ begin
   I   := 0;
   for I := 0 to StringGrid1.RowCount-1 do
   begin
-   if TryStrToFloat(StringGrid1.Cells[7,I],Val) then
+   if TryStrToFloat(StringGrid1.Cells[6,I],Val) then
     Sum := Sum + Val;
   end;
   if I>0 then
@@ -811,3 +815,4 @@ begin
 end;
 
 end.
+

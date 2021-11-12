@@ -365,6 +365,7 @@ Coordinates=635,3036,125,213
 
 [dbCtx.TMaquinas]
 Coordinates=448,2838,100,501
+Visible=False
 
 [dbCtx.TPedidoCompraRep]
 Coordinates=1042,254,145,555

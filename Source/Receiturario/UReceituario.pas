@@ -3,7 +3,7 @@ unit UReceituario;
 interface
 
 uses
-  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants, 
+  System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   UCadPadrao, System.Rtti, FMX.Grid.Style, FireDAC.Stan.Intf,
   FireDAC.Stan.Option, FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS,
@@ -148,6 +148,9 @@ type
     EditButton3: TEditButton;
     edtCulturaFiltro: TEdit;
     Label34: TLabel;
+    btnFichaRetirada: TRectangle;
+    Image16: TImage;
+    Label35: TLabel;
     procedure EditButton2Click(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -159,7 +162,6 @@ type
     procedure btnAddDetReceituarioClick(Sender: TObject);
     procedure Rectangle7Click(Sender: TObject);
     procedure btnDropProdutoClick(Sender: TObject);
-    procedure edtNomeFiltroChangeTracking(Sender: TObject);
     procedure btnConfirmaClick(Sender: TObject);
     procedure edtQtdIndicadaProdutoKeyUp(Sender: TObject; var Key: Word;
       var KeyChar: Char; Shift: TShiftState);
@@ -171,9 +173,6 @@ type
     procedure Rectangle12Click(Sender: TObject);
     procedure btnRelChuvaClick(Sender: TObject);
     procedure StringGrid1SelChanged(Sender: TObject);
-    procedure cbxStatusFChange(Sender: TObject);
-    procedure edtDataFimChange(Sender: TObject);
-    procedure edtDataInicioChange(Sender: TObject);
     procedure btnDropTalhaoClick(Sender: TObject);
     procedure gridTalhoEditingDone(Sender: TObject; const ACol, ARow: Integer);
     procedure btnCancelaClick(Sender: TObject);
@@ -181,13 +180,17 @@ type
     procedure StringGrid1EditingDone(Sender: TObject; const ACol,
       ARow: Integer);
     procedure EditButton3Click(Sender: TObject);
+    procedure btnFichaRetiradaClick(Sender: TObject);
+    procedure btnBuscarListaClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
   private
     vIDResponsavel,vIdProduto,vIdTalhao,vId,vIdCultura :string;
-    vAreaTotal:Double;
+
     procedure SomaColuna;
     procedure Filtro;
   public
-    { Public declarations }
+    vAreaTotal:Double;
   end;
 
 var
@@ -237,6 +240,11 @@ begin
   TabDetTalhao.TabPosition     := TTabPosition.None;
   TabDetTalhao.ActiveTab       := tbiTalhao;
   layAddDetReceituario.Visible := true;
+end;
+
+procedure TfrmReceituario.btnBuscarListaClick(Sender: TObject);
+begin
+ Filtro;
 end;
 
 procedure TfrmReceituario.btnCancelaClick(Sender: TObject);
@@ -376,6 +384,11 @@ begin
   inherited;
 end;
 
+procedure TfrmReceituario.btnFichaRetiradaClick(Sender: TObject);
+begin
+ dmReport.AbreFichaRetirada(dbCtx.TReceituarioid.AsString);
+end;
+
 procedure TfrmReceituario.btnRelChuvaClick(Sender: TObject);
 begin
  if dmRel=nil then
@@ -383,11 +396,6 @@ begin
 
  if dbCtx.TReceituarioid.AsString.Length>0 then
   dmRel.AbreReceituario(dbCtx.TReceituarioid.AsString);
-end;
-
-procedure TfrmReceituario.cbxStatusFChange(Sender: TObject);
-begin
- Filtro;
 end;
 
 procedure TfrmReceituario.EditButton1Click(Sender: TObject);
@@ -466,21 +474,6 @@ begin
   end;
 end;
 
-procedure TfrmReceituario.edtDataFimChange(Sender: TObject);
-begin
-  Filtro;
-end;
-
-procedure TfrmReceituario.edtDataInicioChange(Sender: TObject);
-begin
- Filtro;
-end;
-
-procedure TfrmReceituario.edtNomeFiltroChangeTracking(Sender: TObject);
-begin
- Filtro;
-end;
-
 procedure TfrmReceituario.edtQtdIndicadaProdutoChangeTracking(Sender: TObject);
 begin
  if(edtQtdIndicadaProduto.Text.Length>0)and(edtPesoEmbalagem.Text.Length>0) then
@@ -514,28 +507,44 @@ var
  vDataDe,vDataAte:string;
 begin
  vFiltro:='';
- vDataDe  := FormatDateTime('yyyy-mm-dd',edtDataInicio.Date).QuotedString;
- vDataAte := FormatDateTime('yyyy-mm-dd',edtDataFim.Date).QuotedString;
- vFiltro  := vFiltro+' and cast(b.datareg as date) between '+vDataDe+' and '+vDataAte;
- if edtNomeFiltro.Text.Length>0 then
-  vFiltro:=vFiltro+' and u.nome like '+QuotedStr('%'+edtNomeFiltro.Text+'%');
- if cbxStatusF.ItemIndex>0 then
-  vFiltro:=vFiltro+' and b.status ='+intToStr(cbxStatusF.ItemIndex);
  if edtNumeroF.Text.Length>0 then
-  vFiltro:=vFiltro+' and b.nome like '+QuotedStr('%'+edtNumeroF.Text+'%');
- if edtCulturaFiltro.Text.Length>0 then
-  vFiltro:=vFiltro+' and g.nome like '+QuotedStr('%'+edtCulturaFiltro.Text+'%');
+ begin
+  vFiltro:=vFiltro+' and b.id ='+edtNumeroF.Text;
+  dbCtx.AbreReceituario(vFiltro);
+ end
+ else
+ begin
+   vDataDe  := FormatDateTime('yyyy-mm-dd',edtDataInicio.Date).QuotedString;
+   vDataAte := FormatDateTime('yyyy-mm-dd',edtDataFim.Date).QuotedString;
+   vFiltro  := vFiltro+' and cast(b.datareg as date) between '+vDataDe+' and '+vDataAte;
+   if edtNomeFiltro.Text.Length>0 then
+    vFiltro:=vFiltro+' and u.nome like '+QuotedStr('%'+edtNomeFiltro.Text+'%');
+   if cbxStatusF.ItemIndex>0 then
+    vFiltro:=vFiltro+' and b.status ='+intToStr(cbxStatusF.ItemIndex);
+   if edtCulturaFiltro.Text.Length>0 then
+    vFiltro:=vFiltro+' and g.nome like '+QuotedStr('%'+edtCulturaFiltro.Text+'%');
+   dbCtx.AbreReceituario(vFiltro);
+ end;
+end;
 
- dbCtx.AbreReceituario(vFiltro);
+procedure TfrmReceituario.FormKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+ if(key=13) and (tbPrincipal.TabIndex=0) then
+  Filtro;
 end;
 
 procedure TfrmReceituario.FormShow(Sender: TObject);
 begin
+  StringGrid1.RowCount :=0;
+  StringGrid2.RowCount :=0;
+  StringGrid3.RowCount :=0;
+  edtDataInicio.Date   := date-7;
+  edtDataFim.Date      := date;
   cbxStatusF.ItemIndex :=0;
   edtDataInicio.Date   := date-30;
   edtDataFim.Date      := date;
   layAddDetReceituario.Visible := false;
-  Filtro;
   recSubMenu.Enabled := false;
   StringGrid1CellClick(StringGrid1.Columns[0],1);
   lblBuscar.Text     := 'Filtros';
@@ -556,11 +565,13 @@ begin
   dbCtx.TDetReceiturioTalhao.Edit;
   dbCtx.TDetReceiturioTalhaoareahe.AsString := gridTalho.Cells[1,gridTalho.Row];
   dbCtx.TDetReceiturioTalhao.ApplyUpdates(-1);
+  SomaColuna;
 end;
 
 procedure TfrmReceituario.Image12Click(Sender: TObject);
 begin
  layAddDetReceituario.Visible := false;
+ SomaColuna;
 end;
 
 procedure TfrmReceituario.btnDropProdutoClick(Sender: TObject);
@@ -730,3 +741,4 @@ begin
 end;
 
 end.
+

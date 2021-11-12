@@ -58,6 +58,7 @@ type
     edtInscricaoEstadual: TEdit;
     Label18: TLabel;
     BindSourceDB2: TBindSourceDB;
+    btnBuscarLista: TButton;
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
@@ -68,8 +69,6 @@ type
     procedure edtNomeExit(Sender: TObject);
     procedure edtTelefoneFixoExit(Sender: TObject);
     procedure edtCelularExit(Sender: TObject);
-    procedure edtNomeFiltroChangeTracking(Sender: TObject);
-    procedure FormShow(Sender: TObject);
     procedure StringGrid1CellDblClick(const Column: TColumn;
       const Row: Integer);
     procedure btnConfirmaClick(Sender: TObject);
@@ -79,6 +78,11 @@ type
     procedure edtRazaoSocialExit(Sender: TObject);
     procedure edtInscricaoEstadualExit(Sender: TObject);
     procedure Rectangle8Click(Sender: TObject);
+    procedure edtNomeFiltroKeyUp(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure btnBuscarListaClick(Sender: TObject);
+    procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
+      Shift: TShiftState);
   private
     LastTimeKeydown:TDatetime;
     Keys:string;
@@ -104,6 +108,14 @@ begin
   dbCtx.TFornecedores.Open;
   dbCtx.TFornecedores.Insert;
   inherited;
+end;
+
+procedure TfrmCadFornecedor.btnBuscarListaClick(Sender: TObject);
+begin
+ if edtNomeFiltro.Text.Length>0 then
+   dbCtx.AbreFornecedor(' and nome like '+QuotedStr('%'+edtNomeFiltro.Text+'%'))
+ else
+    dbCtx.AbreFornecedor('');
 end;
 
 procedure TfrmCadFornecedor.btnConfirmaClick(Sender: TObject);
@@ -325,20 +337,24 @@ begin
   ).Start;
 end;
 
-procedure TfrmCadFornecedor.edtNomeFiltroChangeTracking(Sender: TObject);
+procedure TfrmCadFornecedor.edtNomeFiltroKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
 begin
- if edtNomeFiltro.Text.Length>0 then
+ if (key=13)and(tbPrincipal.TabIndex=0) then
  begin
-   dbCtx.TFornecedores.Filtered := false;
-   dbCtx.TFornecedores.Filter   := 'nome like '+QuotedStr('%'+edtNomeFiltro.Text+'%');
-   dbCtx.TFornecedores.Filtered := true;
- end
- else
- begin
-   dbCtx.TFornecedores.Filtered := false;
-   dbCtx.TFornecedores.Close;
-   dbCtx.TFornecedores.Open;
- end
+   if edtNomeFiltro.Text.Length>0 then
+   begin
+     dbCtx.TFornecedores.Filtered := false;
+     dbCtx.TFornecedores.Filter   := 'nome like '+QuotedStr('%'+edtNomeFiltro.Text+'%');
+     dbCtx.TFornecedores.Filtered := true;
+   end
+   else
+   begin
+     dbCtx.TFornecedores.Filtered := false;
+     dbCtx.TFornecedores.Close;
+     dbCtx.TFornecedores.Open;
+   end
+ end;
 end;
 
 procedure TfrmCadFornecedor.edtRazaoSocialExit(Sender: TObject);
@@ -376,11 +392,11 @@ begin
  Formatar(edtTelefoneFixo, TFormato.TelefoneFixo);
 end;
 
-procedure TfrmCadFornecedor.FormShow(Sender: TObject);
+procedure TfrmCadFornecedor.FormKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
 begin
-  dbCtx.TFornecedores.Close;
-  dbCtx.TFornecedores.Open;
-  inherited;
+ if(key=13) and (tbPrincipal.TabIndex=0) then
+  btnBuscarListaClick(sender);
 end;
 
 procedure TfrmCadFornecedor.LimpaCampos;
