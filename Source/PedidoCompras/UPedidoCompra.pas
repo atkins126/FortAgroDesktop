@@ -25,7 +25,8 @@ uses
   IdIOHandlerSocket,
   IdIOHandlerStack,
   IdSSL, IdAntiFreezeBase, IdSMTPRelay, myChkBox,
-  Vcl.Imaging.pngimage, ppVar, ppStrtch, ppMemo, FireDAC.FMXUI.Wait;
+  Vcl.Imaging.pngimage, ppVar, ppStrtch, ppMemo, FireDAC.FMXUI.Wait,
+  System.Sensors, System.Sensors.Components;
 type
   TMoveSG = class(TCustomGrid); // reveals protected MoveRow procedure
 type
@@ -624,6 +625,7 @@ type
     edtPrevisaoEntrega: TDateEdit;
     Label104: TLabel;
     edtDataCompra: TDateEdit;
+    MotionSensor1: TMotionSensor;
     procedure btnAddClick(Sender: TObject);
     procedure EditButton1Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -2162,10 +2164,10 @@ begin
      TThread.Synchronize(nil,procedure
      begin
       dbCtx.AtualizaSequencias;
-      Arquivo := ExtractFilePath(ParamStr(0))+'ReplyAWS.exe';
+      Arquivo := ExtractFilePath(ParamStr(0))+'Replicador.exe';
       if not FileExists(Arquivo) then
        begin
-         ShowMessage('Arquivo ReplyAWS.exe não localizado no seguinte diretorio:'+#13+
+         ShowMessage('Arquivo Replicador.exe não localizado no seguinte diretorio:'+#13+
          Arquivo);
          Exit;
        end

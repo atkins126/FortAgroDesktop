@@ -2045,7 +2045,11 @@ object dbCtx: TdbCtx
       ' when b.status=1 then '#39'Aberto'#39
       ' when b.status=2 then '#39'Finalizado'#39
       'end as varchar(20)) statusStr,'
-      'g.nome Cultura '
+      'g.nome Cultura,'
+      'case'
+      ' when b.liberado=0 then '#39'N'#227'o Liberado'#39
+      ' when b.liberado=2 then '#39'Liberado'#39
+      'end  situacao'
       'from receiturario b'
       'join usuario u on u.id=b.idResponsavel'
       'left join auxculturas g on g.id=b.idCultura'
@@ -2128,6 +2132,17 @@ object dbCtx: TdbCtx
       FieldName = 'cultura'
       Origin = 'cultura'
       Size = 50
+    end
+    object TReceituarioliberado: TIntegerField
+      FieldName = 'liberado'
+      Origin = 'liberado'
+    end
+    object TReceituariosituacao: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'situacao'
+      Origin = 'situacao'
+      ReadOnly = True
+      BlobType = ftWideMemo
     end
   end
   object TDetReceituario: TFDQuery
@@ -4704,6 +4719,41 @@ object dbCtx: TdbCtx
       Origin = 'obs'
       Size = 100
     end
+    object TAbastecimentoimg: TWideMemoField
+      FieldName = 'img'
+      Origin = 'img'
+      BlobType = ftWideMemo
+    end
+    object TAbastecimentoimg2: TWideMemoField
+      FieldName = 'img2'
+      Origin = 'img2'
+      BlobType = ftWideMemo
+    end
+    object TAbastecimentoimg3: TWideMemoField
+      FieldName = 'img3'
+      Origin = 'img3'
+      BlobType = ftWideMemo
+    end
+    object TAbastecimentoimg4: TWideMemoField
+      FieldName = 'img4'
+      Origin = 'img4'
+      BlobType = ftWideMemo
+    end
+    object TAbastecimentoimg5: TWideMemoField
+      FieldName = 'img5'
+      Origin = 'img5'
+      BlobType = ftWideMemo
+    end
+    object TAbastecimentovalorlitro: TBCDField
+      FieldName = 'valorlitro'
+      Origin = 'valorlitro'
+      Precision = 15
+      Size = 3
+    end
+    object TAbastecimentoexterno: TIntegerField
+      FieldName = 'externo'
+      Origin = 'externo'
+    end
   end
   object PgDriverLink: TFDPhysPgDriverLink
     Left = 1144
@@ -4968,10 +5018,10 @@ object dbCtx: TdbCtx
   end
   object FDConPG: TFDConnection
     Params.Strings = (
-      'Database=AFortAgroFaz'
-      'Server=127.0.0.1'
+      'Database=FortAgro'
+      'Server=192.168.236.50'
       'User_Name=postgres'
-      'Password=Dev#110485'
+      'Password=!89Ah>k3Wpd+SzQWjiDLU]]5PHu#$-70'
       'Pooled='
       'DriverID=PG')
     LoginPrompt = False

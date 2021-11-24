@@ -1239,6 +1239,15 @@ type
     TOrcamentodatacompra: TDateField;
     TOrcamentoresponsavelcompra: TWideStringField;
     TOrcamentodataprevitaentrega: TDateField;
+    TAbastecimentoimg: TWideMemoField;
+    TAbastecimentoimg2: TWideMemoField;
+    TAbastecimentoimg3: TWideMemoField;
+    TAbastecimentoimg4: TWideMemoField;
+    TAbastecimentoimg5: TWideMemoField;
+    TAbastecimentovalorlitro: TBCDField;
+    TAbastecimentoexterno: TIntegerField;
+    TReceituarioliberado: TIntegerField;
+    TReceituariosituacao: TWideMemoField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1388,6 +1397,7 @@ type
     procedure AtualizaValoresOrcamentoItens(idPedido:string);
     procedure AtualizaValoresOrcamentoItensInd(idOrc: string);
     procedure AbreFornecedor(vFiltro:string);
+    procedure AlteraSituacaoReceituario(idRec,Situacao:string);
   end;
 var
   dbCtx: TdbCtx;
@@ -1416,6 +1426,17 @@ begin
    Add('where id ='+Ids);
    vQry.SQL.Text;
    ExecSQL;
+ end;
+end;
+
+procedure TdbCtx.AlteraSituacaoReceituario(idRec, Situacao: string);
+begin
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('update receiturario set liberado ='+Situacao);
+   Add('where id='+idRec);
+    ExecSQL;
  end;
 end;
 
@@ -2195,7 +2216,11 @@ begin
    Add('  when b.status=1 then ''Aberto''');
    Add('  when b.status=2 then ''Finalizado''');
    Add(' end as varchar(20)) statusStr,');
-   Add('g.nome Cultura');
+   Add('g.nome Cultura,');
+   Add('case');
+   Add('when b.liberado=0 then ''Não Liberado''');
+   Add('when b.liberado=1 then ''Liberado''');
+   Add('end  situacao');
    Add('from receiturario b');
    Add('join usuario u on u.id=b.idResponsavel');
    Add('left join auxculturas g on g.id=b.idCultura');
@@ -3436,7 +3461,7 @@ begin
  with vQry,vQry.SQL do
  begin
    Clear;
-   Add('select * from produto a');
+   Add('select * from produtos a');
    Add('where a.id='+idproduto);
    Open;
    vValorCustoMedio := FieldByName('customedio').AsString;

@@ -1,6 +1,6 @@
 object dmRel: TdmRel
   OldCreateOrder = False
-  Height = 503
+  Height = 517
   Width = 1094
   object qryRelOperacao: TFDQuery
     Connection = dbCtx.FDConPG
@@ -9291,7 +9291,7 @@ object dmRel: TdmRel
       Background.Brush.Style = bsClear
       Border.mmPadding = 0
       mmBottomOffset = 0
-      mmHeight = 16404
+      mmHeight = 4498
       mmPrintPosition = 0
       object ppLine27: TppLine
         DesignLayer = ppDesignLayer4
@@ -9349,6 +9349,7 @@ object dmRel: TdmRel
       GroupFileSettings.NewFile = False
       GroupFileSettings.EmailFile = False
       OutlineSettings.CreateNode = True
+      NewPage = True
       ReprintOnSubsequentPage = False
       StartOnOddPage = False
       UserName = 'Group14'
@@ -9646,16 +9647,16 @@ object dmRel: TdmRel
         Border.mmPadding = 0
         HideWhenOneDetail = False
         mmBottomOffset = 0
-        mmHeight = 85990
+        mmHeight = 65617
         mmPrintPosition = 0
         object ppShape33: TppShape
           DesignLayer = ppDesignLayer4
           UserName = 'Shape33'
           Brush.Color = clMenuBar
           Pen.Style = psClear
-          mmHeight = 8467
+          mmHeight = 6877
           mmLeft = 2910
-          mmTop = 5556
+          mmTop = 525
           mmWidth = 280459
           BandType = 5
           GroupNo = 0
@@ -9672,9 +9673,9 @@ object dmRel: TdmRel
           Transparent = True
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 4233
-          mmTop = 6615
-          mmWidth = 26723
+          mmLeft = 16403
+          mmTop = 789
+          mmWidth = 22483
           BandType = 5
           GroupNo = 0
           LayerName = Foreground2
@@ -9689,8 +9690,8 @@ object dmRel: TdmRel
           DataField = 'cemltha'
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 249503
-          mmTop = 6615
+          mmLeft = 257710
+          mmTop = 789
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -9706,8 +9707,8 @@ object dmRel: TdmRel
           DataField = 'cinquentaltha'
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 186267
-          mmTop = 6615
+          mmLeft = 194474
+          mmTop = 789
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -9724,8 +9725,8 @@ object dmRel: TdmRel
           Transparent = True
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 33338
-          mmTop = 6615
+          mmLeft = 41545
+          mmTop = 789
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -9742,8 +9743,8 @@ object dmRel: TdmRel
           Transparent = True
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 62971
-          mmTop = 6615
+          mmLeft = 71178
+          mmTop = 789
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -9760,8 +9761,8 @@ object dmRel: TdmRel
           Transparent = True
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 93398
-          mmTop = 6615
+          mmLeft = 101605
+          mmTop = 789
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -9778,8 +9779,8 @@ object dmRel: TdmRel
           Transparent = True
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 123825
-          mmTop = 6350
+          mmLeft = 132032
+          mmTop = 524
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -9796,8 +9797,8 @@ object dmRel: TdmRel
           Transparent = True
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 154517
-          mmTop = 6615
+          mmLeft = 162724
+          mmTop = 789
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -9813,8 +9814,8 @@ object dmRel: TdmRel
           DataField = 'setentaecincoltha'
           DataPipelineName = 'ppDBPRecVasao'
           mmHeight = 6350
-          mmLeft = 218017
-          mmTop = 6615
+          mmLeft = 226224
+          mmTop = 789
           mmWidth = 26723
           BandType = 5
           GroupNo = 0
@@ -10293,7 +10294,7 @@ object dmRel: TdmRel
             BDC08D220000000049454E44AE426082}
           mmHeight = 19579
           mmLeft = 207169
-          mmTop = 59267
+          mmTop = 39946
           mmWidth = 70115
           BandType = 5
           GroupNo = 0
@@ -10308,7 +10309,7 @@ object dmRel: TdmRel
           Border.mmPadding = 0
           mmHeight = 14288
           mmLeft = 4498
-          mmTop = 64294
+          mmTop = 44973
           mmWidth = 94721
           BandType = 5
           GroupNo = 0
@@ -10329,7 +10330,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4233
           mmLeft = 16404
-          mmTop = 15875
+          mmTop = 8724
           mmWidth = 21960
           BandType = 5
           GroupNo = 0
@@ -10353,7 +10354,7 @@ object dmRel: TdmRel
           WordWrap = True
           mmHeight = 4763
           mmLeft = 38894
-          mmTop = 15875
+          mmTop = 8724
           mmWidth = 242623
           BandType = 5
           GroupNo = 0
@@ -10374,7 +10375,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4233
           mmLeft = 4233
-          mmTop = 21167
+          mmTop = 14016
           mmWidth = 34131
           BandType = 5
           GroupNo = 0
@@ -10398,7 +10399,7 @@ object dmRel: TdmRel
           WordWrap = True
           mmHeight = 4763
           mmLeft = 38894
-          mmTop = 21167
+          mmTop = 14016
           mmWidth = 241565
           BandType = 5
           GroupNo = 0
@@ -10422,7 +10423,7 @@ object dmRel: TdmRel
           WordWrap = True
           mmHeight = 4763
           mmLeft = 38894
-          mmTop = 26194
+          mmTop = 19043
           mmWidth = 241565
           BandType = 5
           GroupNo = 0
@@ -10447,57 +10448,7 @@ object dmRel: TdmRel
           WordWrap = True
           mmHeight = 4763
           mmLeft = 38894
-          mmTop = 31221
-          mmWidth = 241565
-          BandType = 5
-          GroupNo = 0
-          LayerName = Foreground2
-        end
-        object ppLabel106: TppLabel
-          DesignLayer = ppDesignLayer4
-          UserName = 'Label106'
-          Border.mmPadding = 0
-          Caption = 
-            'Aplicar somente nas doses recomendadas.N'#227'o lavar equipamentos ou' +
-            ' embalagens pr'#243'ximo a c'#243'rregos e nascentes de '#225'gua.Respeitar os ' +
-            'limites de seguran'#231'a de cada produto para aplica'#231#227'o pr'#243'ximos a m' +
-            'oradias.'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Name = 'Arial'
-          Font.Size = 10
-          Font.Style = []
-          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-          FormFieldSettings.FormFieldType = fftNone
-          Transparent = True
-          WordWrap = True
-          mmHeight = 9260
-          mmLeft = 38894
-          mmTop = 36248
-          mmWidth = 241565
-          BandType = 5
-          GroupNo = 0
-          LayerName = Foreground2
-        end
-        object ppLabel107: TppLabel
-          DesignLayer = ppDesignLayer4
-          UserName = 'Label107'
-          Border.mmPadding = 0
-          Caption = 
-            'Use macac'#227'o de algod'#227'o hidrorepelente com mangas compridas, bota' +
-            's, luvas e m'#225'scara conforme a recomenda'#231#227'o do r'#243'tulo do produto.'
-          Font.Charset = DEFAULT_CHARSET
-          Font.Color = clBlack
-          Font.Name = 'Arial'
-          Font.Size = 10
-          Font.Style = []
-          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
-          FormFieldSettings.FormFieldType = fftNone
-          Transparent = True
-          WordWrap = True
-          mmHeight = 4763
-          mmLeft = 38894
-          mmTop = 45773
+          mmTop = 24070
           mmWidth = 241565
           BandType = 5
           GroupNo = 0
@@ -10519,7 +10470,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4763
           mmLeft = 30692
-          mmTop = 80169
+          mmTop = 60848
           mmWidth = 32544
           BandType = 5
           GroupNo = 0
@@ -10541,7 +10492,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4763
           mmLeft = 133086
-          mmTop = 80169
+          mmTop = 60848
           mmWidth = 47096
           BandType = 5
           GroupNo = 0
@@ -10563,7 +10514,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4763
           mmLeft = 225161
-          mmTop = 80169
+          mmTop = 60848
           mmWidth = 41540
           BandType = 5
           GroupNo = 0
@@ -10585,7 +10536,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4763
           mmLeft = 4498
-          mmTop = 58738
+          mmTop = 39417
           mmWidth = 31750
           BandType = 5
           GroupNo = 0
@@ -10607,7 +10558,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4763
           mmLeft = 47361
-          mmTop = 58738
+          mmTop = 39417
           mmWidth = 1058
           BandType = 5
           GroupNo = 0
@@ -10629,7 +10580,7 @@ object dmRel: TdmRel
           Transparent = True
           mmHeight = 4763
           mmLeft = 58208
-          mmTop = 58738
+          mmTop = 39417
           mmWidth = 1058
           BandType = 5
           GroupNo = 0
@@ -10649,9 +10600,9 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 9790
-          mmTop = 7408
-          mmWidth = 20902
+          mmLeft = 21960
+          mmTop = 1582
+          mmWidth = 16662
           BandType = 5
           GroupNo = 0
           LayerName = Foreground2
@@ -10670,8 +10621,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 191823
-          mmTop = 7408
+          mmLeft = 200030
+          mmTop = 1582
           mmWidth = 21167
           BandType = 5
           GroupNo = 0
@@ -10691,8 +10642,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 38894
-          mmTop = 7408
+          mmLeft = 47101
+          mmTop = 1582
           mmWidth = 20373
           BandType = 5
           GroupNo = 0
@@ -10712,8 +10663,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 68527
-          mmTop = 7408
+          mmLeft = 76734
+          mmTop = 1582
           mmWidth = 21167
           BandType = 5
           GroupNo = 0
@@ -10733,8 +10684,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 98954
-          mmTop = 7408
+          mmLeft = 107161
+          mmTop = 1582
           mmWidth = 21167
           BandType = 5
           GroupNo = 0
@@ -10754,8 +10705,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 129382
-          mmTop = 7144
+          mmLeft = 137589
+          mmTop = 1318
           mmWidth = 21167
           BandType = 5
           GroupNo = 0
@@ -10766,7 +10717,7 @@ object dmRel: TdmRel
           UserName = 'Label85'
           AutoSize = False
           Border.mmPadding = 0
-          Caption = 'Vaz'#227'o'
+          Caption = 'Vaz'#227'o : '
           Font.Charset = DEFAULT_CHARSET
           Font.Color = clWindowText
           Font.Name = 'Arial'
@@ -10776,10 +10727,10 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           VerticalAlignment = avCenter
-          mmHeight = 4763
+          mmHeight = 6088
           mmLeft = 2910
-          mmTop = 1323
-          mmWidth = 14552
+          mmTop = 789
+          mmWidth = 11908
           BandType = 5
           GroupNo = 0
           LayerName = Foreground2
@@ -10798,8 +10749,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 160073
-          mmTop = 7408
+          mmLeft = 168280
+          mmTop = 1582
           mmWidth = 21167
           BandType = 5
           GroupNo = 0
@@ -10819,8 +10770,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 223573
-          mmTop = 7408
+          mmLeft = 231780
+          mmTop = 1582
           mmWidth = 21167
           BandType = 5
           GroupNo = 0
@@ -10840,8 +10791,8 @@ object dmRel: TdmRel
           FormFieldSettings.FormFieldType = fftNone
           Transparent = True
           mmHeight = 5027
-          mmLeft = 255059
-          mmTop = 7408
+          mmLeft = 263266
+          mmTop = 1582
           mmWidth = 19579
           BandType = 5
           GroupNo = 0
@@ -10854,7 +10805,7 @@ object dmRel: TdmRel
           Weight = 0.750000000000000000
           mmHeight = 794
           mmLeft = 109802
-          mmTop = 79111
+          mmTop = 59790
           mmWidth = 85990
           BandType = 5
           GroupNo = 0
@@ -10867,7 +10818,7 @@ object dmRel: TdmRel
           Weight = 0.750000000000000000
           mmHeight = 794
           mmLeft = 200290
-          mmTop = 79111
+          mmTop = 59790
           mmWidth = 83079
           BandType = 5
           GroupNo = 0
@@ -10880,7 +10831,7 @@ object dmRel: TdmRel
           Weight = 0.750000000000000000
           mmHeight = 794
           mmLeft = 37306
-          mmTop = 62971
+          mmTop = 43650
           mmWidth = 9525
           BandType = 5
           GroupNo = 0
@@ -10893,7 +10844,7 @@ object dmRel: TdmRel
           Weight = 0.750000000000000000
           mmHeight = 794
           mmLeft = 48419
-          mmTop = 63236
+          mmTop = 43915
           mmWidth = 9525
           BandType = 5
           GroupNo = 0
@@ -10906,7 +10857,7 @@ object dmRel: TdmRel
           Weight = 0.750000000000000000
           mmHeight = 794
           mmLeft = 59531
-          mmTop = 63236
+          mmTop = 43915
           mmWidth = 9525
           BandType = 5
           GroupNo = 0
@@ -10919,7 +10870,7 @@ object dmRel: TdmRel
           Weight = 0.750000000000000000
           mmHeight = 794
           mmLeft = 1323
-          mmTop = 79111
+          mmTop = 59790
           mmWidth = 101600
           BandType = 5
           GroupNo = 0
@@ -10928,10 +10879,108 @@ object dmRel: TdmRel
         object ppShape37: TppShape
           DesignLayer = ppDesignLayer4
           UserName = 'Shape37'
-          mmHeight = 36513
+          mmHeight = 29104
           mmLeft = 2910
-          mmTop = 14817
+          mmTop = 7666
           mmWidth = 280459
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground2
+        end
+        object ppLabel144: TppLabel
+          DesignLayer = ppDesignLayer4
+          UserName = 'Label144'
+          Border.mmPadding = 0
+          Caption = 'Observa'#231#227'o:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 8
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          Transparent = True
+          mmHeight = 3704
+          mmLeft = 3969
+          mmTop = 8724
+          mmWidth = 17991
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground2
+        end
+        object ppLabel145: TppLabel
+          DesignLayer = ppDesignLayer4
+          UserName = 'Label145'
+          Border.mmPadding = 0
+          Caption = 
+            ' Em poss'#237'veis altera'#231#245'es clim'#225'ticas, data e hor'#225'rios, a recomend' +
+            'a'#231#227'o poder'#225' ser modificado(avisar o respons'#225'vel)'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 8
+          Font.Style = []
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          Transparent = True
+          mmHeight = 3704
+          mmLeft = 22223
+          mmTop = 8724
+          mmWidth = 259557
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground2
+        end
+        object ppLabel146: TppLabel
+          DesignLayer = ppDesignLayer4
+          UserName = 'Label146'
+          Border.mmPadding = 0
+          Caption = 'Precau'#231#227'o de Uso:'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 8
+          Font.Style = [fsBold]
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          Transparent = True
+          mmHeight = 3704
+          mmLeft = 3969
+          mmTop = 12693
+          mmWidth = 26723
+          BandType = 5
+          GroupNo = 0
+          LayerName = Foreground2
+        end
+        object ppLabel147: TppLabel
+          DesignLayer = ppDesignLayer4
+          UserName = 'Label147'
+          Border.mmPadding = 0
+          Caption = 
+            'Em poss'#237'veis altera'#231#245'es clim'#225'ticas, data e hor'#225'rios, a recomenda' +
+            #231#227'o poder'#225' ser modificado(avisar o respons'#225'vel)'#13#10'Antes de inicia' +
+            'r o manuseio dos produtos, leia cuidadosamente as instru'#231#245'es do ' +
+            'r'#243'tulo e/ou bula de cada produto.'#13#10'Em caso de contato com a pele' +
+            ', olhos, ingest'#227'o ou inala'#231#227'o procure logo um servi'#231'o m'#233'dico de ' +
+            'emerg'#234'ncia levando a bula do produto. '#13#10'Aplicar somente nas dose' +
+            's recomendadas.N'#227'o lavar equipamentos ou embalagens pr'#243'ximo a c'#243 +
+            'rregos e nascentes de '#225'gua.Respeitar os limites de seguran'#231'a de ' +
+            'cada produto para aplica'#231#227'o'#13#10'pr'#243'ximos a moradias.'#13#10'Use macac'#227'o d' +
+            'e algod'#227'o hidrorepelente com mangas compridas, botas, luvas e m'#225 +
+            'scara conforme a recomenda'#231#227'o do r'#243'tulo do produto'
+          Font.Charset = DEFAULT_CHARSET
+          Font.Color = clBlack
+          Font.Name = 'Arial'
+          Font.Size = 8
+          Font.Style = []
+          FormFieldSettings.FormSubmitInfo.SubmitMethod = fstPost
+          FormFieldSettings.FormFieldType = fftNone
+          Transparent = True
+          WordWrap = True
+          mmHeight = 22225
+          mmLeft = 31222
+          mmTop = 12693
+          mmWidth = 250561
           BandType = 5
           GroupNo = 0
           LayerName = Foreground2
@@ -10956,121 +11005,121 @@ object dmRel: TdmRel
     Left = 488
     Top = 112
     object ppDBDetRecppField1: TppField
-      FieldAlias = 'identificador'
-      FieldName = 'identificador'
-      FieldLength = 0
-      DisplayWidth = 0
+      FieldAlias = 'talhao'
+      FieldName = 'talhao'
+      FieldLength = 50
+      DisplayWidth = 50
       Position = 0
     end
     object ppDBDetRecppField2: TppField
-      FieldAlias = 'responsavel'
-      FieldName = 'responsavel'
-      FieldLength = 100
-      DisplayWidth = 100
+      FieldAlias = 'produto'
+      FieldName = 'produto'
+      FieldLength = 50
+      DisplayWidth = 50
       Position = 1
     end
     object ppDBDetRecppField3: TppField
-      FieldAlias = 'assinaturaresponsavel'
-      FieldName = 'assinaturaresponsavel'
-      FieldLength = 0
-      DataType = dtBLOB
-      DisplayWidth = 10
+      FieldAlias = 'finalidade'
+      FieldName = 'finalidade'
+      FieldLength = 100
+      DisplayWidth = 100
       Position = 2
-      Searchable = False
-      Sortable = False
     end
     object ppDBDetRecppField4: TppField
-      FieldAlias = 'safra'
-      FieldName = 'safra'
-      FieldLength = 50
-      DisplayWidth = 50
-      Position = 3
-    end
-    object ppDBDetRecppField5: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'idresponsavel'
-      FieldName = 'idresponsavel'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 4
-    end
-    object ppDBDetRecppField6: TppField
-      FieldAlias = 'tipoop'
-      FieldName = 'tipoop'
-      FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
-      Position = 5
-      Searchable = False
-      Sortable = False
-    end
-    object ppDBDetRecppField7: TppField
       Alignment = taRightJustify
       FieldAlias = 'id'
       FieldName = 'id'
       FieldLength = 0
       DataType = dtInteger
       DisplayWidth = 10
-      Position = 6
+      Position = 3
     end
-    object ppDBDetRecppField8: TppField
-      FieldAlias = 'dataprevaplicacao'
-      FieldName = 'dataprevaplicacao'
-      FieldLength = 0
-      DataType = dtDate
-      DisplayWidth = 10
-      Position = 7
+    object ppDBDetRecppField5: TppField
+      FieldAlias = 'identificador'
+      FieldName = 'identificador'
+      FieldLength = 50
+      DisplayWidth = 50
+      Position = 4
     end
-    object ppDBDetRecppField9: TppField
+    object ppDBDetRecppField6: TppField
       FieldAlias = 'datarecomendada'
       FieldName = 'datarecomendada'
       FieldLength = 0
       DataType = dtDate
       DisplayWidth = 10
-      Position = 8
+      Position = 5
     end
-    object ppDBDetRecppField10: TppField
-      FieldAlias = 'observacao'
-      FieldName = 'observacao'
+    object ppDBDetRecppField7: TppField
+      FieldAlias = 'dataprevaplicacao'
+      FieldName = 'dataprevaplicacao'
+      FieldLength = 0
+      DataType = dtDate
+      DisplayWidth = 10
+      Position = 6
+    end
+    object ppDBDetRecppField8: TppField
+      FieldAlias = 'responsavel'
+      FieldName = 'responsavel'
       FieldLength = 100
       DisplayWidth = 100
+      Position = 7
+    end
+    object ppDBDetRecppField9: TppField
+      FieldAlias = 'assinaturaresponsavel'
+      FieldName = 'assinaturaresponsavel'
+      FieldLength = 0
+      DataType = dtBLOB
+      DisplayWidth = 10
+      Position = 8
+      Searchable = False
+      Sortable = False
+    end
+    object ppDBDetRecppField10: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'idresponsavel'
+      FieldName = 'idresponsavel'
+      FieldLength = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 9
     end
     object ppDBDetRecppField11: TppField
-      FieldAlias = 'talhao'
-      FieldName = 'talhao'
+      FieldAlias = 'safra'
+      FieldName = 'safra'
       FieldLength = 50
       DisplayWidth = 50
       Position = 10
     end
     object ppDBDetRecppField12: TppField
-      FieldAlias = 'produto'
-      FieldName = 'produto'
-      FieldLength = 50
-      DisplayWidth = 50
+      FieldAlias = 'tipoop'
+      FieldName = 'tipoop'
+      FieldLength = 0
+      DataType = dtMemo
+      DisplayWidth = 10
       Position = 11
+      Searchable = False
+      Sortable = False
     end
     object ppDBDetRecppField13: TppField
-      FieldAlias = 'finalidade'
-      FieldName = 'finalidade'
+      FieldAlias = 'observacao'
+      FieldName = 'observacao'
       FieldLength = 100
       DisplayWidth = 100
       Position = 12
     end
     object ppDBDetRecppField14: TppField
       Alignment = taRightJustify
-      FieldAlias = 'qtdporhe'
-      FieldName = 'qtdporhe'
-      FieldLength = 2
+      FieldAlias = 'qtdetotal'
+      FieldName = 'qtdetotal'
+      FieldLength = 0
       DataType = dtDouble
-      DisplayWidth = 16
+      DisplayWidth = 65
       Position = 13
     end
     object ppDBDetRecppField15: TppField
       Alignment = taRightJustify
-      FieldAlias = 'areaprevista'
-      FieldName = 'areaprevista'
+      FieldAlias = 'qtdrealizada'
+      FieldName = 'qtdrealizada'
       FieldLength = 0
       DataType = dtDouble
       DisplayWidth = 65
@@ -11078,45 +11127,45 @@ object dmRel: TdmRel
     end
     object ppDBDetRecppField16: TppField
       Alignment = taRightJustify
-      FieldAlias = 'qtdetotal'
-      FieldName = 'qtdetotal'
+      FieldAlias = 'arearealizada'
+      FieldName = 'arearealizada'
       FieldLength = 0
       DataType = dtDouble
       DisplayWidth = 65
       Position = 15
     end
     object ppDBDetRecppField17: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'qtdrealizada'
-      FieldName = 'qtdrealizada'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
+      FieldAlias = 'cultura'
+      FieldName = 'cultura'
+      FieldLength = 50
+      DisplayWidth = 50
       Position = 16
     end
     object ppDBDetRecppField18: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'arearealizada'
-      FieldName = 'arearealizada'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 17
-    end
-    object ppDBDetRecppField19: TppField
       Alignment = taRightJustify
       FieldAlias = 'realizadoha'
       FieldName = 'realizadoha'
       FieldLength = 2
       DataType = dtDouble
       DisplayWidth = 16
+      Position = 17
+    end
+    object ppDBDetRecppField19: TppField
+      Alignment = taRightJustify
+      FieldAlias = 'areaprevista'
+      FieldName = 'areaprevista'
+      FieldLength = 2
+      DataType = dtDouble
+      DisplayWidth = 16
       Position = 18
     end
     object ppDBDetRecppField20: TppField
-      FieldAlias = 'cultura'
-      FieldName = 'cultura'
-      FieldLength = 50
-      DisplayWidth = 50
+      Alignment = taRightJustify
+      FieldAlias = 'qtdporhe'
+      FieldName = 'qtdporhe'
+      FieldLength = 4
+      DataType = dtDouble
+      DisplayWidth = 16
       Position = 19
     end
   end
@@ -16683,6 +16732,78 @@ object dmRel: TdmRel
     UserName = 'DBPRecVasao'
     Left = 488
     Top = 320
+    object ppDBPRecVasaoppField1: TppField
+      FieldAlias = 'cincoltha'
+      FieldName = 'cincoltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 0
+    end
+    object ppDBPRecVasaoppField2: TppField
+      FieldAlias = 'dezltha'
+      FieldName = 'dezltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 1
+    end
+    object ppDBPRecVasaoppField3: TppField
+      FieldAlias = 'quinzeltha'
+      FieldName = 'quinzeltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 2
+    end
+    object ppDBPRecVasaoppField4: TppField
+      FieldAlias = 'vinteltha'
+      FieldName = 'vinteltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 3
+    end
+    object ppDBPRecVasaoppField5: TppField
+      FieldAlias = 'trintaltha'
+      FieldName = 'trintaltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 4
+    end
+    object ppDBPRecVasaoppField6: TppField
+      FieldAlias = 'quarentaltha'
+      FieldName = 'quarentaltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 5
+    end
+    object ppDBPRecVasaoppField7: TppField
+      FieldAlias = 'cinquentaltha'
+      FieldName = 'cinquentaltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 6
+    end
+    object ppDBPRecVasaoppField8: TppField
+      FieldAlias = 'setentaecincoltha'
+      FieldName = 'setentaecincoltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 7
+    end
+    object ppDBPRecVasaoppField9: TppField
+      FieldAlias = 'cemltha'
+      FieldName = 'cemltha'
+      FieldLength = 0
+      DataType = dtBoolean
+      DisplayWidth = 5
+      Position = 8
+    end
   end
   object qryRelChuvaMedia: TFDQuery
     Connection = dbCtx.FDConPG
@@ -23937,13 +24058,6 @@ object dmRel: TdmRel
       Origin = 'finalidade'
       Size = 100
     end
-    object Receiturarioqtdporhe: TBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'qtdporhe'
-      Origin = 'qtdporhe'
-      Precision = 15
-      Size = 2
-    end
     object Receiturarioid: TIntegerField
       AutoGenerateValue = arDefault
       FieldName = 'id'
@@ -24044,6 +24158,12 @@ object dmRel: TdmRel
       FieldName = 'areaprevista'
       Precision = 15
       Size = 2
+    end
+    object Receiturarioqtdporhe: TBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtdporhe'
+      Origin = 'qtdporhe'
+      Precision = 15
     end
   end
 end

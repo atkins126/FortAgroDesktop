@@ -3,13 +3,15 @@ unit UDmReports;
 interface
 
 uses
-  System.SysUtils, System.Classes, Data.DB, ppParameter, ppDesignLayer, ppProd,
-  ppClass, ppReport, ppComm, ppRelatv, ppDB, ppDBPipe, ppStrtch, ppMemo,
-  ppCtrls, Vcl.Imaging.pngimage, ppPrnabl, ppBands, ppCache, ppVar,
-  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
-  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
-  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,FMX.Dialogs,
-  Vcl.Imaging.jpeg;
+   System.SysUtils, System.Classes, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, ppParameter, ppDesignLayer,
+  ppCtrls, ppBands, ppVar, Vcl.Imaging.jpeg, ppPrnabl, ppClass, ppCache, ppProd,
+  ppReport, ppDB, ppComm, ppRelatv, ppDBPipe, Vcl.Imaging.pngimage, ppStrtch,
+  ppMemo,FMX.Graphics,Soap.EncdDecd,FMX.Objects, ppSubRpt, ppDBBDE, ppModule,
+  raCodMod;
+
 
 type
   TdmReport = class(TDataModule)
@@ -1137,9 +1139,6 @@ type
     ppLabel255: TppLabel;
     ppLabel256: TppLabel;
     ppDetailBand15: TppDetailBand;
-    ppShape106: TppShape;
-    ppShape107: TppShape;
-    ppShape108: TppShape;
     ppShape109: TppShape;
     ppShape110: TppShape;
     ppDBText197: TppDBText;
@@ -1153,18 +1152,7 @@ type
     ppLabel257: TppLabel;
     ppShape113: TppShape;
     ppLabel258: TppLabel;
-    ppShape114: TppShape;
-    ppLabel259: TppLabel;
-    ppShape115: TppShape;
-    ppLabel260: TppLabel;
-    ppShape116: TppShape;
-    ppLabel261: TppLabel;
     ppDBText203: TppDBText;
-    ppDBImage2: TppDBImage;
-    ppDBImage3: TppDBImage;
-    ppDBImage4: TppDBImage;
-    ppDBImage5: TppDBImage;
-    ppDBImage1: TppDBImage;
     ppFooterBand15: TppFooterBand;
     ppSystemVariable29: TppSystemVariable;
     ppSystemVariable30: TppSystemVariable;
@@ -1176,34 +1164,6 @@ type
     ppDesignLayer15: TppDesignLayer;
     ppParameterList15: TppParameterList;
     ppDBPListaFoto: TppDBPipeline;
-    ppDBPListaFotoppField1: TppField;
-    ppDBPListaFotoppField2: TppField;
-    ppDBPListaFotoppField3: TppField;
-    ppDBPListaFotoppField4: TppField;
-    ppDBPListaFotoppField5: TppField;
-    ppDBPListaFotoppField6: TppField;
-    ppDBPListaFotoppField7: TppField;
-    ppDBPListaFotoppField8: TppField;
-    ppDBPListaFotoppField9: TppField;
-    ppDBPListaFotoppField10: TppField;
-    ppDBPListaFotoppField11: TppField;
-    ppDBPListaFotoppField12: TppField;
-    ppDBPListaFotoppField13: TppField;
-    ppDBPListaFotoppField14: TppField;
-    ppDBPListaFotoppField15: TppField;
-    ppDBPListaFotoppField16: TppField;
-    ppDBPListaFotoppField17: TppField;
-    ppDBPListaFotoppField18: TppField;
-    ppDBPListaFotoppField19: TppField;
-    ppDBPListaFotoppField20: TppField;
-    ppDBPListaFotoppField21: TppField;
-    ppDBPListaFotoppField22: TppField;
-    ppDBPListaFotoppField23: TppField;
-    ppDBPListaFotoppField24: TppField;
-    ppDBPListaFotoppField25: TppField;
-    ppDBPListaFotoppField26: TppField;
-    ppDBPListaFotoppField27: TppField;
-    ppDBPListaFotoppField28: TppField;
     dsListaFoto: TDataSource;
     qryDadosOrcamentoqtde: TFMTBCDField;
     qryComparativoqtde: TFMTBCDField;
@@ -1220,7 +1180,107 @@ type
     ppLabel267: TppLabel;
     ppDBText207: TppDBText;
     ppDBText208: TppDBText;
+    ppImgBomba: TppImage;
+    ppImgHorimetro: TppImage;
+    qryPlantioCabecalho: TFDQuery;
+    dsPlantioCabecalho: TDataSource;
+    ppBDFechaPlantio: TppBDEPipeline;
+    qryPlantioCabecalhotalhao: TWideStringField;
+    qryPlantioCabecalhocultura: TWideStringField;
+    qryPlantioCabecalhoarearealizada: TFMTBCDField;
+    qryPlantioCabecalhoareatalhao: TFMTBCDField;
+    qryPlantioCabecalhoporcentagemplantio: TBCDField;
+    ppRepFechaPlantio: TppReport;
+    ppParameterList16: TppParameterList;
+    qryMquinaFechamento: TFDQuery;
+    qryPlantioCabecalhoidtalhao: TIntegerField;
+    dsMaquinaFechamento: TDataSource;
+    ppDBMaquinaFechamento: TppDBPipeline;
+    qryMquinaFechamentoidtalhao: TIntegerField;
+    qryMquinaFechamentoprefixo: TWideStringField;
+    qryMquinaFechamentohorastrabalhada: TFMTBCDField;
+    ppHeaderBand16: TppHeaderBand;
+    ppLabel259: TppLabel;
+    ppLine45: TppLine;
+    ppImage16: TppImage;
+    ppDetailBand16: TppDetailBand;
+    ppShape108: TppShape;
+    ppDBText210: TppDBText;
+    ppDBText211: TppDBText;
+    ppDBText212: TppDBText;
+    ppDBText213: TppDBText;
+    ppDBText214: TppDBText;
+    ppSubReport1: TppSubReport;
+    ppChildReport1: TppChildReport;
+    ppTitleBand1: TppTitleBand;
+    ppLabel270: TppLabel;
+    ppShape114: TppShape;
+    ppLabel272: TppLabel;
+    ppLabel274: TppLabel;
+    ppDetailBand17: TppDetailBand;
+    ppShape107: TppShape;
+    ppDBText215: TppDBText;
+    ppDBText217: TppDBText;
+    ppSummaryBand17: TppSummaryBand;
+    ppDBCalc58: TppDBCalc;
+    ppLabel271: TppLabel;
+    raCodeModule1: TraCodeModule;
+    ppDesignLayers17: TppDesignLayers;
+    ppDesignLayer17: TppDesignLayer;
+    ppFooterBand16: TppFooterBand;
+    ppSystemVariable31: TppSystemVariable;
+    ppSystemVariable32: TppSystemVariable;
+    ppSummaryBand16: TppSummaryBand;
+    ppGroup2: TppGroup;
+    ppGroupHeaderBand2: TppGroupHeaderBand;
+    ppShape106: TppShape;
+    ppLabel260: TppLabel;
+    ppLabel261: TppLabel;
+    ppLabel268: TppLabel;
+    ppLabel269: TppLabel;
+    ppLabel273: TppLabel;
+    ppGroupFooterBand2: TppGroupFooterBand;
+    raCodeModule2: TraCodeModule;
+    ppDesignLayers16: TppDesignLayers;
+    ppDesignLayer16: TppDesignLayer;
+    ppRepListaSemFoto: TppReport;
+    ppHeaderBand17: TppHeaderBand;
+    ppShape115: TppShape;
+    ppLabel275: TppLabel;
+    ppLabel276: TppLabel;
+    ppLine46: TppLine;
+    ppImage17: TppImage;
+    ppLblbPeriodoSemFoto: TppLabel;
+    ppLabel278: TppLabel;
+    ppLabel279: TppLabel;
+    ppLabel280: TppLabel;
+    ppLabel281: TppLabel;
+    ppLabel282: TppLabel;
+    ppLabel283: TppLabel;
+    ppLabel284: TppLabel;
+    ppDetailBand18: TppDetailBand;
+    ppDBText216: TppDBText;
+    ppDBText218: TppDBText;
+    ppDBText219: TppDBText;
+    ppDBText220: TppDBText;
+    ppDBText221: TppDBText;
+    ppDBText222: TppDBText;
+    ppLine47: TppLine;
+    ppDBText223: TppDBText;
+    ppFooterBand17: TppFooterBand;
+    ppSystemVariable33: TppSystemVariable;
+    ppSystemVariable34: TppSystemVariable;
+    ppLine48: TppLine;
+    ppSummaryBand18: TppSummaryBand;
+    ppShape121: TppShape;
+    ppDBCalc59: TppDBCalc;
+    ppDesignLayers18: TppDesignLayers;
+    ppDesignLayer18: TppDesignLayer;
+    ppParameterList17: TppParameterList;
+    ppLabel285: TppLabel;
+    ppLabel286: TppLabel;
     procedure ppHeaderBand1BeforePrint(Sender: TObject);
+    procedure ppDetailBand15AfterPrint(Sender: TObject);
     type
       StringArray = array of string;
       IntegerArray = array of integer;
@@ -1248,6 +1308,7 @@ type
     procedure AbreListaEntradas(vFiltro:string);
     procedure AbreListaSaidas(vFiltro:string);
     procedure AbreFichaRetirada(idReceiturario:string);
+    function  BitmapFromBase64(const base64: string): TBitmap;
   end;
 
 var
@@ -1257,7 +1318,7 @@ implementation
 
 {%CLASSGROUP 'FMX.Controls.TControl'}
 
-uses DataContext, UdmReport;
+uses DataContext, UdmReport, UPrincipal;
 
 {$R *.dfm}
 
@@ -1284,7 +1345,7 @@ begin
    end
    else
    begin
-     ShowMessage('Sem dados para esse filtro!!');
+       frmPrincipal.MyShowMessage('Sem dados para esse filtro!!',false);
    end;
  end;
 end;
@@ -1413,7 +1474,7 @@ begin
    end
    else
    begin
-     ShowMessage('Sem dados para esse filtro!!');
+     frmPrincipal.MyShowMessage('Sem dados para esse filtro!!',false);
    end;
  end;
 end;
@@ -1516,7 +1577,7 @@ begin
     if not isempty then
      ppRepSaldoAtual.Print
     else
-     ShowMessage('sem dados para esse filtro');
+     frmPrincipal.MyShowMessage('sem dados para esse filtro',false);
   end;
 end;
 
@@ -1558,6 +1619,75 @@ begin
  vetor[4] := v5;
  vetor[5] := v6;
  result := SmallIntArray(Vetor);
+end;
+
+function TdmReport.BitmapFromBase64(const base64: string): TBitmap;
+var
+  Input: TStringStream;
+  Output: TBytesStream;
+begin
+  Input := TStringStream.Create(base64, TEncoding.ASCII);
+  try
+    Output := TBytesStream.Create;
+    try
+      Soap.EncdDecd.DecodeStream(Input, Output);
+      Output.Position := 0;
+      Result := TBitmap.Create;
+      try
+        Result.LoadFromStream(Output);
+      except
+        Result.Free;
+        raise;
+      end;
+    finally
+      Output.Free;
+    end;
+  finally
+    Input.Free;
+  end;
+end;
+
+procedure TdmReport.ppDetailBand15AfterPrint(Sender: TObject);
+var
+  objImage : TStringStream;
+  ms: TMemoryStream;
+  vImgBomba, vImgHorimetro : TImage;
+begin
+   if dbCtx.TAbastecimentoimg.AsString.Length>0 then
+   begin
+    vImgHorimetro := TImage.Create(nil);
+    MS := TMemoryStream.Create;
+    try
+     vImgHorimetro.Bitmap := BitmapFromBase64(dbCtx.TAbastecimentoimg.AsString);
+     vImgHorimetro.Bitmap.SaveToStream(MS);
+     MS.Position := 0;
+     ppImgHorimetro.Picture.LoadFromStream(MS);
+    except
+     ppImgHorimetro.Picture.Bitmap := nil;
+    end;
+    vImgHorimetro.Free;
+    MS.Free;
+   end
+   else
+    ppImgHorimetro.Picture.Bitmap := nil;
+
+   if dbCtx.TAbastecimentoimg2.AsString.Length>0 then
+   begin
+    vImgBomba := TImage.Create(nil);
+    MS := TMemoryStream.Create;
+    try
+     vImgBomba.Bitmap := BitmapFromBase64(dbCtx.TAbastecimentoimg2.AsString);
+     vImgBomba.Bitmap.SaveToStream(MS);
+     MS.Position := 0;
+     ppImgBomba.Picture.LoadFromStream(MS);
+    except
+     ppImgBomba.Picture.Bitmap := nil;
+    end;
+    vImgBomba.Free;
+    MS.Free;
+   end
+   else
+    ppImgBomba.Picture.Bitmap := nil;
 end;
 
 procedure TdmReport.ppHeaderBand1BeforePrint(Sender: TObject);

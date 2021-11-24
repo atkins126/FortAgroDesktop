@@ -147,6 +147,8 @@ type
     btnBuscarLista: TButton;
     Label35: TLabel;
     chkAbastecimentoExterno: TCheckBox;
+    btnListaSemFoto: TRectangle;
+    Label36: TLabel;
     procedure FormShow(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure edtVolumeLitrosChangeTracking(Sender: TObject);
@@ -184,6 +186,7 @@ type
     procedure btnListaComFotoClick(Sender: TObject);
     procedure cbxAtividadeFChange(Sender: TObject);
     procedure btnBuscarListaClick(Sender: TObject);
+    procedure btnListaSemFotoClick(Sender: TObject);
   private
     vIdMaquina,vIdOperador,vIdLocalEstoque,vIDProduto,vIdAtividade,
     vCombustivelEx,vBombaEx:string;
@@ -358,6 +361,14 @@ begin
  dmReport.ppLblPeriodoLista.Text := 'De '+edtDataInicio.Text+' Ate '+edtDataFim.Text;
  BindSourceDB1.DataSet:= nil;
  dmReport.ppRepListaFoto.print;
+ BindSourceDB1.DataSet:= dbCtx.TAbastecimento;
+end;
+
+procedure TfrmAbastecimento.btnListaSemFotoClick(Sender: TObject);
+begin
+ dmReport.ppLblbPeriodoSemFoto.Text := 'De '+edtDataInicio.Text+' Ate '+edtDataFim.Text;
+ BindSourceDB1.DataSet:= nil;
+ dmReport.ppRepListaSemFoto.print;
  BindSourceDB1.DataSet:= dbCtx.TAbastecimento;
 end;
 

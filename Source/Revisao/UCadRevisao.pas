@@ -312,7 +312,9 @@ end;
 procedure TfrmCadRevisao.btnEditarClick(Sender: TObject);
 begin
   dmRevisao.TRevisao.Edit;
-  edtNome.Text := dmRevisao.TRevisaonome.AsString;
+  edtNome.Text      := dmRevisao.TRevisaonome.AsString;
+  edtIntervalo.Text := dmRevisao.TRevisaointervalohoras
+  .AsString;
   inherited;
 end;
 

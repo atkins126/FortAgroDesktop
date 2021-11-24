@@ -84,7 +84,6 @@ type
     procedure btnCancelaClick(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
-    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
   public
@@ -154,11 +153,6 @@ end;
 
 procedure TfrmCadPadrao.btnFecharClick(Sender: TObject);
 begin
-  if DataModule1.Sincronizando=1 then
-  begin
-    MyShowMessage('Aguarde Sincronizando Dados!',false);
-    Exit;
-  end;
   close;
 end;
 
@@ -167,15 +161,6 @@ begin
  layListaP.Opacity :=0;
  MudarAba(tbiLista,sender);
  AnimacaoMnu.Start;
-end;
-
-procedure TfrmCadPadrao.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
-begin
-  if DataModule1.Sincronizando=1 then
-  begin
-    MyShowMessage('Aguarde Sincronizando Dados!',false);
-    canClose := false;
-  end;
 end;
 
 procedure TfrmCadPadrao.FormShow(Sender: TObject);

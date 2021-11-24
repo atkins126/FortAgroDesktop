@@ -13,7 +13,7 @@ uses
   FMX.Controls.Presentation, FMX.Objects, FMX.Layouts, Fmx.Bind.Grid,
   System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
   Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope,
-  FMX.ListBox, FMX.DateTimeCtrls;
+  FMX.ListBox, FMX.DateTimeCtrls, FMX.Menus;
 
 type
   TfrmReceituario = class(TfrmCadPadrao)
@@ -151,6 +151,11 @@ type
     btnFichaRetirada: TRectangle;
     Image16: TImage;
     Label35: TLabel;
+    Label36: TLabel;
+    cbxSituacao: TComboBox;
+    PopupMenu1: TPopupMenu;
+    MenuItem1: TMenuItem;
+    MenuItem2: TMenuItem;
     procedure EditButton2Click(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -184,6 +189,8 @@ type
     procedure btnBuscarListaClick(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
+    procedure MenuItem1Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
   private
     vIDResponsavel,vIdProduto,vIdTalhao,vId,vIdCultura :string;
 
@@ -523,6 +530,13 @@ begin
     vFiltro:=vFiltro+' and b.status ='+intToStr(cbxStatusF.ItemIndex);
    if edtCulturaFiltro.Text.Length>0 then
     vFiltro:=vFiltro+' and g.nome like '+QuotedStr('%'+edtCulturaFiltro.Text+'%');
+   if cbxSituacao.ItemIndex>0 then
+   begin
+     if cbxSituacao.ItemIndex=1 then
+       vFiltro:=vFiltro+' and b.liberado=1';
+     if cbxSituacao.ItemIndex=2 then
+       vFiltro:=vFiltro+' and b.liberado=0';
+   end;
    dbCtx.AbreReceituario(vFiltro);
  end;
 end;
@@ -539,7 +553,7 @@ begin
   StringGrid1.RowCount :=0;
   StringGrid2.RowCount :=0;
   StringGrid3.RowCount :=0;
-  edtDataInicio.Date   := date-7;
+  edtDataInicio.Date   := date-30;
   edtDataFim.Date      := date;
   cbxStatusF.ItemIndex :=0;
   edtDataInicio.Date   := date-30;
@@ -557,6 +571,7 @@ begin
   btnAdd.Enabled          := dbCtx.vTipoBDConfig=2;
   btnEditar.Enabled       := dbCtx.vTipoBDConfig=2;
   btnDeletar.Enabled      := dbCtx.vTipoBDConfig=2;
+  Filtro;
 end;
 
 procedure TfrmReceituario.gridTalhoEditingDone(Sender: TObject; const ACol,
@@ -572,6 +587,32 @@ procedure TfrmReceituario.Image12Click(Sender: TObject);
 begin
  layAddDetReceituario.Visible := false;
  SomaColuna;
+end;
+
+procedure TfrmReceituario.MenuItem1Click(Sender: TObject);
+begin
+//libera
+ try
+  dbCtx.AlteraSituacaoReceituario(dbCtx.TReceituarioid.AsString,'1');
+  MyShowMessage('Receituario Liberado com Sucesso!',false);
+  Filtro;
+ except
+   on E : Exception do
+    ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
+ end;
+end;
+
+procedure TfrmReceituario.MenuItem2Click(Sender: TObject);
+begin
+ //trava
+ try
+  dbCtx.AlteraSituacaoReceituario(dbCtx.TReceituarioid.AsString,'0');
+  MyShowMessage('Receituario Travado com Sucesso!',false);
+  Filtro;
+ except
+   on E : Exception do
+    ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
+ end;
 end;
 
 procedure TfrmReceituario.btnDropProdutoClick(Sender: TObject);
