@@ -219,6 +219,12 @@ type
     imgChk: TImage;
     TreeViewItem11: TTreeViewItem;
     Image69: TImage;
+    imgListaItem: TImage;
+    imgListaHist: TImage;
+    imgListaRel: TImage;
+    imgListaReceber: TImage;
+    imgListaOrcamentos: TImage;
+    imgProduto: TImage;
     procedure FormShow(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnEntrarClick(Sender: TObject);
@@ -351,6 +357,7 @@ begin
     vWebBrowser.Opacity        := 0.5;
     vWebBrowser.URL :=URL;
 end;
+
 
 procedure TfrmPrincipal.GeraDash;
 begin

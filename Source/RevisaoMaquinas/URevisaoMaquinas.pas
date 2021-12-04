@@ -143,7 +143,7 @@ type
     Rectangle26: TRectangle;
     Layout35: TLayout;
     Label32: TLabel;
-    NumberBox1: TNumberBox;
+    edtQtdtemManutencao: TNumberBox;
     Layout36: TLayout;
     Rectangle27: TRectangle;
     Layout37: TLayout;
@@ -353,15 +353,17 @@ type
     procedure btnBuscarListaClick(Sender: TObject);
     procedure FormKeyUp(Sender: TObject; var Key: Word; var KeyChar: Char;
       Shift: TShiftState);
+    procedure btnEditarClick(Sender: TObject);
   private
     var
      vStatusSelected,vIdMaquina,vIdResponsavel,vIdPlanoRevisao,
      vIdItemTMP,vProdutoNome,vItemNome,vQtde,vIdProduto,vCodFab,
-     vIdItem,vIdProdutoAdd,vItemSelect,vObsSelected,vIdPlanoRevisaoApl:string;
+     vIdItem,vIdProdutoAdd,vItemSelect,vObsSelected,vIdPlanoRevisaoApl,vIdMaxRevEdit:string;
      vPlanoRevisaoHoras :Double;
+     vEdit:integer;
   public
     procedure GeraLista(idPlanoManutencao:string);
-
+    procedure GeraListaEdit(idRevisao:string);
     procedure Filtro;
   end;
 
@@ -377,16 +379,21 @@ uses UDMRevisao, UCadMaquina, UUsuarios, UCadRevisao,DataContext, UPrincipal,
 
 procedure TfrmCadRevisaoMaquinas.btnAddClick(Sender: TObject);
 begin
+  vEdit :=0;
   layEdit.Visible           := false;
   RectCad.Visible           := false;
   edtMaquina.Text           :='';
   edtHorimetro.Text         :='0';
   edtResponsavel.Text       :='';
   edtPlanoManutencao.Text   :='';
-
+  edtPlanoManutencao.Enabled := true;
+  cbxTipoManu.ItemIndex      := -1;
+  cbxTipoManu.Enabled        := true;
+  edtMaquina.Enabled         := true;
   layDadosMaquias.Enabled    := false;
   layDadosManutencao.Enabled := false;
   dmRevisao.TRevisaoMaquinaApl.Insert;
+  btnGerar.Enabled           := true;
   inherited;
 end;
 
@@ -408,13 +415,13 @@ begin
    Exit;
   end;
 
-  if (edtqtde.Text.Length=0) or (edtqtde.Value=0) then
+  if (edtQtdtemManutencao.Text.Length=0) or (edtQtdtemManutencao.Value=0) then
   begin
    MyShowMessage('Informe a Qtde!',false);
    Exit;
   end;
 
-  dmRevisao.InsereItensTMP(vIdPlanoRevisao,edtItemRevisao.Text, vidProduto, edtqtde.Text,'0',vIdItem);
+  dmRevisao.InsereItensTMP(vIdPlanoRevisao,edtItemRevisao.Text, vidProduto, edtQtdtemManutencao.Text,'0',vIdItem);
   MyShowMessage('Item Inserido com sucesso!',false);
   GeraLista(vIdPlanoRevisao);
   MudarAba(tbiCad,sender);
@@ -544,6 +551,29 @@ begin
  end;
 end;
 
+procedure TfrmCadRevisaoMaquinas.btnEditarClick(Sender: TObject);
+begin
+ vEdit :=1;
+ cbxTipoManu.ItemIndex    := dmRevisao.TRevisaoMaquinaApltipo.AsInteger;
+ edtMaquina.Text          := dmRevisao.TRevisaoMaquinaAplprefixo.AsString;
+ vIdMaquina               := dmRevisao.TRevisaoMaquinaAplidmaquina.AsString;
+ edtHorimetro.Text        := dmRevisao.TRevisaoMaquinaAplhorimetro.AsString;
+ edtResponsavel.Text      := dmRevisao.TRevisaoMaquinaAplresponsavel.AsString;
+ vIdResponsavel           := dmRevisao.TRevisaoMaquinaAplidresponsavel.AsString;
+ edtPlanoManutencao.Text  := dmRevisao.TRevisaoMaquinaAplplanorevisao.AsString;
+ vIdPlanoRevisao          := dmRevisao.TRevisaoMaquinaAplidplanorevisao.AsString;
+ edtDataIni.Date          := dmRevisao.TRevisaoMaquinaApldatainicio.AsDateTime;
+ edtDataFim.Date          := dmRevisao.TRevisaoMaquinaApldatafim.AsDateTime;
+ dmRevisao.GeraListaItensTMPEdit(dmRevisao.TRevisaoMaquinaAplid.AsString);
+ GeraLista(dmRevisao.TRevisaoMaquinaAplid.AsString);
+ vIdMaxRevEdit              :=dmRevisao.TRevisaoMaquinaAplid.AsString;
+ edtPlanoManutencao.Enabled := false;
+ cbxTipoManu.Enabled        := false;
+ edtMaquina.Enabled         := false;
+ btnGerar.Enabled           := false;
+ MudarAba(tbiCad,sender);
+end;
+
 procedure TfrmCadRevisaoMaquinas.btnExcluirServicoClick(Sender: TObject);
 begin
  MyShowMessage('Deseja Realmente Deletar esse Serviço?',true);
@@ -590,6 +620,7 @@ begin
   dmRevisao.GeraListaItensTMP(vIdPlanoRevisao);
  if cbxTipoManu.ItemIndex=1 then
   dmRevisao.GeraListaItensTMP('0');
+
  GeraLista(vIdPlanoRevisao);
  RectCad.Visible := true;
  rdTtodosF.IsChecked := true;
@@ -605,10 +636,21 @@ begin
     MyShowMessage('Pelo menos um item deve ser confirmado antes de salvar!!',false);
     Exit;
   end;
-  dmRevisao.TRevisaoMaquinaApl.Close;
-  dmRevisao.TRevisaoMaquinaApl.Open;
-  dmRevisao.TRevisaoMaquinaApl.Insert;
-  dmRevisao.TRevisaoMaquinaAplidusuario.AsString      :=dbCtx.vIdUsuarioLogado;
+  if vEdit=0 then
+  begin
+   dmRevisao.TRevisaoMaquinaApl.Close;
+   dmRevisao.TRevisaoMaquinaApl.Open;
+   dmRevisao.TRevisaoMaquinaApl.Insert;
+  end
+  else
+  begin
+   dmRevisao.TRevisaoMaquinaApl.Edit;
+   dmRevisao.TRevisaoMaquinaAplidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
+   dmRevisao.TRevisaoMaquinaApldataalteracao.AsDateTime    := now;
+   dmRevisao.TRevisaoMaquinaAplsyncaws.AsInteger           := 0;
+  end;
+
+  dmRevisao.TRevisaoMaquinaAplidusuario.AsString        :=dbCtx.vIdUsuarioLogado;
 
   if cbxTipoManu.ItemIndex=0 then
   begin
@@ -631,44 +673,52 @@ begin
      edtHorimetro.Text,
      stringrePLACE(floatToStr(StrToFloat(edtHorimetro.Text)+vPlanoRevisaoHoras),',','.',[rfReplaceAll])
     );
-    vIdMaxRev := dmRevisao.RetornaIdMaxRevisao;
-    dmRevisao.qryListaItensPlanoRev.Filtered := false;
-    dmRevisao.qryListaItensPlanoRev.Filter   := 'status=2';
-    dmRevisao.qryListaItensPlanoRev.Filtered := true;
-    dmRevisao.qryListaItensPlanoRev.First;
-    while not dmRevisao.qryListaItensPlanoRev.eof do
+    if vEdit=0 then
+      vIdMaxRev := dmRevisao.RetornaIdMaxRevisao
+    else
     begin
-     dmRevisao.TRevisaoItensInsert.close;
-     dmRevisao.TRevisaoItensInsert.Open;
-     dmRevisao.TRevisaoItensInsert.Insert;
-     dmRevisao.TRevisaoItensInsertidusuario.AsString :=dbCtx.vIdUsuarioLogado;
-     dmRevisao.TRevisaoItensInsertidrevisao.AsString :=vIdMaxRev;
-     dmRevisao.TRevisaoItensInsertitem.AsString      :=dmRevisao.qryListaItensPlanoRevitem.AsString;
-     dmRevisao.TRevisaoItensInsertidproduto.AsString :=dmRevisao.qryListaItensPlanoRevidproduto.AsString;
-     dmRevisao.TRevisaoItensInsertqtde.AsString      :=dmRevisao.qryListaItensPlanoRevqtde.AsString;
-     dmRevisao.TRevisaoItensInsertqtde.AsString      :=dmRevisao.qryListaItensPlanoRevqtde.AsString;
-     dmRevisao.TRevisaoItensInserttipo.AsString      :=dmRevisao.qryListaItensPlanoRevtipo.AsString;
-     dmRevisao.TRevisaoItensInsertidItem.AsString    :=dmRevisao.qryListaItensPlanoRevidItem.AsString;
-     dmRevisao.TRevisaoItensInsert.ApplyUpdates(-1);
-     dmRevisao.qryListaItensPlanoRev.Next
+      vIdMaxRev := vIdMaxRevEdit;
+      dmRevisao.DeletaItensRevisao(vIdMaxRev);
     end;
-    dmRevisao.TServicoRevisao.Close;
-    dmRevisao.TServicoRevisao.Open;
-    dmRevisao.TServicoRevisao.First;
-    while not dmRevisao.TServicoRevisao.Eof do
-    begin
-      dmRevisao.AlteraIdRevisaoTMPServico(
-       dmRevisao.TServicoRevisaoid.AsString,
-       vIdMaxRev);
-       dmRevisao.TServicoRevisao.Next;
+
+      dmRevisao.qryListaItensPlanoRev.Filtered := false;
+      dmRevisao.qryListaItensPlanoRev.Filter   := 'confirmado=2';
+      dmRevisao.qryListaItensPlanoRev.Filtered := true;
+      dmRevisao.qryListaItensPlanoRev.First;
+      while not dmRevisao.qryListaItensPlanoRev.eof do
+      begin
+       dmRevisao.TRevisaoItensInsert.close;
+       dmRevisao.TRevisaoItensInsert.Open;
+       dmRevisao.TRevisaoItensInsert.Insert;
+       dmRevisao.TRevisaoItensInsertidusuario.AsString :=dbCtx.vIdUsuarioLogado;
+       dmRevisao.TRevisaoItensInsertidrevisao.AsString :=vIdMaxRev;
+       dmRevisao.TRevisaoItensInsertitem.AsString      :=dmRevisao.qryListaItensPlanoRevitem.AsString;
+       dmRevisao.TRevisaoItensInsertidproduto.AsString :=dmRevisao.qryListaItensPlanoRevidproduto.AsString;
+       dmRevisao.TRevisaoItensInsertqtde.AsString      :=dmRevisao.qryListaItensPlanoRevqtde.AsString;
+       dmRevisao.TRevisaoItensInsertqtde.AsString      :=dmRevisao.qryListaItensPlanoRevqtde.AsString;
+       dmRevisao.TRevisaoItensInserttipo.AsString      :=dmRevisao.qryListaItensPlanoRevtipo.AsString;
+       dmRevisao.TRevisaoItensInsertidItem.AsString    :=dmRevisao.qryListaItensPlanoRevidItem.AsString;
+       dmRevisao.TRevisaoItensInsert.ApplyUpdates(-1);
+       dmRevisao.qryListaItensPlanoRev.Next
+      end;
+
+      dmRevisao.TServicoRevisao.Close;
+      dmRevisao.TServicoRevisao.Open;
+      dmRevisao.TServicoRevisao.First;
+      while not dmRevisao.TServicoRevisao.Eof do
+      begin
+        dmRevisao.AlteraIdRevisaoTMPServico(
+         dmRevisao.TServicoRevisaoid.AsString,
+         vIdMaxRev);
+         dmRevisao.TServicoRevisao.Next;
+      end;
+      MyShowMessage('Manutenção lançada com sucesso!!',false);
+      dmRevisao.AbreRevisaoApl('');
+      MudarAba(tbiLista,Sender);
+    except
+      on E : Exception do
+       ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
     end;
-    MyShowMessage('Manutenção lançada com sucesso!!',false);
-    dmRevisao.AbreRevisaoApl('');
-    MudarAba(tbiLista,Sender);
-  except
-    on E : Exception do
-     ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
-  end;
 end;
 
 procedure TfrmCadRevisaoMaquinas.btnServicosClick(Sender: TObject);
@@ -718,7 +768,16 @@ end;
 
 procedure TfrmCadRevisaoMaquinas.EditButton1Click(Sender: TObject);
 begin
+  if edtMaquina.Text.Length=0 then
+  begin
+    MyShowMessage('Informe a Maquina Antes!!',false);
+    Exit;
+  end;
+
   frmCadRevisao := TfrmCadRevisao.Create(Self);
+  frmCadRevisao.edtMaquinaF.Text    := edtMaquina.Text;
+  frmCadRevisao.edtMaquinaF.Enabled := false;
+  frmCadRevisao.btnBuscarListaClick(Sender);
   try
     frmCadRevisao.ShowModal;
   finally
@@ -845,6 +904,7 @@ end;
 
 procedure TfrmCadRevisaoMaquinas.FormShow(Sender: TObject);
 begin
+  layEdit.Visible       := false;
   tbServico.TabPosition := TTabPosition.None;
   tbServico.ActiveTab   := tbiListaServico;
   edtDataInicio.Date    := date-30;
@@ -860,6 +920,7 @@ begin
   btnAdd.Enabled          := dbCtx.vTipoBDConfig=1;
   btnEditar.Enabled       := dbCtx.vTipoBDConfig=1;
   btnDeletar.Enabled      := dbCtx.vTipoBDConfig=1;
+  vEdit :=0;
 end;
 
 procedure TfrmCadRevisaoMaquinas.GeraLista(idPlanoManutencao: string);
@@ -979,7 +1040,7 @@ begin
 
 
          end;
-         if dmRevisao.qryListaItensPlanoRevstatus.AsInteger=2 then
+         if dmRevisao.qryListaItensPlanoRevconfirmado.AsInteger=2 then
          begin
           img := TListItemImage(Objects.FindDrawable('Image25'));
           img.Bitmap     := frmPrincipal.imgConfirmado.Bitmap;
@@ -997,6 +1058,140 @@ begin
  end;
 end;
 
+
+procedure TfrmCadRevisaoMaquinas.GeraListaEdit(idRevisao: string);
+var
+ item   : TListViewItem;
+ txt    : TListItemText;
+ txtH   : TListItemPurpose;
+ img    : TListItemImage;
+ vStatus:string;
+begin
+ dmRevisao.AbreItensRevisaoApl(idRevisao);
+ if rdTtodosF.IsChecked then
+ begin
+   dmRevisao.TRevisaoMaquinaItens.Filtered := false;
+ end
+ else
+ begin
+   dmRevisao.TRevisaoMaquinaItens.Filtered := false;
+   if rdManutencaoF.IsChecked then
+    dmRevisao.TRevisaoMaquinaItens.Filter   := 'tipo=0';
+   if RdLubF.IsChecked then
+    dmRevisao.TRevisaoMaquinaItens.Filter   := 'tipo=1';
+   if RdVerificF.IsChecked then
+    dmRevisao.TRevisaoMaquinaItens.Filter   := 'tipo=2';
+   dmRevisao.TRevisaoMaquinaItens.Filtered := true;
+ end;
+ dmRevisao.TRevisaoMaquinaItens.First;
+ Lista.Items.Clear;
+ while not dmRevisao.TRevisaoMaquinaItens.eof do
+ begin
+     item := Lista.Items.Add;
+     with frmCadRevisaoMaquinas do
+     begin
+       with item  do
+       begin
+
+         txt           := TListItemText(Objects.FindDrawable('Text17'));
+         txt.Text      := dmRevisao.TRevisaoMaquinaItenstipostr.AsString;
+         txt.TagString := dmRevisao.TRevisaoMaquinaItensitem.AsString;
+
+         txt           := TListItemText(Objects.FindDrawable('Text1'));
+         txt.Text      := 'Item : ';
+         txt.TagString := dmRevisao.TRevisaoMaquinaItensidproduto.AsString;
+
+         txt           := TListItemText(Objects.FindDrawable('Text2'));
+         txt.text      := dmRevisao.TRevisaoMaquinaItensitemnome.AsString;
+         txt.TagString := dmRevisao.TRevisaoMaquinaItensobservacao.AsString;
+
+         if dmRevisao.TRevisaoMaquinaItenstipo.AsInteger=0 then
+         begin
+          txt           := TListItemText(Objects.FindDrawable('Text3'));
+          txt.Text      := 'Produto : ';
+          txt.TagString := dmRevisao.TRevisaoMaquinaItensid.AsString;
+
+          txt           := TListItemText(Objects.FindDrawable('Text4'));
+          txt.text      := dmRevisao.TRevisaoMaquinaItensproduto.AsString;
+
+          txt           := TListItemText(Objects.FindDrawable('Text5'));
+          txt.Text      := 'Codigo Fabricante : ';
+          txt.TagString := dmRevisao.TRevisaoMaquinaItenscodigofabricante.AsString;
+
+          txt           := TListItemText(Objects.FindDrawable('Text6'));
+          txt.text      := dmRevisao.TRevisaoMaquinaItenscodigofabricante.AsString;
+
+          txt           := TListItemText(Objects.FindDrawable('Text7'));
+          txt.Text      := 'Qtde : ';
+
+          txt           := TListItemText(Objects.FindDrawable('Text8'));
+          txt.text      := dmRevisao.TRevisaoMaquinaItensqtde.AsString;
+
+          img := TListItemImage(Objects.FindDrawable('Image11'));
+          img.Bitmap     := frmPrincipal.imgEdit.Bitmap;
+          txt            := TListItemText(Objects.FindDrawable('Text14'));
+          txt.text       := 'Editar';
+         end;
+         if dmRevisao.qryListaItensPlanoRevtipo.AsInteger>0 then
+         begin
+          txt           := TListItemText(Objects.FindDrawable('Text3'));
+          txt.Text      := 'Observação : ';
+          txt.TagString := dmRevisao.TRevisaoMaquinaItensid.AsString;
+
+          txt           := TListItemText(Objects.FindDrawable('Text4'));
+          txt.text      := dmRevisao.TRevisaoMaquinaItensobservacao.AsString;
+
+          img := TListItemImage(Objects.FindDrawable('Image19'));
+          img.Bitmap     := frmPrincipal.imgObs.Bitmap;
+          txt            := TListItemText(Objects.FindDrawable('Text18'));
+          txt.text       := 'Observação';
+         end;
+
+         img := TListItemImage(Objects.FindDrawable('Image9'));
+         if dmRevisao.TRevisaoMaquinaItenstipo.AsInteger=0 then
+          img.Bitmap     := frmPrincipal.IMG_REVISAO.Bitmap;
+         if dmRevisao.TRevisaoMaquinaItenstipo.AsInteger=1 then
+          img.Bitmap     := frmPrincipal.imgLub.Bitmap;
+         if dmRevisao.TRevisaoMaquinaItenstipo.AsInteger=2 then
+          img.Bitmap     := frmPrincipal.imgVerific.Bitmap;
+
+         txt           := TListItemText(Objects.FindDrawable('Text13'));
+         txt.text      := 'Excluir';
+         txt.TagString := dmRevisao.TRevisaoMaquinaItensStatus.AsString;
+
+         img := TListItemImage(Objects.FindDrawable('Image12'));
+         img.Bitmap     := frmPrincipal.imgdelete.Bitmap;
+
+         if dmRevisao.qryListaItensPlanoRevstatus.AsInteger=1 then
+         begin
+          img := TListItemImage(Objects.FindDrawable('Image25'));
+          img.Bitmap     := nil;
+
+          img := TListItemImage(Objects.FindDrawable('Image10'));
+          img.Bitmap    := frmPrincipal.imgChk.Bitmap;
+
+          txt           := TListItemText(Objects.FindDrawable('Text15'));
+          txt.text      := 'Confirmar';
+
+
+         end;
+         if dmRevisao.qryListaItensPlanoRevstatus.AsInteger=2 then
+         begin
+          img := TListItemImage(Objects.FindDrawable('Image25'));
+          img.Bitmap     := frmPrincipal.imgConfirmado.Bitmap;
+
+          img := TListItemImage(Objects.FindDrawable('Image10'));
+          img.Bitmap    := frmPrincipal.imgConfirmar.Bitmap;
+
+          txt           := TListItemText(Objects.FindDrawable('Text15'));
+          txt.text      := 'Confirmado';
+
+         end;
+       end;
+       dmRevisao.TRevisaoMaquinaItens.Next;
+     end;
+ end;
+end;
 
 procedure TfrmCadRevisaoMaquinas.Image19Click(Sender: TObject);
 begin
@@ -1054,6 +1249,7 @@ begin
             try
               dmRevisao.MudaStatusItemTMP(vIdItemTMP,'-1');
               GeraLista(vIdPlanoRevisao);
+              Exit;
             except
              on E : Exception do
               ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
@@ -1137,21 +1333,22 @@ end;
 
 procedure TfrmCadRevisaoMaquinas.btnAdicionarItemClick(Sender: TObject);
 begin
-  rdManutencao.IsChecked   := false;
-  rdLubrificacao.IsChecked := false;
-  rdVerificacao.IsChecked  := false;
-  tabTipoItem.TabPosition  := TTabPosition.None;
-  tabTipoItem.TabIndex     := -1;
-  edtProdutoUtilizado.Text :='';
-  edtItemRevisao.Text      :='';
-  edtLub.Text              :='';
-  edtObsLub.Text           :='';
-  edtVrific.Text           :='';
-  edtObsVerific.Text       :='';
-  edtObsManu.Text          :='';
-  edtqtde.Value            :=1;
-  layNovoItem.Height       := 131;
-  layNovoItem.Visible      := true;
+  rdManutencao.IsChecked    := false;
+  rdLubrificacao.IsChecked  := false;
+  rdVerificacao.IsChecked   := false;
+  tabTipoItem.TabPosition   := TTabPosition.None;
+  tabTipoItem.TabIndex      := -1;
+  edtProdutoUtilizado.Text  :='';
+  edtItemRevisao.Text       :='';
+  edtLub.Text               :='';
+  edtObsLub.Text            :='';
+  edtVrific.Text            :='';
+  edtObsVerific.Text        :='';
+  edtObsManu.Text           :='';
+  edtqtde.Value             :=1;
+  edtQtdtemManutencao.Value :=0;
+  layNovoItem.Height        := 131;
+  layNovoItem.Visible       := true;
   MudarAba(tbiAddItem,sender);
 end;
 
@@ -1169,7 +1366,8 @@ begin
   Exit;
  end;
  try
-  dmRevisao.EditaItemListaTMP(vIdItemTMP, vIdProduto, StringReplace(edtqtde.Text,',','.',[rfReplaceAll]));
+  dmRevisao.EditaItemListaTMP(vIdItemTMP, vIdProduto,
+  StringReplace(edtqtde.Text,',','.',[rfReplaceAll]));
   MyShowMessage('Item Alterado com Sucesso!',false);
   GeraLista(vIdPlanoRevisao);
   layEdit.Visible := false

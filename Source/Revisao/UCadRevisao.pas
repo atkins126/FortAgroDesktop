@@ -40,8 +40,7 @@ type
     Label8: TLabel;
     Layout6: TLayout;
     Rectangle5: TRectangle;
-    Rectangle6: TRectangle;
-    Image7: TImage;
+    btnEditarRev: TRectangle;
     Label9: TLabel;
     btnIncluirItem: TRectangle;
     Image8: TImage;
@@ -150,6 +149,10 @@ type
     btnBuscaItem: TEditButton;
     btnBuscaItemLubri: TEditButton;
     EditButton6: TEditButton;
+    Image7: TImage;
+    Label27: TLabel;
+    edtMaquinaF: TEdit;
+    btnBuscarLista: TButton;
     procedure btnAddClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -176,6 +179,9 @@ type
     procedure EditButton6Click(Sender: TObject);
     procedure edtNomeFiltroKeyUp(Sender: TObject; var Key: Word;
       var KeyChar: Char; Shift: TShiftState);
+    procedure btnBuscarClick(Sender: TObject);
+    procedure btnBuscarListaClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
   public
@@ -228,6 +234,46 @@ begin
     end;
     frmAuxItemRevisao.Free;
   end;
+end;
+
+procedure TfrmCadRevisao.btnBuscarClick(Sender: TObject);
+begin
+  dmRevisao.TRevisaoItens.Edit;
+  rdManutencao.IsChecked   := dmRevisao.TRevisaoItenstipo.AsInteger=0;
+  rdLubrificacao.IsChecked := dmRevisao.TRevisaoItenstipo.AsInteger=1;
+  rdVerificacao.IsChecked  := dmRevisao.TRevisaoItenstipo.AsInteger=2;
+  tabTipoItem.TabPosition  := TTabPosition.None;
+  vIdItem                  := dmRevisao.TRevisaoItensIditem.AsString;
+  vIdProduto               := dmRevisao.TRevisaoItensidproduto.AsString;
+  edtItemRevisao.Text      := dmRevisao.TRevisaoItensitem.AsString;
+  if dmRevisao.TRevisaoItenstipo.AsInteger=0 then
+  begin
+   edtProdutoUtilizado.Text := dmRevisao.TRevisaoItensproduto.AsString;
+   edtObsManu.Text          := dmRevisao.TRevisaoItensobservacao.AsString;
+   rdManutencaoChange(sender);
+  end;
+  if dmRevisao.TRevisaoItenstipo.AsInteger=1 then
+  begin
+   edtLub.Text              := dmRevisao.TRevisaoItensproduto.AsString;
+   edtObsLub.Text           :=dmRevisao.TRevisaoItensobservacao.AsString;
+   rdLubrificacaoChange(Sender);
+  end;
+  if dmRevisao.TRevisaoItenstipo.AsInteger=2 then
+  begin
+   edtVrific.Text           := dmRevisao.TRevisaoItensproduto.AsString;
+   edtObsVerific.Text       := dmRevisao.TRevisaoItensobservacao.AsString;
+   rdVerificacaoChange(Sender);
+  end;
+  edtqtde.Value             := dmRevisao.TRevisaoItensqtde.AsFloat;
+  layNovoItem.Visible       := true;
+end;
+
+procedure TfrmCadRevisao.btnBuscarListaClick(Sender: TObject);
+begin
+ dmRevisao.AbreRevisao(edtNomeFiltro.Text,edtMaquinaF.Text);
+ dmRevisao.TRevisaoItens.Open;
+ dmRevisao.TRevisaoMaquinas.Open();
+ lblTotalRegistro.Text := intToStr(StringGrid1.RowCount);
 end;
 
 procedure TfrmCadRevisao.btnDeletarClick(Sender: TObject);
@@ -313,8 +359,7 @@ procedure TfrmCadRevisao.btnEditarClick(Sender: TObject);
 begin
   dmRevisao.TRevisao.Edit;
   edtNome.Text      := dmRevisao.TRevisaonome.AsString;
-  edtIntervalo.Text := dmRevisao.TRevisaointervalohoras
-  .AsString;
+  edtIntervalo.Text := dmRevisao.TRevisaointervalohoras.AsString;
   inherited;
 end;
 
@@ -333,6 +378,7 @@ begin
   edtObsManu.Text          :='';
   edtqtde.Value            :=1;
   layNovoItem.Height       := 131;
+  dmRevisao.TRevisaoItens.Insert;
   layNovoItem.Visible      := true;
 end;
 
@@ -463,20 +509,14 @@ begin
  if key=13 then
   if tbPrincipal.TabIndex=0 then
   begin
-     if edtNomeFiltro.Text.Length>0 then
-     begin
-       dmRevisao.TRevisao.Filtered := false;
-       dmRevisao.TRevisao.Filter   := 'NOME LIKE '+QuotedStr('%'+edtNomeFiltro.Text+'%');
-       dmRevisao.TRevisao.Filtered := true;
-     end
-     else
-     begin
-       dmRevisao.TRevisao.Filtered := false;
-       dmRevisao.TRevisao.Close;
-       dmRevisao.TRevisao.Open;
-     end;
-     lblTotalRegistro.Text := intToStr(StringGrid1.RowCount);
+    btnBuscarListaClick(Sender);
   end;
+end;
+
+procedure TfrmCadRevisao.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+ edtMaquinaF.Enabled := true;
+ edtMaquinaF.Text    := '';
 end;
 
 procedure TfrmCadRevisao.FormShow(Sender: TObject);
@@ -492,10 +532,7 @@ begin
   btnAdd.Enabled          := dbCtx.vTipoBDConfig=0;
   btnEditar.Enabled       := dbCtx.vTipoBDConfig=0;
   btnDeletar.Enabled      := dbCtx.vTipoBDConfig=0;
-  dmRevisao.TRevisao.Close;
-  dmRevisao.TRevisao.Open;
-  dmRevisao.TRevisaoItens.Open;
-  dmRevisao.TRevisaoMaquinas.Open();
+  btnBuscarListaClick(sender);
 end;
 
 procedure TfrmCadRevisao.Image13Click(Sender: TObject);
@@ -528,7 +565,6 @@ end;
 
 procedure TfrmCadRevisao.Rectangle15Click(Sender: TObject);
 begin
- dmRevisao.TRevisaoItens.Insert;
  dmRevisao.TRevisaoItensidrevisao.AsString := dmRevisao.TRevisaoid.AsString;
  dmRevisao.TRevisaoItensidusuario.AsString := dbCtx.vIdUsuarioLogado;
  if rdManutencao.IsChecked then
@@ -555,6 +591,7 @@ begin
   dmRevisao.TRevisaoItenstipo.AsInteger       := 2;
  end;
  try
+  dmRevisao.TRevisaoItenssyncfaz.AsInteger    := 0;
   dmRevisao.TRevisaoItensiditem.AsString      := vIdItem;
   dmRevisao.TRevisaoItens.ApplyUpdates(-1);
   dmRevisao.TRevisaoItens.Close;

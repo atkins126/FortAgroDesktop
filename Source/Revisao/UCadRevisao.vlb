@@ -180,7 +180,7 @@ Coordinates=10,1853,46,51
 Coordinates=1000,1930,58,33
 
 []
-Coordinates=732,1,82,33
+Coordinates=1154,1650,49,51
 
 [BindSourceDB1]
 Coordinates=1551,1064,104,249
@@ -423,9 +423,6 @@ Coordinates=1361,1853,46,51
 [btnIncluirItem]
 Coordinates=177,1930,82,33
 
-[Rectangle6]
-Coordinates=2497,1853,69,33
-
 [btnIncluirMaquina]
 Coordinates=1832,1930,103,33
 
@@ -490,9 +487,6 @@ Coordinates=597,1930,86,33
 [layDetalhes]
 Coordinates=1546,1930,71,33
 
-[Image7]
-Coordinates=1154,1650,49,51
-
 [Image10]
 Coordinates=1520,1650,55,51
 
@@ -511,4 +505,7 @@ Coordinates=781,1064,126,267
 
 [BindSourceDB3]
 Coordinates=1929,1650,148,357
+
+[btnEditarRev]
+Coordinates=2497,1853,69,33
 

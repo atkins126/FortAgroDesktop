@@ -647,9 +647,6 @@ Coordinates=1873,1,206,36
 [TAbastecimentoidusuario]
 Coordinates=1603,2757,160,36
 
-[PgDriverLink]
-Coordinates=1603,2809,88,36
-
 [TCentroCustostatus]
 Coordinates=1603,2861,129,36
 
@@ -2220,7 +2217,7 @@ Coordinates=3196,3277,194,36
 Coordinates=798,1273,108,300
 
 []
-Coordinates=3515,2861,132,36
+Coordinates=1603,2809,88,36
 
 [Contratossaldo]
 Coordinates=947,2118,101,36

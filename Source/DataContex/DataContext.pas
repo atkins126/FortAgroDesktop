@@ -753,7 +753,6 @@ type
     TAbastecimentooperador: TWideStringField;
     TAbastecimentohorimetro: TBCDField;
     TDetReceituariofinalidade: TWideStringField;
-    PgDriverLink: TFDPhysPgDriverLink;
     TUsuarioimgass: TBlobField;
     TAuxPragas: TFDQuery;
     TAuxPragasid: TIntegerField;
@@ -1068,49 +1067,6 @@ type
     TValorLiquidoOrcvalorbrutomaisfrete: TFMTBCDField;
     TValorLiquidoOrcvalorliquido: TFMTBCDField;
     TOrcamentosenha: TWideStringField;
-    TItensOrcamentoitem: TLargeintField;
-    TItensOrcamentoid: TIntegerField;
-    TItensOrcamentostatus: TIntegerField;
-    TItensOrcamentodatareg: TSQLTimeStampField;
-    TItensOrcamentoidusuario: TIntegerField;
-    TItensOrcamentodataalteracao: TSQLTimeStampField;
-    TItensOrcamentoidusuarioalteracao: TIntegerField;
-    TItensOrcamentoidorcamento: TIntegerField;
-    TItensOrcamentoidproduto: TIntegerField;
-    TItensOrcamentovalorunidade: TBCDField;
-    TItensOrcamentoobservacao: TWideStringField;
-    TItensOrcamentosyncaws: TIntegerField;
-    TItensOrcamentosyncfaz: TIntegerField;
-    TItensOrcamentodesconto: TFMTBCDField;
-    TItensOrcamentodescontogeral: TFMTBCDField;
-    TItensOrcamentoipi: TFMTBCDField;
-    TItensOrcamentoicmst: TFMTBCDField;
-    TItensOrcamentofrete: TFMTBCDField;
-    TItensOrcamentofretegeral: TFMTBCDField;
-    TItensOrcamentodiferencialalicota: TFMTBCDField;
-    TItensOrcamentomarca: TWideStringField;
-    TItensOrcamentoidmarca: TIntegerField;
-    TItensOrcamentooriginal: TIntegerField;
-    TItensOrcamentounidademedida: TWideMemoField;
-    TItensOrcamentoimg: TBlobField;
-    TItensOrcamentoidentificadorpedido: TWideStringField;
-    TItensOrcamentodatapedido: TDateField;
-    TItensOrcamentostatuspedido: TIntegerField;
-    TItensOrcamentonomefornecedor: TWideStringField;
-    TItensOrcamentotelefonefornecedor: TWideStringField;
-    TItensOrcamentoemailfornecedor: TWideStringField;
-    TItensOrcamentocpfcnpjfornecedor: TWideStringField;
-    TItensOrcamentonomeproduto: TWideStringField;
-    TItensOrcamentocodfabproduto: TWideStringField;
-    TItensOrcamentounidademedida_1: TWideStringField;
-    TItensOrcamentovalortotal: TBCDField;
-    TItensOrcamentooriginalstr: TWideMemoField;
-    TItensOrcamentoformapg: TWideMemoField;
-    TItensOrcamentoidformapg: TIntegerField;
-    TItensOrcamentofornecedor: TWideStringField;
-    TItensOrcamentomarcanome: TWideStringField;
-    TItensOrcamentovalorbrutomaisfrete: TFMTBCDField;
-    TItensOrcamentovalorliquido: TFMTBCDField;
     TItensOrcamentoInsert: TFDQuery;
     TItensOrcamentoInsertid: TIntegerField;
     TItensOrcamentoInsertstatus: TIntegerField;
@@ -1222,7 +1178,6 @@ type
     TMaquinashorimetro: TBCDField;
     TMaquinashorimetroxkm: TIntegerField;
     TItensPedidoquantidade: TFMTBCDField;
-    TItensOrcamentoqtde: TFMTBCDField;
     TItensOrcamentoInsertqtde: TFMTBCDField;
     TItensOrcamentoInsertdescontorateio: TBCDField;
     TItensOrcamentoInsertfreterateio: TBCDField;
@@ -1248,6 +1203,112 @@ type
     TAbastecimentoexterno: TIntegerField;
     TReceituarioliberado: TIntegerField;
     TReceituariosituacao: TWideMemoField;
+    TPedidoCompraRep4: TFDQuery;
+    PgDriverLink: TFDPhysPgDriverLink;
+    TPedidoCompraRep4id: TIntegerField;
+    TPedidoCompraRep4status: TIntegerField;
+    TPedidoCompraRep4datareg: TSQLTimeStampField;
+    TPedidoCompraRep4idusuario: TIntegerField;
+    TPedidoCompraRep4dataalteracao: TSQLTimeStampField;
+    TPedidoCompraRep4idusuarioalteracao: TIntegerField;
+    TPedidoCompraRep4idsegmento: TIntegerField;
+    TPedidoCompraRep4idcategoria: TIntegerField;
+    TPedidoCompraRep4identificador: TWideStringField;
+    TPedidoCompraRep4idsupervisoraprovacao: TIntegerField;
+    TPedidoCompraRep4dataaprovacaosupervisor: TDateField;
+    TPedidoCompraRep4iddiretoriaaprovacao: TIntegerField;
+    TPedidoCompraRep4dataaprovacaodiretoria: TDateField;
+    TPedidoCompraRep4datapedido: TDateField;
+    TPedidoCompraRep4idsolicitante: TIntegerField;
+    TPedidoCompraRep4cancelado: TIntegerField;
+    TPedidoCompraRep4idmaquina: TIntegerField;
+    TPedidoCompraRep4idservico: TIntegerField;
+    TPedidoCompraRep4flagurgente: TIntegerField;
+    TPedidoCompraRep4syncaws: TIntegerField;
+    TPedidoCompraRep4syncfaz: TIntegerField;
+    TPedidoCompraRep4observacao: TWideStringField;
+    TPedidoCompraRep4idcentrocusto: TIntegerField;
+    TPedidoCompraRep4idpropriedade: TIntegerField;
+    TPedidoCompraRep4setor: TWideStringField;
+    TPedidoCompraRep4solicitante: TWideStringField;
+    TPedidoCompraRep4categoria: TWideMemoField;
+    TPedidoCompraRep4status_pedido: TWideMemoField;
+    TPedidoCompraRep4maquinaveiculo: TWideMemoField;
+    TPedidoCompraRep4tiposervico: TWideStringField;
+    TPedidoCompraRep4descricaoservico: TWideStringField;
+    TPedidoCompraRep4maxidstatus: TIntegerField;
+    TPedidoCompraRep4flagurgentestr: TWideMemoField;
+    TPedidoCompraRep4fornecedor: TWideStringField;
+    TPedidoCompraRep4produto: TWideStringField;
+    TPedidoCompraRep4codigofabricante: TWideStringField;
+    TPedidoCompraRep4valorunidade: TFMTBCDField;
+    TPedidoCompraRep4valortotal: TFMTBCDField;
+    TPedidoCompraRep4frete: TFMTBCDField;
+    TPedidoCompraRep4icmst: TFMTBCDField;
+    TPedidoCompraRep4diferencialalicota: TFMTBCDField;
+    TPedidoCompraRep4desconto: TFMTBCDField;
+    TPedidoCompraRep4qtde: TFMTBCDField;
+    TPedidoCompraRep4unidademedida: TWideMemoField;
+    TItensOrcamentoitem: TLargeintField;
+    TItensOrcamentoid: TIntegerField;
+    TItensOrcamentostatus: TIntegerField;
+    TItensOrcamentodatareg: TSQLTimeStampField;
+    TItensOrcamentoidusuario: TIntegerField;
+    TItensOrcamentodataalteracao: TSQLTimeStampField;
+    TItensOrcamentoidusuarioalteracao: TIntegerField;
+    TItensOrcamentoidorcamento: TIntegerField;
+    TItensOrcamentoidproduto: TIntegerField;
+    TItensOrcamentovalorunidade: TBCDField;
+    TItensOrcamentoobservacao: TWideStringField;
+    TItensOrcamentoqtde: TFMTBCDField;
+    TItensOrcamentosyncaws: TIntegerField;
+    TItensOrcamentosyncfaz: TIntegerField;
+    TItensOrcamentodesconto: TFMTBCDField;
+    TItensOrcamentodescontogeral: TFMTBCDField;
+    TItensOrcamentofretegeral: TFMTBCDField;
+    TItensOrcamentoipi: TFMTBCDField;
+    TItensOrcamentoicmst: TFMTBCDField;
+    TItensOrcamentofrete: TFMTBCDField;
+    TItensOrcamentodiferencialalicota: TFMTBCDField;
+    TItensOrcamentomarca: TWideStringField;
+    TItensOrcamentoidmarca: TIntegerField;
+    TItensOrcamentooriginal: TIntegerField;
+    TItensOrcamentounidademedida: TWideMemoField;
+    TItensOrcamentoimg: TBlobField;
+    TItensOrcamentoidentificadorpedido: TWideStringField;
+    TItensOrcamentodatapedido: TDateField;
+    TItensOrcamentostatuspedido: TIntegerField;
+    TItensOrcamentonomefornecedor: TWideStringField;
+    TItensOrcamentotelefonefornecedor: TWideStringField;
+    TItensOrcamentoemailfornecedor: TWideStringField;
+    TItensOrcamentocpfcnpjfornecedor: TWideStringField;
+    TItensOrcamentonomeproduto: TWideStringField;
+    TItensOrcamentocodfabproduto: TWideStringField;
+    TItensOrcamentounidademedida_1: TWideStringField;
+    TItensOrcamentovalortotal: TBCDField;
+    TItensOrcamentooriginalstr: TWideMemoField;
+    TItensOrcamentoformapg: TWideMemoField;
+    TItensOrcamentoidformapg: TIntegerField;
+    TItensOrcamentofornecedor: TWideStringField;
+    TItensOrcamentomarcanome: TWideStringField;
+    TItensOrcamentovalorbrutomaisfrete: TFMTBCDField;
+    TItensOrcamentovalorliquido: TFMTBCDField;
+    TItensOrcamentodescontoitem: TFMTBCDField;
+    TItensOrcamentofreteitem: TFMTBCDField;
+    TItensOrcamentoComp: TFDQuery;
+    TItensOrcamentoCompitem: TLargeintField;
+    TItensOrcamentoCompiditem: TIntegerField;
+    TItensOrcamentoCompquantidade: TFMTBCDField;
+    TItensOrcamentoCompnome: TWideStringField;
+    TItensOrcamentoCompcodigofabricante: TWideStringField;
+    TItensOrcamentoCompmarca: TWideStringField;
+    TItensOrcamentoComporiginalstr: TWideMemoField;
+    TItensOrcamentoCompunidademedida: TWideMemoField;
+    TItensOrcamentorecebido: TIntegerField;
+    TItensOrcamentoobsrecebimento: TWideStringField;
+    TItensOrcamentoqtdrecebida: TFMTBCDField;
+    TItensOrcamentoresponsavelrecebimento: TIntegerField;
+    TItensOrcamentodatarecebimento: TDateField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1299,7 +1360,7 @@ type
   private
     { Private declarations }
   public
-    vIdUsuarioLogado,vIdSegmento,vURLMetabase:string;
+    vIdUsuarioLogado,vNomeUsuarioLogado,vIdSegmento,vURLMetabase:string;
     vTipoBDConfig,vTipoDB:integer;
     procedure ConectaPG_AWS;
     function  MD55(const texto:string):string;
@@ -1318,6 +1379,7 @@ type
     procedure AbreOrcamentos(vIdPedido,vFiltro:string);
     procedure AbreOrcamentosLista(vFiltro: string);
     procedure AbreItemPedidos(idPedido:string);
+    procedure AbreItemPedidosComparativo(idPedido: string);
     procedure AprovaItemsOracamentoInd(vIdOrcamento,vIdIten,valorunidade,valortotal,qtde:string);
     function  VerificaItemPedido(vIdPedido,vIdItem:string):Boolean;
     function  VerificaItemOrcamento(vIdOrcamento,vIdItem:string):Boolean;
@@ -1326,7 +1388,7 @@ type
     procedure AbreStatusPedidos(idPedido: string);
     procedure AbreItemsOrcamentos(vFiltro:string);
     procedure AbreOrcamentosInd(vId:string);
-    procedure AprovaItemsOracamento(vIdOrcamento:string);
+    procedure AprovaItemsOracamento(vIdOrcamento,idPedido:string);
     procedure InsereStatusInicial(idPedido: string);
     function  RetornaMaxPedido:string;
     procedure AbrirFornecedoresOrcamento(vIdPedido:String);
@@ -1334,6 +1396,7 @@ type
     function  RetornaMaxIdPedido:string;
     procedure AtualizaValorItemOrcamento(vValor,vId:string);
     procedure AbrePedidosRep(vFiltro: string);
+    procedure AbrePedidosRep4(vFiltro: string);
     procedure AtualizaStatusPedido(idPedido,status:string);
     procedure CancelaPedido(idPedido:string);
     function  PostEnviaEmailOrcamento(idOrcamento:string):string;
@@ -1387,7 +1450,7 @@ type
     function  AbreItenOrcamentoEdit(idItem:string):Boolean;
     procedure AbrePropriedade(vIdPropriedade:string);
     procedure AtualizaOrcamentoDescontoFreteFormaPG(idOrcamento,desconto,frete,idFormaPG,
-     QtdItens,DataCompra,PrevisaoEntrega,ResponsavelCompra:String);
+     QtdItens,PrevisaoEntrega:String);
     procedure AtualizaBaixaEstoque(idBaixa,QtdeResolvida:string);
     procedure AbreDevolucaoQuimico(vIdReceituario:string);
     procedure AbreMaquinas(vFiltro:string);
@@ -1398,6 +1461,8 @@ type
     procedure AtualizaValoresOrcamentoItensInd(idOrc: string);
     procedure AbreFornecedor(vFiltro:string);
     procedure AlteraSituacaoReceituario(idRec,Situacao:string);
+    function  RetornaPrevisaoEntrega(idOrc:string):string;
+    procedure ConfirmaRecebimentoItem(vID, vRecebido,qtdrecebida,observacao,datarecebido,responsavelrecebimento: string);
   end;
 var
   dbCtx: TdbCtx;
@@ -1695,6 +1760,7 @@ begin
    Add('join auxatividadeabastecimento h on h.id=a.idAtividade');
    Add('where a.status=1');
    Add(vFiltro);
+   Add('order by dataabastecimento desc,c.prefixo');
    try
     Open
    except
@@ -1830,14 +1896,48 @@ begin
  end;
 end;
 
+procedure TdbCtx.AbreItemPedidosComparativo(idPedido: string);
+begin
+ with TItensOrcamentoComp,TItensOrcamentoComp.SQL DO
+ begin
+   Clear;
+   Add('select');
+   Add('ROW_NUMBER () OVER (ORDER BY o.idproduto)Item,');
+   Add('o.idproduto iditem,');
+   Add('o.qtde quantidade,');
+   Add('p.Nome,');
+   Add('p.codigofabricante,');
+   Add('am.nome marca,');
+   Add('o.unidademedida,');
+   Add('case');
+   Add('when original=1 then ''ORIGINAL''');
+   Add('else ''PARALELO''');
+   Add('end originalStr');
+   Add('from orcamentositens o');
+   Add('join orcamentos o2 on o.idorcamento =o2.id');
+   Add('join produtos p on o.idproduto=p.Id');
+   Add('left join auxmarcas am on am.id=o.idmarca');
+   Add('where o.status>-1 and o2.id=');
+   Add('(select id from orcamentos o3');
+   Add('where idpedido='+idPedido+' limit 1)');
+   Add('order by Item');
+   Open;
+ end;
+end;
+
 procedure TdbCtx.AbreItemsOrcamentos(vFiltro: string);
 begin
  with TItensOrcamento,TItensOrcamento.SQL do
  begin
    Clear;
    Add('select y.*,');
-   Add('y.valorTotal+y.frete valorBrutoMaisFrete,');
-   Add('((y.valorTotal+y.frete+y.ipi+y.icmst+y.diferencialalicota)-y.desconto)valorLiquido');
+   Add('y.valorTotal+coalesce(nullif(y.frete,0),y.freteItem) valorBrutoMaisFrete,');
+   Add('y.valortotal+');
+   Add('coalesce(nullif(y.frete,0),y.freteItem)+');
+   Add('coalesce(y.ipi,0)+');
+   Add('coalesce(y.icmst,0)+');
+   Add('coalesce(y.diferencialalicota,0)-');
+   Add('coalesce(nullif(y.desconto,0),y.descontoitem)valorLiquido');
    Add('from');
    Add('(select');
    Add('ROW_NUMBER () OVER (ORDER BY a.id)Item ,');
@@ -1846,12 +1946,18 @@ begin
    Add(' a.idorcamento,a.idproduto,a.valorunidade,');
    Add(' a.observacao,a.qtde,a.syncaws,');
    Add(' a.syncfaz,');
-   Add(' coalesce(a.desconto,0)desconto,');
-   Add('(select sum(coalesce(freterateio,0)) from orcamentositens where idorcamento=b.id) freteGeral,');
-   Add('(select sum(coalesce(descontorateio,0)) from orcamentositens where idorcamento=b.id) descontoGeral,');
+   Add(' coalesce(nullif(b.desconto/');
+   Add(' (select count(*) from orcamentositens o where o.idorcamento=b.id and status>-1),0),nullif(a.desconto,0))desconto,');
+   Add('coalesce(nullif(b.desconto,0),');
+   Add(' (select sum(coalesce(desconto,0))');
+   Add('  from orcamentositens where status>-1 and idorcamento=b.id),0)DescontoGeral,');
+   Add('coalesce(nullif(b.frete,0),');
+   Add(' (select sum(coalesce(frete,0))');
+   Add('  from orcamentositens where status>-1 and idorcamento=b.id),0)FreteGeral,');
    Add(' coalesce(a.ipi,0)ipi,');
    Add(' coalesce(a.icmst,0)icmst,');
-   Add(' coalesce(a.frete,0)frete,');
+   Add(' coalesce(nullif(b.frete/(');
+   Add(' select count(*) from orcamentositens o where o.idorcamento=b.id and status>-1),0),nullif(a.frete,0))frete,');
    Add(' coalesce(a.diferencialalicota,0)diferencialalicota,');
    Add(' a.marca,');
    Add(' a.idmarca,');
@@ -1876,7 +1982,14 @@ begin
    Add(' fpf.codigo||''-''||fpf.descricao FormaPG,');
    Add(' fpf.id idFormaPg,');
    Add(' d.nome Fornecedor,');
-   Add(' am.nome marcanome');
+   Add(' am.nome marcanome,');
+   Add(' coalesce(a.desconto,0)descontoItem,');
+   Add(' coalesce(a.frete,0)freteItem,');
+   Add(' a.recebido ,');
+   Add(' a.obsrecebimento,');
+   Add(' qtdrecebida,');
+   Add(' a.responsavelrecebimento,');
+   Add(' datarecebimento');
    Add('from public.orcamentosItens a');
    Add('join orcamentos b on   b.id=a.idorcamento');
    Add('left join forma_pagamento_fornecedor fpf on fpf.id=b.idformapagamento');
@@ -2014,7 +2127,8 @@ begin
    Add('case');
    Add(' when flagurgente=0 then ''NORMAL''');
    Add(' when flagurgente=1 then ''URGENTE''');
-   Add('end flagUrgenteStr');
+   Add('end flagUrgenteStr,');
+   Add('a.idpropriedade');
    Add('from pedidocompra a');
    Add('join usuario u on u.Id=a.idsolicitante');
    Add('left join maquinaveiculo m on m.id=a.idmaquina');
@@ -2066,6 +2180,61 @@ begin
    Add('left join auxmarcas am on m.idmarca=am.id');
    Add('left join servico sr on a.idServico=sr.id');
    Add('left join AuxTipoServico asr on asr.id=sr.idTipo');
+   Add('where a.id='+vFiltro);
+   Open;
+ end;
+end;
+
+procedure TdbCtx.AbrePedidosRep4(vFiltro: string);
+begin
+ with TPedidoCompraRep4,TPedidoCompraRep4.SQL do
+ begin
+   Clear;
+   Add(' select a.*,u.nome Solicitante ,');
+   Add(' case');
+   Add('  when a.idCategoria=0 then ''Produtos Estoque''');
+   Add('  when a.idCategoria=1 then ''Manutenção Maquinas e Veiculos''');
+   Add('  when a.idCategoria=2 then ''Serviços Gerais''');
+   Add(' end Categoria,');
+   Add(' case');
+   Add('  when a.status=0 then ''CANCELADO''');
+   Add('  when a.status=1 then ''AGUARDANDO APROVAÇÃO SUPERVISOR''');
+   Add('  when a.status=2 then ''AGUARDANDO APROVAÇÃO DIRETORIA''');
+   Add('  when a.status=3 then ''APROVADO PARA COTAÇÃO''');
+   Add('  when a.status=4 then ''COMPRA EFETUADA''');
+   Add('  when a.status=5 then ''PEDIDO RECEBIDO''');
+   Add('  when a.status=6 then ''PEDIDO FINALIZADO PARCIAL''');
+   Add('  when a.status=7 then ''PEDIDO FINALIZADO''');
+   Add(' end STATUS_PEDIDO,');
+   Add(' m.prefixo||''-''||am.nome||''-''|| m.modelo MaquinaVeiculo,');
+   Add(' asr.Nome TipoServico,');
+   Add(' sr.Descricao DescricaoServico,');
+   Add(' (select max(idstatus) from pedidostatus where status=1 and idpedido=a.id)maxidstatus,');
+   Add(' case');
+   Add('  when flagurgente=0 then ''NORMAL''');
+   Add('  when flagurgente=1 then ''URGENTE''');
+   Add(' end flagUrgenteStr,');
+   Add(' f.nome Fornecedor,');
+   Add(' p.nome Produto,');
+   Add(' p.codigofabricante,');
+   Add(' coalesce(o2.qtde,0) qtde,');
+   Add(' coalesce(o2.valorunidade,0)valorunidade,');
+   Add(' coalesce(o2.valortotal,0)valortotal,');
+   Add(' coalesce(o2.frete,0)frete,');
+   Add(' coalesce(o2.icmst,0)icmst,');
+   Add(' coalesce(o2.diferencialalicota,0)diferencialalicota,');
+   Add(' coalesce(o2.desconto,0) desconto,');
+   Add(' o2.unidademedida');
+   Add(' from pedidocompra a');
+   Add(' join usuario u on u.Id=a.idsolicitante');
+   Add(' left join maquinaveiculo m on m.id=a.idmaquina');
+   Add(' left join auxmarcas am on m.idmarca=am.id');
+   Add(' left join servico sr on a.idServico=sr.id');
+   Add(' left join AuxTipoServico asr on asr.id=sr.idTipo');
+   Add(' join orcamentos o on o.idpedido =a.id  and o.status =3');
+   Add(' join orcamentositens o2 on o2.idorcamento=o.id');
+   Add(' join fornecedor f on o.idfornecedor =f.id');
+   Add(' join produtos p  on o2.idproduto=p.id');
    Add('where a.id='+vFiltro);
    Open;
  end;
@@ -2398,7 +2567,7 @@ begin
    Add('join fornecedor b on a.idfornecedor=b.id');
    Add('left join forma_pagamento_fornecedor fpf on a.idformapagamento=fpf.id');
    Add('where idpedido='+vIdPedido);
-   Add('and a.status>-1');
+   Add('and a.status>-1 and a.status<3');
    Open;
  end;
 end;
@@ -2459,7 +2628,7 @@ begin
 
  end;
 
-procedure TdbCtx.AprovaItemsOracamento(vIdOrcamento: string);
+procedure TdbCtx.AprovaItemsOracamento(vIdOrcamento,idPedido: string);
 var
  vQryLoop,vQryA:TFDQuery;
 begin
@@ -2470,9 +2639,9 @@ begin
  with vQryLoop,vQryLoop.SQL do
  begin
    Clear;
-   Add('update orcamentos set status=3');
+   Add('update orcamentos set status=2');
    Add(',dataalteracao=current_timestamp, idusuarioalteracao='+vIdUsuarioLogado);
-   Add('where id='+vIdOrcamento);
+   Add('where status=1 and idpedido='+idPedido);
    ExecSQL;
  end;
  with vQryLoop,vQryLoop.SQL do
@@ -2805,7 +2974,7 @@ end;
 
 procedure TdbCtx.AtualizaOrcamentoDescontoFreteFormaPG(idOrcamento, desconto,
   frete, idFormaPG,QtdItens,
-  DataCompra,PrevisaoEntrega,ResponsavelCompra: String);
+  PrevisaoEntrega: String);
 var
  vQryAux:TFDQuery;
  vValorDesconto,vValorFrete:double;
@@ -2818,30 +2987,12 @@ begin
    Add('update orcamentos set desconto='+desconto);
    Add(',frete='+frete);
    Add(',idformapagamento='+idFormaPG);
-   if (DataCompra.Length>0) and (DataCompra<>'__/__/____') then
-    Add(',datacompra='+FormatDateTime('yyyy-mm-dd',StrToDate(DataCompra)).QuotedString);
-   if ResponsavelCompra.Length>0 then
-    Add(',responsavelcompra='+ResponsavelCompra.QuotedString);
-   if (PrevisaoEntrega.Length>0) and (DataCompra<>'__/__/____') then
+   if (PrevisaoEntrega.Length>0) and (PrevisaoEntrega<>'__/__/____') then
     Add(',dataprevitaentrega='+FormatDateTime('yyyy-mm-dd',StrToDate(PrevisaoEntrega)).QuotedString);
    Add('where id='+idOrcamento);
    try
     vQry.ExecSQL;
      AtualizaValoresOrcamentoItensInd(idOrcamento);
-
-//    desconto       := StringReplace(desconto,'.',',',[rfReplaceAll]);
-//    frete          := StringReplace(frete,'.',',',[rfReplaceAll]);
-//
-//    vValorDesconto := strToFloat(desconto)/+strToFloat(QtdItens);
-//    vValorFrete    := strToFloat(frete)/+strToFloat(QtdItens);
-//    Clear;
-//    Add('update orcamentositens set ');
-//    Add('desconto=0, descontorateio=:desconto');
-//    Add(',frete=0,freterateio=:frete');
-//    Add('where idorcamento='+idOrcamento);
-//    ParamByName('desconto').AsFloat := vValorDesconto;
-//    ParamByName('frete').AsFloat    := vValorFrete;
-//    vQry.ExecSQL;
    except
     on e : Exception do
      begin
@@ -3379,6 +3530,23 @@ begin
 end;
 
 
+procedure TdbCtx.ConfirmaRecebimentoItem(vID, vRecebido,qtdrecebida,observacao,datarecebido,responsavelrecebimento: string);
+begin
+  with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('update orcamentositens  set');
+   Add('recebido='+vRecebido);
+   Add(',qtdrecebida='+qtdrecebida);
+   Add(',observacao='+observacao);
+   Add(',datarecebimento='+datarecebido);
+   Add(',responsavelrecebimento='+responsavelrecebimento);
+   Add('where id='+vID);
+   ExecSQL;
+   FDConPG.Commit;
+ end;
+end;
+
 procedure TdbCtx.ContratosReconcileError(DataSet: TFDDataSet; E: EFDException;
   UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
 begin
@@ -3646,6 +3814,18 @@ begin
  end;
 end;
 
+function TdbCtx.RetornaPrevisaoEntrega(idOrc: string): string;
+begin
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('select * from orcamentos');
+   Add('where id='+idOrc);
+   Open;
+   Result := vQry.FieldByName('dataprevitaentrega').AsString;
+ end;
+end;
+
 function TdbCtx.RetornaRegistoCustoDia(idProduto, DataEntrada: string): Boolean;
 begin
  with vQry,vQry.SQL do
@@ -3823,8 +4003,9 @@ begin
    ParamByName('USUARIO').AsString := Usuario;
    ParamByName('SENHA').AsString   := vSenha;
    Open;
-   vIdUsuarioLogado := vQry.FieldByName('id').AsString;
-   vIdSegmento      := vQry.FieldByName('idsegmento').AsString;
+   vIdUsuarioLogado   := vQry.FieldByName('id').AsString;
+   vIdSegmento        := vQry.FieldByName('idsegmento').AsString;
+   vNomeUsuarioLogado := vQry.FieldByName('nome').AsString;
    Result := vQry.IsEmpty;
  end;
 end;

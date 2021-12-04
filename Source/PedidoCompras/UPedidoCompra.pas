@@ -618,14 +618,84 @@ type
     cbxPrioridade: TComboBox;
     Label22: TLabel;
     cbxSetorDestino: TComboBox;
-    Label102: TLabel;
-    edtResponsavelCompra: TEdit;
-    EditButton9: TEditButton;
     Label103: TLabel;
     edtPrevisaoEntrega: TDateEdit;
-    Label104: TLabel;
-    edtDataCompra: TDateEdit;
     MotionSensor1: TMotionSensor;
+    ClearEditButton9: TClearEditButton;
+    ClearEditButton11: TClearEditButton;
+    ClearEditButton12: TClearEditButton;
+    MenuItem3: TMenuItem;
+    tbiRecebimento: TTabItem;
+    Layout98: TLayout;
+    GroupBox3: TGroupBox;
+    Edit1: TEdit;
+    Label102: TLabel;
+    Edit4: TEdit;
+    Label105: TLabel;
+    StringGrid5: TStringGrid;
+    LinkGridToDataSourceBindSourceDB32: TLinkGridToDataSource;
+    ToolBar19: TToolBar;
+    Rectangle60: TRectangle;
+    Label104: TLabel;
+    Image59: TImage;
+    Rectangle61: TRectangle;
+    Layout99: TLayout;
+    Layout100: TLayout;
+    Rectangle62: TRectangle;
+    Layout101: TLayout;
+    Lista: TListView;
+    Layout106: TLayout;
+    Label111: TLabel;
+    Layout103: TLayout;
+    Rectangle63: TRectangle;
+    Label107: TLabel;
+    Image58: TImage;
+    Rectangle64: TRectangle;
+    Label108: TLabel;
+    Image60: TImage;
+    layItemRecebido: TLayout;
+    Rectangle65: TRectangle;
+    ToolBar20: TToolBar;
+    Rectangle66: TRectangle;
+    Label109: TLabel;
+    Image61: TImage;
+    Layout102: TLayout;
+    Rectangle67: TRectangle;
+    Layout104: TLayout;
+    edtRecebimentoProduto: TEdit;
+    ClearEditButton10: TClearEditButton;
+    ComboBox2: TComboBox;
+    Layout105: TLayout;
+    Label110: TLabel;
+    Label112: TLabel;
+    Layout107: TLayout;
+    Rectangle68: TRectangle;
+    Layout108: TLayout;
+    edtRecebimentoQtd: TEdit;
+    ClearEditButton13: TClearEditButton;
+    ComboBox3: TComboBox;
+    Layout109: TLayout;
+    Label113: TLabel;
+    Label114: TLabel;
+    Label115: TLabel;
+    edtRecebimentoData: TDateEdit;
+    Layout110: TLayout;
+    Rectangle69: TRectangle;
+    Layout111: TLayout;
+    ComboBox4: TComboBox;
+    Layout112: TLayout;
+    Label116: TLabel;
+    Label117: TLabel;
+    edtRecebimentoObs: TEdit;
+    ClearEditButton14: TClearEditButton;
+    Layout113: TLayout;
+    Rectangle70: TRectangle;
+    btnSalvaRec: TRectangle;
+    Image62: TImage;
+    Label118: TLabel;
+    Rectangle72: TRectangle;
+    Image63: TImage;
+    Label119: TLabel;
     procedure btnAddClick(Sender: TObject);
     procedure EditButton1Click(Sender: TObject);
     procedure btnSalvarClick(Sender: TObject);
@@ -744,20 +814,27 @@ type
     procedure btnSalvarOrcamentoClick(Sender: TObject);
     procedure Image41Click(Sender: TObject);
     procedure Image29Click(Sender: TObject);
-    procedure EditButton9Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
+    procedure ListaItemClickEx(const Sender: TObject; ItemIndex: Integer;
+      const LocalClickPos: TPointF; const ItemObject: TListItemDrawable);
+    procedure Image61Click(Sender: TObject);
+    procedure Rectangle72Click(Sender: TObject);
+    procedure btnSalvaRecClick(Sender: TObject);
+    procedure StringGrid5CellClick(const Column: TColumn; const Row: Integer);
   private
     { Private declarations }
     LastTimeKeydown:TDatetime;
     Keys:string;
     MemTable: TFDMemTable;
   public
+    vIdItensRecebimento,vProdutoRecebimento,vQtdeRecebimento,
     vIdMarcaItemOrcamento,vIdSolicitante,vIdCategoria,vIdentificador,vIdItemPedido,
     vIdItemOrcamento,vIdMarcaItemPedido,vIdPedido,vIdCategoriaFiltro,vIsertPedido,
     vIdMaquina,vIdServico,vFiltro,vStatusSelect,vIdFormaPg,vIdCentroCusto,vIdPropriedade:string;
     vButonSelect,
     vFreteEditado,vDescontoEditado:integer;
     vFeteAtual,vDescontoAtual,vMaquinaLista,vServicoLista,vSetorLista,
-    vAplicacaoLista:string;
+    vAplicacaoLista,vCentroCustoLista:string;
     aTasEmail :ITask;
     procedure LimpaCampos;
     procedure LimpaCamposItem;
@@ -772,6 +849,7 @@ type
     procedure StringGridSort(StrGrid: TStringGrid; SortColumn: Integer);
     procedure SomarValoresAprovados;
     procedure GeraNovosOrcamentosAprovados(vIdPedido:string);
+    procedure GeraNovosOrcamentosAprovadosOrcamnto(vIdPedido,vIdOrcamento:string);
     procedure DeleteRow(StringGrid: TStringGrid; ARow: integer);
     procedure Notificacao(Titulo,Notificacao:string);
     procedure EnviaEmail(IDOrcamento:string);
@@ -782,6 +860,8 @@ type
     function  SendEmailOS(Destinatario,Anexo,Anexo2: string): Boolean;
     procedure CalculaValorBrutoLiquidoOrcamento;
     function  AcceptEnviaEmailFornecedor(obj: TJSONObject): TJSONObject;
+    procedure InsreStatus(vIdPedido,vStatus:string);
+    procedure GeraListaRecebimento;
 
   end;
 
@@ -929,32 +1009,16 @@ begin
     MyShowMessage('Salve as alteraçoes do orçamento antes de prosseguir',false);
     Exit;
    end;
-   if edtResponsavelCompra.Text.Length=0  then
-   begin
-    MyShowMessage('Informe o responsavel pela compra!',false);
-    Exit;
-   end;
-   if(edtDataCompra.Text='__/__/____') then
-   begin
-    MyShowMessage('Informe a data da Compra!',false);
-    Exit;
-   end;
    MyShowMessage('Deseja aprovar esse orçamento? O valores dos itens do pedido serão atualizados',true);
    if frmPrincipal.vMsgConfirma=1 then
    begin
-     dbCtx.AprovaItemsOracamento(dbCtx.TOrcamentoid.AsString);
+     dbCtx.AprovaItemsOracamento(dbCtx.TOrcamentoid.AsString,dbCtx.TOrcamentoidpedido.AsString);
+     GeraNovosOrcamentosAprovadosOrcamnto(vIdPedido,dbCtx.TOrcamentoid.AsString);
      MyShowMessage('Orçamento aprovado com sucesso!',false);
      if dbCtx.vTipoBDConfig in[0,2] then
      begin
-       TThread.CreateAnonymousThread(procedure()
-       begin
-        TThread.Synchronize(nil,procedure
-        begin
-         MyShowMessage('Sincronizando dados!',false);
-         dbCtx.AbreOrcamentos(vIdPedido,'');
-         MudarAba(tbiCotacoes,Sender);
-        end);
-       end).Start;
+       dbCtx.AbreOrcamentos(vIdPedido,'');
+       MudarAba(tbiCotacoes,Sender);
      end
      else
      begin
@@ -1138,9 +1202,7 @@ begin
  edtFormaPagamento.Enabled    := true;
  edtDescontoGeral.Enabled     := true;
  edtFreteGeral.Enabled        := true;
- edtDataCompra.Enabled        := true;
  edtPrevisaoEntrega.Enabled   := true;
- edtResponsavelCompra.Enabled := true;
  btnEditaOrcamento.Enabled    := true;
  btnSalvarOrcamento.Enabled   := true;
 end;
@@ -1221,17 +1283,8 @@ begin
     dbCtx.TItensPedidosyncFaz.AsInteger :=0;
 
    dbCtx.TItensPedido.ApplyUpdates(-1);
+   dbCtx.AbreItemPedidos(vIdPedido);
    MyShowMessage('Item deletado com sucesso!',false);
-//   if dbCtx.vTipoBDConfig in[0,2] then
-//   TThread.CreateAnonymousThread(procedure()
-//   begin
-//    TThread.Synchronize(nil,procedure
-//    begin
-//     MyShowMessage('Sincronizando dados!',false);
-//     DataModule1.ReplicaPedidoItenCompra('');
-//    end);
-//   end).Start;
-//   dbCtx.AbreItemPedidos(vIdPedido);
  end;
 end;
 
@@ -1396,23 +1449,15 @@ begin
    dbCtx.TItensPedido.ApplyUpdates(-1);
    if dbCtx.vTipoBDConfig in[0,2] then
    begin
-     TThread.CreateAnonymousThread(procedure()
-     begin
-      TThread.Synchronize(nil,procedure
-      begin
        Image15.Enabled := false;
        Rectangle11.Enabled := false;
        btnSalvaItem.Enabled := false;
-       myShowMessage('Aguarde Sincronizando Dados.',false);
-//       DataModule1.ReplicaPedidoItenCompra('');
        layItem.Visible := false;
        dbCtx.AbreItemPedidos(vIdPedido);
        gridItens.Columns[6].Visible := false;
        Image15.Enabled := true;
        Rectangle11.Enabled := true;
        btnSalvaItem.Enabled := true;
-      end);
-     end).Start;
    end
    else
    begin
@@ -1518,10 +1563,6 @@ begin
    begin
      TThread.Synchronize(nil,procedure
      begin
-       MyShowMessage('Sincronizando dados!',false);
-       btnVoltar.Enabled := false;
-       btnSalvar.Enabled := false;
-       btnCancela.Enabled := false;
        dbCtx.AbrePedidos('');
        btnVoltar.Enabled  := true;
        btnSalvar.Enabled  := true;
@@ -1565,6 +1606,22 @@ begin
   end;
 end;
 
+procedure TfrmCadPedidos.btnSalvaRecClick(Sender: TObject);
+begin
+ try
+  dbCtx.ConfirmaRecebimentoItem(vIdItensRecebimento,'1',
+   StringReplace(edtRecebimentoQtd.Text,',','.',[rfReplaceAll]),
+   edtRecebimentoObs.Text.QuotedString,
+   FormatDateTime('yyyy-mm-dd',edtRecebimentoData.Date).QuotedString,
+   dbCtx.vIdUsuarioLogado);
+   GeraListaRecebimento;
+   layItemRecebido.Visible := false;
+ except
+  on E: Exception do
+   myShowMessage('Erro ao salvar Recebimento:'+E.Message,false);
+ end;
+end;
+
 procedure TfrmCadPedidos.btnSalvarOrcamentoClick(Sender: TObject);
 var
  vDesconto,vFrete,idFormaPG:string;
@@ -1590,9 +1647,7 @@ begin
   vFrete,
   idFormaPG,
   IntToStr(GridDetalhesOrcamento.RowCount),
-  edtDataCompra.text,
-  edtPrevisaoEntrega.Text,
-  edtResponsavelCompra.Text);
+  edtPrevisaoEntrega.Text);
 
 
 
@@ -1602,8 +1657,6 @@ begin
   btnEditaOrcamento.Enabled  := true;
   btnSalvarOrcamento.Enabled := false;
 
-  edtResponsavelCompra.Enabled := false;
-  edtDataCompra.Enabled        := false;
   edtPrevisaoEntrega.Enabled   := false;
 
   MyShowMessage('Orcamento Atualizado com Sucesso!',false);
@@ -1670,6 +1723,10 @@ begin
    dbCtx.TItensOrcamentoInsertunidademedida.AsString     := cbxUniMedItemOrcamento.Selected.Text;
   dbCtx.TItensOrcamentoInsertqtde.AsString               := edtQtdItemOrcamento.Text;
   dbCtx.TItensOrcamentoInsertvalorunidade.AsString       := edValorUnitarioItemOrcamento.Text;
+  if(edValorUnitarioItemOrcamento.Text.Length>0) and(edtQtdItemOrcamento.Text.Length>0) then
+   dbCtx.TItensOrcamentoInsertvalortotal.AsFloat := StrToFloat(edValorUnitarioItemOrcamento.Text)*StrToFloat(edtQtdItemOrcamento.Text);
+
+
   if(edtFreteGeral.Text='')or(edtFreteGeral.Text='0') then
   begin
    dbCtx.TItensOrcamentoInsertfrete.AsString             := edtFreteItemOrcamento.Text;
@@ -1824,8 +1881,11 @@ begin
   try
     frmUsuarios.ShowModal;
   finally
+   if dbCtx.TUsuarionome.AsString.Length>0 then
+   begin
     edtSolicitante.text   := dbCtx.TUsuarionome.AsString;
     vIdSolicitante        := dbCtx.TUsuarioId.AsString;
+   end;
     frmUsuarios.Free;
   end;
 end;
@@ -1836,8 +1896,11 @@ begin
   try
     frmCadMaquinaVeiculo.ShowModal;
   finally
+   if dbCtx.TMaquinasmarca.AsString.Length>0 then
+   begin
     edtMaquinaVeiculo.text   := dbCtx.TMaquinasmarca.AsString+'-'+dbCtx.TMaquinasmodelo.AsString;
     vIdMaquina               := dbCtx.TMaquinasId.AsString;
+   end;
     frmCadMaquinaVeiculo.Free;
   end;
 end;
@@ -1848,9 +1911,12 @@ begin
   try
     frmCadServico.ShowModal;
   finally
+   if dbCtx.TServicotipo.AsString.Length>0 then
+   begin
     edtServico.text     := dbCtx.TServicotipo.AsString;
     edtDescricao.Text   := dbCtx.TServicodescricao.AsString;
     vIdServico          := dbCtx.TServicoId.AsString;
+   end;
     frmCadServico.Free;
   end;
 end;
@@ -1861,8 +1927,11 @@ begin
  try
   frmCentroCusto.ShowModal;
  finally
-  edtCentroCusto.Text := dbCtx.TCentroCustonome.AsString;
-  vIdCentroCusto      := dbCtx.TCentroCustoid.AsString;
+  if dbCtx.TCentroCustonome.AsString.Length>0 then
+  begin
+   edtCentroCusto.Text := dbCtx.TCentroCustonome.AsString;
+   vIdCentroCusto      := dbCtx.TCentroCustoid.AsString;
+  end;
   frmCentroCusto.Free;
  end;
 end;
@@ -1919,21 +1988,13 @@ begin
  try
   frmpropriedade.ShowModal;
  finally
-  edtPropriedadeDestino.Text := dbCtx.TPropriedadenome.AsString;
-  vIdPropriedade             := dbCtx.TPropriedadeid.AsString;
+  if dbCtx.TPropriedadenome.AsString.Length>0 then
+  begin
+   edtPropriedadeDestino.Text := dbCtx.TPropriedadenome.AsString;
+   vIdPropriedade             := dbCtx.TPropriedadeid.AsString;
+  end;
   frmpropriedade.Free;
  end;
-end;
-
-procedure TfrmCadPedidos.EditButton9Click(Sender: TObject);
-begin
-  frmUsuarios := TfrmUsuarios.Create(Self);
-  try
-    frmUsuarios.ShowModal;
-  finally
-    edtResponsavelCompra.Text := dbCtx.TUsuarionome.AsString;
-    frmUsuarios.Free;
-  end;
 end;
 
 procedure TfrmCadPedidos.btnBuscaFormaPGClick(Sender: TObject);
@@ -1942,9 +2003,12 @@ begin
   try
     frmCadFormaPG.ShowModal;
   finally
-    edtFormaPagamento.Text := dmCompras.AuxFormaPGcodigo.AsString+'-'+dmCompras.AuxFormaPGdescricao.AsString;
+   if dmCompras.AuxFormaPGcodigo.AsString.Length>0 then
+   begin
+    edtFormaPagamento.Text := dmCompras.AuxFormaPGdescricao.AsString;
     vIdFormaPg             := dmCompras.AuxFormaPGid.AsString;
-    frmCadFormaPG.Free;
+   end;
+   frmCadFormaPG.Free;
   end;
 end;
 
@@ -2095,6 +2159,29 @@ begin
 end;
 
 
+procedure TfrmCadPedidos.ListaItemClickEx(const Sender: TObject;
+  ItemIndex: Integer; const LocalClickPos: TPointF;
+  const ItemObject: TListItemDrawable);
+begin
+ vIdItensRecebimento:=
+   TAppearanceListViewItem(lista.Selected).Objects.FindObjectT<TListItemText>('Text1').TagString;
+ vProdutoRecebimento:=
+   TAppearanceListViewItem(lista.Selected).Objects.FindObjectT<TListItemText>('Text2').Text;
+ vQtdeRecebimento:=
+   TAppearanceListViewItem(lista.Selected).Objects.FindObjectT<TListItemText>('Text6').Text;
+
+  if ItemObject is TListItemImage then
+  begin
+     if TListItemImage(ItemObject).Name='Image19' then
+     begin
+       edtRecebimentoProduto.Text := vProdutoRecebimento;
+       edtRecebimentoQtd.Text     := vQtdeRecebimento;
+       edtObseRecebimento.Text    :='';
+       layItemRecebido.Visible :=true;
+     end;
+  end;
+end;
+
 procedure TfrmCadPedidos.Filtro;
 var
  vDataDe,vDataAte:string;
@@ -2180,6 +2267,7 @@ end;
 
 procedure TfrmCadPedidos.FormShow(Sender: TObject);
 begin
+  layItemRecebido.Visible := false;
   layItemOrcamento.Visible :=FALSE;
   qryFornesedorSelect.Close;
   qryFornesedorSelect.Open;
@@ -2194,7 +2282,7 @@ procedure TfrmCadPedidos.GeraCompartivo(vIPedido: string);
 var
  vRow,i,x:integer;
 begin
-   dbCtx.AbreItemPedidos(vIPedido);
+   dbCtx.AbreItemPedidosComparativo(vIPedido);
    dbCtx.AbrirFornecedoresOrcamento(vIdPedido);
    dbCtx.TOrcamentoFornecedores.First;
    x :=8;
@@ -2229,18 +2317,18 @@ begin
    end;
    dbCtx.TItensPedido.First;
    gridComparativo.RowCount :=0;
-   while not dbCtx.TItensPedido.Eof do
+   while not dbCtx.TItensOrcamentoComp.Eof do
    begin
      vRow := gridComparativo.RowCount+1;
      gridComparativo.RowCount := vRow;
-     gridComparativo.Cells[0,vRow-1]:= dbCtx.TItensPedidoiditem.AsString;
-     gridComparativo.Cells[1,vRow-1]:= dbCtx.TItensPedidoItem.AsString;
-     gridComparativo.Cells[2,vRow-1]:= dbCtx.TItensPedidoquantidade.AsString;
-     gridComparativo.Cells[3,vRow-1]:= dbCtx.TItensPedidounidademedida.AsString;
-     gridComparativo.Cells[4,vRow-1]:= dbCtx.TItensPedidocodigofabricante.AsString;
-     gridComparativo.Cells[5,vRow-1]:= dbCtx.TItensPedidoNome.AsString;
-     gridComparativo.Cells[6,vRow-1]:= dbCtx.TItensPedidomarca.AsString;
-     gridComparativo.Cells[7,vRow-1]:= dbCtx.TItensPedidooriginalstr.AsString;
+     gridComparativo.Cells[0,vRow-1]:= dbCtx.TItensOrcamentoCompiditem.AsString;
+     gridComparativo.Cells[1,vRow-1]:= dbCtx.TItensOrcamentoCompItem.AsString;
+     gridComparativo.Cells[2,vRow-1]:= dbCtx.TItensOrcamentoCompquantidade.AsString;
+     gridComparativo.Cells[3,vRow-1]:= dbCtx.TItensOrcamentoCompunidademedida.AsString;
+     gridComparativo.Cells[4,vRow-1]:= dbCtx.TItensOrcamentoCompcodigofabricante.AsString;
+     gridComparativo.Cells[5,vRow-1]:= dbCtx.TItensOrcamentoCompNome.AsString;
+     gridComparativo.Cells[6,vRow-1]:= dbCtx.TItensOrcamentoCompmarca.AsString;
+     gridComparativo.Cells[7,vRow-1]:= dbCtx.TItensOrcamentoComporiginalstr.AsString;
      x :=8;
      for I := 0 to dbCtx.TOrcamentoFornecedores.RecordCount-1 do
      begin
@@ -2250,7 +2338,7 @@ begin
       intToStr(gridComparativo.Columns[x].Tag));
       inc(x);
      end;
-     dbCtx.TItensPedido.Next
+     dbCtx.TItensOrcamentoComp.Next
    end;
 end;
 
@@ -2299,27 +2387,28 @@ begin
 
        img := TListItemImage(Objects.FindDrawable('Image40'));
        img.Visible := true;
-       img.Bitmap  := imgDetalhes.Bitmap;
+       img.Bitmap  := frmPrincipal.imgListaItem.Bitmap;
+
        txt :=   TListItemText(Objects.FindDrawable('Text43'));
        txt.Text := 'Itens';
        txt.TagString := dbCtx.TPedidoCompraidpropriedade.AsString;
 
        img := TListItemImage(Objects.FindDrawable('Image41'));
        img.Visible := true;
-       img.Bitmap  := imgHistPedido.Bitmap;
+       img.Bitmap  := frmPrincipal.imgListaHist.Bitmap;
        txt :=   TListItemText(Objects.FindDrawable('Text44'));
        txt.Text := 'Histórico';
 
        img := TListItemImage(Objects.FindDrawable('Image42'));
        img.Visible := true;
-       img.Bitmap  := imgPrintPedido.Bitmap;
+       img.Bitmap  := frmPrincipal.imgListaRel.Bitmap;
        txt :=   TListItemText(Objects.FindDrawable('Text45'));
        txt.Text := 'Relatório';
        if dbCtx.vTipoBDConfig=0 then
        begin
         img := TListItemImage(Objects.FindDrawable('Image50'));
         img.Visible := true;
-        img.Bitmap  := imgOrcamentos.Bitmap;
+        img.Bitmap  := frmPrincipal.imgListaOrcamentos.Bitmap;
         txt :=   TListItemText(Objects.FindDrawable('Text51'));
         txt.Text := 'Cotaçoes';
        end;
@@ -2359,6 +2448,12 @@ begin
        txt.Text := 'Solicitante:';
        txt :=   TListItemText(Objects.FindDrawable('Text10'));
        txt.Text :=dbCtx.TPedidoComprasolicitante.AsString;
+
+       txt :=   TListItemText(Objects.FindDrawable('Text25'));
+       txt.Text := 'Centro de Custo:';
+       txt :=   TListItemText(Objects.FindDrawable('Text26'));
+       txt.Text :=dbCtx.TPedidoCompracentrocusto.AsString;
+
        if dbCtx.TPedidoCompraidcategoria.AsInteger>0 then
        begin
          if dbCtx.TPedidoCompramaquinaveiculo.AsString.Length>0 then
@@ -2469,7 +2564,7 @@ begin
            begin
             img := TListItemImage(Objects.FindDrawable('Image48'));//Recebimento
             img.ScalingMode := TImageScalingMode.Stretch;
-            img.Bitmap      := imgRecebimento.Bitmap;
+            img.Bitmap      := frmPrincipal.imgListaReceber.Bitmap;
             img.Visible     := true;
            end;
 
@@ -2518,7 +2613,7 @@ begin
            begin
             img := TListItemImage(Objects.FindDrawable('Image48'));//Recebimento
             img.ScalingMode := TImageScalingMode.Stretch;
-            img.Bitmap      := imgRecebimento.Bitmap;
+            img.Bitmap      := frmPrincipal.imgListaReceber.Bitmap;
             img.Visible     := true;
             txt :=   TListItemText(Objects.FindDrawable('Text49'));
             txt.Text := 'Realizar Recebido';
@@ -2697,7 +2792,7 @@ begin
 
            img := TListItemImage(Objects.FindDrawable('Image48'));//Recebimento
            img.ScalingMode := TImageScalingMode.Stretch;
-           img.Bitmap      := imgRecebimento.Bitmap;
+           img.Bitmap      := frmPrincipal.imgListaReceber.Bitmap;
            img.Visible     := false;
 
            img := TListItemImage(Objects.FindDrawable('Image29'));//1
@@ -2752,7 +2847,7 @@ begin
           2:begin
            img := TListItemImage(Objects.FindDrawable('Image48'));//Recebimento
            img.ScalingMode := TImageScalingMode.Stretch;
-           img.Bitmap      := imgRecebimento.Bitmap;
+           img.Bitmap      := frmPrincipal.imgListaReceber.Bitmap;
            img.Visible     := false;
 
            img := TListItemImage(Objects.FindDrawable('Image28'));//1
@@ -2810,6 +2905,75 @@ begin
  lblTotalPedidos.Text :='Total Pedidos: '+intToStr(listaPedidos.Items.Count);
 end;
 
+procedure TfrmCadPedidos.GeraListaRecebimento;
+var
+ item   : TListViewItem;
+ txt    : TListItemText;
+ txtH   : TListItemPurpose;
+ img    : TListItemImage;
+ vsegmento,vPrioridade:string;
+begin
+  lista.Items.Clear;
+  dbCtx.AbreItemsOrcamentos(dbCtx.TOrcamentoid.AsString);
+  dbCtx.TItensOrcamento.First;
+  item := lista.Items.Add;
+  while not dbCtx.TItensOrcamento.eof do
+  begin
+     with item  do
+     begin
+       img := TListItemImage(Objects.FindDrawable('Image9'));
+       img.ScalingMode := TImageScalingMode.Stretch;
+       img.Bitmap      := FrmPrincipal.imgProduto.Bitmap;
+
+       txt :=   TListItemText(Objects.FindDrawable('Text1'));
+       txt.TagString := dbCtx.TItensOrcamentoid.AsString;
+       txt.Text      := 'Produto:';
+
+       txt :=   TListItemText(Objects.FindDrawable('Text2'));
+       txt.Text      := dbCtx.TItensOrcamentonomeproduto.AsString;
+
+       txt :=   TListItemText(Objects.FindDrawable('Text3'));
+       txt.Text      := 'Cod. Fabricante:';
+       txt :=   TListItemText(Objects.FindDrawable('Text4'));
+       txt.Text      := dbCtx.TItensOrcamentonomeproduto.AsString;
+
+       txt :=   TListItemText(Objects.FindDrawable('Text5'));
+       txt.Text      := 'Qtde. Itens:';
+       txt :=   TListItemText(Objects.FindDrawable('Text6'));
+       txt.Text      := dbCtx.TItensOrcamentoqtde.AsString;
+
+       if dbCtx.TItensOrcamento.FieldByName('recebido').AsInteger=0 then
+       begin
+        img := TListItemImage(Objects.FindDrawable('Image19'));
+        img.Bitmap     := nil;
+        img := TListItemImage(Objects.FindDrawable('Image19'));
+        img.Bitmap    := frmPrincipal.imgChk.Bitmap;
+        txt           := TListItemText(Objects.FindDrawable('Text18'));
+        txt.text      := 'Confirmar';
+
+        img := TListItemImage(Objects.FindDrawable('Image12'));
+        img.Bitmap    := frmPrincipal.imgEdit.Bitmap;
+        txt           := TListItemText(Objects.FindDrawable('Text13'));
+        txt.text      := 'Editar';
+       end;
+       if dbCtx.TItensOrcamento.FieldByName('recebido').AsInteger=1 then
+       begin
+        img := TListItemImage(Objects.FindDrawable('Image19'));
+        img.Bitmap     := frmPrincipal.imgConfirmado.Bitmap;
+
+        img := TListItemImage(Objects.FindDrawable('Image19'));
+        img.Bitmap    := frmPrincipal.imgConfirmar.Bitmap;
+
+        txt           := TListItemText(Objects.FindDrawable('Text18'));
+        txt.text      := 'Confirmado';
+
+       end;
+
+     end;
+     dbCtx.TItensOrcamento.Next;
+  end;
+end;
+
 procedure TfrmCadPedidos.GeraNovosOrcamentosAprovados(vIdPedido: string);
 var
  vQry,vQry1:TFDQuery;
@@ -2834,32 +2998,26 @@ begin
       dbCtx.TOrcamento.Close;
       dbCtx.TOrcamento.Open;
       dbCtx.TOrcamento.Insert;
-      dbCtx.TOrcamentoidusuario.AsString        := dbCtx.vIdUsuarioLogado;
-      dbCtx.TOrcamentoidfornecedor.AsString     := vQry.FieldByName('idfornecedor').AsString;
-      dbCtx.TOrcamentoidpedido.AsString         := vIdPedido;
-      dbCtx.TOrcamentodesconto.AsString         := vQry.FieldByName('desconto').AsString;
-      dbCtx.TOrcamentofrete.AsString            := vQry.FieldByName('frete').AsString;
+      dbCtx.TOrcamentoidusuario.AsString         := dbCtx.vIdUsuarioLogado;
+      dbCtx.TOrcamentoidfornecedor.AsString      := vQry.FieldByName('idfornecedor').AsString;
+      dbCtx.TOrcamentoidpedido.AsString          := vIdPedido;
+      dbCtx.TOrcamentodesconto.AsString          := vQry.FieldByName('desconto').AsString;
+      dbCtx.TOrcamentofrete.AsString             := vQry.FieldByName('frete').AsString;
+      dbCtx.TOrcamentoresponsavelcompra.AsString := dbCtx.vNomeUsuarioLogado;
+      dbCtx.TOrcamentodatacompra.AsDateTime      := date;
       if vQry.FieldByName('idformapagamento').AsString.Length>0 then
        dbCtx.TOrcamentoidformapagamento.AsString := vQry.FieldByName('idformapagamento').AsString;
-
-
       if vQry.FieldByName('datacompra').AsString.Length>0 then
        dbCtx.TOrcamentodatacompra.AsString         := vQry.FieldByName('datacompra').AsString;
-
       if vQry.FieldByName('dataprevitaentrega').AsString.Length>0 then
        dbCtx.TOrcamentodataprevitaentrega.AsString := vQry.FieldByName('dataprevitaentrega').AsString;
-
       if vQry.FieldByName('responsavelcompra').AsString.Length>0 then
        dbCtx.TOrcamentoresponsavelcompra.AsString  := vQry.FieldByName('responsavelcompra').AsString;
-
       dbCtx.TOrcamentostatus.AsInteger       := 3;
-
       if dbCtx.vTipoBDConfig=2 then
        dbCtx.TOrcamentosyncFaz.AsInteger :=1
       else
        dbCtx.TOrcamentosyncFaz.AsInteger :=0;
-     
-
         dbCtx.TOrcamento.ApplyUpdates(-1);
         vIdOrcamento := dbCtx.RetornaMaxIdPedido;
         with vQry1,vQry1.SQL do
@@ -2895,6 +3053,99 @@ begin
         end;
        vQry.Next;
     end;
+    InsreStatus(vIdPedido,'5');
+    MyShowMessage('Novos Orçamentos Gerado com sucesso!',false);
+    dbCtx.AbreOrcamentos(vIdPedido,'');
+  end;
+  vQry.Free;
+  vQry1.Free;
+end;
+
+procedure TfrmCadPedidos.GeraNovosOrcamentosAprovadosOrcamnto(vIdPedido,
+  vIdOrcamento: string);
+var
+ vQry,vQry1:TFDQuery;
+ I:integer;
+ vIdMax:string;
+begin
+  vQry := TFDQuery.Create(nil);
+  vQry.Connection := dbCtx.FDConPG;
+  vQry1 := TFDQuery.Create(nil);
+  vQry1.Connection := dbCtx.FDConPG;
+  with vQry,vQry.SQL do
+  begin
+    Clear;
+    Add('select * from orcamentos');
+    Add('where id='+vIdOrcamento);
+    Open;
+    while not vQry.eof do
+    begin
+      dbCtx.TOrcamento.Close;
+      dbCtx.TOrcamento.Open;
+      dbCtx.TOrcamento.Insert;
+      dbCtx.TOrcamentoidusuario.AsString         := dbCtx.vIdUsuarioLogado;
+      dbCtx.TOrcamentoidfornecedor.AsString      := vQry.FieldByName('idfornecedor').AsString;
+      dbCtx.TOrcamentoidpedido.AsString          := vIdPedido;
+      dbCtx.TOrcamentodesconto.AsString          := vQry.FieldByName('desconto').AsString;
+      dbCtx.TOrcamentofrete.AsString             := vQry.FieldByName('frete').AsString;
+      dbCtx.TOrcamentoresponsavelcompra.AsString := dbCtx.vNomeUsuarioLogado;
+      dbCtx.TOrcamentodatacompra.AsDateTime      := date;
+      if vQry.FieldByName('idformapagamento').AsString.Length>0 then
+       dbCtx.TOrcamentoidformapagamento.AsString := vQry.FieldByName('idformapagamento').AsString;
+
+
+      if vQry.FieldByName('datacompra').AsString.Length>0 then
+       dbCtx.TOrcamentodatacompra.AsString         := vQry.FieldByName('datacompra').AsString;
+
+      if vQry.FieldByName('dataprevitaentrega').AsString.Length>0 then
+       dbCtx.TOrcamentodataprevitaentrega.AsString := vQry.FieldByName('dataprevitaentrega').AsString;
+
+      if vQry.FieldByName('responsavelcompra').AsString.Length>0 then
+       dbCtx.TOrcamentoresponsavelcompra.AsString  := vQry.FieldByName('responsavelcompra').AsString;
+
+      dbCtx.TOrcamentostatus.AsInteger       := 3;
+
+      if dbCtx.vTipoBDConfig=2 then
+       dbCtx.TOrcamentosyncFaz.AsInteger :=1
+      else
+       dbCtx.TOrcamentosyncFaz.AsInteger :=0;
+
+
+        dbCtx.TOrcamento.ApplyUpdates(-1);
+        vIdMax := dbCtx.RetornaMaxIdPedido;
+        with vQry1,vQry1.SQL do
+        begin
+          Clear;
+          Add('select * from orcamentositens a');
+          Add('join orcamentos b on idorcamento=b.id');
+          Add('where b.id='+vIdOrcamento);
+          Open;
+          while not vQry1.Eof do
+          begin
+            dbCtx.TItensOrcamentoInsert.Close;
+            dbCtx.TItensOrcamentoInsert.Open;
+            dbCtx.TItensOrcamentoInsert.Insert;
+            dbCtx.TItensOrcamentoInsertidusuario.AsString            := dbCtx.vIdUsuarioLogado;
+            dbCtx.TItensOrcamentoInsertidorcamento.AsString          := vIdMax;
+            dbCtx.TItensOrcamentoInsertidproduto.AsString            := vQry1.FieldByName('idproduto').AsString;
+            dbCtx.TItensOrcamentoInsertqtde.AsString                 := vQry1.FieldByName('qtde').AsString;
+            dbCtx.TItensOrcamentoInsertvalorunidade.AsString         := vQry1.FieldByName('valorunidade').AsString;
+            dbCtx.TItensOrcamentoInsertvalortotal.AsString           := vQry1.FieldByName('valortotal').AsString;
+            dbCtx.TItensOrcamentoInsertdesconto.AsString             := vQry1.FieldByName('descontorateio').AsString;
+            dbCtx.TItensOrcamentoInsertipi.AsString                  := vQry1.FieldByName('ipi').AsString;
+            dbCtx.TItensOrcamentoInsertfrete.AsString                := vQry1.FieldByName('freterateio').AsString;
+            dbCtx.TItensOrcamentoInserticmst.AsString                := vQry1.FieldByName('icmst').AsString;
+            dbCtx.TItensOrcamentoInsertobservacao.AsString           := vQry1.FieldByName('observacao').AsString;
+            dbCtx.TItensOrcamentoInsertdiferencialalicota.AsString   := vQry1.FieldByName('diferencialalicota').AsString;
+            dbCtx.TItensOrcamentoInsertunidademedida.AsString        := vQry1.FieldByName('unidademedida').AsString;
+            dbCtx.TItensOrcamentoInsertsyncFaz.AsInteger :=0;
+            dbCtx.TItensOrcamentoInsert.ApplyUpdates(-1);
+            vQry1.Next;
+          end;
+        end;
+       vQry.Next;
+    end;
+    InsreStatus(vIdPedido,'5');
     MyShowMessage('Novos Orçamentos Gerado com sucesso!',false);
     dbCtx.AbreOrcamentos(vIdPedido,'');
   end;
@@ -3173,6 +3424,61 @@ begin
  layItemOrcamento.Visible :=FALSE;
 end;
 
+procedure TfrmCadPedidos.Image61Click(Sender: TObject);
+begin
+ layItemRecebido.Visible := false;
+end;
+
+procedure TfrmCadPedidos.InsreStatus(vIdPedido, vStatus: string);
+begin
+   dbCtx.TStatusPedido.Close;
+   dbCtx.TStatusPedido.Open();
+   dbCtx.TStatusPedido.Insert;
+   dbCtx.TStatusPedidoidpedido.AsString            := vIdPedido;
+   dbCtx.TStatusPedidoIDstatus.AsString            := vStatus;
+   dbCtx.TStatusPedidodatastatus.AsDateTime        := date;
+   dbCtx.TStatusPedidoIdUsuario.AsString           := dbCtx.vIdUsuarioLogado;
+  try
+   if dbCtx.vTipoBDConfig=2 then
+    dbCtx.TStatusPedidosyncFaz.AsInteger :=1
+   else
+    dbCtx.TStatusPedidosyncFaz.AsInteger :=0;
+
+   dbCtx.TStatusPedido.ApplyUpdates(-1);
+   dbCtx.AtualizaStatusPedido(vIdPedido,vStatus);
+   if dbCtx.vTipoBDConfig in[0,2] then
+   begin
+     TThread.CreateAnonymousThread(procedure()
+     begin
+      TThread.Synchronize(nil,procedure
+      begin
+       if cbxStatusPedido.ItemIndex=0 then
+        dbCtx.CancelaPedido(vIdPedido);
+       layStatusPedidoADD.Visible := false;
+       dbCtx.AbreStatusPedidos(vIdPedido);
+       Image22.Enabled := true;
+       btnCancelaStatus.Enabled := true;
+       edtAddStatus.Enabled := true;
+      end);
+     end).Start;
+   end
+   else
+   begin
+    Image22.Enabled := true;
+    btnCancelaStatus.Enabled := true;
+    edtAddStatus.Enabled := true;
+    dbCtx.AtualizaStatusPedido(vIdPedido,intToStr(cbxStatusPedido.ItemIndex));
+    if cbxStatusPedido.ItemIndex=0 then
+     dbCtx.CancelaPedido(vIdPedido);
+    layStatusPedidoADD.Visible := false;
+    dbCtx.AbreStatusPedidos(vIdPedido);
+   end
+  except
+   on E: Exception do
+    myShowMessage('Erro ao salvar Status:'+E.Message,false);
+  end;
+end;
+
 procedure TfrmCadPedidos.LimpaCampos;
 begin
  edtSolicitante.Text       :='';
@@ -3240,9 +3546,12 @@ begin
   vIdPropriedade:=
    TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text43').TagString;
 
-  vMaquinaLista   := TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text12').Text;
-  vServicoLista   := TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text12').Text;
-  vSetorLista     := TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text24').Text;
+  vMaquinaLista     := TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text12').Text;
+  vServicoLista     := TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text12').Text;
+  vSetorLista       := TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text24').Text;
+  vCentroCustoLista := TAppearanceListViewItem(listaPedidos.Selected).Objects.FindObjectT<TListItemText>('Text26').Text;
+
+
   if ItemObject is TListItemImage then
   begin
      if TListItemImage(ItemObject).Name='Image40' then
@@ -3256,9 +3565,9 @@ begin
      if (TListItemImage(ItemObject).Name='Image48') and (strToInt(vStatusSelect)=6)
      and (dbCtx.vTipoBDConfig>0) then
      begin
-       dbCtx.AbreItemPedidos(vIdPedido);
+       dbCtx.AbreOrcamentos(vIdPedido,' and b.status=3');
        lblItemsPedido.Text := 'Recebimento Items do Pedido :'+vIdentificador;
-       MudarAba(tbiItensPedido,sender);
+       MudarAba(tbiRecebimento,sender);
        gridItens.Columns[6].Visible := true;
        Exit;
      end;
@@ -3281,10 +3590,19 @@ begin
      end;
      if TListItemImage(ItemObject).Name='Image42' then
      begin
+      if strToInt(vStatusSelect)<=3 then
+      begin
        dbCtx.AbrePedidosRep(vIdPedido);
        dbCtx.AbreItemPedidos(vIdPedido);
        dmReport.ppRepPedido.Print;
        Exit;
+      end
+      else
+      begin
+        dbCtx.AbrePedidosRep4(vIdPedido);
+        if dbCtx.TPedidoCompraRep4.RecordCount>0 then
+         dmReport.ppRepPedido4.Print;
+      end;
      end;
   end;
  end;
@@ -3345,6 +3663,26 @@ begin
      SendEmailOS(dbCtx.TOrcamentoemail.AsString,
       DirOrdem+'Ordem_Compra_'+dbCtx.TOrcamentoid.AsString+'.PDF','');
    end;
+ end;
+end;
+
+procedure TfrmCadPedidos.MenuItem3Click(Sender: TObject);
+begin
+ MyShowMessage('Deseja realmente Converter esse Ordem de Compra em Solicitação?',false);
+ if frmPrincipal.vMsgConfirma=1 then
+ begin
+   dbCtx.TOrcamento.Edit;
+   dbCtx.TOrcamentostatus.AsInteger :=1;
+   dbCtx.TOrcamentodataalteracao.AsDateTime :=now;
+   dbCtx.TOrcamentoidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
+   if dbCtx.vTipoBDConfig=2 then
+    dbCtx.TOrcamentosyncFaz.AsInteger :=1
+   else
+    dbCtx.TOrcamentosyncFaz.AsInteger :=0;
+
+   dbCtx.TOrcamento.ApplyUpdates(-1);
+   MyShowMessage('Orçamento deletado com sucesso!',false);
+   dbCtx.AbreOrcamentos(vIdPedido,'');
  end;
 end;
 
@@ -3686,15 +4024,6 @@ begin
      begin
       TThread.Synchronize(nil,procedure
       begin
-       Image22.Enabled := false;
-       btnCancelaStatus.Enabled := false;
-       edtAddStatus.Enabled := false;
-       MyShowMessage('Sincronizando dados!',false);
-
-//       DataModule1.ReplicaPedidoStatus('');
-
-
-
        if cbxStatusPedido.ItemIndex=0 then
         dbCtx.CancelaPedido(vIdPedido);
        layStatusPedidoADD.Visible := false;
@@ -3840,7 +4169,7 @@ begin
     dbCtx.TOrcamentosyncFaz.AsInteger :=1
    else
     dbCtx.TOrcamentosyncFaz.AsInteger :=0;
-   
+
    dbCtx.TOrcamento.ApplyUpdates(-1);
    MyShowMessage('Orçamento deletado com sucesso!',false);
    dbCtx.AbreOrcamentos(vIdPedido,'');
@@ -3930,14 +4259,9 @@ begin
            begin
              TThread.CreateAnonymousThread(procedure()
              begin
-//              EnviaEmail(vIdOrcamento);
               TThread.Synchronize(nil,procedure
               begin
-               Rectangle33.Enabled := false;
-               Rectangle32.Enabled := false;
-               MyShowMessage('Sincronizando dados!',false);
-//               DataModule1.ReplicaOrcamento('');
-//               DataModule1.ReplicaOrcamentoItens('');
+               InsreStatus(vIdPedido,'4');
                MyShowMessage('Orçamento Gerado com sucesso!',false);
                dbCtx.AbreOrcamentos(vIdPedido,'');
                layNovoOrcamento.Visible := false;
@@ -3948,6 +4272,7 @@ begin
            end
            else
            begin
+            InsreStatus(vIdPedido,'4');
             MyShowMessage('Orçamento Gerado com sucesso!',false);
             dbCtx.AbreOrcamentos(vIdPedido,'');
             layNovoOrcamento.Visible := false;
@@ -4017,6 +4342,11 @@ begin
   dbCtx.TItensOrcamentoInsert.Open;
   dbCtx.TItensOrcamentoInsert.Insert;
   layItemOrcamento.Visible := true;
+end;
+
+procedure TfrmCadPedidos.Rectangle72Click(Sender: TObject);
+begin
+ layItemRecebido.Visible := false;
 end;
 
 procedure TfrmCadPedidos.btnEditarItemOrcClick(Sender: TObject);
@@ -4092,30 +4422,55 @@ begin
     TComparativoidfornecedor1.AsInteger    := gridComparativo.Columns[8].Tag;
     TComparativovlfornecedor1.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[8,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
     TComparativoidorcamentoforn1.AsString  := gridComparativo.Columns[8].TagString;
+    if gridComparativo.Columns[8].TagString.Length>0 then
+     dmReport.pplblPrevEntrega1.text :=
+      dbCtx.RetornaPrevisaoEntrega(gridComparativo.Columns[8].TagString)
+     else
+      dmReport.pplblPrevEntrega1.Text :='';
    end;
    if gridComparativo.Columns[9].Tag>0 then
    begin
     TComparativoidfornecedor2.AsInteger    := gridComparativo.Columns[9].Tag;
     TComparativovlfornecedor2.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[9,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
     TComparativoidorcamentoforn2.AsString  := gridComparativo.Columns[9].TagString;
+    if gridComparativo.Columns[9].TagString.Length>0 then
+     dmReport.pplblPrevEntrega2.text :=
+      dbCtx.RetornaPrevisaoEntrega(gridComparativo.Columns[9].TagString)
+     else
+      dmReport.pplblPrevEntrega2.Text :='';
    end;
    if gridComparativo.Columns[10].Tag>0 then
    begin
     TComparativoidfornecedor3.AsInteger    := gridComparativo.Columns[10].Tag;
     TComparativovlfornecedor3.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[10,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
     TComparativoidorcamentoforn3.AsString  := gridComparativo.Columns[10].TagString;
+    if gridComparativo.Columns[10].TagString.Length>0 then
+     dmReport.pplblPrevEntrega3.text :=
+      dbCtx.RetornaPrevisaoEntrega(gridComparativo.Columns[10].TagString)
+     else
+      dmReport.pplblPrevEntrega3.Text :='';
    end;
    if gridComparativo.Columns[11].Tag>0 then
    begin
     TComparativoidfornecedor4.AsInteger    := gridComparativo.Columns[11].Tag;
     TComparativovlfornecedor4.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[11,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
     TComparativoidorcamentoforn4.AsString  := gridComparativo.Columns[11].TagString;
+    if gridComparativo.Columns[12].TagString.Length>0 then
+     dmReport.pplblPrevEntrega4.text :=
+      dbCtx.RetornaPrevisaoEntrega(gridComparativo.Columns[12].TagString)
+     else
+      dmReport.pplblPrevEntrega4.Text :='';
    end;
    if gridComparativo.Columns[12].Tag>0 then
    begin
     TComparativoidfornecedor5.AsInteger    := gridComparativo.Columns[12].Tag;
     TComparativovlfornecedor5.AsString     := trim(StringReplace(StringReplace(gridComparativo.Cells[12,I],'R$','',[rfReplaceAll]),'.','',[rfReplaceAll]));
     TComparativoidorcamentoforn5.AsString  := gridComparativo.Columns[12].TagString;
+    if gridComparativo.Columns[12].TagString.Length>0 then
+     dmReport.pplblPrevEntrega5.text :=
+      dbCtx.RetornaPrevisaoEntrega(gridComparativo.Columns[12].TagString)
+     else
+      dmReport.pplblPrevEntrega5.Text :='';
    end;
    TComparativo.ApplyUpdates(-1);
  end;
@@ -4128,7 +4483,12 @@ begin
   else
    dmReport.ppLblTipoMaquinaServico.Text :='';
  end;
- dmReport.ppLblCentroCusto.Text :='Centro de Custo: '+dbCtx.TPedidoCompracentrocusto.AsString;
+
+ if vCentroCustoLista.Length>0 then
+  dmReport.ppLblCentroCusto.Text :='Centro de Custo: '+vCentroCustoLista
+ else
+   dmReport.ppLblCentroCusto.Text :='';
+
  dmReport.ppLblSetor.Text       := vSetorLista;
  if dbCtx.TPedidoCompraidcategoria.AsInteger=0 then
   dmReport.ppLblAplicacao.Text   := 'Estoque'
@@ -4192,28 +4552,26 @@ begin
  else
   edtDescontoGeral.Text        := '0';
 
- if dbCtx.TOrcamentodatacompra.AsString.Length>0 then
-  edtDataCompra.Text          := dbCtx.TOrcamentodatacompra.AsString
- else
-  edtDataCompra.IsEmpty       := true;
 
  if dbCtx.TOrcamentodataprevitaentrega.AsString.Length>0 then
   edtPrevisaoEntrega.Text     := dbCtx.TOrcamentodataprevitaentrega.AsString
  else
   edtPrevisaoEntrega.IsEmpty  := true;
 
- edtResponsavelCompra.Text    := dbCtx.TOrcamentoresponsavelcompra.AsString;
 
  edtFormaPagamento.Enabled    := false;
  edtDescontoGeral.Enabled     := false;
  edtFreteGeral.Enabled        := false;
  btnSalvarOrcamento.Enabled   := false;
  btnEditaOrcamento.Enabled    := true;
- edtDataCompra.Enabled        := false;
  edtPrevisaoEntrega.Enabled   := false;
- edtResponsavelCompra.Enabled := false;
-
  tbPrincipal.ActiveTab  := TabItem3;
+end;
+
+procedure TfrmCadPedidos.StringGrid5CellClick(const Column: TColumn;
+  const Row: Integer);
+begin
+ GeraListaRecebimento;
 end;
 
 procedure TfrmCadPedidos.StringGridSort(StrGrid: TStringGrid;

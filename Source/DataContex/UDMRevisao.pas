@@ -88,7 +88,6 @@ type
     TRevisaoMaquinaItensidproduto: TIntegerField;
     TRevisaoMaquinaAplplanorevisao: TWideStringField;
     TRevisaoMaquinaAplprefixo: TWideStringField;
-    TRevisaoMaquinaItensnome: TWideStringField;
     TRevisaoMaquinaItenscodigofabricante: TWideStringField;
     TRevisaoMaquinaAplidresponsavel: TIntegerField;
     qryListaItensPlanoRev: TFDQuery;
@@ -297,6 +296,12 @@ type
     TRevisaoItensInsertqtde: TBCDField;
     qryRelManutencaoqtde: TBCDField;
     TRevisaoMaquinaItensqtde: TBCDField;
+    TRevisaoMaquinaItensitem: TWideStringField;
+    TRevisaoMaquinaItenstipo: TIntegerField;
+    TRevisaoMaquinaItensobservacao: TWideStringField;
+    TRevisaoMaquinaItenstipostr: TWideStringField;
+    TRevisaoMaquinaItensitemnome: TWideStringField;
+    TRevisaoMaquinaItensproduto: TWideStringField;
     procedure TRevisaoItensReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TAuxRevisaoItemReconcileError(DataSet: TFDDataSet;
@@ -319,6 +324,7 @@ type
   public
     procedure AbrePlanoManutencao(idPlano:string);
     procedure GeraListaItensTMP(IdPlano:string);
+    procedure GeraListaItensTMPEdit(IdPlano:string);
     procedure InsereItensTMP(vIdRevisao,Item,idProduto,Qtde,Tipo,iditem:string);
     procedure InsereItensTMPLubVeric(vIdRevisao,Item,Observacao,Tipo,iditem: string);
     procedure MudaStatusItemTMP(idItem,idStatus:string);
@@ -333,6 +339,8 @@ type
     procedure AbrePlanoRevisaoRep(vIdRevisao:string);
     procedure AbreServicosRevisao(vIdRevisao:string);
     procedure AlteraIdRevisaoTMPServico(vIdTMP,vIdRevisao:string);
+    procedure DeletaItensRevisao(vIdRev:string);
+    procedure AbreRevisao(vNome,vPrefixo:string);
   end;
 
 var
@@ -375,7 +383,7 @@ begin
    Add('join maquinaveiculo m on m.id=r.idmaquina');
    Add('join usuario u on u.id=r.idusuario');
    Add('left join produtos p on p.id=ri.idproduto');
-   Add('where r.id='+vIdRevisao);
+   Add('where ri.status>-1 and r.id='+vIdRevisao);
    Open;
    AbreServicosRevisao(vIdRevisao);
    ppReportRev.print;
@@ -387,9 +395,16 @@ begin
  with TRevisaoMaquinaItens,TRevisaoMaquinaItens.SQL do
  begin
    Clear;
-   Add('select a.*,b.nome,b.codigofabricante');
+   Add('select a.*,b.nome produto,b.codigofabricante,');
+   Add('Cast(case');
+   Add('  when a.tipo =0 then ''MANUTENÇÃO''');
+   Add('  when a.tipo =1 then ''LUBRIFICAÇÃO''');
+   Add('  when a.tipo =2 then ''VERIFICAÇÃO''');
+   Add('end as varchar(13)) tipoStr,');
+   Add('a2.nome itemNome');
    Add('from revisaomaquinaitens a');
    Add('join produtos b on a.idproduto=b.id');
+   Add('left join auxrevisaoitens a2 on a2.id=a.iditem');
    Add('where a.status>-1');
    Add('and a.idrevisao='+vIdRevisao);
    Open;
@@ -410,7 +425,7 @@ begin
      Add('end as varchar(13)) tipoStr');
      Add('from tmprevisaoitens a');
      Add('left join produtos p on p.id=a.idproduto');
-     Add('where a.status>-1 and a.idrevisao='+idPlano);
+     Add('where a.status>-1');// and a.idrevisao='+idPlano);
      Add('order by tipo,a.status,a.Item');
      qryListaItensPlanoRev.SQL.Text;
      Open;
@@ -443,6 +458,28 @@ begin
    Add('order by b.tipo');
    Open;
    ppReportRelPlanoManu.Print;
+ end;
+end;
+
+procedure TdmRevisao.AbreRevisao(vNome, vPrefixo: string);
+begin
+ with TRevisao,TRevisao.Sql do
+ begin
+   Clear;
+   Add('select * from planorevisao p');
+   Add('where status>-1');
+   if vNome.Length>0 then
+     Add(' and nome like '+QuotedStr('%'+vNome+'%'));
+   if vPrefixo.Length>0 then
+   begin
+    Add('and id in(');
+    Add('select idrevisao from planorevisaomaquinas p2');
+    Add('join maquinaveiculo m on m.id=p2.idmaquina');
+    Add('where p2.status=1 and m.prefixo='+vPrefixo.QuotedString);
+    Add(')');
+   end;
+   Add('order by id desc');
+   Open;
  end;
 end;
 
@@ -521,6 +558,22 @@ begin
  end;
 end;
 
+procedure TdmRevisao.DeletaItensRevisao(vIdRev: string);
+begin
+ with qryAux,qryAux.SQL do
+ begin
+   Clear;
+   Add('update revisaomaquinaitens set status=-1');
+   Add('where idrevisao='+vIdRev);
+   try
+    ExecSQL;
+   except
+     on E : Exception do
+      ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
+    end;
+ end;
+end;
+
 procedure TdmRevisao.EditaItemListaTMP(IdItem, IdProduto, Qtde: string);
 begin
  with qryAux,qryAux.SQL do
@@ -566,19 +619,47 @@ begin
  end;
 end;
 
+procedure TdmRevisao.GeraListaItensTMPEdit(IdPlano: string);
+begin
+ with qryAux,qryAux.SQL do
+ begin
+   Clear;
+   Add('delete from tmprevisaoitens');
+   ExecSQL;
+   Clear;
+   Add('insert into tmprevisaoitens(idrevisao,item,idproduto,qtde,tipo,idItem,confirmado)');
+   Add('(select');
+   Add('idrevisao,');
+   Add('item,');
+   Add('idproduto,');
+   Add('qtde,');
+   Add('tipo,');
+   Add('iditem,');
+   Add('2');
+   Add('from revisaomaquinaitens');
+   Add('where status>-1 and idrevisao='+idPlano+')');
+   try
+    ExecSQL;
+   except
+     on E : Exception do
+      ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
+    end;
+ end;
+end;
+
 procedure TdmRevisao.InsereItensTMP(vIdRevisao,Item, idProduto, Qtde,Tipo,iditem: string);
 begin
   with qryAux,qryAux.SQL do
  begin
    Clear;
-   Add('insert into tmprevisaoitens(idrevisao,item,idproduto,qtde,tipo,iditem)');
+   Add('insert into tmprevisaoitens(idrevisao,item,idproduto,qtde,tipo,iditem,confirmado)');
    Add('values(');
    Add(vIdRevisao+',');
    Add(Item.QuotedString+',');
    Add(idproduto+',');
    Add(StringReplace(qtde,',','.',[rfReplaceAll])+',');
    Add(Tipo+',');
-   Add(iditem+')');
+   Add(iditem+',2)');
    try
     ExecSQL;
    except
@@ -625,7 +706,7 @@ begin
  with qryAux,qryAux.SQL do
  begin
    Clear;
-   Add('update tmprevisaoitens set status='+idStatus);
+   Add('update tmprevisaoitens set confirmado='+idStatus+',status='+idStatus);
    Add('where id='+idItem);
    ExecSQL;
  end;
@@ -754,7 +835,7 @@ begin
   begin
      Clear;
      Add('select count(*) qtd from tmprevisaoitens');
-     Add('where status=2');
+     Add('where confirmado=2');
      Open;
      Result := FieldByName('qtd').AsString;
   end;

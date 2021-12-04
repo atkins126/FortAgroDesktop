@@ -120,9 +120,8 @@ object dmRevisao: TdmRevisao
       ' when a.tipo =1 then '#39'LUBRIFICA'#199#195'O'#39
       ' when a.tipo =2 then '#39'VERIFICA'#199#195'O'#39
       'end as varchar(13)) tipoStr,'
-      
-        'a.*,Item,p.codigofabricante,p.nome produto  from planorevisaoite' +
-        'ns a '
+      'a.*,Item,p.codigofabricante,p.nome produto  '
+      'from planorevisaoitens a '
       'left join produtos p on p.id=a.idproduto'
       'where a.status>-1 and a.idrevisao=:id'
       'order by a.tipo,a.item')
@@ -132,6 +131,7 @@ object dmRevisao: TdmRevisao
       item
         Name = 'ID'
         ParamType = ptInput
+        Value = Null
       end>
     object TRevisaoItenstipostr: TWideStringField
       AutoGenerateValue = arDefault
@@ -456,8 +456,17 @@ object dmRevisao: TdmRevisao
     OnReconcileError = TRevisaoMaquinaItensReconcileError
     Connection = dbCtx.FDConPG
     SQL.Strings = (
-      'select a.*,b.nome,b.codigofabricante from revisaomaquinaitens a '
+      'select '
+      ' a.*,b.nome produto,b.codigofabricante,'
+      'Cast(case '
+      ' when a.tipo =0 then '#39'MANUTEN'#199#195'O'#39
+      ' when a.tipo =1 then '#39'LUBRIFICA'#199#195'O'#39
+      ' when a.tipo =2 then '#39'VERIFICA'#199#195'O'#39
+      'end as varchar(13)) tipoStr,'
+      'a2.nome itemNome'
+      'from revisaomaquinaitens a '
       'join produtos b on a.idproduto=b.id'
+      'left join auxrevisaoitens a2 on a2.id=a.iditem '
       'where a.status>-1')
     Left = 384
     Top = 136
@@ -506,12 +515,6 @@ object dmRevisao: TdmRevisao
       FieldName = 'idproduto'
       Origin = 'idproduto'
     end
-    object TRevisaoMaquinaItensnome: TWideStringField
-      AutoGenerateValue = arDefault
-      FieldName = 'nome'
-      Origin = 'nome'
-      Size = 50
-    end
     object TRevisaoMaquinaItenscodigofabricante: TWideStringField
       AutoGenerateValue = arDefault
       FieldName = 'codigofabricante'
@@ -522,6 +525,39 @@ object dmRevisao: TdmRevisao
       FieldName = 'qtde'
       Precision = 10
       Size = 3
+    end
+    object TRevisaoMaquinaItensitem: TWideStringField
+      FieldName = 'item'
+      Origin = 'item'
+      Size = 100
+    end
+    object TRevisaoMaquinaItenstipo: TIntegerField
+      FieldName = 'tipo'
+      Origin = 'tipo'
+    end
+    object TRevisaoMaquinaItensobservacao: TWideStringField
+      FieldName = 'observacao'
+      Origin = 'observacao'
+      Size = 100
+    end
+    object TRevisaoMaquinaItenstipostr: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipostr'
+      Origin = 'tipostr'
+      ReadOnly = True
+      Size = 13
+    end
+    object TRevisaoMaquinaItensitemnome: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'itemnome'
+      Origin = 'itemnome'
+      Size = 100
+    end
+    object TRevisaoMaquinaItensproduto: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'produto'
+      Origin = 'produto'
+      Size = 50
     end
   end
   object qryListaItensPlanoRev: TFDQuery

@@ -1,10 +1,10 @@
 object dbCtx: TdbCtx
   OldCreateOrder = False
   Height = 612
-  Width = 1282
+  Width = 1222
   object vQry: TFDQuery
     Connection = FDConPG
-    Left = 624
+    Left = 632
   end
   object TUsuario: TFDQuery
     CachedUpdates = True
@@ -3406,65 +3406,89 @@ object dbCtx: TdbCtx
     CachedUpdates = True
     Connection = FDConPG
     SQL.Strings = (
-      'select y.*, '
-      ' (y.valorTotal+y.freteGeral)valorBrutoMaisFrete,'
+      'select y.*,'
       
-        ' (y.valorTotal+y.freteGeral+y.ipi+y.icmst+y.diferencialalicota)-' +
-        '(y.descontoGeral)valorLiquido'
-      'from'
-      '(select'
-      'ROW_NUMBER () OVER (ORDER BY a.id)Item ,'
-      ' a.id,a.status,a.datareg,a.idusuario,'
-      ' a.dataalteracao,a.idusuarioalteracao,'
-      ' a.idorcamento,a.idproduto,a.valorunidade,'
-      ' a.observacao,a.qtde,a.syncaws,'
-      ' a.syncfaz,'
-      ' coalesce(a.desconto,0)desconto,'
-      ' coalesce(a.ipi,0)ipi,'
-      ' coalesce(a.icmst,0)icmst,'
-      ' coalesce(a.frete,0)frete,'
-      ' coalesce(a.diferencialalicota,0)diferencialalicota,'
+        '   y.valorTotal+coalesce(nullif(y.frete,0),y.freteItem) valorBru' +
+        'toMaisFrete,'
+      '   y.valortotal+'
+      '   coalesce(nullif(y.frete,0),y.freteItem)+'
+      '   coalesce(y.ipi,0)+'
+      '   coalesce(y.icmst,0)+'
+      '   coalesce(y.diferencialalicota,0)-'
+      '   coalesce(nullif(y.desconto,0),y.descontoitem)valorLiquido'
+      '   from'
+      '   (select'
+      '   ROW_NUMBER () OVER (ORDER BY a.id)Item ,'
+      '    a.id,a.status,a.datareg,a.idusuario,'
+      '    a.dataalteracao,a.idusuarioalteracao,'
+      '    a.idorcamento,a.idproduto,a.valorunidade,'
+      '    a.observacao,a.qtde,a.syncaws,'
+      '    a.syncfaz,'
+      '    coalesce(nullif(b.desconto/'
       
-        ' (select sum(coalesce(frete,0)) from orcamentositens where idorc' +
-        'amento=b.id) freteGeral,'
+        '    (select count(*) from orcamentositens o where o.idorcamento=' +
+        'b.id and status>-1),0),nullif(a.desconto,0))desconto,   '
+      '    coalesce(nullif(b.desconto,0),'
+      '    (select sum(coalesce(nullif(descontorateio,0),desconto))'
       
-        ' (select sum(coalesce(desconto,0)) from orcamentositens where id' +
-        'orcamento=b.id) descontoGeral,'
-      ' a.marca,'
-      ' a.idmarca,'
-      ' a.original,'
-      ' a.unidademedida,'
-      ' a.img,'
-      ' c.identificador identificadorPedido,'
-      ' c.datapedido DataPedido,'
-      ' c.status StatusPedido,'
-      ' d.nome NomeFornecedor,'
-      ' d.telefone_fixo TelefoneFornecedor,'
-      ' d.email EmailFornecedor,'
-      ' d.cpf_cnpj CpfCnpjFornecedor,'
-      ' e.Nome NomeProduto,'
-      ' e.codigofabricante CodFabProduto,'
-      ' e.unidademedida,'
-      ' a.valortotal,'
-      ' case'
-      '   when original=1 then '#39'ORIGINAL'#39
-      '   when original=0 then '#39'PARALELO'#39
-      ' end originalStr,'
-      ' fpf.codigo||'#39'-'#39'||fpf.descricao FormaPG,'
-      ' fpf.id idFormaPg,'
-      ' d.nome Fornecedor,'
-      ' am.nome marcanome'
-      'from public.orcamentosItens a'
-      'join orcamentos b on   b.id=a.idorcamento'
+        '     from orcamentositens where status>-1 and idorcamento=b.id),' +
+        '0)DescontoGeral,'
+      '   coalesce(nullif(b.frete,0),'
+      '    (select sum(coalesce(nullif(freterateio,0),frete))'
       
-        'left join forma_pagamento_fornecedor fpf on fpf.id=b.idformapaga' +
-        'mento '
-      'join pedidocompra c on c.id=b.idpedido'
-      'join fornecedor d on   d.id=b.idfornecedor'
-      'join produtos e on      e.Id=a.idproduto'
-      'left join auxmarcas am on am.id=a.idmarca'
-      'where b.status>-1 and a.status>-1'
-      'and idorcamento=328)y')
+        '     from orcamentositens where status>-1 and idorcamento=b.id),' +
+        '0)FreteGeral,'
+      '    coalesce(a.ipi,0)ipi,'
+      '    coalesce(a.icmst,0)icmst,'
+      '    coalesce(nullif(b.frete/('
+      
+        '    select count(*) from orcamentositens o where o.idorcamento=b' +
+        '.id and status>-1),0),nullif(a.frete,0))frete,'
+      '    coalesce(a.diferencialalicota,0)diferencialalicota,'
+      '    a.marca,'
+      '    a.idmarca,'
+      '    a.original,'
+      '    a.unidademedida,'
+      '    a.img,'
+      '    c.identificador identificadorPedido,'
+      '    c.datapedido DataPedido,'
+      '    c.status StatusPedido,'
+      '    d.nome NomeFornecedor,'
+      '    d.telefone_fixo TelefoneFornecedor,'
+      '    d.email EmailFornecedor,'
+      '    d.cpf_cnpj CpfCnpjFornecedor,'
+      '    e.Nome NomeProduto,'
+      '    e.codigofabricante CodFabProduto,'
+      '    e.unidademedida,'
+      '    a.valortotal,'
+      '    case'
+      '      when original=1 then '#39'ORIGINAL'#39
+      '      when original=0 then '#39'PARALELO'#39
+      '    end originalStr,'
+      '    fpf.codigo||'#39'-'#39'||fpf.descricao FormaPG,'
+      '    fpf.id idFormaPg,'
+      '    d.nome Fornecedor,'
+      '    am.nome marcanome,'
+      '    coalesce(a.desconto,0) descontoItem,'
+      '    coalesce(a.frete,0) freteItem,'
+      '    a.recebido ,'
+      '    a.obsrecebimento,'
+      '    qtdrecebida,'
+      '    a.responsavelrecebimento,'
+      '    datarecebimento'
+      '   from public.orcamentosItens a'
+      '   join orcamentos b on   b.id=a.idorcamento'
+      
+        '   left join forma_pagamento_fornecedor fpf on fpf.id=b.idformap' +
+        'agamento'
+      '   join pedidocompra c on c.id=b.idpedido'
+      '   join fornecedor d on   d.id=b.idfornecedor'
+      '   join produtos e on      e.Id=a.idproduto'
+      '   left join auxmarcas am on am.id=a.idmarca'
+      '   where b.status>-1 and a.status>-1'
+      '   and idorcamento=384'
+      '   order by Item'
+      '   )y')
     Left = 448
     Top = 240
     object TItensOrcamentoitem: TLargeintField
@@ -3517,6 +3541,12 @@ object dbCtx: TdbCtx
       Origin = 'observacao'
       Size = 100
     end
+    object TItensOrcamentoqtde: TFMTBCDField
+      FieldName = 'qtde'
+      Origin = 'qtde'
+      Precision = 64
+      Size = 0
+    end
     object TItensOrcamentosyncaws: TIntegerField
       FieldName = 'syncaws'
       Origin = 'syncaws'
@@ -3541,6 +3571,14 @@ object dbCtx: TdbCtx
       Precision = 64
       Size = 0
     end
+    object TItensOrcamentofretegeral: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'fretegeral'
+      Origin = 'fretegeral'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
     object TItensOrcamentoipi: TFMTBCDField
       AutoGenerateValue = arDefault
       FieldName = 'ipi'
@@ -3561,14 +3599,6 @@ object dbCtx: TdbCtx
       AutoGenerateValue = arDefault
       FieldName = 'frete'
       Origin = 'frete'
-      ReadOnly = True
-      Precision = 64
-      Size = 0
-    end
-    object TItensOrcamentofretegeral: TFMTBCDField
-      AutoGenerateValue = arDefault
-      FieldName = 'fretegeral'
-      Origin = 'fretegeral'
       ReadOnly = True
       Precision = 64
       Size = 0
@@ -3712,10 +3742,44 @@ object dbCtx: TdbCtx
       Precision = 64
       Size = 0
     end
-    object TItensOrcamentoqtde: TFMTBCDField
-      FieldName = 'qtde'
+    object TItensOrcamentodescontoitem: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'descontoitem'
+      Origin = 'descontoitem'
+      ReadOnly = True
       Precision = 64
       Size = 0
+    end
+    object TItensOrcamentofreteitem: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'freteitem'
+      Origin = 'freteitem'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentorecebido: TIntegerField
+      FieldName = 'recebido'
+      Origin = 'recebido'
+    end
+    object TItensOrcamentoobsrecebimento: TWideStringField
+      FieldName = 'obsrecebimento'
+      Origin = 'obsrecebimento'
+      Size = 8190
+    end
+    object TItensOrcamentoqtdrecebida: TFMTBCDField
+      FieldName = 'qtdrecebida'
+      Origin = 'qtdrecebida'
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentoresponsavelrecebimento: TIntegerField
+      FieldName = 'responsavelrecebimento'
+      Origin = 'responsavelrecebimento'
+    end
+    object TItensOrcamentodatarecebimento: TDateField
+      FieldName = 'datarecebimento'
+      Origin = 'datarecebimento'
     end
   end
   object TOrcamentoFornecedores: TFDQuery
@@ -4153,7 +4217,7 @@ object dbCtx: TdbCtx
     ResourceOptions.AssignedValues = [rvMacroCreate, rvMacroExpand, rvDirectExecute, rvPersistent]
     ResourceOptions.MacroCreate = False
     ResourceOptions.DirectExecute = True
-    Left = 1144
+    Left = 1136
     Top = 206
   end
   object TDetReceiturioTalhao: TFDQuery
@@ -4755,10 +4819,6 @@ object dbCtx: TdbCtx
       Origin = 'externo'
     end
   end
-  object PgDriverLink: TFDPhysPgDriverLink
-    Left = 1144
-    Top = 312
-  end
   object TAuxPragas: TFDQuery
     CachedUpdates = True
     Connection = FDConPG
@@ -5019,14 +5079,14 @@ object dbCtx: TdbCtx
   object FDConPG: TFDConnection
     Params.Strings = (
       'Database=FortAgro'
-      'Server=192.168.236.50'
+      'Server=127.0.0.1'
       'User_Name=postgres'
-      'Password=!89Ah>k3Wpd+SzQWjiDLU]]5PHu#$-70'
+      'Password=Dev#110485'
       'Pooled='
       'DriverID=PG')
     LoginPrompt = False
-    Left = 1144
-    Top = 264
+    Left = 1136
+    Top = 256
   end
   object TMovLocalEstoque: TFDQuery
     CachedUpdates = True
@@ -5039,8 +5099,8 @@ object dbCtx: TdbCtx
       'join localestoque d on d.id=a.idlocalestoquedetino'
       'join produtos c on a.idproduto=c.id'
       'where a.status=1')
-    Left = 736
-    Top = 208
+    Left = 720
+    Top = 256
     object TMovLocalEstoqueid: TIntegerField
       FieldName = 'id'
       Origin = 'id'
@@ -6573,6 +6633,373 @@ object dbCtx: TdbCtx
       AutoGenerateValue = arDefault
       FieldName = 'idproduto'
       Origin = 'idproduto'
+    end
+  end
+  object TPedidoCompraRep4: TFDQuery
+    CachedUpdates = True
+    Connection = FDConPG
+    SQL.Strings = (
+      ' select a.*,u.nome Solicitante ,'
+      '   case'
+      '    when a.idCategoria=0 then '#39'Produtos Estoque'#39
+      '    when a.idCategoria=1 then '#39'Manuten'#231#227'o Maquinas e Veiculos'#39
+      '    when a.idCategoria=2 then '#39'Servi'#231'os Gerais'#39
+      '   end Categoria,'
+      '   case'
+      '    when a.status=0 then '#39'CANCELADO'#39
+      '    when a.status=1 then '#39'AGUARDANDO APROVA'#199#195'O SUPERVISOR'#39
+      '    when a.status=2 then '#39'AGUARDANDO APROVA'#199#195'O DIRETORIA'#39
+      '    when a.status=3 then '#39'APROVADO PARA COTA'#199#195'O'#39
+      '    when a.status=4 then '#39'COMPRA EFETUADA'#39
+      '    when a.status=5 then '#39'PEDIDO RECEBIDO'#39
+      '    when a.status=6 then '#39'PEDIDO FINALIZADO PARCIAL'#39
+      '    when a.status=7 then '#39'PEDIDO FINALIZADO'#39
+      '   end STATUS_PEDIDO,'
+      '   m.prefixo||'#39'-'#39'||am.nome||'#39'-'#39'|| m.modelo MaquinaVeiculo,'
+      '   asr.Nome TipoServico,'
+      '   sr.Descricao DescricaoServico,'
+      
+        '   (select max(idstatus) from pedidostatus where status=1 and id' +
+        'pedido=a.id)maxidstatus,'
+      '   case'
+      '    when flagurgente=0 then '#39'NORMAL'#39
+      '    when flagurgente=1 then '#39'URGENTE'#39
+      '   end flagUrgenteStr,'
+      '   f.nome Fornecedor,'
+      '   p.nome Produto,'
+      '   coalesce(o2.valorunidade,0)valorunidade,'
+      '   coalesce(o2.valortotal,0)valortotal,'
+      '   coalesce(o2.frete,0)frete,'
+      '   coalesce(o2.icmst,0)icmst,'
+      '   coalesce(o2.diferencialalicota,0)diferencialalicota,'
+      '   coalesce(o2.desconto,0) desconto,'
+      '   coalesce(o2.qtde,0) qtde,'
+      '   o2.unidademedida,'
+      '   p.codigofabricante '
+      '   from pedidocompra a'
+      '   left join usuario u on u.Id=a.idsolicitante'
+      '   left join maquinaveiculo m on m.id=a.idmaquina'
+      '   left join auxmarcas am on m.idmarca=am.id'
+      '   left join servico sr on a.idServico=sr.id'
+      '   left join AuxTipoServico asr on asr.id=sr.idTipo'
+      '   left join orcamentos o on o.idpedido =a.id  and o.status =3'
+      '   left join orcamentositens o2 on o2.idorcamento=o.id'
+      '   left join fornecedor f on o.idfornecedor =f.id'
+      '   left join produtos p  on o2.idproduto=p.id'
+      '   where a.id=2157'
+      ''
+      '   ')
+    Left = 720
+    Top = 187
+    object TPedidoCompraRep4id: TIntegerField
+      FieldName = 'id'
+      Origin = 'id'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object TPedidoCompraRep4status: TIntegerField
+      FieldName = 'status'
+      Origin = 'status'
+    end
+    object TPedidoCompraRep4datareg: TSQLTimeStampField
+      FieldName = 'datareg'
+      Origin = 'datareg'
+    end
+    object TPedidoCompraRep4idusuario: TIntegerField
+      FieldName = 'idusuario'
+      Origin = 'idusuario'
+    end
+    object TPedidoCompraRep4dataalteracao: TSQLTimeStampField
+      FieldName = 'dataalteracao'
+      Origin = 'dataalteracao'
+    end
+    object TPedidoCompraRep4idusuarioalteracao: TIntegerField
+      FieldName = 'idusuarioalteracao'
+      Origin = 'idusuarioalteracao'
+    end
+    object TPedidoCompraRep4idsegmento: TIntegerField
+      FieldName = 'idsegmento'
+      Origin = 'idsegmento'
+    end
+    object TPedidoCompraRep4idcategoria: TIntegerField
+      FieldName = 'idcategoria'
+      Origin = 'idcategoria'
+    end
+    object TPedidoCompraRep4identificador: TWideStringField
+      FieldName = 'identificador'
+      Origin = 'identificador'
+    end
+    object TPedidoCompraRep4idsupervisoraprovacao: TIntegerField
+      FieldName = 'idsupervisoraprovacao'
+      Origin = 'idsupervisoraprovacao'
+    end
+    object TPedidoCompraRep4dataaprovacaosupervisor: TDateField
+      FieldName = 'dataaprovacaosupervisor'
+      Origin = 'dataaprovacaosupervisor'
+    end
+    object TPedidoCompraRep4iddiretoriaaprovacao: TIntegerField
+      FieldName = 'iddiretoriaaprovacao'
+      Origin = 'iddiretoriaaprovacao'
+    end
+    object TPedidoCompraRep4dataaprovacaodiretoria: TDateField
+      FieldName = 'dataaprovacaodiretoria'
+      Origin = 'dataaprovacaodiretoria'
+    end
+    object TPedidoCompraRep4datapedido: TDateField
+      FieldName = 'datapedido'
+      Origin = 'datapedido'
+    end
+    object TPedidoCompraRep4idsolicitante: TIntegerField
+      FieldName = 'idsolicitante'
+      Origin = 'idsolicitante'
+    end
+    object TPedidoCompraRep4cancelado: TIntegerField
+      FieldName = 'cancelado'
+      Origin = 'cancelado'
+    end
+    object TPedidoCompraRep4idmaquina: TIntegerField
+      FieldName = 'idmaquina'
+      Origin = 'idmaquina'
+    end
+    object TPedidoCompraRep4idservico: TIntegerField
+      FieldName = 'idservico'
+      Origin = 'idservico'
+    end
+    object TPedidoCompraRep4flagurgente: TIntegerField
+      FieldName = 'flagurgente'
+      Origin = 'flagurgente'
+    end
+    object TPedidoCompraRep4syncaws: TIntegerField
+      FieldName = 'syncaws'
+      Origin = 'syncaws'
+    end
+    object TPedidoCompraRep4syncfaz: TIntegerField
+      FieldName = 'syncfaz'
+      Origin = 'syncfaz'
+    end
+    object TPedidoCompraRep4observacao: TWideStringField
+      FieldName = 'observacao'
+      Origin = 'observacao'
+      Size = 100
+    end
+    object TPedidoCompraRep4idcentrocusto: TIntegerField
+      FieldName = 'idcentrocusto'
+      Origin = 'idcentrocusto'
+    end
+    object TPedidoCompraRep4idpropriedade: TIntegerField
+      FieldName = 'idpropriedade'
+      Origin = 'idpropriedade'
+    end
+    object TPedidoCompraRep4setor: TWideStringField
+      FieldName = 'setor'
+      Origin = 'setor'
+    end
+    object TPedidoCompraRep4solicitante: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'solicitante'
+      Origin = 'solicitante'
+      Size = 100
+    end
+    object TPedidoCompraRep4categoria: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'categoria'
+      Origin = 'categoria'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TPedidoCompraRep4status_pedido: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'status_pedido'
+      Origin = 'status_pedido'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TPedidoCompraRep4maquinaveiculo: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'maquinaveiculo'
+      Origin = 'maquinaveiculo'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TPedidoCompraRep4tiposervico: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tiposervico'
+      Origin = 'tiposervico'
+      Size = 50
+    end
+    object TPedidoCompraRep4descricaoservico: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'descricaoservico'
+      Origin = 'descricaoservico'
+      Size = 100
+    end
+    object TPedidoCompraRep4maxidstatus: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'maxidstatus'
+      Origin = 'maxidstatus'
+      ReadOnly = True
+    end
+    object TPedidoCompraRep4flagurgentestr: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'flagurgentestr'
+      Origin = 'flagurgentestr'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TPedidoCompraRep4fornecedor: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'fornecedor'
+      Origin = 'fornecedor'
+      Size = 100
+    end
+    object TPedidoCompraRep4produto: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'produto'
+      Origin = 'produto'
+      Size = 50
+    end
+    object TPedidoCompraRep4codigofabricante: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codigofabricante'
+      Origin = 'codigofabricante'
+      Size = 30
+    end
+    object TPedidoCompraRep4valorunidade: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valorunidade'
+      Origin = 'valorunidade'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TPedidoCompraRep4valortotal: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'valortotal'
+      Origin = 'valortotal'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TPedidoCompraRep4frete: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'frete'
+      Origin = 'frete'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TPedidoCompraRep4icmst: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'icmst'
+      Origin = 'icmst'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TPedidoCompraRep4diferencialalicota: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'diferencialalicota'
+      Origin = 'diferencialalicota'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TPedidoCompraRep4desconto: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'desconto'
+      Origin = 'desconto'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TPedidoCompraRep4qtde: TFMTBCDField
+      AutoGenerateValue = arDefault
+      FieldName = 'qtde'
+      Origin = 'qtde'
+      ReadOnly = True
+      Precision = 64
+      Size = 0
+    end
+    object TPedidoCompraRep4unidademedida: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'unidademedida'
+      Origin = 'unidademedida'
+      BlobType = ftWideMemo
+    end
+  end
+  object PgDriverLink: TFDPhysPgDriverLink
+    Left = 1136
+    Top = 312
+  end
+  object TItensOrcamentoComp: TFDQuery
+    CachedUpdates = True
+    Connection = FDConPG
+    SQL.Strings = (
+      'select '
+      '   ROW_NUMBER () OVER (ORDER BY o.idproduto)Item,'
+      '   o.idproduto iditem,'
+      '   o.qtde quantidade,'
+      '   p.Nome,'
+      '   p.codigofabricante,'
+      '   am.nome marca,'
+      '   o.unidademedida,'
+      '   case'
+      '   when original=1 then '#39'ORIGINAL'#39
+      '   else '#39'PARALELO'#39
+      '   end originalStr'
+      '   from orcamentositens o '
+      '   join orcamentos o2 on o.idorcamento =o2.id '
+      '   join produtos p on o.idproduto=p.Id'
+      '   left join auxmarcas am on am.id=o.idmarca'
+      '   where o.status>-1 and o2.id='
+      '   (select id from orcamentos o3 '
+      '   where idpedido=2175 limit 1)')
+    Left = 392
+    Top = 216
+    object TItensOrcamentoCompitem: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'item'
+      Origin = 'item'
+      ReadOnly = True
+    end
+    object TItensOrcamentoCompiditem: TIntegerField
+      FieldName = 'iditem'
+      Origin = 'iditem'
+    end
+    object TItensOrcamentoCompquantidade: TFMTBCDField
+      FieldName = 'quantidade'
+      Origin = 'quantidade'
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentoCompnome: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 50
+    end
+    object TItensOrcamentoCompcodigofabricante: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'codigofabricante'
+      Origin = 'codigofabricante'
+      Size = 30
+    end
+    object TItensOrcamentoCompmarca: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'marca'
+      Origin = 'marca'
+      Size = 50
+    end
+    object TItensOrcamentoComporiginalstr: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'originalstr'
+      Origin = 'originalstr'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TItensOrcamentoCompunidademedida: TWideMemoField
+      FieldName = 'unidademedida'
+      Origin = 'unidademedida'
+      BlobType = ftWideMemo
     end
   end
 end

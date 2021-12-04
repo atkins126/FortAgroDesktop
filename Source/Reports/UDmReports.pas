@@ -981,7 +981,6 @@ type
     ppDBText185: TppDBText;
     ppDBText186: TppDBText;
     ppDBText114: TppDBText;
-    ppLabel175: TppLabel;
     ppShape71: TppShape;
     ppShape72: TppShape;
     ppShape73: TppShape;
@@ -1125,19 +1124,11 @@ type
     ppLblCentroCusto: TppLabel;
     ppRepListaFoto: TppReport;
     ppHeaderBand15: TppHeaderBand;
-    ppShape105: TppShape;
     ppLabel247: TppLabel;
     ppLabel248: TppLabel;
     ppLine41: TppLine;
     ppImage15: TppImage;
     ppLblPeriodoLista: TppLabel;
-    ppLabel249: TppLabel;
-    ppLabel250: TppLabel;
-    ppLabel251: TppLabel;
-    ppLabel252: TppLabel;
-    ppLabel254: TppLabel;
-    ppLabel255: TppLabel;
-    ppLabel256: TppLabel;
     ppDetailBand15: TppDetailBand;
     ppShape109: TppShape;
     ppShape110: TppShape;
@@ -1279,8 +1270,81 @@ type
     ppParameterList17: TppParameterList;
     ppLabel285: TppLabel;
     ppLabel286: TppLabel;
+    ppDBRepPedido4: TppDBPipeline;
+    ppRepPedido4: TppReport;
+    ppHeaderBand18: TppHeaderBand;
+    ppShape116: TppShape;
+    ppImage18: TppImage;
+    ppLabel277: TppLabel;
+    ppShape118: TppShape;
+    ppLabel287: TppLabel;
+    ppDBText224: TppDBText;
+    ppLabel288: TppLabel;
+    ppDBText225: TppDBText;
+    ppLabel289: TppLabel;
+    ppDBText226: TppDBText;
+    ppLabel291: TppLabel;
+    ppLblTipoMaquina4: TppDBMemo;
+    ppDBLBLServico4: TppDBText;
+    ppLabel293: TppLabel;
+    ppDescricaoServico4: TppDBText;
+    ppLine49: TppLine;
+    ppLabel294: TppLabel;
+    ppLabel295: TppLabel;
+    ppLabel296: TppLabel;
+    ppLabel297: TppLabel;
+    ppLabel298: TppLabel;
+    ppLabel299: TppLabel;
+    ppLabel300: TppLabel;
+    ppDBText229: TppDBText;
+    ppLabel301: TppLabel;
+    ppDBText230: TppDBText;
+    ppDetailBand19: TppDetailBand;
+    ppDBText231: TppDBText;
+    ppDBText232: TppDBText;
+    ppDBText233: TppDBText;
+    ppDBText234: TppDBText;
+    ppDBText235: TppDBText;
+    ppLine50: TppLine;
+    ppDBText236: TppDBText;
+    ppFooterBand18: TppFooterBand;
+    ppSystemVariable35: TppSystemVariable;
+    ppSystemVariable36: TppSystemVariable;
+    ppLine51: TppLine;
+    ppSummaryBand19: TppSummaryBand;
+    ppDBCalc60: TppDBCalc;
+    ppDBCalc61: TppDBCalc;
+    ppDesignLayers19: TppDesignLayers;
+    ppDesignLayer19: TppDesignLayer;
+    ppParameterList18: TppParameterList;
+    dsPedido4: TDataSource;
+    ppLabel302: TppLabel;
+    ppDBText237: TppDBText;
+    ppShape119: TppShape;
+    ppShape120: TppShape;
+    ppShape122: TppShape;
+    ppShape123: TppShape;
+    ppShape124: TppShape;
+    ppLabel290: TppLabel;
+    pplblPrevEntrega1: TppLabel;
+    pplblPrevEntrega2: TppLabel;
+    pplblPrevEntrega3: TppLabel;
+    pplblPrevEntrega4: TppLabel;
+    pplblPrevEntrega5: TppLabel;
+    ppGroup3: TppGroup;
+    ppGroupHeaderBand3: TppGroupHeaderBand;
+    ppGroupFooterBand3: TppGroupFooterBand;
+    ppShape105: TppShape;
+    ppLabel249: TppLabel;
+    ppLabel250: TppLabel;
+    ppLabel251: TppLabel;
+    ppLabel252: TppLabel;
+    ppLabel254: TppLabel;
+    ppLabel255: TppLabel;
+    ppLabel256: TppLabel;
     procedure ppHeaderBand1BeforePrint(Sender: TObject);
     procedure ppDetailBand15AfterPrint(Sender: TObject);
+    procedure ppHeaderBand18BeforePrint(Sender: TObject);
     type
       StringArray = array of string;
       IntegerArray = array of integer;
@@ -1688,6 +1752,29 @@ begin
    end
    else
     ppImgBomba.Picture.Bitmap := nil;
+end;
+
+procedure TdmReport.ppHeaderBand18BeforePrint(Sender: TObject);
+begin
+ if dbCtx.TPedidoCompraRepidmaquina.AsString.Length >0 then
+ begin
+   ppLblTipoMaquina4.Caption   := 'Maquina:';
+   ppDBLBLServico4.Visible     := false;
+   ppDescricaoServico4.Visible := false;
+ end;
+ if dbCtx.TPedidoCompraRepidservico.AsString.Length >0 then
+ begin
+   ppLblTipoMaquina4.Caption   := 'Serviço:';
+   ppDBLBLServico4.Visible     := true;
+   ppDescricaoServico4.Visible := true;
+ end;
+ if (dbCtx.TPedidoCompraRepidservico.AsString.Length=0) and
+  (dbCtx.TPedidoCompraRepidmaquina.AsString.Length=0) then
+ begin
+   ppLblTipoMaquina4.Caption   := 'Produtos Estoque';
+   ppDBLBLServico4.Visible     := false;
+   ppDescricaoServico4.Visible := false;
+ end;
 end;
 
 procedure TdmReport.ppHeaderBand1BeforePrint(Sender: TObject);

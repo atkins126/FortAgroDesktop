@@ -895,9 +895,6 @@ Coordinates=917,3716,67,36
 [ClearEditButton4]
 Coordinates=1836,1046,112,36
 
-[NumberBox1]
-Coordinates=1607,1584,89,58
-
 [Layout45]
 Coordinates=848,3716,67,36
 
@@ -1246,4 +1243,7 @@ Coordinates=1607,3103,129,36
 
 [btnExcluirServico]
 Coordinates=2024,221,71,36
+
+[edtQtdtemManutencao]
+Coordinates=1607,1584,89,58
 
