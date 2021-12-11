@@ -5078,7 +5078,7 @@ object dbCtx: TdbCtx
   end
   object FDConPG: TFDConnection
     Params.Strings = (
-      'Database=FortAgro'
+      'Database=FortAgro0612'
       'Server=127.0.0.1'
       'User_Name=postgres'
       'Password=Dev#110485'

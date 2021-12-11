@@ -1342,6 +1342,54 @@ type
     ppLabel254: TppLabel;
     ppLabel255: TppLabel;
     ppLabel256: TppLabel;
+    ppRepExtratoMaquinaGeral: TppReport;
+    ppHeaderBand19: TppHeaderBand;
+    ppLabel175: TppLabel;
+    ppShape125: TppShape;
+    ppLabel292: TppLabel;
+    ppLabel303: TppLabel;
+    ppLine52: TppLine;
+    ppImage19: TppImage;
+    ppLblPeriodoCombustivel: TppLabel;
+    ppDBMemo8: TppDBMemo;
+    ppDetailBand20: TppDetailBand;
+    ppShape127: TppShape;
+    ppDBMemo12: TppDBMemo;
+    ppDBText228: TppDBText;
+    ppDBText238: TppDBText;
+    ppDBText239: TppDBText;
+    ppDBText240: TppDBText;
+    ppDBText241: TppDBText;
+    ppDBText242: TppDBText;
+    ppDBText243: TppDBText;
+    ppFooterBand19: TppFooterBand;
+    ppSystemVariable37: TppSystemVariable;
+    ppSystemVariable38: TppSystemVariable;
+    ppLine53: TppLine;
+    ppSummaryBand20: TppSummaryBand;
+    ppDesignLayers20: TppDesignLayers;
+    ppDesignLayer20: TppDesignLayer;
+    ppParameterList19: TppParameterList;
+    ppGroup4: TppGroup;
+    ppGroupHeaderBand4: TppGroupHeaderBand;
+    ppGroupFooterBand4: TppGroupFooterBand;
+    ppShape126: TppShape;
+    ppLabel306: TppLabel;
+    ppLabel307: TppLabel;
+    ppLabel308: TppLabel;
+    ppLabel309: TppLabel;
+    ppLabel310: TppLabel;
+    ppLabel311: TppLabel;
+    ppLabel312: TppLabel;
+    ppLabel313: TppLabel;
+    ppLabel305: TppLabel;
+    ppDBText227: TppDBText;
+    ExtratoDiaMaquinasaidaacerto: TBCDField;
+    ppDBCalc62: TppDBCalc;
+    ppDBCalc63: TppDBCalc;
+    ppDBCalc64: TppDBCalc;
+    ppDBCalc65: TppDBCalc;
+    ppShape128: TppShape;
     procedure ppHeaderBand1BeforePrint(Sender: TObject);
     procedure ppDetailBand15AfterPrint(Sender: TObject);
     procedure ppHeaderBand18BeforePrint(Sender: TObject);
@@ -1366,6 +1414,7 @@ type
      DataFim: string);
     procedure AbreSaldoAtualCombustivel(vFiltro:string);
     procedure AbreExtratoDiaMaquina(DataIni,DataFim,idLocal:string);
+    procedure AbreExtratoDiaMaquinaCombustivel(DataIni,DataFim,idProduto:string);
     procedure AbreRepNota(vIdNota:string);
 
     procedure SaldoAtualCustoMedio(vFiltro:string);
@@ -1426,10 +1475,30 @@ begin
  with ExtratoDiaMaquina,ExtratoDiaMaquina.sql do
  begin
    Clear;
-   Add('select * from extratoCombustivel');
+   Add('select * from extratoCombustivel order by datadia');
    Open;
    ppLblPeriodoEx.Text :=DataIni+' ate '+DataFim;
    ppRepExtratoMaquinaDia.Print;
+ end;
+end;
+
+procedure TdmReport.AbreExtratoDiaMaquinaCombustivel(DataIni, DataFim,
+  idProduto: string);
+begin
+ with qryAux,qryAux.SQL do
+ begin
+   Clear;
+   Add('delete from extratoCombustivel');
+   ExecSQL;
+ end;
+ dmRel.GeraExtratoCombustivelProduto(DataIni, DataFim, idProduto);
+ with ExtratoDiaMaquina,ExtratoDiaMaquina.sql do
+ begin
+   Clear;
+   Add('select * from extratoCombustivel order by bomba,datadia');
+   Open;
+   ppLblPeriodoCombustivel.Text :=DataIni+' ate '+DataFim;
+   ppRepExtratoMaquinaGeral.Print;
  end;
 end;
 
@@ -1618,7 +1687,7 @@ begin
     Add(')entrada');
     Add('left join');
     Add('(');
-    Add('select ab.idlocalestoque,p.id idProduto,nome produto,sum(ab.volumelt) qtdSaida from abastecimento ab');
+    Add('select ab.idlocalestoque,p.id idProduto,nome Produto,sum(ab.volumelt) qtdSaida from abastecimento ab');
     Add('join produtos p on p.id=ab.combustivel');
     Add('where ab.status=1');
     Add('group by ab.idlocalestoque,p.id,nome');

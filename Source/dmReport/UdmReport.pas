@@ -661,6 +661,8 @@ type
     procedure AbreRelatorioMonitoramento(vFiltro:string);
     procedure AbreVasaoReceituario(idReceituario:string);
     procedure GeraExtratoCombustivel(DataIni,DataFim,LocalEstoque:string);
+    procedure GeraExtratoCombustivelProduto(DataIni, DataFim, vIdProduto: string);
+    function  RetornaNomeLocal(idLocal:string):string;
   end;
 
 var
@@ -984,6 +986,229 @@ begin
   end;
 end;
 
+procedure TdmRel.GeraExtratoCombustivelProduto(DataIni, DataFim, vIdProduto: string);
+var
+ vQry,vQry2,vQry3,vQry4:TFDQuery;
+ vTotalEntradaIni,
+ vTotalSaidaAbsIni,
+ vTotalSaidaIni,
+ vTotalEntradaTrsIni,
+ vTotalSaidaTrsIni,
+ vSaldoIni,
+ vSaidaTrsDia,
+ vSaidaAcertoDia,
+ vEntradaTrsDia,
+ vEntradaEstoqueDia,
+ vAbastecimento,
+ vSaldoDia,
+ vEntradaTotalDia,
+ vSaldoDiaAnterior:double;
+
+ vDataControle,
+ vDataFim:TDate;
+ vMaquina,vidLocal,vLocal:string;
+ i,x:integer;
+begin
+ vQry := TFDQuery.Create(nil);
+ vQry.Connection := dbCtx.FDConPG;
+ vQry2 := TFDQuery.Create(nil);
+ vQry2.Connection := dbCtx.FDConPG;
+ vQry3 := TFDQuery.Create(nil);
+ vQry3.Connection := dbCtx.FDConPG;
+ vQry4 := TFDQuery.Create(nil);
+ vQry4.Connection := dbCtx.FDConPG;
+
+ with vQry,vQry.SQL do
+ begin
+   Clear;//pegando local de estoque do combustivel
+   Add('select');
+   Add(' distinct idlocalestoque');
+   Add('from abastecimento a');
+   Add('where status=1 and combustivel ='+vIdProduto);
+   Add('and dataabastecimento between '+DataIni.QuotedString+' and '+DataFim.QuotedString);
+   Open;
+   while not vQry.Eof do
+   begin
+     i :=0;
+     x :=0;
+     vDataControle := strToDate(DataIni);
+     vidLocal := FieldByName('idlocalestoque').AsString;
+     vLocal   := dmRel.RetornaNomeLocal(vidLocal);
+     with vQry2,vQry2.SQL do
+     begin
+       //total entrada estoque
+       Clear;
+       Add('select coalesce(sum(n.qtditens),0) Total from notafiscalitems n');
+       Add('join estoqueentrada e on e.id=n.idnota');
+       Add('where n.idlocalestoque='+vidLocal);
+       Add('and n.idproduto='+vIdProduto);
+       Add('and e.dataentradaestoque <'+DataIni.QuotedString);
+       Open;
+       vTotalEntradaIni := FieldByName('Total').AsFloat;
+
+       //total entrada transferencia
+       Clear;
+       Add('select coalesce(sum(t.qtde),0) Total  from tranferencialocalestoque t');
+       Add('where t.status =1 and t.idlocalestoquedetino ='+vidLocal);
+       Add('and t.idproduto='+vIdProduto);
+       Add('and datamov<'+DataIni.QuotedString);
+       Open;
+       vTotalEntradaTrsIni := FieldByName('Total').AsFloat;
+
+       //total saida estoque
+       Clear;
+       Add('select coalesce(sum(e.qtditens),0) Total  from estoquesaida e');
+       Add('where e.status =1 and e.idlocalestoque ='+vidLocal);
+       Add('and e.idproduto='+vIdProduto);
+       Add('and e.datasaidaestoque<'+DataIni.QuotedString);
+       Open;
+       vTotalSaidaIni := FieldByName('Total').AsFloat;
+
+       // total saida transferencia
+       Clear;
+       Add('select coalesce(sum(t.qtde),0) Total  from tranferencialocalestoque t');
+       Add('where t.status =1 and t.idlocalestoqueorigem  ='+vidLocal);
+       Add('and t.idproduto='+vIdProduto);
+       Add('and datamov<'+DataIni.QuotedString);
+       Open;
+       vTotalSaidaTrsIni := FieldByName('Total').AsFloat;
+       vSaldoIni    := (vTotalEntradaIni+vTotalEntradaTrsIni)-(vTotalSaidaIni+vTotalSaidaTrsIni);
+       i :=0;
+       x :=0;
+       while vDataControle<=strToDate(DataFim) do
+       begin
+          Clear;
+          Add('select coalesce(sum(qtde),0) qtde from tranferencialocalestoque a');
+          Add('where a.status=1 and a.idlocalestoquedetino='+vidLocal+' and');
+          Add('a.datamov=:dataControle and idproduto='+vIdProduto);
+          ParamByName('dataControle').AsDate := vDataControle;
+          Open;
+          vEntradaTrsDia  := FieldByName('qtde').AsFloat;
+
+          Clear;
+          Add('select coalesce(sum(a.qtditens),0)qtde');
+          Add('from notafiscalitems a');
+          Add('join estoqueentrada b on a.idnota=b.id');
+          Add('where a.status=1 and a.idlocalestoque='+vidLocal);
+          Add('and b.dataentradaestoque=:dataControle and b.idproduto='+vIdProduto);
+          ParamByName('dataControle').AsDate := vDataControle;
+          Open;
+          vEntradaEstoqueDia := FieldByName('qtde').AsFloat;
+
+          Clear;
+          Add('select coalesce(sum(qtde),0)qtde from tranferencialocalestoque a');
+          Add('where a.status=1 and a.idlocalestoqueorigem='+vidLocal+' and');
+          Add('a.datamov=:dataControle and a.idproduto='+vIdProduto);
+          ParamByName('dataControle').AsDate := vDataControle;
+          Open;
+          vSaidaTrsDia  := FieldByName('qtde').AsFloat;
+
+          Clear;
+          Add('select coalesce(sum(e.qtditens),0) Total  from estoquesaida e');
+          Add('where e.idabastecimento is null and e.status =1 and e.idlocalestoque ='+vidLocal);
+          Add('and e.idproduto='+vIdProduto);
+          Add('and e.datasaidaestoque=:dataControle');
+          ParamByName('dataControle').AsDate := vDataControle;
+          Open;
+          vSaidaAcertoDia := FieldByName('Total').AsFloat;
+
+          vEntradaTotalDia := vEntradaEstoqueDia+vEntradaTrsDia;
+
+          with vQry3,vQry3.SQL do
+          begin
+            Clear;
+            Add('select');
+            Add('c.modelo||''-''||c.prefixo maquina,');
+            Add('coalesce(a.volumelt,0)qtd');
+            Add('from estoquesaida e');
+            Add('left join abastecimento a on a.id=e.idabastecimento');
+            Add('left join maquinaveiculo c on c.id=a.idmaquina');
+            Add('where a.status=1 and a.idlocalestoque='+vidLocal);
+            Add('and idproduto='+vIdProduto);
+            Add('and e.datasaidaestoque =:dataControle');
+            ParamByName('dataControle').AsDate := vDataControle;
+            Open;
+            if not vQry3.IsEmpty then
+            begin
+              x:=0;
+              while not vQry3.eof do
+              begin
+               vAbastecimento := FieldByName('qtd').AsFloat;
+               vMaquina       := FieldByName('maquina').AsString;
+               if i=0 then
+                vsaldoDia     := (vSaldoIni+vEntradaTotalDia)- (vSaidaTrsDia+vAbastecimento+vSaidaAcertoDia)
+               else
+                vsaldoDia     := (vSaldoDiaAnterior+vEntradaTotalDia)-(vSaidaTrsDia+vAbastecimento+vSaidaAcertoDia);
+
+               with vQry4,vQry4.SQL do
+               begin
+                Clear;
+                Add('insert into extratocombustivel(bomba,datadia,saldoinicial,totalentrada,maquina,saidaabastecimento,totalsaidatrnasf,saldodia,saidaacerto)');
+                Add('values(:LocalEstoque,:DataDia,:SaldoInicial,:TotalEntrada,:Maquina,:Abastecimento,:SaidaTransferencia,:saldoDia,:saidaacerto)');
+                ParamByName('LocalEstoque').AsString       := vLocal;
+                ParamByName('DataDia').AsDate              := vDataControle;
+                if i=0 then
+                 ParamByName('SaldoInicial').AsFloat       := vSaldoIni
+                else
+                 ParamByName('SaldoInicial').AsFloat       := vSaldoDiaAnterior;
+                ParamByName('TotalEntrada').AsFloat        := vEntradaTotalDia;
+                ParamByName('Maquina').AsString            := vMaquina;
+                ParamByName('Abastecimento').AsFloat       := vAbastecimento;
+                ParamByName('SaidaTransferencia').AsFloat  := vSaidaTrsDia;
+                ParamByName('saldoDia').AsFloat            := vsaldoDia;
+                ParamByName('saidaacerto').AsFloat         := vSaidaAcertoDia;
+                ExecSQL;
+               end;
+               inc(x);
+               vSaldoDiaAnterior := vsaldoDia;
+               if x>0 then
+               begin
+                 vSaidaTrsDia     :=0;
+                 vEntradaTotalDia :=0;
+                 vEntradaTrsDia   :=0;
+                 vAbastecimento   :=0;
+                 vSaidaAcertoDia  :=0;
+               end;
+               inc(i);
+               vQry3.Next
+              end;
+            end
+            else
+            begin
+              if i=0 then
+                vsaldoDia      := (vSaldoIni+vEntradaTotalDia)-(vSaidaTrsDia+vAbastecimento+vSaidaAcertoDia)
+               else
+                vsaldoDia      := (vSaldoDiaAnterior+vEntradaTotalDia)- (vSaidaTrsDia+vAbastecimento+vSaidaAcertoDia);
+              with vQry3,vQry3.SQL do
+              begin
+                Clear;
+                Add('insert into extratocombustivel(bomba,datadia,saldoinicial,totalentrada,maquina,saidaabastecimento,totalsaidatrnasf,saldodia,saidaacerto)');
+                Add('values(:LocalEstoque,:DataDia,:SaldoInicial,:TotalEntrada,:Maquina,:Abastecimento,:SaidaTransferencia,:saldoDia,:saidaacerto)');
+                ParamByName('LocalEstoque').AsString       := vLocal;
+                ParamByName('DataDia').AsDate              := vDataControle;
+                if i=0 then
+                 ParamByName('SaldoInicial').AsFloat       := vSaldoIni
+                else
+                 ParamByName('SaldoInicial').AsFloat       := vSaldoDiaAnterior;
+                ParamByName('TotalEntrada').AsFloat        := vEntradaTotalDia;
+                ParamByName('Maquina').AsString            := '';
+                ParamByName('Abastecimento').AsFloat       := 0;
+                ParamByName('SaidaTransferencia').AsFloat  := vSaidaTrsDia;
+                ParamByName('saldoDia').AsFloat            := vsaldoDia;
+                ParamByName('saidaacerto').AsFloat         := vSaidaAcertoDia;
+                ExecSQL;
+              end;
+            end;
+          end;//with vQry3
+          vSaldoDiaAnterior := vsaldoDia;
+          inc(i);
+          vDataControle := vDataControle+1;
+       end;//while data
+     end;//with vQry2
+    vQry.Next;//localestoque
+   end;
+ end;//with vQry
+end;
 
 
 procedure TdmRel.GeraExtratoCombustivel(DataIni, DataFim, LocalEstoque: string);
@@ -1000,7 +1225,8 @@ var
  vEntradaEstoqueDia,
  vAbastecimento,
  vSaldoDia,vEntradaTotalDia,
- vSaldoDiaAnterior:double;
+ vSaldoDiaAnterior,
+ vSaidaAcertoDia:double;
  vDataControle,
  vDataFim:TDate;
  vMaquina,vLocal:string;
@@ -1025,30 +1251,41 @@ begin
    Open;
    vLocal := FieldByName('Nome').AsString;
 
+
+   //total entrada estoque
    Clear;
-   Add('select coalesce((y.TotalEntrada+y.EntradaTrans)-(y.SaidaTransf+y.saidaAbastecimento),0)saldoInicial from');
-   Add('(');
-   Add('select');
-   Add('(select sum(a.qtditens) from estoqueentrada a');
-   Add('where a.status=1 and a.idlocalestoque=:IdLocal and');
-   Add('a.dataentradaestoque<:dataIni)TotalEntrada,');
-   Add('(select sum(qtde) from tranferencialocalestoque a');
-   Add('where a.status=1 and a.idlocalestoquedetino=:IdLocal and');
-   Add('a.datamov<:dataIni)EntradaTrans,');
-   Add('(select sum(qtde) from tranferencialocalestoque a');
-   Add('where a.status=1 and a.idlocalestoqueorigem=:IdLocal and');
-   Add('a.datamov<:dataIni) SaidaTransf,');
-   Add('(select sum(a.volumelt) from abastecimento a');
-   Add('where a.status=1 and a.idlocalestoque=:IdLocal and');
-   Add('a.dataabastecimento<:dataIni)saidaAbastecimento');
-   Add('from estoqueentrada');
-   Add('limit 1)y');
-   ParamByName('dataIni').AsDate    :=StrToDate(DataIni);
-   ParamByName('IdLocal').AsInteger :=strToInt(LocalEstoque);
+   Add('select coalesce(sum(n.qtditens),0) Total from notafiscalitems n');
+   Add('join estoqueentrada e on e.id=n.idnota');
+   Add('where n.idlocalestoque='+LocalEstoque);
+   Add('and e.dataentradaestoque <'+DataIni.QuotedString);
    Open;
-//
-//   vSaldoIni  := (vTotalEntradaIni+vTotalEntradaTrsIni)-(vTotalSaidaIni+vTotalSaidaAbsIni);
-   vSaldoIni    := FieldByName('saldoInicial').AsFloat;
+   vTotalEntradaIni := FieldByName('Total').AsFloat;
+
+   //total entrada transferencia
+   Clear;
+   Add('select coalesce(sum(t.qtde),0) Total  from tranferencialocalestoque t');
+   Add('where t.status =1 and t.idlocalestoquedetino ='+LocalEstoque);
+   Add('and datamov<'+DataIni.QuotedString);
+   Open;
+   vTotalEntradaTrsIni := FieldByName('Total').AsFloat;
+
+   //total saida estoque
+   Clear;
+   Add('select coalesce(sum(e.qtditens),0) Total  from estoquesaida e');
+   Add('where e.status =1 and e.idlocalestoque ='+LocalEstoque);
+   Add('and e.datasaidaestoque<'+DataIni.QuotedString);
+   Open;
+   vTotalSaidaIni := FieldByName('Total').AsFloat;
+
+   // total saida transferencia
+   Clear;
+   Add('select coalesce(sum(t.qtde),0) Total  from tranferencialocalestoque t');
+   Add('where t.status =1 and t.idlocalestoqueorigem  ='+LocalEstoque);
+   Add('and datamov<'+DataIni.QuotedString);
+   Open;
+   vTotalSaidaTrsIni := FieldByName('Total').AsFloat;
+
+   vSaldoIni    := (vTotalEntradaIni+vTotalEntradaTrsIni)-(vTotalSaidaIni+vTotalSaidaTrsIni);
 
    vDataControle := StrToDate(DataIni);
    vDataFim      := StrToDate(DataFim);
@@ -1064,9 +1301,11 @@ begin
     vEntradaTrsDia  := FieldByName('qtde').AsFloat;
 
     Clear;
-    Add('select coalesce(sum(a.qtditens),0)qtde from estoqueentrada a');
-    Add('where a.status=1 and a.idlocalestoque='+LocalEstoque+' and');
-    Add('a.dataentradaestoque=:dataControle');
+    Add('select coalesce(sum(a.qtditens),0)qtde');
+    Add('from notafiscalitems a');
+    Add('join estoqueentrada b on a.idnota=b.id');
+    Add('where a.status=1 and a.idlocalestoque='+LocalEstoque);
+    Add('and b.dataentradaestoque=:dataControle');
     ParamByName('dataControle').AsDate := vDataControle;
     Open;
     vEntradaEstoqueDia := FieldByName('qtde').AsFloat;
@@ -1079,18 +1318,27 @@ begin
     Open;
     vSaidaTrsDia  := FieldByName('qtde').AsFloat;
 
+    Clear;
+    Add('select coalesce(sum(e.qtditens),0) Total  from estoquesaida e');
+    Add('where e.idabastecimento is null and e.status =1 and e.idlocalestoque ='+LocalEstoque);
+    Add('and e.datasaidaestoque=:dataControle');
+    ParamByName('dataControle').AsDate := vDataControle;
+    Open;
+    vSaidaAcertoDia := FieldByName('Total').AsFloat;
+
     vEntradaTotalDia := vEntradaEstoqueDia+vEntradaTrsDia;
 
     with vQry2,vQry2.SQL do
     begin
       Clear;
       Add('select');
-      Add('c.modelo||'' - ''||c.prefixo maquina,');
+      Add('c.modelo||''-''||c.prefixo maquina,');
       Add('coalesce(a.volumelt,0)qtd');
-      Add('from abastecimento a');
-      Add('join maquinaveiculo c on c.id=a.idmaquina');
+      Add('from estoquesaida e');
+      Add('left join abastecimento a on a.id=e.idabastecimento');
+      Add('left join maquinaveiculo c on c.id=a.idmaquina');
       Add('where a.status=1 and a.idlocalestoque='+LocalEstoque);
-      Add('and a.dataabastecimento=:dataControle');
+      Add('and e.datasaidaestoque =:dataControle');
       ParamByName('dataControle').AsDate := vDataControle;
       Open;
       if not vQry2.IsEmpty then
@@ -1101,15 +1349,15 @@ begin
          vAbastecimento := FieldByName('qtd').AsFloat;
          vMaquina       := FieldByName('maquina').AsString;
          if i=0 then
-          vsaldoDia      := (vSaldoIni+vEntradaTotalDia)- (vSaidaTrsDia+vAbastecimento)
+          vsaldoDia      := (vSaldoIni+vEntradaTotalDia)- (vSaidaTrsDia+vAbastecimento+vSaidaAcertoDia)
          else
-          vsaldoDia      := (vSaldoDiaAnterior+vEntradaTotalDia)- (vSaidaTrsDia+vAbastecimento);
+          vsaldoDia      := (vSaldoDiaAnterior+vEntradaTotalDia)- (vSaidaTrsDia+vAbastecimento+vSaidaAcertoDia);
 
          with vQry3,vQry3.SQL do
          begin
           Clear;
-          Add('insert into extratocombustivel(bomba,datadia,saldoinicial,totalentrada,maquina,saidaabastecimento,totalsaidatrnasf,saldodia)');
-          Add('values(:LocalEstoque,:DataDia,:SaldoInicial,:TotalEntrada,:Maquina,:Abastecimento,:SaidaTransferencia,:saldoDia)');
+          Add('insert into extratocombustivel(bomba,datadia,saldoinicial,totalentrada,maquina,saidaabastecimento,totalsaidatrnasf,saldodia,saidaacerto)');
+          Add('values(:LocalEstoque,:DataDia,:SaldoInicial,:TotalEntrada,:Maquina,:Abastecimento,:SaidaTransferencia,:saldoDia,:saidaacerto)');
           ParamByName('LocalEstoque').AsString       := vLocal;
           ParamByName('DataDia').AsDate              := vDataControle;
           if i=0 then
@@ -1121,6 +1369,7 @@ begin
           ParamByName('Abastecimento').AsFloat       := vAbastecimento;
           ParamByName('SaidaTransferencia').AsFloat  := vSaidaTrsDia;
           ParamByName('saldoDia').AsFloat            := vsaldoDia;
+          ParamByName('saidaacerto').AsFloat         := vSaidaAcertoDia;
           ExecSQL;
          end;
          inc(x);
@@ -1131,6 +1380,7 @@ begin
            vEntradaTotalDia :=0;
            vEntradaTrsDia   :=0;
            vAbastecimento   :=0;
+           vSaidaAcertoDia  :=0;
          end;
          inc(i);
          vQry2.Next
@@ -1145,8 +1395,8 @@ begin
         with vQry3,vQry3.SQL do
         begin
           Clear;
-          Add('insert into extratocombustivel(bomba,datadia,saldoinicial,totalentrada,maquina,saidaabastecimento,totalsaidatrnasf,saldodia)');
-          Add('values(:LocalEstoque,:DataDia,:SaldoInicial,:TotalEntrada,:Maquina,:Abastecimento,:SaidaTransferencia,:saldoDia)');
+          Add('insert into extratocombustivel(bomba,datadia,saldoinicial,totalentrada,maquina,saidaabastecimento,totalsaidatrnasf,saldodia,saidaacerto)');
+          Add('values(:LocalEstoque,:DataDia,:SaldoInicial,:TotalEntrada,:Maquina,:Abastecimento,:SaidaTransferencia,:saldoDia,:saidaacerto)');
           ParamByName('LocalEstoque').AsString       := vLocal;
           ParamByName('DataDia').AsDate              := vDataControle;
           if i=0 then
@@ -1158,6 +1408,7 @@ begin
           ParamByName('Abastecimento').AsFloat       := 0;
           ParamByName('SaidaTransferencia').AsFloat  := vSaidaTrsDia;
           ParamByName('saldoDia').AsFloat            := vsaldoDia;
+          ParamByName('saidaacerto').AsFloat         := vSaidaAcertoDia;
           ExecSQL;
         end;
       end;
@@ -1186,6 +1437,18 @@ begin
   end
   else
    ppImgAss.Picture.Bitmap.Assign(nil);
+end;
+
+function TdmRel.RetornaNomeLocal(idLocal: string): string;
+begin
+ with qryAux,qryAux.SQL do
+ begin
+   Clear;
+   Add('select * from localestoque l');
+   Add('where id='+idLocal);
+   Open;
+   Result := FieldByName('nome').AsString;
+ end;
 end;
 
 function TdmRel.RetornaTalhoesReceituario(vIdPull: string): string;

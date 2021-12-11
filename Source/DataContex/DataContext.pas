@@ -1447,6 +1447,7 @@ type
     procedure AbreValoresOrcamento(vIdOrc:string);
     function  RetornaValorLiquidoForn(vIdOrc,vIDForn: string):string;
     function  AtaulizaSaldoAtualCustoMedio(idProduto: string):string;
+    procedure AtualzisaSaldoGeral;
     function  AbreItenOrcamentoEdit(idItem:string):Boolean;
     procedure AbrePropriedade(vIdPropriedade:string);
     procedure AtualizaOrcamentoDescontoFreteFormaPG(idOrcamento,desconto,frete,idFormaPG,
@@ -3436,6 +3437,22 @@ begin
  end;
 end;
 
+procedure TdbCtx.AtualzisaSaldoGeral;
+begin
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('select distinct n.idproduto from notafiscalitems n');
+   Add('where status =1');
+   Open;
+   while not vqry.eof do
+   begin
+     AtaulizaSaldoAtualCustoMedio(FieldByName('idproduto').AsString);
+     vqry.Next;
+   end;
+ end;
+end;
+
 procedure TdbCtx.AbreOcorrenciaOperacao(vIdOperacao: string);
 begin
  with qryOcorrenciaOperacao,qryOcorrenciaOperacao.SQL do
@@ -3450,7 +3467,7 @@ end;
 
 procedure TdbCtx.CancelaPedido(idPedido: string);
 begin
-with vQry,vQry.SQL do
+ with vQry,vQry.SQL do
  begin
    Clear;
    Add('update pedidocompra set cancelado=1');

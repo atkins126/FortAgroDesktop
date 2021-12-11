@@ -504,6 +504,7 @@ begin
   layDash.Visible := false;
   laySync.Visible := false;
   dbCtx.AbreSystemConfig;
+//  dmRel.GeraExtratoCombustivelProduto('01/10/2021','30/10/2021','178');
 //  if dbCtx.vTipoBDConfig=0 then
 //  begin
 //   lblTipoDB.Text         := 'Escritório:';
