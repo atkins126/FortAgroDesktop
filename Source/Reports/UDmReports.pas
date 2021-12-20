@@ -321,13 +321,6 @@ type
     ppLabel90: TppLabel;
     ppDBText61: TppDBText;
     SaldoAtualCombustivel: TFDQuery;
-    SaldoAtualCombustivellocalestoque: TWideStringField;
-    SaldoAtualCombustivelproduto: TWideStringField;
-    SaldoAtualCombustivelentradas: TFMTBCDField;
-    SaldoAtualCombustivelsaidas: TFMTBCDField;
-    SaldoAtualCombustivelsaldo: TFMTBCDField;
-    SaldoAtualCombustiveltotal_saida_trans: TFMTBCDField;
-    SaldoAtualCombustiveltotal_entrada_trans: TFMTBCDField;
     dsSaldoAtual: TDataSource;
     ppDBSaldoAtual: TppDBPipeline;
     ppRepSaldoAtual: TppReport;
@@ -335,30 +328,20 @@ type
     ppShape26: TppShape;
     ppLabel91: TppLabel;
     ppLine15: TppLine;
-    ppImage6: TppImage;
-    ppLabel96: TppLabel;
     ppLabel97: TppLabel;
     ppLabel98: TppLabel;
     ppLabel99: TppLabel;
     ppLabel100: TppLabel;
     ppDetailBand7: TppDetailBand;
     ppLine20: TppLine;
-    ppDBText62: TppDBText;
     ppDBText63: TppDBText;
     ppDBText64: TppDBText;
     ppDBText65: TppDBText;
-    ppDBText66: TppDBText;
     ppFooterBand7: TppFooterBand;
-    ppSystemVariable13: TppSystemVariable;
-    ppSystemVariable14: TppSystemVariable;
     ppSummaryBand6: TppSummaryBand;
     ppDesignLayers7: TppDesignLayers;
     ppDesignLayer7: TppDesignLayer;
     ppParameterList7: TppParameterList;
-    ppLabel92: TppLabel;
-    ppDBText67: TppDBText;
-    ppLabel93: TppLabel;
-    ppDBText68: TppDBText;
     ppLabel94: TppLabel;
     ppDBText69: TppDBText;
     ppLabel95: TppLabel;
@@ -705,14 +688,6 @@ type
     QryEstoqueGultimasaida: TDateField;
     dsEstoqueG: TDataSource;
     ppDBEstoqueG: TppDBPipeline;
-    ppDBEstoqueGppField1: TppField;
-    ppDBEstoqueGppField2: TppField;
-    ppDBEstoqueGppField3: TppField;
-    ppDBEstoqueGppField4: TppField;
-    ppDBEstoqueGppField5: TppField;
-    ppDBEstoqueGppField6: TppField;
-    ppDBEstoqueGppField7: TppField;
-    ppDBEstoqueGppField8: TppField;
     ppRepEstoqueG: TppReport;
     ppHeaderBand10: TppHeaderBand;
     ppShape78: TppShape;
@@ -720,7 +695,6 @@ type
     ppLine28: TppLine;
     ppImage9: TppImage;
     ppLabel150: TppLabel;
-    ppLabel151: TppLabel;
     ppLabel152: TppLabel;
     ppLabel153: TppLabel;
     ppLabel154: TppLabel;
@@ -729,7 +703,6 @@ type
     ppLabel181: TppLabel;
     ppDetailBand10: TppDetailBand;
     ppLine29: TppLine;
-    ppDBText118: TppDBText;
     ppDBText119: TppDBText;
     ppDBText120: TppDBText;
     ppDBText121: TppDBText;
@@ -1390,7 +1363,59 @@ type
     ppDBCalc64: TppDBCalc;
     ppDBCalc65: TppDBCalc;
     ppShape128: TppShape;
-    procedure ppHeaderBand1BeforePrint(Sender: TObject);
+    ppShape129: TppShape;
+    ppDBCalc66: TppDBCalc;
+    ppDBCalc67: TppDBCalc;
+    ppDBCalc68: TppDBCalc;
+    ppDBCalc69: TppDBCalc;
+    SaldoAtuaBomba: TFDQuery;
+    WideMemoField1: TWideMemoField;
+    FMTBCDField5: TFMTBCDField;
+    FMTBCDField6: TFMTBCDField;
+    FMTBCDField7: TFMTBCDField;
+    FMTBCDField8: TFMTBCDField;
+    FMTBCDField9: TFMTBCDField;
+    WideMemoField2: TWideMemoField;
+    dsSaldoBomba: TDataSource;
+    ppDBSaldoBomba: TppDBPipeline;
+    ppRepSaldoBomba: TppReport;
+    ppHeaderBand20: TppHeaderBand;
+    ppShape130: TppShape;
+    ppLabel304: TppLabel;
+    ppLine54: TppLine;
+    ppImage20: TppImage;
+    ppLabel314: TppLabel;
+    ppLabel315: TppLabel;
+    ppLabel316: TppLabel;
+    ppLabel317: TppLabel;
+    ppLabel318: TppLabel;
+    ppLabel319: TppLabel;
+    ppLabel320: TppLabel;
+    ppDetailBand21: TppDetailBand;
+    ppLine55: TppLine;
+    ppDBText244: TppDBText;
+    ppDBText245: TppDBText;
+    ppDBText246: TppDBText;
+    ppDBText247: TppDBText;
+    ppDBText248: TppDBText;
+    ppDBText249: TppDBText;
+    ppDBText250: TppDBText;
+    ppFooterBand20: TppFooterBand;
+    ppSystemVariable39: TppSystemVariable;
+    ppSystemVariable40: TppSystemVariable;
+    ppSummaryBand21: TppSummaryBand;
+    ppDesignLayers21: TppDesignLayers;
+    ppDesignLayer21: TppDesignLayer;
+    ppParameterList20: TppParameterList;
+    SaldoAtualCombustivelcombustivel: TWideMemoField;
+    SaldoAtualCombustiveltotalentrada: TFMTBCDField;
+    SaldoAtualCombustiveltotalsaida: TFMTBCDField;
+    SaldoAtualCombustivelsaldo: TFMTBCDField;
+    ppDBText62: TppDBText;
+    ppImage6: TppImage;
+    qryFichatiporecstr: TWideMemoField;
+    ppLabel92: TppLabel;
+    ppDBText66: TppDBText;
     procedure ppDetailBand15AfterPrint(Sender: TObject);
     procedure ppHeaderBand18BeforePrint(Sender: TObject);
     type
@@ -1413,6 +1438,7 @@ type
     procedure AbreExtratoBomba(idComb, NomeCOmb, DataIni,
      DataFim: string);
     procedure AbreSaldoAtualCombustivel(vFiltro:string);
+    procedure AbreSaldoAtualBomba(vBomba,vIdCombustivel:string);
     procedure AbreExtratoDiaMaquina(DataIni,DataFim,idLocal:string);
     procedure AbreExtratoDiaMaquinaCombustivel(DataIni,DataFim,idProduto:string);
     procedure AbreRepNota(vIdNota:string);
@@ -1422,6 +1448,7 @@ type
     procedure AbreListaSaidas(vFiltro:string);
     procedure AbreFichaRetirada(idReceiturario:string);
     function  BitmapFromBase64(const base64: string): TBitmap;
+    function  RetornaIdCombustivel(vIdLocalEstoque:string):string;
   end;
 
 var
@@ -1513,7 +1540,12 @@ begin
    Add(' r.dataprevaplicacao,');
    Add(' p.nome Produto,');
    Add(' p.unidademedida,');
-   Add(' ((select sum(areahe) from detreceiturariotalhao d2 where status =1 and d2.idreceiturario=r.id)*d.qtdporhe)qtdRecomendada');
+   Add(' ((select sum(areahe) from detreceiturariotalhao d2 where status =1 and d2.idreceiturario=r.id)*d.qtdporhe)qtdRecomendada,');
+   Add('case');
+   Add('when tiporeceituario=0 then ''Pulverização''');
+   Add('when tiporeceituario=1 then ''Tratamento Semente''');
+   Add('when tiporeceituario=2 then ''Pastagem''');
+   Add('end  TipoRecSTR');
    Add('from receiturario r');
    Add('join detreceiturario d ON r.id=d.idreceiturario and d.status>-1');
    Add('join produtos p on p.id=d.idproduto');
@@ -1659,53 +1691,28 @@ begin
  end;
 end;
 
+procedure TdmReport.AbreSaldoAtualBomba(vBomba, vIdCombustivel: string);
+begin
+ with SaldoAtuaBomba,SaldoAtuaBomba.SQL do
+  begin
+    Clear;
+    Add('select * from SaldoAtualBomba(:localestoque,:idProduto)');
+    ParamByName('localestoque').AsInteger := strToInt(vBomba);
+    ParamByName('idProduto').AsInteger    := StrToInt(vIdCombustivel);
+    Open;
+    if not isempty then
+     ppRepSaldoBomba.Print
+    else
+     frmPrincipal.MyShowMessage('sem dados para esse filtro',false);
+  end;
+end;
+
 procedure TdmReport.AbreSaldoAtualCombustivel(vFiltro: string);
 begin
   with SaldoAtualCombustivel,SaldoAtualCombustivel.SQL do
   begin
     Clear;
-    Add('select');
-    Add(' entrada.localestoque,');
-    Add(' coalesce(entrada.produto,saida.produto)produto,');
-    Add(' coalesce(entrada.qtdEntrada,0) entradas,');
-    Add(' coalesce(saida.qtdSaida,0)Saidas,');
-    Add(' (coalesce(entrada.qtdEntrada,0)+coalesce(TOTAL_ENT_TRANS,0))-(coalesce(saida.qtdSaida,0)+coalesce(TRO.TOTAL_SAIDA_TRANS,0))saldo,');
-    Add(' coalesce(TRO.TOTAL_SAIDA_TRANS,0)TOTAL_SAIDA_TRANS,');
-    Add(' coalesce(TOTAL_ENT_TRANS,0)TOTAL_ENTRADA_TRANS');
-    Add('from');
-    Add('(');
-    Add('select');
-    Add(' a.id idlocalestoque,');
-    Add(' b.id idProduto,');
-    Add(' a.nome LocalEstoque,');
-    Add(' b.nome Produto,');
-    Add(' sum(c.qtditens) qtdEntrada');
-    Add('from localestoque a');
-    Add('left join estoqueentrada c on c.idlocalestoque=a.id');
-    Add('left join produtos b on  c.idproduto=b.id');
-    Add('group by a.id,b.id,a.nome,b.nome');
-    Add(')entrada');
-    Add('left join');
-    Add('(');
-    Add('select ab.idlocalestoque,p.id idProduto,nome Produto,sum(ab.volumelt) qtdSaida from abastecimento ab');
-    Add('join produtos p on p.id=ab.combustivel');
-    Add('where ab.status=1');
-    Add('group by ab.idlocalestoque,p.id,nome');
-    Add(')saida');
-    Add('on saida.idlocalestoque=entrada.idlocalestoque');
-    Add('left join');
-    Add('(select t.idlocalestoqueorigem,sum(t.qtde) TOTAL_SAIDA_TRANS from tranferencialocalestoque t');
-    Add('where t.status=1');
-    Add('group by t.idlocalestoqueorigem)TRO');
-    Add('on TRO.idlocalestoqueorigem=entrada.idlocalestoque');
-    Add('left join');
-    Add('(select t.idlocalestoquedetino ,sum(t.qtde) TOTAL_ENT_TRANS from tranferencialocalestoque t');
-    Add('where t.status=1');
-    Add('group by t.idlocalestoquedetino )TRD');
-    Add('on TRD.idlocalestoquedetino =entrada.idlocalestoque');
-    Add('where 1=1');
-    if vFiltro.Length>0 then
-     Add(vFiltro);
+    Add('select * from saldoatualcombustivel('+vFiltro+')');
     Open;
     if not isempty then
      ppRepSaldoAtual.Print
@@ -1846,32 +1853,16 @@ begin
  end;
 end;
 
-procedure TdmReport.ppHeaderBand1BeforePrint(Sender: TObject);
+function TdmReport.RetornaIdCombustivel(vIdLocalEstoque: string): string;
 begin
- if dbCtx.TPedidoCompraRepidmaquina.AsString.Length >0 then
+ with qryAux,qryAux.SQL do
  begin
-   ppLblTipoMaquina.Caption   := 'Maquina:';
-   ppDBLBLServico.Visible     := false;
-   ppDBLBLMaquina.Visible     := true;
-   pplblDescricao.Visible     := false;
-   ppDescricaoServico.Visible := false;
- end;
- if dbCtx.TPedidoCompraRepidservico.AsString.Length >0 then
- begin
-   ppLblTipoMaquina.Caption   := 'Serviço:';
-   ppDBLBLServico.Visible     := true;
-   ppDBLBLMaquina.Visible     := false;
-   pplblDescricao.Visible     := true;
-   ppDescricaoServico.Visible := true;
- end;
- if (dbCtx.TPedidoCompraRepidservico.AsString.Length=0) and
-  (dbCtx.TPedidoCompraRepidmaquina.AsString.Length=0) then
- begin
-   ppLblTipoMaquina.Caption   := 'Produtos Estoque';
-   ppDBLBLServico.Visible     := false;
-   ppDBLBLMaquina.Visible     := false;
-   pplblDescricao.Visible     := false;
-   ppDescricaoServico.Visible := false;
+   Clear;
+   Add('select combustivel from abastecimento a');
+   Add('where idlocalestoque='+ vIdLocalEstoque);
+   Add('order by id desc limit 1');
+   Open;
+   Result := FieldByName('combustivel').AsString;
  end;
 end;
 

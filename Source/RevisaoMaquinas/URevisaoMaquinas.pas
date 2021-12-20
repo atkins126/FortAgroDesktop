@@ -917,9 +917,9 @@ begin
   tbPrincipal.TabPosition := TTabPosition.None;
   tbPrincipal.ActiveTab   := tbiLista;
   tbLayEdit.TabPosition   := TTabPosition.None;
-  btnAdd.Enabled          := dbCtx.vTipoBDConfig=1;
-  btnEditar.Enabled       := dbCtx.vTipoBDConfig=1;
-  btnDeletar.Enabled      := dbCtx.vTipoBDConfig=1;
+  btnAdd.Enabled          := dbCtx.vTipoBDConfig=2;
+  btnEditar.Enabled       := dbCtx.vTipoBDConfig=2;
+  btnDeletar.Enabled      := dbCtx.vTipoBDConfig=2;
   vEdit :=0;
 end;
 

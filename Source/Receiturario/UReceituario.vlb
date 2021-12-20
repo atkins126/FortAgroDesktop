@@ -199,7 +199,7 @@ Coordinates=10,214,66,36
 Coordinates=93,535,67,36
 
 []
-Coordinates=1011,2198,53,58
+Coordinates=1011,383,53,58
 
 [BindSourceDB1]
 Coordinates=670,1,112,388
@@ -303,9 +303,6 @@ Coordinates=39,1633,123,586
 
 [Rectangle2]
 Coordinates=533,925,80,36
-
-[Label5]
-Coordinates=1011,383,53,58
 
 [btnSalvar]
 Coordinates=39,2301,69,36

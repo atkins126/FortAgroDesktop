@@ -550,13 +550,28 @@ end;
 
 procedure TfrmAbastecimento.cbxTipoRelatorioChange(Sender: TObject);
 begin
- if (cbxTipoRelatorio.ItemIndex=1) then
-   gpPeriodo.Enabled := true
- else
+ if (cbxTipoRelatorio.ItemIndex=0) then
    gpPeriodo.Enabled      := false;
- rdCombustivel.Enabled    := true;//cbxTipoRelatorio.ItemIndex<>1;
- cbxCombustivelEx.Enabled := true;//cbxTipoRelatorio.ItemIndex<>1;
- rdBomba.IsChecked        := true;//cbxTipoRelatorio.ItemIndex=1;
+
+ if cbxTipoRelatorio.ItemIndex=2 then
+ begin
+  rdCombustivel.Enabled    := true;
+  cbxCombustivelEx.Enabled := true;
+  rdBomba.IsChecked        := false;
+  rdBomba.Enabled          := false;
+  cbxBombaEx.Enabled       := false;
+  gpPeriodo.Enabled        := true;
+
+ end
+ else
+ begin
+  gpPeriodo.Enabled         := true;
+  rdCombustivel.Enabled     := true;//cbxTipoRelatorio.ItemIndex<>1;
+  cbxCombustivelEx.Enabled  := true;//cbxTipoRelatorio.ItemIndex<>1;
+  rdBomba.Enabled           := true;
+  rdBomba.IsChecked         := true;//cbxTipoRelatorio.ItemIndex=1;
+  cbxBombaEx.Enabled        := true;
+ end;
 end;
 
 procedure TfrmAbastecimento.EditButton1Click(Sender: TObject);
@@ -733,7 +748,8 @@ begin
       end
       else
       begin
-       dmReport.AbreSaldoAtualCombustivel('and localestoque='+cbxBombaEx.Selected.Text.QuotedString);
+       dmReport.AbreSaldoAtualBomba(vBombaEx,
+        dmReport.RetornaIdCombustivel(vBombaEx));
       end;
     end;
     if rdCombustivel.IsChecked then
@@ -745,7 +761,7 @@ begin
       end
       else
       begin
-       dmReport.AbreSaldoAtualCombustivel('and entrada.Produto='+cbxCombustivelEx.Selected.Text.QuotedString);
+       dmReport.AbreSaldoAtualCombustivel(vCombustivelEx);
       end;
     end;
   end;
@@ -773,6 +789,21 @@ begin
      edtExDataFim.Text,
      vCombustivelEx);
   end;
+
+  if(cbxTipoRelatorio.ItemIndex=2) then
+  begin
+    if cbxCombustivelEx.ItemIndex=-1 then
+    begin
+      MyShowMessage('Informe o Combustivel!!',false);
+      Exit;
+    end;
+    dmReport.AbreExtratoCombustivel(
+     vCombustivelEx,
+     cbxCombustivelEx.Selected.Text,
+     edtExDataIni.Text,
+     edtExDataFim.Text);
+  end;
+
 end;
 
 procedure TfrmAbastecimento.Rectangle5Click(Sender: TObject);
