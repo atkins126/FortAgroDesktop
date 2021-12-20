@@ -12,7 +12,8 @@ uses
   System.Actions, FMX.TabControl, FMX.Ani, FMX.ScrollBox, FMX.Grid, FMX.Edit,
   FMX.Controls.Presentation, FMX.Objects, FMX.Layouts, Fmx.Bind.Grid,
   System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
-  Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope;
+  Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope,
+  FMX.ListBox;
 
 type
   TfrmOperadorMaquinas = class(TfrmCadPadrao)
@@ -34,6 +35,8 @@ type
     edtCPF: TEdit;
     edtCNH: TEdit;
     Label5: TLabel;
+    Label6: TLabel;
+    cbxPulverizacao: TComboBox;
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnDeletarClick(Sender: TObject);
@@ -98,11 +101,12 @@ end;
 
 procedure TfrmOperadorMaquinas.btnEditarClick(Sender: TObject);
 begin
-  edtNome.Text          := dbCtx.TOperadorMaquinanome.AsString;
-  edtRG.Text            := dbCtx.TOperadorMaquinaRG.AsString;
-  edtCPF.Text           := dbCtx.TOperadorMaquinaCPF.AsString;
-  edtCNH.Text           := dbCtx.TOperadorMaquinaCNH.AsString;
-  edtCelular.Text       := dbCtx.TOperadorMaquinacelular.AsString;
+  edtNome.Text              := dbCtx.TOperadorMaquinanome.AsString;
+  edtRG.Text                := dbCtx.TOperadorMaquinaRG.AsString;
+  edtCPF.Text               := dbCtx.TOperadorMaquinaCPF.AsString;
+  edtCNH.Text               := dbCtx.TOperadorMaquinaCNH.AsString;
+  edtCelular.Text           := dbCtx.TOperadorMaquinacelular.AsString;
+  cbxPulverizacao.ItemIndex := dbCtx.TOperadorMaquinapulverizacao.AsInteger;
   dbCtx.TOperadorMaquina.Edit;
   inherited;
 end;
@@ -156,7 +160,7 @@ begin
    end;
 
 
-
+   dbCtx.TOperadorMaquinapulverizacao.AsInteger := cbxPulverizacao.ItemIndex;
    dbCtx.TOperadorMaquinaIdUsuario.AsString := dbCtx.vIdUsuarioLogado;
   end;
   try
@@ -207,7 +211,17 @@ procedure TfrmOperadorMaquinas.FormShow(Sender: TObject);
 begin
   dbCtx.TOperadorMaquina.Close;
   dbCtx.TOperadorMaquina.Open;
-  inherited;
+   lblBuscar.Text     := 'Filtros';
+  lblAdd.Text        := 'Adicionar';
+  lblEdit.Text       := 'Editar';
+  lblDeleta.Text     := 'Deletar';
+  layListaMnu.Width  := 150;
+  tbPrincipal.TabPosition := TTabPosition.None;
+  tbPrincipal.ActiveTab   := tbiLista;
+  btnAdd.Enabled          := dbCtx.vTipoBDConfig=0;
+  btnEditar.Enabled       := true;
+  btnDeletar.Enabled      := dbCtx.vTipoBDConfig=0;
+
 end;
 
 procedure TfrmOperadorMaquinas.LimpaCampos;

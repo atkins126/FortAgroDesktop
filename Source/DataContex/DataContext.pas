@@ -1309,6 +1309,13 @@ type
     TItensOrcamentoqtdrecebida: TFMTBCDField;
     TItensOrcamentoresponsavelrecebimento: TIntegerField;
     TItensOrcamentodatarecebimento: TDateField;
+    TReceituariotiporeceituario: TIntegerField;
+    TReceituariotiporecstr: TWideMemoField;
+    TOperadorMaquinapulverizacao: TIntegerField;
+    TReceituarioidvariedade: TIntegerField;
+    TReceituariotaxaajusteremonte: TBCDField;
+    TReceituarioqtdesemntemetro: TBCDField;
+    TReceituariovariedade: TWideStringField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1447,6 +1454,7 @@ type
     procedure AbreValoresOrcamento(vIdOrc:string);
     function  RetornaValorLiquidoForn(vIdOrc,vIDForn: string):string;
     function  AtaulizaSaldoAtualCustoMedio(idProduto: string):string;
+    procedure AtualzisaSaldoGeral;
     function  AbreItenOrcamentoEdit(idItem:string):Boolean;
     procedure AbrePropriedade(vIdPropriedade:string);
     procedure AtualizaOrcamentoDescontoFreteFormaPG(idOrcamento,desconto,frete,idFormaPG,
@@ -2389,10 +2397,17 @@ begin
    Add('case');
    Add('when b.liberado=0 then ''Não Liberado''');
    Add('when b.liberado=1 then ''Liberado''');
-   Add('end  situacao');
+   Add('end  situacao,');
+   Add('case');
+   Add('when tiporeceituario=0 then ''Pulverização''');
+   Add('when tiporeceituario=1 then ''Tratamento Semente''');
+   Add('when tiporeceituario=2 then ''Pastagem''');
+   Add('end  TipoRecSTR,');
+   Add('cu.nome  variedade');
    Add('from receiturario b');
    Add('join usuario u on u.id=b.idResponsavel');
    Add('left join auxculturas g on g.id=b.idCultura');
+   Add('left join auxcultivares cu on cu.id=b.idVariedade');
    Add('where b.STATUS>-1');
    Add(vFiltro);
    Add('order by b.datareg desc');
@@ -3436,6 +3451,22 @@ begin
  end;
 end;
 
+procedure TdbCtx.AtualzisaSaldoGeral;
+begin
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('select distinct n.idproduto from notafiscalitems n');
+   Add('where status =1');
+   Open;
+   while not vqry.eof do
+   begin
+     AtaulizaSaldoAtualCustoMedio(FieldByName('idproduto').AsString);
+     vqry.Next;
+   end;
+ end;
+end;
+
 procedure TdbCtx.AbreOcorrenciaOperacao(vIdOperacao: string);
 begin
  with qryOcorrenciaOperacao,qryOcorrenciaOperacao.SQL do
@@ -3450,7 +3481,7 @@ end;
 
 procedure TdbCtx.CancelaPedido(idPedido: string);
 begin
-with vQry,vQry.SQL do
+ with vQry,vQry.SQL do
  begin
    Clear;
    Add('update pedidocompra set cancelado=1');
@@ -3583,7 +3614,7 @@ begin
  with vQry,vQry.SQL do
  begin
    Clear;
-   Add('update estoquesaida set status=1,syncaws=0');
+   Add('update estoquesaida set status=-1,syncaws=0');
    Add('where idabastecimento='+vid);
    ExecSQL;
    FDConPG.Commit;

@@ -2049,11 +2049,19 @@ object dbCtx: TdbCtx
       'case'
       ' when b.liberado=0 then '#39'N'#227'o Liberado'#39
       ' when b.liberado=2 then '#39'Liberado'#39
-      'end  situacao'
+      'end  situacao,'
+      'case'
+      ' when tiporeceituario=0 then '#39'Pulveriza'#231#227'o'#39
+      ' when tiporeceituario=1 then '#39'Tratamento Semente'#39
+      ' when tiporeceituario=2 then '#39'Pastagem'#39
+      'end  TipoRecSTR,'
+      'cu.nome variedade'
       'from receiturario b'
       'join usuario u on u.id=b.idResponsavel'
       'left join auxculturas g on g.id=b.idCultura'
-      'order by b.datareg desc')
+      'left join auxcultivares cu on cu.id=b.idVariedade'
+      'order by b.datareg desc'
+      '')
     Left = 192
     Top = 232
     object TReceituarioid: TIntegerField
@@ -2143,6 +2151,39 @@ object dbCtx: TdbCtx
       Origin = 'situacao'
       ReadOnly = True
       BlobType = ftWideMemo
+    end
+    object TReceituariotiporeceituario: TIntegerField
+      FieldName = 'tiporeceituario'
+      Origin = 'tiporeceituario'
+    end
+    object TReceituariotiporecstr: TWideMemoField
+      AutoGenerateValue = arDefault
+      FieldName = 'tiporecstr'
+      Origin = 'tiporecstr'
+      ReadOnly = True
+      BlobType = ftWideMemo
+    end
+    object TReceituarioidvariedade: TIntegerField
+      FieldName = 'idvariedade'
+      Origin = 'idvariedade'
+    end
+    object TReceituariotaxaajusteremonte: TBCDField
+      FieldName = 'taxaajusteremonte'
+      Origin = 'taxaajusteremonte'
+      Precision = 15
+      Size = 3
+    end
+    object TReceituarioqtdesemntemetro: TBCDField
+      FieldName = 'qtdesemntemetro'
+      Origin = 'qtdesemntemetro'
+      Precision = 15
+      Size = 3
+    end
+    object TReceituariovariedade: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'variedade'
+      Origin = 'variedade'
+      Size = 50
     end
   end
   object TDetReceituario: TFDQuery
@@ -4153,6 +4194,10 @@ object dbCtx: TdbCtx
       FieldName = 'syncfaz'
       Origin = 'syncfaz'
     end
+    object TOperadorMaquinapulverizacao: TIntegerField
+      FieldName = 'pulverizacao'
+      Origin = 'pulverizacao'
+    end
   end
   object TAuxTipoCultivare: TFDQuery
     CachedUpdates = True
@@ -5079,9 +5124,9 @@ object dbCtx: TdbCtx
   object FDConPG: TFDConnection
     Params.Strings = (
       'Database=FortAgro'
-      'Server=127.0.0.1'
+      'Server=192.168.236.50'
       'User_Name=postgres'
-      'Password=Dev#110485'
+      'Password=ffg@2021'
       'Pooled='
       'DriverID=PG')
     LoginPrompt = False
@@ -6927,6 +6972,7 @@ object dbCtx: TdbCtx
     end
   end
   object PgDriverLink: TFDPhysPgDriverLink
+    VendorLib = 'D:\Projetos2021\Deploy\libpq.dll'
     Left = 1136
     Top = 312
   end

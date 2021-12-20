@@ -149,6 +149,8 @@ type
     chkAbastecimentoExterno: TCheckBox;
     btnListaSemFoto: TRectangle;
     Label36: TLabel;
+    Image14: TImage;
+    Image16: TImage;
     procedure FormShow(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure edtVolumeLitrosChangeTracking(Sender: TObject);
@@ -548,13 +550,28 @@ end;
 
 procedure TfrmAbastecimento.cbxTipoRelatorioChange(Sender: TObject);
 begin
- if (cbxTipoRelatorio.ItemIndex=1) then
-   gpPeriodo.Enabled := true
- else
+ if (cbxTipoRelatorio.ItemIndex=0) then
    gpPeriodo.Enabled      := false;
- rdCombustivel.Enabled    := cbxTipoRelatorio.ItemIndex<>1;
- cbxCombustivelEx.Enabled := cbxTipoRelatorio.ItemIndex<>1;
- rdBomba.IsChecked        := cbxTipoRelatorio.ItemIndex=1;
+
+ if cbxTipoRelatorio.ItemIndex=2 then
+ begin
+  rdCombustivel.Enabled    := true;
+  cbxCombustivelEx.Enabled := true;
+  rdBomba.IsChecked        := false;
+  rdBomba.Enabled          := false;
+  cbxBombaEx.Enabled       := false;
+  gpPeriodo.Enabled        := true;
+
+ end
+ else
+ begin
+  gpPeriodo.Enabled         := true;
+  rdCombustivel.Enabled     := true;//cbxTipoRelatorio.ItemIndex<>1;
+  cbxCombustivelEx.Enabled  := true;//cbxTipoRelatorio.ItemIndex<>1;
+  rdBomba.Enabled           := true;
+  rdBomba.IsChecked         := true;//cbxTipoRelatorio.ItemIndex=1;
+  cbxBombaEx.Enabled        := true;
+ end;
 end;
 
 procedure TfrmAbastecimento.EditButton1Click(Sender: TObject);
@@ -673,12 +690,11 @@ begin
   else
   begin
     chkAbastecimentoExterno.Visible := false;
-    btnListaComFoto.Visible := false;
   end;
   layExtrato.Visible        := false;
   layNewOutros.Visible      := false;
   CarregaLocalEstoque;
-  edtDataInicio.Date        := DATE-7;
+  edtDataInicio.Date        := DATE-1;
   cbxCombustivelF.ItemIndex := 0;
   Filtro;
   SomarColunasGrid;
@@ -732,7 +748,8 @@ begin
       end
       else
       begin
-       dmReport.AbreSaldoAtualCombustivel(vBombaEx);
+       dmReport.AbreSaldoAtualBomba(vBombaEx,
+        dmReport.RetornaIdCombustivel(vBombaEx));
       end;
     end;
     if rdCombustivel.IsChecked then
@@ -747,9 +764,8 @@ begin
        dmReport.AbreSaldoAtualCombustivel(vCombustivelEx);
       end;
     end;
-
   end;
-  if cbxTipoRelatorio.ItemIndex=1 then
+  if (cbxTipoRelatorio.ItemIndex=1) and (rdBomba.IsChecked) then
   begin
     if cbxBombaEx.ItemIndex=-1 then
     begin
@@ -761,6 +777,33 @@ begin
      edtExDataFim.Text,
      vBombaEx);
   end;
+  if (cbxTipoRelatorio.ItemIndex=1) and (rdCombustivel.IsChecked) then
+  begin
+    if cbxCombustivelEx.ItemIndex=-1 then
+    begin
+      MyShowMessage('Informe o Combustivel!!',false);
+      Exit;
+    end;
+    dmReport.AbreExtratoDiaMaquinaCombustivel(
+     edtExDataIni.Text,
+     edtExDataFim.Text,
+     vCombustivelEx);
+  end;
+
+  if(cbxTipoRelatorio.ItemIndex=2) then
+  begin
+    if cbxCombustivelEx.ItemIndex=-1 then
+    begin
+      MyShowMessage('Informe o Combustivel!!',false);
+      Exit;
+    end;
+    dmReport.AbreExtratoCombustivel(
+     vCombustivelEx,
+     cbxCombustivelEx.Selected.Text,
+     edtExDataIni.Text,
+     edtExDataFim.Text);
+  end;
+
 end;
 
 procedure TfrmAbastecimento.Rectangle5Click(Sender: TObject);
@@ -797,7 +840,7 @@ begin
   I   := 0;
   for I := 0 to StringGrid1.RowCount-1 do
   begin
-   if TryStrToFloat(StringGrid1.Cells[6,I],Val) then
+   if TryStrToFloat(StringGrid1.Cells[7,I],Val) then
     Sum := Sum + Val;
   end;
   if I>0 then

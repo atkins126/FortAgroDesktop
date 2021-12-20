@@ -13,7 +13,7 @@ uses
   FMX.Controls.Presentation, FMX.Objects, FMX.Layouts, Fmx.Bind.Grid,
   System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
   Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope,
-  FMX.ListBox, FMX.DateTimeCtrls, FMX.Menus;
+  FMX.ListBox, FMX.DateTimeCtrls, FMX.Menus,Winapi.Windows;
 
 type
   TfrmReceituario = class(TfrmCadPadrao)
@@ -37,7 +37,6 @@ type
     Layout12: TLayout;
     edtResponsavel: TEdit;
     EditButton2: TEditButton;
-    Label5: TLabel;
     edtNome: TEdit;
     layAddDetReceituario: TLayout;
     Rectangle2: TRectangle;
@@ -156,6 +155,23 @@ type
     PopupMenu1: TPopupMenu;
     MenuItem1: TMenuItem;
     MenuItem2: TMenuItem;
+    Layout25: TLayout;
+    Label5: TLabel;
+    Label37: TLabel;
+    cbxTipoRec: TComboBox;
+    cbxTratamentoF: TComboBox;
+    Label38: TLabel;
+    layTipoTS: TLayout;
+    Rectangle16: TRectangle;
+    Layout27: TLayout;
+    Layout28: TLayout;
+    Label39: TLabel;
+    Label40: TLabel;
+    edtVariedadeTS: TEdit;
+    EditButton5: TEditButton;
+    edtAjusteRemontaTS: TEdit;
+    Label41: TLabel;
+    edtQtdSemtesTS: TEdit;
     procedure EditButton2Click(Sender: TObject);
     procedure btnAddClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -172,7 +188,6 @@ type
       var KeyChar: Char; Shift: TShiftState);
     procedure StringGrid1CellDblClick(const Column: TColumn;
       const Row: Integer);
-    procedure btnFecharClick(Sender: TObject);
     procedure EditButton1Click(Sender: TObject);
     procedure btnAddTalhaoClick(Sender: TObject);
     procedure Rectangle12Click(Sender: TObject);
@@ -191,8 +206,12 @@ type
       Shift: TShiftState);
     procedure MenuItem1Click(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure EditButton5Click(Sender: TObject);
+    procedure edtAjusteRemontaTSKeyUp(Sender: TObject; var Key: Word;
+      var KeyChar: Char; Shift: TShiftState);
+    procedure cbxTipoRecChange(Sender: TObject);
   private
-    vIDResponsavel,vIdProduto,vIdTalhao,vId,vIdCultura :string;
+    vIDResponsavel,vIdProduto,vIdTalhao,vId,vIdCultura ,vIdVariedade:string;
 
     procedure SomaColuna;
     procedure Filtro;
@@ -208,7 +227,7 @@ implementation
 {$R *.fmx}
 
 uses DataContext, UPrincipal, UUsuarios, UProdutos, dmReplicacao, UTalhoes,
-  UdmReport, UDmReports, UAuxCultura;
+  UdmReport, UDmReports, UAuxCultura, UAuxVariedades;
 
 procedure TfrmReceituario.btnAddClick(Sender: TObject);
 begin
@@ -286,10 +305,39 @@ begin
     edtResponsavel.SetFocus;
     Exit;
   end;
+  if cbxTipoRec.ItemIndex=-1 then
+  begin
+    MyShowMessage('Informe o Tipo de Recomendação!!',false);
+    edtResponsavel.SetFocus;
+    Exit;
+  end;
 
+  if cbxTipoRec.ItemIndex=1 then
+  begin
+   if edtVariedadeTS.Text.Length =0 then
+   begin
+    MyShowMessage('Informe a Variedade!!',false);
+    edtResponsavel.SetFocus;
+    Exit;
+   end;
+   if (edtAjusteRemontaTS.Text.Length=0)or(edtAjusteRemontaTS.Text='0') then
+   begin
+    MyShowMessage('Informe a Taxa de Ajuste Remonta!!',false);
+    edtAjusteRemontaTS.SetFocus;
+    Exit;
+   end;
+   if (edtQtdSemtesTS.Text.Length=0)or(edtQtdSemtesTS.Text='0') then
+   begin
+    MyShowMessage('Informe a Qtde. Semtentes por Metro!!',false);
+    edtQtdSemtesTS.SetFocus;
+    Exit;
+   end;
+  end;
   dbCtx.TReceituarionome.AsString           := edtNome.Text;
   dbCtx.TReceituarioidresponsavel.AsString  := vIDResponsavel;
   dbCtx.TReceituarioidcultura.AsString      := vIdCultura;
+
+  dbCtx.TReceituariotiporeceituario.AsInteger := cbxTipoRec.ItemIndex;
   if dbCtx.TReceituario.State=dsEdit then
   begin
    dbCtx.TReceituarioIdUsuarioAlteracao.AsString  := dbCtx.vIdUsuarioLogado;
@@ -308,12 +356,19 @@ begin
   end;
   dbCtx.TReceituariodatarecomendacao.AsDateTime  := edtDataRecomentacao.DateTime;
   dbCtx.TReceituariodataprevaplicacao.AsDateTime := edtDataPrevReco.DateTime;
-  try
-   if edtObservacao.Text.Length>0 then
-    dbCtx.TReceituarioobservacao.AssTring :=edtObservacao.Text
-   else
-    dbCtx.TReceituarioobservacao.AsVariant:=null;
 
+  if cbxTipoRec.ItemIndex=1 then
+  begin
+   dbCtx.TReceituarioidvariedade.AsString       := vIdVariedade;
+   dbCtx.TReceituariovariedade.AsString         := edtVariedadeTS.Text;
+   dbCtx.TReceituariotaxaajusteremonte.AsString := edtAjusteRemontaTS.Text;
+   dbCtx.TReceituarioqtdesemntemetro.AsString   := edtQtdSemtesTS.Text;
+  end;
+  if edtObservacao.Text.Length>0 then
+   dbCtx.TReceituarioobservacao.AssTring :=edtObservacao.Text
+  else
+   dbCtx.TReceituarioobservacao.AsVariant:=null;
+  try
    dbCtx.TReceituario.ApplyUpdates(-1);
    dbCtx.TReceituario.Close;
    dbCtx.TReceituario.Open();
@@ -357,37 +412,23 @@ begin
   edtObservacao.Text        := dbCtx.TReceituarioObservacao.AsString;
   vIDResponsavel            := dbCtx.TReceituarioidresponsavel.AsString;
   if dbCtx.TReceituariodataprevaplicacao.AsString.Length>0 then
-   edtDataPrevReco.Date      := dbCtx.TReceituariodataprevaplicacao.AsDateTime
+   edtDataPrevReco.Date     := dbCtx.TReceituariodataprevaplicacao.AsDateTime
   else
    edtDataPrevReco.Date      := edtDataRecomentacao.Date;
-  dbCtx.TReceituario.Edit;
-  inherited;
-end;
 
-procedure TfrmReceituario.btnFecharClick(Sender: TObject);
-begin
-// if dbCtx.vTipoBDConfig=2 then
-// begin
-//  if DataModule1.Sincronizando=0 then
-//  begin
-//   TThread.Synchronize(nil,procedure
-//   begin
-//     MyShowMessage('Aguarde Sincronizando Dados',false);
-//     DataModule1.ReplicaReceiturario('');
-//     DataModule1.ReplicaDetReceiturario('');
-//     DataModule1.ReplicaDetReceiturarioTalhao('');
-//     inherited;
-//   end);
-//  end
-//  else
-//  begin
-//   TThread.Synchronize(nil,procedure
-//   begin
-//     MyShowMessage('Aguarde Sincronizando Dados',false);
-//   end);
-//  end;
-// end
-// else
+  vIdCultura                 := dbCtx.TReceituarioidcultura.AsString;
+  edtCultura.Text            := dbCtx.TReceituariocultura.AsString;
+
+  if dbCtx.TReceituariotiporeceituario.AsInteger=1 then
+  begin
+   vIdVariedade                 := dbCtx.TReceituarioidvariedade.AsString;
+   edtVariedadeTS.Text          := dbCtx.TReceituariovariedade.AsString;
+   edtAjusteRemontaTS.Text      := dbCtx.TReceituariotaxaajusteremonte.AsString;
+   edtQtdSemtesTS.Text          := dbCtx.TReceituarioqtdesemntemetro.AsString;
+  end;
+
+  cbxTipoRec.ItemIndex := dbCtx.TReceituariotiporeceituario.AsInteger;
+  dbCtx.TReceituario.Edit;
   inherited;
 end;
 
@@ -403,6 +444,11 @@ begin
 
  if dbCtx.TReceituarioid.AsString.Length>0 then
   dmRel.AbreReceituario(dbCtx.TReceituarioid.AsString);
+end;
+
+procedure TfrmReceituario.cbxTipoRecChange(Sender: TObject);
+begin
+  layTipoTS.Visible := cbxTipoRec.ItemIndex=1;
 end;
 
 procedure TfrmReceituario.EditButton1Click(Sender: TObject);
@@ -481,6 +527,18 @@ begin
   end;
 end;
 
+procedure TfrmReceituario.EditButton5Click(Sender: TObject);
+begin
+  frmAuxVariedades := TfrmAuxVariedades.Create(Self);
+  try
+    frmAuxVariedades.ShowModal;
+  finally
+    vIdVariedade          := dbCtx.TAuxCultivaresid.AsString;
+    edtVariedadeTS.Text   := dbCtx.TAuxCultivaresnome.AsString;
+    frmAuxVariedades.Free;
+  end;
+end;
+
 procedure TfrmReceituario.edtQtdIndicadaProdutoChangeTracking(Sender: TObject);
 begin
  if(edtQtdIndicadaProduto.Text.Length>0)and(edtPesoEmbalagem.Text.Length>0) then
@@ -503,6 +561,15 @@ procedure TfrmReceituario.edtQtdIndicadaProdutoKeyUp(Sender: TObject;
   var Key: Word; var KeyChar: Char; Shift: TShiftState);
 begin
  if (keyChar in ['0'..'9',','] = false) then
+ begin
+   KeyChar := #0;
+ end;
+end;
+
+procedure TfrmReceituario.edtAjusteRemontaTSKeyUp(Sender: TObject; var Key: Word;
+  var KeyChar: Char; Shift: TShiftState);
+begin
+ if((keyChar in ['0'..'9',','] = false) and (word(key) <> vk_back)) then
  begin
    KeyChar := #0;
  end;
@@ -537,6 +604,8 @@ begin
      if cbxSituacao.ItemIndex=2 then
        vFiltro:=vFiltro+' and b.liberado=0';
    end;
+   if cbxTratamentoF.ItemIndex>-1 then
+    vFiltro:=vFiltro+' and b.tiporeceituario='+intToStr(cbxTratamentoF.ItemIndex);
    dbCtx.AbreReceituario(vFiltro);
  end;
 end;

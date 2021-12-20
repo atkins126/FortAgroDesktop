@@ -166,6 +166,10 @@ type
     Button1: TButton;
     edtNumNFF: TEdit;
     Label41: TLabel;
+    btnAtualizaSaldos: TRectangle;
+    Image16: TImage;
+    Label42: TLabel;
+    chkSaldoNegativo: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure edtNomeFiltroChangeTracking(Sender: TObject);
     procedure edtCodFabFChangeTracking(Sender: TObject);
@@ -208,6 +212,7 @@ type
       var KeyChar: Char; Shift: TShiftState);
     procedure edtNomeFiltroKeyUp(Sender: TObject; var Key: Word;
       var KeyChar: Char; Shift: TShiftState);
+    procedure btnAtualizaSaldosClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -249,6 +254,18 @@ end;
 procedure TfrmGerencialEstoque.btnAddClick(Sender: TObject);
 begin
  dmReport.ppRepEstoqueG.Print;
+end;
+
+procedure TfrmGerencialEstoque.btnAtualizaSaldosClick(Sender: TObject);
+begin
+  try
+   dbCtx.AtualzisaSaldoGeral;
+   MyShowMessage('Saldo Atualizado com Sucesso!',false);
+   Button1Click(sender);
+  except
+   on E: Exception do
+    myShowMessage('Erro ao salvar Atualizar Saldo:'+E.Message,false);
+  end;
 end;
 
 procedure TfrmGerencialEstoque.btnBuscaCategoriaFClick(Sender: TObject);
@@ -625,6 +642,9 @@ begin
 
   if edtMarcaF.Text.Length>0 then
    vFiltro := vFiltro+' and idmarca ='+vIdMarcaF;
+
+  if chkSaldoNegativo.IsChecked then
+   vFiltro := vFiltro+' and saldoatual<=0'+vIdMarcaF;
 
   if vFiltro.Length>0 then
    dmReport.SaldoAtualCustoMedio(vFiltro)
