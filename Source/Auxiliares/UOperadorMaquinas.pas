@@ -211,7 +211,7 @@ procedure TfrmOperadorMaquinas.FormShow(Sender: TObject);
 begin
   dbCtx.TOperadorMaquina.Close;
   dbCtx.TOperadorMaquina.Open;
-   lblBuscar.Text     := 'Filtros';
+  lblBuscar.Text     := 'Filtros';
   lblAdd.Text        := 'Adicionar';
   lblEdit.Text       := 'Editar';
   lblDeleta.Text     := 'Deletar';

@@ -55,16 +55,30 @@ type
     LinkGridToDataSourceBindSourceDB3: TLinkGridToDataSource;
     PopupMenuEmail: TPopupMenu;
     MenuItem2: TMenuItem;
+    edtProdutoF: TEdit;
+    Label1: TLabel;
+    btnBuscaFornecedor: TEditButton;
+    btnBuscaProduto: TEditButton;
+    GroupBox1: TGroupBox;
+    Label63: TLabel;
+    Label64: TLabel;
+    edtDataInicio: TDateEdit;
+    edtDataFim: TDateEdit;
+    ClearEditButton1: TClearEditButton;
+    ClearEditButton2: TClearEditButton;
+    btnBuscar: TButton;
     procedure FormShow(Sender: TObject);
     procedure Image27Click(Sender: TObject);
     procedure Image26Click(Sender: TObject);
-    procedure edtFornecedorFChangeTracking(Sender: TObject);
-    procedure cbxStatusOrcamentoChange(Sender: TObject);
-    procedure edtOrdemFChangeTracking(Sender: TObject);
-    procedure edtPedidoFChangeTracking(Sender: TObject);
     procedure btnImprimirClick(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
+    procedure btnBuscaProdutoClick(Sender: TObject);
+    procedure ClearEditButton1Click(Sender: TObject);
+    procedure btnBuscaFornecedorClick(Sender: TObject);
+    procedure ClearEditButton2Click(Sender: TObject);
+    procedure btnBuscarClick(Sender: TObject);
   private
+    vIdProduto,vIdFornecedor:string;
     procedure FiltrarOrcamento;
   public
     function EnviaEmailReport(idOs:string): string;
@@ -78,38 +92,60 @@ implementation
 
 {$R *.fmx}
 
-uses UPrincipal, DataContext, UdmReport, UDmReports;
+uses UPrincipal, DataContext, UdmReport, UDmReports, UFornecedor, UProdutos,
+  UdmCompras;
 
 procedure TfrmListaOrcamento.btnImprimirClick(Sender: TObject);
 begin
- if dbCtx.TOrcamentoid.AsString.Length>0 then
+ if dmCompras.TOrcamentoid.AsString.Length>0 then
  begin
-  dbCtx.AbreItemsOrcamentos(dbCtx.TOrcamentoid.AsString);
-  case dbctx.TOrcamentostatus.AsInteger  of
-    1: dmReport.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
-    2: dmReport.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
-    3: dmReport.ppLblOrdemPedido.Text := 'Ordem de Compra';
+  dmCompras.AbreItemsOrcamentos(dmCompras.TOrcamentoid.AsString);
+  case dmCompras.TOrcamentostatus.AsInteger  of
+    1: dmCompras.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
+    2: dmCompras.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
+    3: dmCompras.ppLblOrdemPedido.Text := 'Ordem de Compra';
   end;
-  dmReport.ppRepOrcamento.Print;
+  dmCompras.ppRepOrcamento.Print;
  end;
 end;
 
-procedure TfrmListaOrcamento.cbxStatusOrcamentoChange(Sender: TObject);
+procedure TfrmListaOrcamento.ClearEditButton1Click(Sender: TObject);
 begin
- FiltrarOrcamento;
+ edtProdutoF.Text :='';
+ vIdProduto :='0';
 end;
 
-procedure TfrmListaOrcamento.edtFornecedorFChangeTracking(Sender: TObject);
+procedure TfrmListaOrcamento.ClearEditButton2Click(Sender: TObject);
 begin
-  FiltrarOrcamento;
+ edtFornecedorF.Text :='';
+ vIdFornecedor       :='0'
 end;
 
-procedure TfrmListaOrcamento.edtOrdemFChangeTracking(Sender: TObject);
+procedure TfrmListaOrcamento.btnBuscaFornecedorClick(Sender: TObject);
 begin
- FiltrarOrcamento;
+ frmCadFornecedor := TfrmCadFornecedor.Create(Self);
+ try
+  frmCadFornecedor.ShowModal;
+ finally
+  edtFornecedorF.Text    := dbCtx.TFornecedoresnome.AsString;
+  vIdFornecedor          := dbCtx.TFornecedoresid.AsString;
+  frmCadFornecedor.Free;
+ end;
 end;
 
-procedure TfrmListaOrcamento.edtPedidoFChangeTracking(Sender: TObject);
+procedure TfrmListaOrcamento.btnBuscaProdutoClick(Sender: TObject);
+begin
+ frmCadProdutos := TfrmCadProdutos.Create(Self);
+ try
+  frmCadProdutos.ShowModal;
+ finally
+  edtProdutoF.Text    := dbCtx.TProdutosnome.AsString;
+  vIdProduto          := dbCtx.TProdutosid.AsString;
+  frmCadProdutos.Free;
+ end;
+end;
+
+procedure TfrmListaOrcamento.btnBuscarClick(Sender: TObject);
 begin
  FiltrarOrcamento;
 end;
@@ -120,7 +156,7 @@ var
 begin
   vFiltro:='';
   if edtFornecedorF.Text.Length>0 then
-   vFiltro:=vFiltro+' AND f.NOME LIKE '+QuotedStr('%'+edtFornecedorF.Text+'%');
+   vFiltro:=vFiltro+' AND f.id ='+vIdFornecedor;
   case cbxStatusOrcamento.ItemIndex of
    1:vFiltro:=vFiltro+' AND B.status IN(1,2)';
    2:vFiltro:=vFiltro+' AND B.status =3';
@@ -129,13 +165,15 @@ begin
    vFiltro:=vFiltro+' AND c.identificador LIKE '+QuotedStr('%'+edtPedidoF.Text+'%');
   if edtOrdemF.Text.Length>0 then
    vFiltro:=vFiltro+' AND b.id='+edtOrdemF.Text;
-  dbCtx.AbreOrcamentosLista(vFiltro);
+  if edtProdutoF.Text.Length>0 then
+   vFiltro:=vFiltro+' and c.id in(select idpedido from pedidocompraitems p2 where p2.iditem='+vIdProduto+')';
+  dmCompras.AbreOrcamentosLista(vFiltro);
 end;
 
 
 procedure TfrmListaOrcamento.FormShow(Sender: TObject);
 begin
- dbCtx.AbreOrcamentosLista('');
+ dmCompras.AbreOrcamentosLista('');
 end;
 
 procedure TfrmListaOrcamento.Image26Click(Sender: TObject);

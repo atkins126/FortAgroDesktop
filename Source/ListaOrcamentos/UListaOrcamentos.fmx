@@ -37,36 +37,36 @@ object frmListaOrcamento: TfrmListaOrcamento
           PNG = {
             89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
             DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
-            03A549444154785EED9B4B6B135114C73337CFC9A3188D8B762155AC605B1762
-            AD1F4041912A8AED07D0B63E16555BDDB8AA2BB72E44D0B6F40B4C71218A6E5A
-            74292A526D1A2110A52005898D343379A7F17F662EB1B1E03E73EE0F6EE79E73
-            67F33F731FE774269A671B5B5B5B3ADA18BAC3B55AADD7EFF7279C91F6A65AAD
-            667D3E5F12DD05AFD73BA7695AC919F1789A0180F041883670C33EE97225D0F9
-            1D1A4784101FC816D239B8B9B9F9C6EDE20908EF364DF32D340F90ADA1A3E3C9
-            7FE5207E3B3413B02C0E0B74C6B889276826D4EBF5515A02C38E8B25C3023B64
-            BF34D881A5DF2F4AA55258DAEC28168B51118D46D7A5CD0E68FF81BD402C499B
-            1DD0BE289015CD1886D1903E369066689FB533411C0733B88C539F114F71FC5F
-            B703805C20D8683416D01D229B01CF31FD4730032A762A0CA38C760141B85BA9
-            5472F62D2E04DA36A0710A5A2F9278F2B55483046E08E17C3C891BFAD1E2D2DD
-            D640530EED0B52DF25686A56820A8542A1502814ACD9910912A80D62B8F4A048
-            DAED78DA1B143D1BB8A49102E71DCF5F5A028074F118C44F67B3D9D389442220
-            DDAE009A2AD0F41AA9F07D04E293743BEF0508E4FF53C964F21DBAE7DC269E90
-            9ACEAFAEAEBE87D6DB8E57CE0038AE21324F6C0F1330DBAFA2389AA517235DA6
-            69A6239108AB7F8EE6F3F9624747C72181484C70134FC462311DDA6F6898FE9F
-            31FD8F483F2B1080657A2FB05FDAEC2897CB079AA700531A22140A65A4C18E60
-            3098A1F7022FA5CD0ED24EC760A76559E970381C917E16140A050BA75F0FB242
-            B1AEEBFAA4F4B3019A6F92767B13A48C0847C2642A95AADBA32E666D6DAD06AD
-            B7A0799EEC966208CBE12806A773B9DC99783C1E946E57004D65687A258BA165
-            E9FE6F397C10E5F01EC7D3DEA01CFE05E1693453BA140A8542A15028143B3241
-            64813A32C053C89AFAD07649775B83F4FE37DA0A32C245A4C145E9B669060037
-            7821FC4EB55ABD1708045C21FC5FE80330BFDFFF00817888876B177E7600F0D4
-            E933B967E89E259B012F30132E2108CE677210FF18172EE289213CF447D4A11F
-            4C9C300CE38AED6604348F43FB710DEB9EFE3170D971B3634EC3A697C17A60F9
-            6E003320234CD3EC94363BA0BD4BE8BA6E499B1DD09E173E9F6F45DAEC404EB0
-            42C7A0E198FCC0F16F68F8435F87A7B011764B3F0B68034446D84BAFC64AE88C
-            5896559063AE87B492663CF472B3164044069013186E9F09D0F90DFB1EFD5AE4
-            23D92DD5202D070461145DFAF97C1F3689BDCE487B032D3F213A496B1E0F789E
-            9EBC33E2F1FC011CDE9A1E41861BFD0000000049454E44AE426082}
+            03A649444154785EED9B4B6B135114C73337CFC9A3188D8B762155AC605B1762
+            AD1F4041912A8AED07D0B63E16555BDDB8AA2BB72E44D0B6F40324C58528BA69
+            D1A5A848B56984409482142436D2CCE49DC6FF99B9C4C682FBCCB93FB89D7BCE
+            9DCDFFCC7D9CD39968AE6D6C6D6DE96863E80ED76AB55EAFD71BB347DA9B6AB5
+            9AF5783C497417DC6EF79CA669257BC4E56A0600C207213A811BF649972381CE
+            EFD0382284F840B690CEC1CDCDCD374E174F4078B761186FA179806C0D1D1D4F
+            FE2B07F1DBA19980657158A033C64D3C4133A15EAF8FD21218B65D2C1916D821
+            FBA5C10E2CFD7E512A9582D26647B1580C8B7038BC2E6D7640FB0FEC056249DA
+            EC80F64581AC68261E8F37A48F0DA419DA67AD4C10C7C10C2EE3D467C4531CFF
+            D7AD002017F0371A8D057487C866C0734CFF11CC808A950AC328A35D4010EE56
+            2A959C758B0381B60D689C82D68B249E7C2DD520811B02381F4FE2867EB4A874
+            B735D09443FB82D477099A9A95A042A15028140A056B766482046A83082E3D28
+            9276DB9EF60645CF062E69A4C079DBF3979600205D3C06F1D3D96CF6742C16F3
+            49B72380A60A34BD462A7C1F81F824DDF67B0102F9FF5432997C87EE39A78927
+            A4A6F3ABABABEFA1F5B6ED9533008E6B88CC13CBC304CCF6AB288E66E9C54897
+            6118E95028C4EA9FA3F97CBED8D1D17148201213DCC41391484487F61B1AA6FF
+            674CFF23D2CF0A046099DE0BEC97363BCAE5F281E629C094860804021969B0C3
+            EFF767E8BDC04B69B383B4D331D8699A663A180C86A49F058542C1C4E9D783AC
+            50ACEBBA3E29FD6C80E69BA4DDDA042923C29130994AA5EAD6A883595B5BAB41
+            EB2D689E27BBA518C272388AC1E95C2E77261A8DFAA5DB114053199A5EC96268
+            59BAFF5B0E1F4439BCC7F6B43728877F41781ACD902E8542A15028140AC58E4C
+            1059A08E0CF014B2A63EB45DD2DDD620BDFF8DB6828C7011697051BA2D9A01C0
+            0D6E08BF53AD56EFF97C3E4708FF17FA00CCEBF53E40201EE2E15A859F15003C
+            75FA4CEE19BA67C966C00BCC844B0882FD991CC43FC6858B7862080FFD1175E8
+            071327E2F1F815CBCD08681E87F6E31AD63DFD63E0B2ED66C79C864D2F83F5C0
+            F2DD006640461886D1296D76407B97D075DD94363BA03D2F3C1ECF8AB4D9819C
+            60858EC1846DF203C77F42C31FFA3A3C858DB05BFA59401B2032C25E7A355642
+            67C434CD821C733CA49534E3A1979BB5002232809C20E1F499009DDFB0EFD1AF
+            453E92DD520DD272401046D1A59FCFF76193D86B8FB437D0F213A293B4E6F180
+            E7E9C9DB232ED71F9B3A9A12C540E2E40000000049454E44AE426082}
           FileName = 
             'F:\Projetos\Clientes\FortalezaGuapore\Agricultura\Projeto\IMG\Lo' +
             'go\menu.png'
@@ -173,7 +173,7 @@ object frmListaOrcamento: TfrmListaOrcamento
                 89504E470D0A1A0A0000000D4948445200000040000000400806000000AA6971
                 DE000000017352474200AECE1CE90000000467414D410000B18F0BFC61050000
                 043549444154785EED9BBD4F144114C0B9038E33A8018D12A389225A5868B0D4
-                DA68402016461B63AC2C8CDFA132FE0336C6D8F80F6865244A503B4B0C34460C
+                DA68402016461B63AC2C8CDFA132FE0336C6D8F80F6865244A503B4B0C34060D
                 95106C0C1C880286C09D2CF87BBB2F44CE85DD59727B7BECFE92B979333B77F3
                 DEBB375FBB77559B657979B999F4706969A93F9FCF8F0F0D0D592B25626C6CEC
                 4FA150F86E59D607FABC4FDAAB6A840F9D6F439127B95C2EAFFA85CEFCFCFC1C
@@ -204,8 +204,8 @@ object frmListaOrcamento: TfrmListaOrcamento
                 4BE0711655079892DC0FD0DC189308907D804E82BEEE29C8B0E33D1B9EE58B08
                 1C01811107907CC1B80C6D1F604A58432048A4058E4E13C21A02A1ED034C4956
                 01CD634BE200CD634B60073007E4552C3B9BD125B003987446E5A6A216CB062B
-                CC675618DFFF132C66330E286432993B5A2C0BC3C3C316C6DFD2627960C7D6C1
-                9A3D247F6D27144341FEB14E9FFDF47D4AD5084855D55FBB0BEEA45341B7E300
+                CC102B8CEFFF0916B31907143299CC1D2D9685E1E1610BE36F69B13CB063EB60
+                CDFE2C7F6D27144341FEB14E9FFDF47D4AD5084855D55FFB32EEA1ACD23AEF00
                 00000049454E44AE426082}
               FileName = 
                 'F:\Projetos\Clientes\FortalezaGuapore\Compras\Projeto\IMG\print.' +
@@ -247,7 +247,7 @@ object frmListaOrcamento: TfrmListaOrcamento
     object Layout47: TLayout
       Align = Top
       Size.Width = 885.000000000000000000
-      Size.Height = 120.000000000000000000
+      Size.Height = 145.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 0
       object GroupBox2: TGroupBox
@@ -257,99 +257,211 @@ object frmListaOrcamento: TfrmListaOrcamento
         Margins.Right = 2.000000000000000000
         Margins.Bottom = 2.000000000000000000
         Size.Width = 881.000000000000000000
-        Size.Height = 116.000000000000000000
+        Size.Height = 141.000000000000000000
         Size.PlatformDefault = False
         Text = 'Filtros'
         TabOrder = 0
         object edtFornecedorF: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
-          TabOrder = 3
-          Position.X = 18.000000000000000000
-          Position.Y = 50.000000000000000000
+          TabOrder = 4
+          ReadOnly = True
+          Position.X = 338.000000000000000000
+          Position.Y = 102.000000000000000000
           Size.Width = 311.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           CharCase = ecUpperCase
-          OnChangeTracking = edtFornecedorFChangeTracking
+          OnClick = btnBuscaFornecedorClick
+          object btnBuscaFornecedor: TEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 60.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Buscar'
+            OnClick = btnBuscaFornecedorClick
+          end
+          object ClearEditButton2: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Position.X = 60.000000000000000000
+            Size.Width = 28.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            OnClick = ClearEditButton2Click
+          end
         end
         object Label36: TLabel
           StyledSettings = [Family, Style, FontColor]
-          Position.X = 17.000000000000000000
-          Position.Y = 30.000000000000000000
+          Position.X = 337.000000000000000000
+          Position.Y = 82.000000000000000000
           Size.Width = 83.000000000000000000
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 11.000000000000000000
           Text = 'Fornecedor'
-          TabOrder = 7
+          TabOrder = 10
         end
         object lblStatus: TLabel
           StyledSettings = [Family, Style, FontColor]
-          Position.X = 345.000000000000000000
-          Position.Y = 30.000000000000000000
+          Position.X = 271.000000000000000000
+          Position.Y = 18.000000000000000000
           Size.Width = 83.000000000000000000
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 11.000000000000000000
           Text = 'Status'
-          TabOrder = 6
+          TabOrder = 9
         end
         object cbxStatusOrcamento: TComboBox
           Items.Strings = (
             'Todos'
             'Solicitacao'
             'Ordem de Compra')
-          Position.X = 344.000000000000000000
-          Position.Y = 50.000000000000000000
+          Position.X = 270.000000000000000000
+          Position.Y = 38.000000000000000000
           Size.Width = 193.000000000000000000
           Size.Height = 31.000000000000000000
           Size.PlatformDefault = False
           TabOrder = 0
-          OnChange = cbxStatusOrcamentoChange
         end
         object edtOrdemF: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 2
-          Position.X = 546.000000000000000000
-          Position.Y = 50.000000000000000000
+          Position.X = 471.000000000000000000
+          Position.Y = 38.000000000000000000
           Size.Width = 111.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           CharCase = ecUpperCase
-          OnChangeTracking = edtOrdemFChangeTracking
         end
         object Label55: TLabel
           StyledSettings = [Family, Style, FontColor]
-          Position.X = 545.000000000000000000
-          Position.Y = 30.000000000000000000
+          Position.X = 472.000000000000000000
+          Position.Y = 20.000000000000000000
           Size.Width = 83.000000000000000000
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 11.000000000000000000
           Text = 'N'#176' Ordem'
-          TabOrder = 5
+          TabOrder = 7
         end
         object Label56: TLabel
           StyledSettings = [Family, Style, FontColor]
-          Position.X = 673.000000000000000000
-          Position.Y = 33.000000000000000000
+          Position.X = 595.000000000000000000
+          Position.Y = 21.000000000000000000
           Size.Width = 83.000000000000000000
           Size.Height = 17.000000000000000000
           Size.PlatformDefault = False
           TextSettings.Font.Size = 11.000000000000000000
           Text = 'N'#176' Pedido'
-          TabOrder = 4
+          TabOrder = 6
         end
         object edtPedidoF: TEdit
           Touch.InteractiveGestures = [LongTap, DoubleTap]
           TabOrder = 1
-          Position.X = 674.000000000000000000
-          Position.Y = 50.000000000000000000
+          Position.X = 594.000000000000000000
+          Position.Y = 38.000000000000000000
           Size.Width = 111.000000000000000000
           Size.Height = 32.000000000000000000
           Size.PlatformDefault = False
           CharCase = ecUpperCase
-          OnChangeTracking = edtPedidoFChangeTracking
+        end
+        object edtProdutoF: TEdit
+          Touch.InteractiveGestures = [LongTap, DoubleTap]
+          TabOrder = 3
+          ReadOnly = True
+          Position.X = 19.000000000000000000
+          Position.Y = 103.000000000000000000
+          Size.Width = 311.000000000000000000
+          Size.Height = 32.000000000000000000
+          Size.PlatformDefault = False
+          CharCase = ecUpperCase
+          OnClick = btnBuscaProdutoClick
+          object btnBuscaProduto: TEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Size.Width = 60.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 0
+            Text = 'Buscar'
+            OnClick = btnBuscaProdutoClick
+          end
+          object ClearEditButton1: TClearEditButton
+            CanFocus = False
+            Cursor = crArrow
+            Position.X = 60.000000000000000000
+            Size.Width = 28.000000000000000000
+            Size.Height = 26.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 1
+            OnClick = ClearEditButton1Click
+          end
+        end
+        object Label1: TLabel
+          StyledSettings = [Family, Style, FontColor]
+          Position.X = 18.000000000000000000
+          Position.Y = 83.000000000000000000
+          Size.Width = 83.000000000000000000
+          Size.Height = 17.000000000000000000
+          Size.PlatformDefault = False
+          TextSettings.Font.Size = 11.000000000000000000
+          Text = 'Produto'
+          TabOrder = 8
+        end
+        object GroupBox1: TGroupBox
+          Position.X = 14.000000000000000000
+          Position.Y = 15.000000000000000000
+          Size.Width = 249.000000000000000000
+          Size.Height = 68.000000000000000000
+          Size.PlatformDefault = False
+          Text = 'Per'#237'odo'
+          TabOrder = 5
+          object Label63: TLabel
+            Position.X = 16.000000000000000000
+            Position.Y = 16.000000000000000000
+            Text = 'Data Inicio'
+            TabOrder = 1
+          end
+          object Label64: TLabel
+            Position.X = 128.000000000000000000
+            Position.Y = 16.000000000000000000
+            Text = 'Data Fim'
+            TabOrder = 0
+          end
+          object edtDataInicio: TDateEdit
+            Date = 44551.000000000000000000
+            TodayDefault = True
+            Position.X = 16.000000000000000000
+            Position.Y = 34.000000000000000000
+            Size.Width = 105.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 3
+          end
+          object edtDataFim: TDateEdit
+            Date = 44551.000000000000000000
+            TodayDefault = True
+            Position.X = 128.000000000000000000
+            Position.Y = 34.000000000000000000
+            Size.Width = 105.000000000000000000
+            Size.Height = 22.000000000000000000
+            Size.PlatformDefault = False
+            TabOrder = 2
+          end
+        end
+        object btnBuscar: TButton
+          Position.X = 656.000000000000000000
+          Position.Y = 101.000000000000000000
+          Size.Width = 81.000000000000000000
+          Size.Height = 33.000000000000000000
+          Size.PlatformDefault = False
+          TabOrder = 11
+          Text = 'Buscar'
+          OnClick = btnBuscarClick
         end
       end
     end
@@ -361,17 +473,17 @@ object frmListaOrcamento: TfrmListaOrcamento
       Margins.Right = 5.000000000000000000
       PopupMenu = PopupMenuEmail
       Size.Width = 875.000000000000000000
-      Size.Height = 335.000000000000000000
+      Size.Height = 310.000000000000000000
       Size.PlatformDefault = False
       TabOrder = 1
-      RowCount = 0
+      RowCount = 1
       Options = [AlternatingRowBackground, ColumnResize, ColumnMove, ColLines, RowLines, RowSelect, Tabs, Header, HeaderClick, AutoDisplacement]
-      Viewport.Width = 875.000000000000000000
-      Viewport.Height = 335.000000000000000000
+      Viewport.Width = 871.000000000000000000
+      Viewport.Height = 269.000000000000000000
     end
     object PopupMenuEmail: TPopupMenu
-      Left = 464
-      Top = 244
+      Left = 328
+      Top = 252
       object MenuItem2: TMenuItem
         Text = 'Enviar Email Fornecedor'
         OnClick = MenuItem2Click
@@ -379,7 +491,7 @@ object frmListaOrcamento: TfrmListaOrcamento
     end
   end
   object BindSourceDB3: TBindSourceDB
-    DataSet = dbCtx.TOrcamento
+    DataSet = dmCompras.TOrcamento
     ScopeMappings = <>
     Left = 304
     Top = 336

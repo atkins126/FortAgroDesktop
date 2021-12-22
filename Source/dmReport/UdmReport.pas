@@ -960,7 +960,7 @@ begin
    Add('a.arearealizada,');
    Add('idoperacao,');
    Add('(select sum(x.horastrabalhada)');
-   Add('from detoperacaosafratalhaomaquinasoperadores x where x.idoperacaotalhao=a.id)horastrabalhada,');
+   Add('from detoperacaosafratalhaomaquinasoperadores x where x.status>-1 and x.idoperacaotalhao=a.id)horastrabalhada,');
    Add('e.nome Cultura,');
    Add('f.nome Variedade,');
    Add('a.qualidadecobertura,');

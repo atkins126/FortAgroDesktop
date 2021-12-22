@@ -63,9 +63,6 @@ type
     SaveDialog1: TSaveDialog;
     PopupmnuAltera: TPopupMenu;
     MenuItem1: TMenuItem;
-    layAuxiliar: TLayout;
-    Rectangle34: TRectangle;
-    Animation: TFloatAnimation;
     BindSourceDB5: TBindSourceDB;
     LinkFillControlToField1: TLinkFillControlToField;
     BindSourceDB6: TBindSourceDB;
@@ -73,78 +70,10 @@ type
     LinkFillControlToField3: TLinkFillControlToField;
     BindSourceDB7: TBindSourceDB;
     LinkFillControlToField4: TLinkFillControlToField;
-    Layout10: TLayout;
-    Rectangle6: TRectangle;
-    Layout12: TLayout;
-    Label12: TLabel;
-    edtResponsavel: TEdit;
-    EditButton2: TEditButton;
-    Rectangle7: TRectangle;
-    Layout13: TLayout;
-    Layout14: TLayout;
-    Label13: TLabel;
-    Label14: TLabel;
-    Label32: TLabel;
-    Label33: TLabel;
-    edtDataIniAtividade: TDateEdit;
-    edtDataFimAtividade: TDateEdit;
-    edtAreaPrev: TEdit;
-    edtAreaReal: TEdit;
-    Layout15: TLayout;
-    btnCancela: TRectangle;
-    Label15: TLabel;
-    Image5: TImage;
-    btnConfirmaAtividade: TRectangle;
-    Label16: TLabel;
-    Image6: TImage;
-    Rectangle8: TRectangle;
-    Layout16: TLayout;
-    Label17: TLabel;
-    edtObservacaoAtividade: TEdit;
-    Layout31: TLayout;
-    Rectangle22: TRectangle;
-    Label28: TLabel;
-    recAux: TRectangle;
-    layAuxiliares: TLayout;
-    tabAuxCad: TTabControl;
-    tbiSolidos: TTabItem;
-    recAuxiliar: TRectangle;
-    Layout46: TLayout;
-    Layout48: TLayout;
-    Label40: TLabel;
-    Label41: TLabel;
-    cbxTipoAplicacaoSolido: TComboBox;
-    cbxTipoOperacaoSolid: TComboBox;
-    tbiPuverizacao: TTabItem;
-    RecPulve: TRectangle;
-    Layout47: TLayout;
-    Layout49: TLayout;
-    Label42: TLabel;
-    Label43: TLabel;
-    Label44: TLabel;
-    cbxTipoOperacaoPulverizacao: TComboBox;
-    cbxFinalidadePulverizacao: TComboBox;
-    cbxCulturaPulverizacao: TComboBox;
-    tbiPlantio: TTabItem;
-    RecPlantio: TRectangle;
-    Layout45: TLayout;
-    Layout50: TLayout;
-    Label47: TLabel;
-    Label48: TLabel;
-    Label49: TLabel;
-    Label81: TLabel;
-    cbxPlantioTipoOp: TComboBox;
-    cbxPlantioCobertura: TComboBox;
-    cbxPlantioCultura: TComboBox;
-    cbxQualidadeCobertura: TComboBox;
     LinkFillControlToFieldid: TLinkFillControlToField;
     LinkFillControlToFieldid2: TLinkFillControlToField;
     LinkFillControlToField5: TLinkFillControlToField;
     LinkFillControlToField6: TLinkFillControlToField;
-    Layout4: TLayout;
-    Layout5: TLayout;
-    Label19: TLabel;
-    cbxVariedade: TComboBox;
     BindSourceDB2: TBindSourceDB;
     LinkFillControlToFieldid3: TLinkFillControlToField;
     Label11: TLabel;
@@ -156,6 +85,61 @@ type
     LinkFillControlToField7: TLinkFillControlToField;
     lblTipo: TLabel;
     cbxTipoAreo: TComboBox;
+    layAuxiliar: TLayout;
+    Rectangle34: TRectangle;
+    TabAux: TTabControl;
+    tbiAddMaquina: TTabItem;
+    Rectangle9: TRectangle;
+    Layout17: TLayout;
+    Label20: TLabel;
+    edtMaquina: TEdit;
+    EditButton3: TEditButton;
+    Rectangle10: TRectangle;
+    Layout18: TLayout;
+    Label21: TLabel;
+    edtOperador: TEdit;
+    Rectangle11: TRectangle;
+    Layout19: TLayout;
+    Layout20: TLayout;
+    Label22: TLabel;
+    Label23: TLabel;
+    Label27: TLabel;
+    Label34: TLabel;
+    Label46: TLabel;
+    edtDataMaquina: TDateEdit;
+    edtHoraIni: TEdit;
+    edtHoraFim: TEdit;
+    edtHorasTrabalhada: TEdit;
+    edtHorasParado: TEdit;
+    Rectangle12: TRectangle;
+    Layout21: TLayout;
+    Label24: TLabel;
+    edtObsMaquina: TEdit;
+    Layout22: TLayout;
+    Rectangle13: TRectangle;
+    Label25: TLabel;
+    Image4: TImage;
+    btnConfirmaMaquina: TRectangle;
+    Label26: TLabel;
+    Image7: TImage;
+    Layout32: TLayout;
+    Rectangle23: TRectangle;
+    Label29: TLabel;
+    Animation: TFloatAnimation;
+    tbiListaMaquinas: TTabItem;
+    Layout4: TLayout;
+    Rectangle1: TRectangle;
+    Label12: TLabel;
+    GridMaquinas: TStringGrid;
+    BindSourceDB4: TBindSourceDB;
+    LinkGridToDataSourceBindSourceDB4: TLinkGridToDataSource;
+    PopupEditaMaquina: TPopupMenu;
+    MenuItem2: TMenuItem;
+    Image5: TImage;
+    Image6: TImage;
+    MenuItem3: TMenuItem;
+    MenuItem4: TMenuItem;
+    EditButton1: TEditButton;
     procedure FormShow(Sender: TObject);
     procedure cbxAtividadeChange(Sender: TObject);
     procedure cbxResponsavelChange(Sender: TObject);
@@ -166,16 +150,21 @@ type
     procedure btnFecharClick(Sender: TObject);
     procedure MenuItem1Click(Sender: TObject);
     procedure btnConfirmaAtividadeClick(Sender: TObject);
-    procedure cbxTipoAplicacaoSolidoChange(Sender: TObject);
-    procedure cbxCulturaPulverizacaoChange(Sender: TObject);
-    procedure cbxPlantioCulturaChange(Sender: TObject);
-    procedure cbxPlantioCoberturaChange(Sender: TObject);
-    procedure EditButton2Click(Sender: TObject);
     procedure btnCancelaClick(Sender: TObject);
-    procedure cbxVariedadeChange(Sender: TObject);
+    procedure EditButton3Click(Sender: TObject);
+    procedure MenuItem2Click(Sender: TObject);
+    procedure btnConfirmaMaquinaClick(Sender: TObject);
+    procedure Image5Click(Sender: TObject);
+    procedure Image6Click(Sender: TObject);
+    procedure Rectangle13Click(Sender: TObject);
+    procedure MenuItem3Click(Sender: TObject);
+    procedure MenuItem4Click(Sender: TObject);
+    procedure edtHoraFimChangeTracking(Sender: TObject);
+    procedure edtHoraIniChangeTracking(Sender: TObject);
+    procedure EditButton1Click(Sender: TObject);
   private
-    vIdAtividade,vidvariedade,vIdResponsavel,vSetorId,vIdAtividadeSelect,vIdOperacaoSelect:string;
-    vIdTalhao,vIdSafra,vIdMaquina,vIdProduto,
+    vIdAtividade,vidvariedade,vIdResponsavel,vSetorId,vIdOperacaoSelect:string;
+    vIdTalhao,vIdSafra,vIdMaquina,vIdProduto,vIdOperador,
     vIdTipoOcorrencia,idOpClick,vAreaTalhao,vIdTipoAplicacaoSolido,
     vIdCulturaPulverizacao,vIdCulturaPlantio,vIdReceituario,vIdCobertura:string;
     vFinalizandoOP:Integer;
@@ -184,6 +173,7 @@ type
   public
     procedure MyShowMessage(msg: string; btnCancel: Boolean);
     procedure GeraListaTalhao(vIdSetor:string);
+    procedure LimpaCampos;
   end;
 
 var
@@ -193,9 +183,20 @@ implementation
 
 {$R *.fmx}
 
-uses UPrincipal, DataContext, UdmReport, UMsgDlg, UUsuarios;
+uses UPrincipal, DataContext, UdmReport, UMsgDlg, UUsuarios,
+  UAuxTipoMaquinaVeiculo, UCadMaquina, UOperadorMaquinas;
 
 { TfrmRelOperacao }
+
+procedure TfrmRelOperacao.LimpaCampos;
+begin
+  edtMaquina.Text             :='';
+  edtOperador.Text            :='';
+  edtHoraIni.Text             :='0';
+  edtHoraFim.Text             :='0';
+  edtHorasParado.Text         :='0';
+  edtObsMaquina.Text          :='';
+end;
 
 procedure TfrmRelOperacao.GeraListaTalhao(vIdSetor:string);
 begin
@@ -216,65 +217,72 @@ begin
 end;
 
 
+procedure TfrmRelOperacao.Image5Click(Sender: TObject);
+begin
+ layAuxiliar.Visible := false;
+end;
+
+procedure TfrmRelOperacao.Image6Click(Sender: TObject);
+begin
+ TabAux.TabIndex := 0;
+end;
+
 procedure TfrmRelOperacao.MenuItem1Click(Sender: TObject);
 begin
-  vIdAtividadeSelect := dmRel.qryRelOperacaoidoperacao.AsString;
-  dbCtx.AbreOperacaoEdit(dmRel.qryRelOperacaoid.AsString);
-  dbCtx.QryOperacaoSafraTalhao.Edit;
-  if vIdAtividadeSelect='1' then
-  begin
-    recAux.Height         := 55;
-    tabAuxCad.TabPosition := TTabPosition.None;
-    tabAuxCad.ActiveTab   := tbiSolidos;
-    dbCtx.TAuxTipoOperacaoSolido.Close;
-    dbCtx.TAuxTipoOperacaoSolido.Open;
-    cbxTipoAplicacaoSolido.ItemIndex := cbxTipoAplicacaoSolido.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaotipoopesolido.AsString);
-    layAuxiliares.Visible := true;
-  end;
-  if vIdAtividadeSelect='2' then
-  begin
-    recAux.Height         := 55;
-    tabAuxCad.TabPosition := TTabPosition.None;
-    tabAuxCad.ActiveTab   := tbiPuverizacao;
-    dbCtx.TAuxCulturas.Close;
-    dbCtx.TAuxCulturas.Open;
-    cbxCulturaPulverizacao.ItemIndex := cbxCulturaPulverizacao.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaoCultura.AsString);
-    layAuxiliares.Visible := true;
-  end;
-  if vIdAtividadeSelect='3' then
-  begin
-    recAux.Height                 := 110;
-    tabAuxCad.TabPosition         := TTabPosition.None;
-    tabAuxCad.ActiveTab           := tbiPlantio;
-    dbCtx.TAuxCulturas.Close;
-    dbCtx.TAuxCulturas.Open;
-    dbCtx.TAuxCultivares.Close;
-    dbCtx.TAuxCultivares.Open;
-    cbxPlantioCultura.ItemIndex   := cbxPlantioCultura.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaocultura.AsString);
-    dbCtx.TAuxCobertura.Close;
-    dbCtx.TAuxCobertura.Open;
-    cbxPlantioCobertura.ItemIndex := cbxPlantioCobertura.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaocobertura.AsString);
-    layAuxiliares.Visible         := true;
-    vidvariedade                  := dbCtx.QryOperacaoSafraTalhaoidvariedade.AsString;
-    cbxVariedade.ItemIndex        := cbxVariedade.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaovariedade.AsString);
-  end;
-  vIdResponsavel                         :=   dbCtx.QryOperacaoSafraTalhaoidresponsavel.AsString;
-  vIdTipoAplicacaoSolido                 :=   dbCtx.QryOperacaoSafraTalhaoidtipoaplicacaosolido.AsString;
-  vIdreceituario                         :=   dbCtx.QryOperacaoSafraTalhaoidreceituario.AsString;
-  vIdCobertura                           :=   dbCtx.QryOperacaoSafraTalhaoidcobertura.AsString;
-  vIdCulturaPlantio                      :=   dbCtx.QryOperacaoSafraTalhaoidcultura.AsString;
-  edtDataIniAtividade.Date               :=   dbCtx.QryOperacaoSafraTalhaodatainicio.AsDateTime;
-  edtDataFimAtividade.Date               :=   dbCtx.QryOperacaoSafraTalhaodatafim.AsDateTime;
-  edtAreaPrev.Text                       :=   dbCtx.QryOperacaoSafraTalhaoareaprevista.AsString;
-  edtAreaReal.Text                       :=   dbCtx.QryOperacaoSafraTalhaoarearealizada.AsString;
-  edtResponsavel.Text                    :=   dbCtx.RetornaNomeResponsavel(dbCtx.QryOperacaoSafraTalhaoidresponsavel.AsString);
-  edtObservacaoAtividade.Text            :=   dbCtx.QryOperacaoSafraTalhaoobservacao.AsString;
-  cbxTipoOperacaoSolid.ItemIndex         :=   cbxTipoOperacaoSolid.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaotipoterraaereo.AsString);
-  cbxTipoOperacaoPulverizacao.ItemIndex  :=   cbxTipoOperacaoPulverizacao.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaotipoterraaereo.AsString);
-  cbxFinalidadePulverizacao.ItemIndex    :=   cbxFinalidadePulverizacao.Items.IndexOf(UpperCase(dbCtx.QryOperacaoSafraTalhaofinalidade.AsString));
-  cbxPlantioTipoOp.ItemIndex             :=   cbxPlantioTipoOp.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaotipoterraaereo.AsString);
-  cbxQualidadeCobertura.ItemIndex        :=   cbxQualidadeCobertura.Items.IndexOf(dbCtx.QryOperacaoSafraTalhaoqualidadecobertura.AsString);
+  dbCtx.AbreMaquinaOperacao(dmRel.qryRelOperacaoid.AsString);
+  TabAux.TabPosition := TTabPosition.None;
+  TabAux.TabIndex    :=0;
   layAuxiliar.Visible := true;
+end;
+
+procedure TfrmRelOperacao.MenuItem2Click(Sender: TObject);
+begin
+ dbCtx.TMaquinasOperacao.Close;
+ dbCtx.TMaquinasOperacao.Open;
+ dbCtx.TMaquinasOperacao.Filtered := false;
+ dbCtx.TMaquinasOperacao.Filter   := 'id='+dbCtx.QryMaquinaOperacaoid.AsString;
+ dbCtx.TMaquinasOperacao.Filtered := true;
+ if not dbCtx.TMaquinasOperacao.IsEmpty then
+ begin
+  dbCtx.TMaquinasOperacao.Edit;
+  edtMaquina.Text     := dbCtx.QryMaquinaOperacaomaquina.AsString;
+  vIdMaquina          := dbCtx.QryMaquinaOperacaoidmaquina.AsString;
+  edtOperador.Text    := dbCtx.QryMaquinaOperacaooperador.AsString;
+  vIdOperador         := dbCtx.QryMaquinaOperacaoidoperador.AsString;
+  edtHoraIni.Text     := dbCtx.QryMaquinaOperacaohorainicio.AsString;
+  edtHoraFim.Text     := dbCtx.QryMaquinaOperacaohorafim.AsString;
+  edtHorasTrabalhada.Text := dbCtx.QryMaquinaOperacaohoratotal.AsString;
+  edtHorasParado.Text     := dbCtx.QryMaquinaOperacaohoraparada.AsString;
+  edtDataMaquina.Date     := dbCtx.QryMaquinaOperacaodata.AsDateTime;
+  TabAux.TabIndex :=1;
+ end;
+end;
+
+procedure TfrmRelOperacao.MenuItem3Click(Sender: TObject);
+begin
+ MyShowMessage('Deseja Realmente Finalizar essa Operação?',true);
+ case frmPrincipal.vMsgConfirma of
+   1:begin
+    try
+      dbCtx.DeletaMaquinaOp(dbCtx.QryMaquinaOperacaoid.AsString);
+      dbCtx.AbreMaquinaOperacao(dmRel.qryRelOperacaoid.AsString);
+     except
+     on E : Exception do
+      ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
+    end;
+   end;
+ end;
+end;
+
+procedure TfrmRelOperacao.MenuItem4Click(Sender: TObject);
+begin
+ LimpaCampos;
+ dbCtx.TMaquinasOperacao.Filtered := false;
+ dbCtx.TMaquinasOperacao.Close;
+ dbCtx.TMaquinasOperacao.Open;
+ dbCtx.TMaquinasOperacao.Insert;
+ dbCtx.TMaquinasOperacaoidusuario.AsString := dbCtx.vIdUsuarioLogado;
+ TabAux.TabIndex  :=1;
 end;
 
 procedure TfrmRelOperacao.MyShowMessage(msg: string; btnCancel: Boolean);
@@ -290,6 +298,11 @@ begin
   begin
     frmPrincipal.vMsgConfirma := dlg.vBntConfirmaMsg;
   end);
+end;
+
+procedure TfrmRelOperacao.Rectangle13Click(Sender: TObject);
+begin
+ TabAux.TabIndex :=0;
 end;
 
 procedure TfrmRelOperacao.SomarColunasGrid;
@@ -350,168 +363,64 @@ procedure TfrmRelOperacao.btnConfirmaAtividadeClick(Sender: TObject);
 var
  vTipoAereo:string;
 begin
- if vIdAtividadeSelect='1' then
+end;
+
+procedure TfrmRelOperacao.btnConfirmaMaquinaClick(Sender: TObject);
+var
+ vHorasTrabalhada:string;
+begin
+if edtMaquina.Text.Length=0 then
  begin
-   if cbxTipoAplicacaoSolido.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe o Tipo de Aplicação Solido!!',false);
-    cbxTipoAplicacaoSolido.SetFocus;
-    Exit;
-   end;
-   if cbxTipoOperacaoSolid.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe o Tipo de Operação!!',false);
-    cbxTipoOperacaoSolid.SetFocus;
-    Exit;
-   end;
- end;
- if vIdAtividadeSelect='2' then
- begin
-   if cbxTipoOperacaoPulverizacao.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe o Tipo de Operação!!',false);
-    cbxTipoOperacaoPulverizacao.SetFocus;
-    Exit;
-   end;
-   if cbxFinalidadePulverizacao.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe a Finalidade!!',false);
-    cbxFinalidadePulverizacao.SetFocus;
-    Exit;
-   end;
-   if cbxCulturaPulverizacao.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe a Cultura!!',false);
-    cbxCulturaPulverizacao.SetFocus;
-    Exit;
-   end;
- end;
- if vIdAtividadeSelect='3' then
- begin
-   if cbxPlantioCobertura.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe a Cobertura!!',false);
-    cbxPlantioCobertura.SetFocus;
-    Exit;
-   end;
-   if cbxQualidadeCobertura.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe a Qualidade da Cobertura!!',false);
-    cbxQualidadeCobertura.SetFocus;
-    Exit;
-   end;
-   if cbxPlantioCultura.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe a Cultura!!',false);
-    cbxPlantioCultura.SetFocus;
-    Exit;
-   end;
-   if cbxPlantioTipoOp.ItemIndex=-1 then
-   begin
-    MyShowMessage('Informe o Tipo de Operacao!!',false);
-    cbxPlantioTipoOp.SetFocus;
-    Exit;
-   end;
- end;
- if edtResponsavel.Text.Length=0 then
- begin
-   MyShowMessage('Informe o Responsavel!!',false);
-   edtResponsavel.SetFocus;
+   MyShowMessage('Informe a Maquina!!',false);
+   edtMaquina.SetFocus;
    Exit;
  end;
- if edtDataIniAtividade.Text.Length=0 then
+ if edtOperador.Text.Length=0 then
  begin
-   MyShowMessage('Informe a Data de Inicio!!',false);
-   edtDataIniAtividade.SetFocus;
+   MyShowMessage('Informe o Operador!!',false);
+   edtOperador.SetFocus;
    Exit;
  end;
- if edtDataFimAtividade.Text.Length=0 then
+ if edtHoraIni.Text.Length=0 then
  begin
-    MyShowMessage('Informe a Data Fim!!',false);
-    edtDataFimAtividade.SetFocus;
-    Exit;
+   MyShowMessage('Informe a Hora de Inicio!!',false);
+   edtHoraIni.SetFocus;
+   Exit;
  end;
- if edtAreaReal.Text.Length=0 then
+ if edtHoraFim.Text.Length=0 then
  begin
-    MyShowMessage('Informe a Area Realizada!!',false);
-    edtAreaReal.SetFocus;
-    Exit;
+   MyShowMessage('Informe a Hora Fim!!',false);
+   edtHoraFim.SetFocus;
+   Exit;
  end;
-  dbCtx.TOperacaoSafraTalhao.Close;
-  dbCtx.TOperacaoSafraTalhao.Open;
-  dbCtx.TOperacaoSafraTalhao.Filtered :=false;
-  dbCtx.TOperacaoSafraTalhao.Filter   :='id='+dmRel.qryRelOperacaoid.AsString;
-  dbCtx.TOperacaoSafraTalhao.Filtered :=true;
-  dbCtx.TOperacaoSafraTalhao.Edit;
-  if not dbCtx.TOperacaoSafraTalhao.IsEmpty then
-  begin
-    dbCtx.TOperacaoSafraTalhaoidoperacao.AsString         := vIdAtividadeSelect;
-    dbCtx.TOperacaoSafraTalhaoidResponsavel.AsString      := vIdResponsavel;
-    dbCtx.TOperacaoSafraTalhaodatainicio.AsDateTime       := edtDataIniAtividade.Date;
-    dbCtx.TOperacaoSafraTalhaodatafim.AsDateTime          := edtDataFimAtividade.Date;
-    dbCtx.TOperacaoSafraTalhaoareaPrevista.Asstring       := edtAreaPrev.Text;
-    dbCtx.TOperacaoSafraTalhaoarearealizada.Asstring      := edtAreaReal.Text;
-    dbCtx.TOperacaoSafraTalhaoobservacao.AsString         := edtObservacaoAtividade.Text;
-    dbCtx.TOperacaoSafraTalhaodataalteracao.AsDateTime    := date;
-    dbCtx.TOperacaoSafraTalhaoidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
-    dbCtx.TOperacaoSafraTalhaosyncaws.AsInteger           := 0;
-    dbCtx.TOperacaoSafraTalhaosyncfaz.AsInteger           := 0;
-    if vIdAtividadeSelect='1' then
-    begin
-      dbCtx.TOperacaoSafraTalhaotipoterraaereo.AsString        := cbxTipoOperacaoSolid.Selected.Text;
-      dbCtx.TOperacaoSafraTalhaoidtipoaplicacaosolido.AsString := vIdTipoAplicacaoSolido;
-    end;
-    if vIdAtividadeSelect='2' then
-    begin
-      dbCtx.TOperacaoSafraTalhaotipoterraaereo.AsString        := cbxTipoOperacaoPulverizacao.Selected.Text;
-      dbCtx.TOperacaoSafraTalhaofinalidade.AsString            := cbxFinalidadePulverizacao.Selected.Text;
-      dbCtx.TOperacaoSafraTalhaoidcultura.AsString             := vIdCulturaPulverizacao;
-      dbCtx.TOperacaoSafraTalhaoidreceituario.AsString         := vIdreceituario;
-    end;
-    if vIdAtividadeSelect='3' then
-    begin
-      dbCtx.TOperacaoSafraTalhaoidcultura.AsString             := vIdCulturaPlantio;
-      dbCtx.TOperacaoSafraTalhaoidcobertura.AsString           := vIdCobertura;
-      dbCtx.TOperacaoSafraTalhaoqualidadecobertura.AsString    := cbxQualidadeCobertura.Selected.Text;
-      dbCtx.TOperacaoSafraTalhaotipoterraaereo.AsString        := cbxPlantioTipoOp.Selected.Text;
-      dbCtx.TOperacaoSafraTalhaoidvariedade.AsString           := vidvariedade;
-    end;
-    dbCtx.TOperacaoSafraTalhaostatus.AsInteger            := 2;
-    try
-      dbCtx.TOperacaoSafraTalhao.ApplyUpdates(-1);
-      MyShowMessage('Atividade Atualizada com sucesso!!',false);
-      if cbxResponsavel.ItemIndex=0 then
-        vIdResponsavel :='0';
-
-      if cbxAtividade.ItemIndex=0 then
-        vIdAtividade   :='0';
-
-      if cbxSetor.ItemIndex=0 then
-        vSetoriD   :='0';
-
-      if cbxTipoAreo.ItemIndex>0 then
-        vTipoAereo := cbxTipoAreo.Selected.Text
-      else
-        vTipoAereo :='';
-
-
-      dmRel.AbreRelatorioOperacao(
-        FormatDateTime('yyyy-mm-dd',edtDataInicio.Date),
-        FormatDateTime('yyyy-mm-dd',edtDataFim.Date),
-        vIdResponsavel,
-        vIdAtividade,vSetoriD,
-        cbxTalhao.Selected.Text.QuotedString,
-        cbxCultura.Selected.Text.QuotedString,
-        vTipoAereo.QuotedString);
-      SomarColunasGrid;
-      btnPrint.Enabled           := GridAtividadesRel.RowCount>0;
-      btnExportar.Enabled        := GridAtividadesRel.RowCount>0;
-      layAuxiliar.Visible := false;
-    except
-      on E: Exception do
-       myShowMessage('Erro ao Atualizar Atividade:'+E.Message,false);
-    end;
-  end;
+ if edtDataMaquina.Text.Length=0 then
+ begin
+   MyShowMessage('Informe a Data!!',false);
+   edtDataMaquina.SetFocus;
+   Exit;
+ end;
+ vHorasTrabalhada :=FormatFloat('####,##0.00',((strToFloat(edtHoraFim.Text)-strToFloat(edtHoraIni.Text)))-
+  (strToFloat(edtHorasParado.Text)));
+ dbCtx.TMaquinasOperacaoidmaquina.AsString         := vIdMaquina;
+ dbCtx.TMaquinasOperacaooperador.AsString          := edtOperador.Text;
+ dbCtx.TMaquinasOperacaohorainicio.AsString        := edtHoraIni.Text;
+ dbCtx.TMaquinasOperacaohorafim.AsString           := edtHoraFim.Text;
+ dbCtx.TMaquinasOperacaohorastrabalhada.asstring   := vHorasTrabalhada;
+ dbCtx.TMaquinasOperacaohoraparada.AsString        := edtHorasParado.Text;
+ dbCtx.TMaquinasOperacaodata.AsDateTime            := edtDataMaquina.date;
+ dbCtx.TMaquinasOperacaoobservacao.AsString        := edtObsMaquina.Text;
+ dbCtx.TMaquinasOperacaoidoperacaotalhao.AsString  := dmRel.qryRelOperacaoid.AsString;
+ dbCtx.TMaquinasOperacaosyncaws.AsInteger          := 0;
+ try
+   dbCtx.TMaquinasOperacao.ApplyUpdates(-1);
+   MyShowMessage('Maquina Atualizada com sucesso!!',false);
+   layAuxiliar.Visible := false;
+   dbCtx.AbreMaquinaOperacao(dmRel.qryRelOperacaoid.AsString);
+   BuscarClick(sender);
+ except
+   on E: Exception do
+    myShowMessage('Erro ao salvar Maquina:'+E.Message,false);
+ end;
 end;
 
 procedure TfrmRelOperacao.btnExportarClick(Sender: TObject);
@@ -657,24 +566,6 @@ begin
  lblTipo.Visible            := cbxAtividade.ItemIndex=2;
 end;
 
-procedure TfrmRelOperacao.cbxCulturaPulverizacaoChange(Sender: TObject);
-begin
-  if cbxCulturaPulverizacao.ItemIndex>-1 then
-   vIdCulturaPulverizacao := LinkFillControlToFieldid2.BindList.GetSelectedValue.AsString;
-end;
-
-procedure TfrmRelOperacao.cbxPlantioCoberturaChange(Sender: TObject);
-begin
- if cbxPlantioCobertura.ItemIndex>-1 then
-  vIdCobertura := LinkFillControlToField6.BindList.GetSelectedValue.AsString;
-end;
-
-procedure TfrmRelOperacao.cbxPlantioCulturaChange(Sender: TObject);
-begin
- if cbxPlantioCultura.ItemIndex>-1 then
-  vIdCulturaPlantio := LinkFillControlToField5.BindList.GetSelectedValue.AsString;
-end;
-
 procedure TfrmRelOperacao.cbxResponsavelChange(Sender: TObject);
 begin
  if cbxResponsavel.ItemIndex>0 then
@@ -696,28 +587,46 @@ end;
 
 
 
-procedure TfrmRelOperacao.cbxTipoAplicacaoSolidoChange(Sender: TObject);
+procedure TfrmRelOperacao.EditButton1Click(Sender: TObject);
 begin
-  if cbxTipoAplicacaoSolido.ItemIndex>-1 then
-   vIdTipoAplicacaoSolido := LinkFillControlToFieldid.BindList.GetSelectedValue.AsString;
-end;
-
-procedure TfrmRelOperacao.cbxVariedadeChange(Sender: TObject);
-begin
- if cbxVariedade.ItemIndex>-1 then
-  vidvariedade := LinkFillControlToFieldid3.BindList.GetSelectedValue.AsString;
-end;
-
-procedure TfrmRelOperacao.EditButton2Click(Sender: TObject);
-begin
- frmUsuarios := TfrmUsuarios.Create(Self);
+ frmOperadorMaquinas := TfrmOperadorMaquinas.Create(Self);
   try
-    frmUsuarios.ShowModal;
+    frmOperadorMaquinas.ShowModal;
   finally
-    vIDResponsavel        := dbCtx.TUsuarioid.AsString;
-    edtResponsavel.Text   := dbCtx.TUsuarionome.AsString;
-    frmUsuarios.Free;
+    vIdOperador           := dbCtx.TOperadorMaquinaid.AsString;
+    edtOperador.Text      := dbCtx.TOperadorMaquinanome.AsString;
+    frmOperadorMaquinas.Free;
   end;
+end;
+
+procedure TfrmRelOperacao.EditButton3Click(Sender: TObject);
+begin
+ frmCadMaquinaVeiculo := TfrmCadMaquinaVeiculo.Create(Self);
+  try
+    frmCadMaquinaVeiculo.ShowModal;
+  finally
+    vIdMaquina            := dbCtx.TMaquinasid.AsString;
+    edtMaquina.Text       := dbCtx.TMaquinasprefixo.AsString;
+    frmCadMaquinaVeiculo.Free;
+  end;
+end;
+
+procedure TfrmRelOperacao.edtHoraFimChangeTracking(Sender: TObject);
+begin
+ if edtHoraFim.Text.Length=0 then edtHoraFim.Text:='0';
+  if edtHoraIni.Text.Length=0 then edtHoraIni.Text:='0';
+  if edtHorasParado.Text.Length=0 then edtHorasParado.Text:='0';
+  edtHorasTrabalhada.Text := FormatFloat('####,##0.00',((strToFloat(edtHoraFim.Text)-strToFloat(edtHoraIni.Text))-
+   strToFloat(edtHorasParado.Text)));
+end;
+
+procedure TfrmRelOperacao.edtHoraIniChangeTracking(Sender: TObject);
+begin
+ if edtHoraFim.Text.Length=0 then edtHoraFim.Text:='0';
+  if edtHoraIni.Text.Length=0 then edtHoraIni.Text:='0';
+  if edtHorasParado.Text.Length=0 then edtHorasParado.Text:='0';
+  edtHorasTrabalhada.Text := FormatFloat('####,##0.00',((strToFloat(edtHoraFim.Text)-strToFloat(edtHoraIni.Text))-
+   strToFloat(edtHorasParado.Text)));
 end;
 
 procedure TfrmRelOperacao.FormShow(Sender: TObject);

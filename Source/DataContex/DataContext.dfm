@@ -1418,6 +1418,7 @@ object dbCtx: TdbCtx
   end
   object TMaquinasOperacao: TFDQuery
     CachedUpdates = True
+    OnReconcileError = TMaquinasOperacaoReconcileError
     Connection = FDConPG
     SQL.Strings = (
       
@@ -1856,6 +1857,10 @@ object dbCtx: TdbCtx
     object QryMaquinaOperacaosyncaws: TIntegerField
       FieldName = 'syncaws'
       Origin = 'syncaws'
+    end
+    object QryMaquinaOperacaoidoperador: TIntegerField
+      FieldName = 'idoperador'
+      Origin = 'idoperador'
     end
   end
   object qryProdutosOperacao: TFDQuery
@@ -4133,6 +4138,7 @@ object dbCtx: TdbCtx
   end
   object TOperadorMaquina: TFDQuery
     CachedUpdates = True
+    OnReconcileError = TOperadorMaquinaReconcileError
     Connection = FDConPG
     SQL.Strings = (
       'select * from OperadorMaquinas'
@@ -5124,13 +5130,14 @@ object dbCtx: TdbCtx
   object FDConPG: TFDConnection
     Params.Strings = (
       'Database=FortAgro'
-      'Server=192.168.236.50'
+      'Server=127.0.0.1'
       'User_Name=postgres'
-      'Password=ffg@2021'
+      'Password=Dev#110485'
       'Pooled='
       'DriverID=PG')
+    Connected = True
     LoginPrompt = False
-    Left = 1136
+    Left = 1112
     Top = 256
   end
   object TMovLocalEstoque: TFDQuery
@@ -6972,7 +6979,7 @@ object dbCtx: TdbCtx
     end
   end
   object PgDriverLink: TFDPhysPgDriverLink
-    VendorLib = 'D:\Projetos2021\Deploy\libpq.dll'
+    VendorLib = 'E:\Projetos2021\Fortaleza\Deploy\libpq.dll'
     Left = 1136
     Top = 312
   end

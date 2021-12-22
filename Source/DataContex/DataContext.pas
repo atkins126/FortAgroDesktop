@@ -1316,6 +1316,7 @@ type
     TReceituariotaxaajusteremonte: TBCDField;
     TReceituarioqtdesemntemetro: TBCDField;
     TReceituariovariedade: TWideStringField;
+    QryMaquinaOperacaoidoperador: TIntegerField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1364,6 +1365,12 @@ type
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TEstoqueSaidaReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
+    procedure TOperadorMaquinaReconcileError(DataSet: TFDDataSet;
+      E: EFDException; UpdateKind: TFDDatSRowState;
+      var Action: TFDDAptReconcileAction);
+    procedure TMaquinasOperacaoReconcileError(DataSet: TFDDataSet;
+      E: EFDException; UpdateKind: TFDDatSRowState;
+      var Action: TFDDAptReconcileAction);
   private
     { Private declarations }
   public
@@ -1463,6 +1470,7 @@ type
     procedure AbreDevolucaoQuimico(vIdReceituario:string);
     procedure AbreMaquinas(vFiltro:string);
     procedure DeletaSaidaAbastecimento(vID:string);
+    procedure DeletaMaquinaOp(vId:string);
     procedure AtualizaSaidaAbastecimento(dataSaida,idcentrocusto,idlocalestoque,
      idproduto,qtditens,idresponsavel,idAbastecimento:string);
     procedure AtualizaValoresOrcamentoItens(idPedido:string);
@@ -3595,6 +3603,20 @@ begin
  end;
 end;
 
+procedure TdbCtx.DeletaMaquinaOp(vId: string);
+begin
+ with vQry,vQry.SQL do
+ begin
+   Clear;
+   Add('update detoperacaosafratalhaomaquinasoperadores set status=-1');
+   Add(' ,dataalteracao= current_date');
+   Add(' ,idusuarioalteracao='+vIdUsuarioLogado);
+   Add('where ID='+vId);
+   ExecSQL;
+   FDConPG.Commit;
+ end;
+end;
+
 procedure TdbCtx.DeletaPedido(idPedido: string);
 begin
  with vQry,vQry.SQL do
@@ -3952,6 +3974,13 @@ begin
  ShowMessage(e.Message);
 end;
 
+procedure TdbCtx.TMaquinasOperacaoReconcileError(DataSet: TFDDataSet;
+  E: EFDException; UpdateKind: TFDDatSRowState;
+  var Action: TFDDAptReconcileAction);
+begin
+   ShowMessage(e.Message);
+end;
+
 procedure TdbCtx.TMaquinasReconcileError(DataSet: TFDDataSet; E: EFDException;
   UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
 begin
@@ -3977,6 +4006,13 @@ procedure TdbCtx.TOperacaoSafraTalhaoUpdateError(ASender: TDataSet;
   var AAction: TFDErrorAction);
 begin
  ShowMessage(AException.Message);
+end;
+
+procedure TdbCtx.TOperadorMaquinaReconcileError(DataSet: TFDDataSet;
+  E: EFDException; UpdateKind: TFDDatSRowState;
+  var Action: TFDDAptReconcileAction);
+begin
+  ShowMessage(e.Message);
 end;
 
 procedure TdbCtx.TPedidoCompraReconcileError(DataSet: TFDDataSet;

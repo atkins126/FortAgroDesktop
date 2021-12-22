@@ -279,7 +279,7 @@ object dmRel: TdmRel
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -2974,7 +2974,7 @@ object dmRel: TdmRel
     DataPipeline = ppDBPMapaPluvi
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -4890,7 +4890,7 @@ object dmRel: TdmRel
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -7056,7 +7056,7 @@ object dmRel: TdmRel
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -11134,7 +11134,7 @@ object dmRel: TdmRel
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -13921,7 +13921,7 @@ object dmRel: TdmRel
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -16210,7 +16210,7 @@ object dmRel: TdmRel
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
           PrinterSetup.Orientation = poLandscape
-          PrinterSetup.PaperName = 'A4'
+          PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.SaveDeviceSettings = False
           PrinterSetup.mmMarginBottom = 6350
@@ -16747,7 +16747,7 @@ object dmRel: TdmRel
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -18979,8 +18979,8 @@ object dmRel: TdmRel
       'group by s.nome,f.nome,p.nome)y'
       'where y.praga is not null'
       'order by TALHAO   ')
-    Left = 808
-    Top = 56
+    Left = 760
+    Top = 40
     object qryRepMonitoramentonome: TWideStringField
       FieldName = 'nome'
       Origin = 'nome'
@@ -19039,14 +19039,14 @@ object dmRel: TdmRel
   end
   object dsRepMonitoramento: TDataSource
     DataSet = qryRepMonitoramento
-    Left = 816
-    Top = 112
+    Left = 760
+    Top = 96
   end
   object ppDBRepMonitoramento: TppDBPipeline
     DataSource = dsRepMonitoramento
     UserName = 'DBRepMonitoramento'
-    Left = 816
-    Top = 176
+    Left = 760
+    Top = 160
     object ppDBRepMonitoramentoppField1: TppField
       FieldAlias = 'nome'
       FieldName = 'nome'
@@ -19144,7 +19144,7 @@ object dmRel: TdmRel
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -19196,8 +19196,8 @@ object dmRel: TdmRel
     XLSSettings.Subject = 'Report'
     XLSSettings.Title = 'Report'
     XLSSettings.WorksheetName = 'Report'
-    Left = 816
-    Top = 235
+    Left = 760
+    Top = 219
     Version = '19.04'
     mmColumnWidth = 0
     DataPipelineName = 'ppDBRepMonitoramento'
@@ -20446,8 +20446,8 @@ object dmRel: TdmRel
       'order by TALHAO)w'
       'group by Praga'
       'order by avg(media) desc')
-    Left = 904
-    Top = 64
+    Left = 872
+    Top = 32
     object qryRepMonSumLabel: TWideStringField
       FieldName = 'Label'
       Origin = '"Label"'
@@ -20464,14 +20464,14 @@ object dmRel: TdmRel
   end
   object dsRepMonSum: TDataSource
     DataSet = qryRepMonSum
-    Left = 904
-    Top = 128
+    Left = 872
+    Top = 96
   end
   object ppDBPRepMonSum: TppDBPipeline
     DataSource = dsRepMonSum
     UserName = 'DBPRepMonSum'
-    Left = 920
-    Top = 192
+    Left = 872
+    Top = 160
   end
   object DSDetTalhoesRec: TDataSource
     DataSet = DetTalhoesRec
@@ -20525,7 +20525,7 @@ object dmRel: TdmRel
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -24050,7 +24050,7 @@ object dmRel: TdmRel
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
