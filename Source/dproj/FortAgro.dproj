@@ -151,12 +151,12 @@
         <DCC_ExeOutput>E:\Projetos2021\Fortaleza\Deploy\</DCC_ExeOutput>
         <VerInfo_IncludeVerInfo>true</VerInfo_IncludeVerInfo>
         <VerInfo_Locale>1033</VerInfo_Locale>
-        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=20.21.11.35;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
+        <VerInfo_Keys>CompanyName=;FileDescription=$(MSBuildProjectName);FileVersion=20.21.11.40;InternalName=;LegalCopyright=;LegalTrademarks=;OriginalFilename=;ProductName=$(MSBuildProjectName);ProductVersion=1.0.0.0;Comments=;ProgramID=com.embarcadero.$(MSBuildProjectName)</VerInfo_Keys>
         <Icon_MainIcon>FortAgro_Icon1.ico</Icon_MainIcon>
         <VerInfo_MajorVer>20</VerInfo_MajorVer>
         <VerInfo_MinorVer>21</VerInfo_MinorVer>
         <VerInfo_Release>11</VerInfo_Release>
-        <VerInfo_Build>35</VerInfo_Build>
+        <VerInfo_Build>40</VerInfo_Build>
     </PropertyGroup>
     <ItemGroup>
         <DelphiCompile Include="$(MainSource)">

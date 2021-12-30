@@ -1178,7 +1178,6 @@ type
     TMaquinashorimetro: TBCDField;
     TMaquinashorimetroxkm: TIntegerField;
     TItensPedidoquantidade: TFMTBCDField;
-    TItensOrcamentoInsertqtde: TFMTBCDField;
     TItensOrcamentoInsertdescontorateio: TBCDField;
     TItensOrcamentoInsertfreterateio: TBCDField;
     TMPComparativoqtd: TFMTBCDField;
@@ -1260,7 +1259,6 @@ type
     TItensOrcamentoidproduto: TIntegerField;
     TItensOrcamentovalorunidade: TBCDField;
     TItensOrcamentoobservacao: TWideStringField;
-    TItensOrcamentoqtde: TFMTBCDField;
     TItensOrcamentosyncaws: TIntegerField;
     TItensOrcamentosyncfaz: TIntegerField;
     TItensOrcamentodesconto: TFMTBCDField;
@@ -1298,7 +1296,6 @@ type
     TItensOrcamentoComp: TFDQuery;
     TItensOrcamentoCompitem: TLargeintField;
     TItensOrcamentoCompiditem: TIntegerField;
-    TItensOrcamentoCompquantidade: TFMTBCDField;
     TItensOrcamentoCompnome: TWideStringField;
     TItensOrcamentoCompcodigofabricante: TWideStringField;
     TItensOrcamentoCompmarca: TWideStringField;
@@ -1317,6 +1314,14 @@ type
     TReceituarioqtdesemntemetro: TBCDField;
     TReceituariovariedade: TWideStringField;
     QryMaquinaOperacaoidoperador: TIntegerField;
+    TItensOrcamentoqtde: TBCDField;
+    TItensOrcamentoInsertqtde: TBCDField;
+    TItensOrcamentoInsertrecebido: TIntegerField;
+    TItensOrcamentoInsertqtdrecebida: TFMTBCDField;
+    TItensOrcamentoInsertobsrecebimento: TWideStringField;
+    TItensOrcamentoInsertresponsavelrecebimento: TIntegerField;
+    TItensOrcamentoInsertdatarecebimento: TDateField;
+    TItensOrcamentoCompquantidade: TBCDField;
     procedure TFornecedoresReconcileError(DataSet: TFDDataSet; E: EFDException;
       UpdateKind: TFDDatSRowState; var Action: TFDDAptReconcileAction);
     procedure TProdutosReconcileError(DataSet: TFDDataSet; E: EFDException;
@@ -1935,7 +1940,7 @@ begin
    Add('left join auxmarcas am on am.id=o.idmarca');
    Add('where o.status>-1 and o2.id=');
    Add('(select id from orcamentos o3');
-   Add('where idpedido='+idPedido+' limit 1)');
+   Add('where o3.status >-1 and idpedido='+idPedido+' limit 1)');
    Add('order by Item');
    Open;
  end;

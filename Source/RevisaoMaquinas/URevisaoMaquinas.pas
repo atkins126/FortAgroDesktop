@@ -538,10 +538,12 @@ begin
    1:begin
       try
         dmRevisao.TRevisaoMaquinaApl.Edit;
-        dmRevisao.TRevisaoMaquinaAplstatus.AsInteger :=-1;
+        dmRevisao.TRevisaoMaquinaAplsyncaws.AsInteger :=0;
+        dmRevisao.TRevisaoMaquinaAplstatus.AsInteger  :=-1;
         dmRevisao.TRevisaoMaquinaAplidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
         dmRevisao.TRevisaoMaquinaApldataalteracao.AsDateTime    := now;
         dmRevisao.TRevisaoMaquinaApl.ApplyUpdates(-1);
+        dbCtx.AlteraFlaSynAWS_ZERO('revisaomaquina',dmRevisao.TRevisaoMaquinaAplID.AsString);
         Filtro;
       except
        on E : Exception do
@@ -564,13 +566,15 @@ begin
  vIdPlanoRevisao          := dmRevisao.TRevisaoMaquinaAplidplanorevisao.AsString;
  edtDataIni.Date          := dmRevisao.TRevisaoMaquinaApldatainicio.AsDateTime;
  edtDataFim.Date          := dmRevisao.TRevisaoMaquinaApldatafim.AsDateTime;
+ if vIdPlanoRevisao.Length>0 then
+  vPlanoRevisaoHoras       := dmRevisao.RetornaItervaloHorasPlanoRevisao(vIdPlanoRevisao);
  dmRevisao.GeraListaItensTMPEdit(dmRevisao.TRevisaoMaquinaAplid.AsString);
  GeraLista(dmRevisao.TRevisaoMaquinaAplid.AsString);
  vIdMaxRevEdit              :=dmRevisao.TRevisaoMaquinaAplid.AsString;
  edtPlanoManutencao.Enabled := false;
  cbxTipoManu.Enabled        := false;
  edtMaquina.Enabled         := false;
- btnGerar.Enabled           := false;
+ btnGerar.Enabled           := true;
  MudarAba(tbiCad,sender);
 end;
 
@@ -647,7 +651,6 @@ begin
    dmRevisao.TRevisaoMaquinaApl.Edit;
    dmRevisao.TRevisaoMaquinaAplidusuarioalteracao.AsString := dbCtx.vIdUsuarioLogado;
    dmRevisao.TRevisaoMaquinaApldataalteracao.AsDateTime    := now;
-   dmRevisao.TRevisaoMaquinaAplsyncaws.AsInteger           := 0;
   end;
 
   dmRevisao.TRevisaoMaquinaAplidusuario.AsString        :=dbCtx.vIdUsuarioLogado;
@@ -665,8 +668,11 @@ begin
   dmRevisao.TRevisaoMaquinaApldatafim.AsDateTime      := edtDataFim.DateTime;
   dmRevisao.TRevisaoMaquinaAplidresponsavel.AsString  := vIdResponsavel;
   dmRevisao.TRevisaoMaquinaAplhorimetro.AsString      := edtHorimetro.Text;
+  dmRevisao.TRevisaoMaquinaAplsyncaws.AsInteger       := 0;
   try
     dmRevisao.TRevisaoMaquinaApl.ApplyUpdates(-1);
+    if dmRevisao.TRevisaoMaquinaAplID.AsString.Length>0 then
+     dbCtx.AlteraFlaSynAWS_ZERO('revisaomaquina',dmRevisao.TRevisaoMaquinaAplID.AsString);
     dmRevisao.AtualizaMaquinaProximaRevisao(
      vIdMaquina,
      FormatDateTime('yyyy-mm-dd',edtDataFim.DateTime).QuotedString,
@@ -781,9 +787,18 @@ begin
   try
     frmCadRevisao.ShowModal;
   finally
-    vIdPlanoRevisao          := dmRevisao.TRevisaoid.AsString;
-    vPlanoRevisaoHoras       := dmRevisao.TRevisaointervalohoras.AsFloat;
-    edtPlanoManutencao.Text  := dmRevisao.TRevisaonome.AsString;
+   if dmRevisao.TRevisaointervalohoras.AsFloat<=0 then
+   begin
+     MyShowMessage('Corrija o intervalo de horas do plano antes!',false);
+     vIdPlanoRevisao          := '';
+     edtPlanoManutencao.Text  := '';
+   end
+   else
+   begin
+     vIdPlanoRevisao          := dmRevisao.TRevisaoid.AsString;
+     vPlanoRevisaoHoras       := dmRevisao.TRevisaointervalohoras.AsFloat;
+     edtPlanoManutencao.Text  := dmRevisao.TRevisaonome.AsString;
+   end;
   end;
 end;
 

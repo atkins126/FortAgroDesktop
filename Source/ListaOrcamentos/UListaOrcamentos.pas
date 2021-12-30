@@ -25,7 +25,8 @@ uses
   IdIOHandlerSocket,
   IdIOHandlerStack,
   IdSSL, IdAntiFreezeBase, IdSMTPRelay, myChkBox,
-  Vcl.Imaging.pngimage, ppVar, ppStrtch, ppMemo, FireDAC.FMXUI.Wait;
+  Vcl.Imaging.pngimage, ppVar, ppStrtch, ppMemo, FireDAC.FMXUI.Wait,
+  FMX.Effects, FMX.TreeView;
 
 type
   TfrmListaOrcamento = class(TForm)
@@ -35,9 +36,6 @@ type
     Image27: TImage;
     layMnuStatus: TLayout;
     Rectangle22: TRectangle;
-    btnImprimir: TRectangle;
-    Image45: TImage;
-    lblImprimir: TLabel;
     Layout46: TLayout;
     Layout47: TLayout;
     GroupBox2: TGroupBox;
@@ -67,16 +65,30 @@ type
     ClearEditButton1: TClearEditButton;
     ClearEditButton2: TClearEditButton;
     btnBuscar: TButton;
+    TreeView1: TTreeView;
+    TreeRelatorios: TTreeViewItem;
+    TreeRelOrdem: TTreeViewItem;
+    TreePedidoProduto: TTreeViewItem;
+    Image1: TImage;
+    ShadowEffect1: TShadowEffect;
+    Image2: TImage;
+    Image3: TImage;
+    TreeRelFornecedor: TTreeViewItem;
+    Image4: TImage;
+    TreeResumoGeral: TTreeViewItem;
+    Image5: TImage;
     procedure FormShow(Sender: TObject);
     procedure Image27Click(Sender: TObject);
-    procedure Image26Click(Sender: TObject);
-    procedure btnImprimirClick(Sender: TObject);
     procedure MenuItem2Click(Sender: TObject);
     procedure btnBuscaProdutoClick(Sender: TObject);
     procedure ClearEditButton1Click(Sender: TObject);
     procedure btnBuscaFornecedorClick(Sender: TObject);
     procedure ClearEditButton2Click(Sender: TObject);
     procedure btnBuscarClick(Sender: TObject);
+    procedure TreeRelOrdemClick(Sender: TObject);
+    procedure TreePedidoProdutoClick(Sender: TObject);
+    procedure TreeRelFornecedorClick(Sender: TObject);
+    procedure TreeResumoGeralClick(Sender: TObject);
   private
     vIdProduto,vIdFornecedor:string;
     procedure FiltrarOrcamento;
@@ -94,20 +106,6 @@ implementation
 
 uses UPrincipal, DataContext, UdmReport, UDmReports, UFornecedor, UProdutos,
   UdmCompras;
-
-procedure TfrmListaOrcamento.btnImprimirClick(Sender: TObject);
-begin
- if dmCompras.TOrcamentoid.AsString.Length>0 then
- begin
-  dmCompras.AbreItemsOrcamentos(dmCompras.TOrcamentoid.AsString);
-  case dmCompras.TOrcamentostatus.AsInteger  of
-    1: dmCompras.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
-    2: dmCompras.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
-    3: dmCompras.ppLblOrdemPedido.Text := 'Ordem de Compra';
-  end;
-  dmCompras.ppRepOrcamento.Print;
- end;
-end;
 
 procedure TfrmListaOrcamento.ClearEditButton1Click(Sender: TObject);
 begin
@@ -152,42 +150,34 @@ end;
 
 procedure TfrmListaOrcamento.FiltrarOrcamento;
 var
- vFiltro:string;
+ vFiltro,vDataDe,vDataAte:string;
 begin
   vFiltro:='';
+  vDataDe  := FormatDateTime('yyyy-mm-dd',edtDataInicio.Date).QuotedString;
+  vDataAte := FormatDateTime('yyyy-mm-dd',edtDataFim.Date).QuotedString;
+  vFiltro  :=' AND c.datapedido between '+vDataDe+' and '+vDataAte;
+
   if edtFornecedorF.Text.Length>0 then
    vFiltro:=vFiltro+' AND f.id ='+vIdFornecedor;
-  case cbxStatusOrcamento.ItemIndex of
-   1:vFiltro:=vFiltro+' AND B.status IN(1,2)';
-   2:vFiltro:=vFiltro+' AND B.status =3';
-  end;
+//  case cbxStatusOrcamento.ItemIndex of
+//   1:vFiltro:=vFiltro+' AND B.status IN(1,2)';
+//   2:vFiltro:=vFiltro+' AND B.status =3';
+//  end;
+  vFiltro:=vFiltro+' AND B.status =3';
   if edtPedidoF.Text.Length>0 then
    vFiltro:=vFiltro+' AND c.identificador LIKE '+QuotedStr('%'+edtPedidoF.Text+'%');
   if edtOrdemF.Text.Length>0 then
    vFiltro:=vFiltro+' AND b.id='+edtOrdemF.Text;
   if edtProdutoF.Text.Length>0 then
-   vFiltro:=vFiltro+' and c.id in(select idpedido from pedidocompraitems p2 where p2.iditem='+vIdProduto+')';
+   vFiltro:=vFiltro+' and p.id='+vIdProduto;
+
   dmCompras.AbreOrcamentosLista(vFiltro);
 end;
 
 
 procedure TfrmListaOrcamento.FormShow(Sender: TObject);
 begin
- dmCompras.AbreOrcamentosLista('');
-end;
-
-procedure TfrmListaOrcamento.Image26Click(Sender: TObject);
-begin
-  if layMnuStatus.Width =57 then
-  begin
-   lblImprimir.Text         := 'Imprimir';
-   layMnuStatus.Width  := 150
-  end
-  else
-  begin
-   lblImprimir.Text         := '';
-   layMnuStatus.Width  := 57;
-  end;
+ StringGrid4.RowCount :=0;
 end;
 
 procedure TfrmListaOrcamento.Image27Click(Sender: TObject);
@@ -317,5 +307,50 @@ begin
  end;
 end;
 
+
+procedure TfrmListaOrcamento.TreePedidoProdutoClick(Sender: TObject);
+begin
+ if edtProdutoF.Text.Length=0 then
+ begin
+   frmPrincipal.MyShowMessage('Informe o produto!!',false);
+   Exit;
+ end;
+ dmCompras.ppRepPedidoProduto.Print;
+end;
+
+procedure TfrmListaOrcamento.TreeRelFornecedorClick(Sender: TObject);
+begin
+ if edtFornecedorF.Text.Length=0 then
+ begin
+   frmPrincipal.MyShowMessage('Informe o Fornecedor!!',false);
+   Exit;
+ end;
+ dmCompras.ppRepFornecedor.Print;
+end;
+
+procedure TfrmListaOrcamento.TreeRelOrdemClick(Sender: TObject);
+begin
+ if dmCompras.TOrcamentoid.AsString.Length>0 then
+ begin
+  dmCompras.AbreItemsOrcamentos(dmCompras.TOrcamentoid.AsString);
+  case dmCompras.TOrcamentostatus.AsInteger  of
+    1: dmCompras.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
+    2: dmCompras.ppLblOrdemPedido.Text := 'Solicitação de Orçamento';
+    3: dmCompras.ppLblOrdemPedido.Text := 'Ordem de Compra';
+  end;
+  dmCompras.ppRepOrcamento.Print;
+ end;
+end;
+
+procedure TfrmListaOrcamento.TreeResumoGeralClick(Sender: TObject);
+var
+ vFiltro,vDataDe,vDataAte:string;
+begin
+  vFiltro:='';
+  vDataDe  := FormatDateTime('yyyy-mm-dd',edtDataInicio.Date).QuotedString;
+  vDataAte := FormatDateTime('yyyy-mm-dd',edtDataFim.Date).QuotedString;
+  vFiltro  :=' AND coalesce(o.datacompra,cast(o.datareg as date)) between '+vDataDe+' and '+vDataAte;
+  dmCompras.AbreResumoGeralPedidos(vFiltro);
+end;
 
 end.
