@@ -332,6 +332,7 @@ type
     procedure InsereObsListaTMP(IdItem,Obs:string);
     function  VerificaItensConfirmados(IdPlano:string):string;
     function  RetornaIdMaxRevisao:string;
+    function  RetornaIdMaxPlanoRevisao: string;
     procedure AbreRevisaoApl(Filtro:string);
     procedure AbreItensRevisaoApl(vIdRevisao:string);
     procedure AbreItensReliRevisaoApl(vIdRevisao:string);
@@ -341,6 +342,8 @@ type
     procedure AlteraIdRevisaoTMPServico(vIdTMP,vIdRevisao:string);
     procedure DeletaItensRevisao(vIdRev:string);
     procedure AbreRevisao(vNome,vPrefixo:string);
+    procedure CopiaPlanoRevisao(idPlano:string);
+    function  RetornaItervaloHorasPlanoRevisao(idPlano:string):Double;
   end;
 
 var
@@ -551,6 +554,45 @@ begin
    Add('where ID='+vIdMaquina);
    try
     ExecSQL;
+   except
+     on E : Exception do
+      ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
+    end;
+ end;
+end;
+
+procedure TdmRevisao.CopiaPlanoRevisao(idPlano: string);
+var
+ vMaxIdPlano:string;
+begin
+ with qryAux,qryAux.SQL do
+ begin
+   Clear;
+   Add('insert into planorevisao(idusuario,nome,intervalohoras)');
+   Add('select');
+   Add('idusuario,');
+   Add(QuotedStr('Copiar-')+'||nome,');
+   Add('intervalohoras');
+   Add('from planorevisao p');
+   Add('where id='+idPlano);
+   try
+     ExecSQL;
+     vMaxIdPlano := RetornaIdMaxPlanoRevisao;
+
+     Clear;
+     Add('insert into planorevisaoitens(idusuario,idrevisao,idproduto,');
+     Add('qtde,tipo,observacao,item,iditem)');
+     Add('select idusuario,'+vMaxIdPlano+',idproduto,qtde,tipo,observacao,item,iditem');
+     Add('from planorevisaoitens p');
+     Add('where status =1 and idrevisao='+idPlano);
+     ExecSQL;
+
+     Clear;
+     Add('insert into planorevisaomaquinas(idusuario,idrevisao,idmaquina)');
+     Add('select idusuario,'+vMaxIdPlano+',idmaquina');
+     Add('from planorevisaomaquinas p2');
+     Add('where status=1 and idrevisao='+idPlano);
+     ExecSQL;
    except
      on E : Exception do
       ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
@@ -782,6 +824,29 @@ begin
  begin
    Clear;
    Add('select max(id) max_id from revisaomaquina');
+   Open;
+   Result := FieldByName('max_id').AsString;
+ end;
+end;
+
+function TdmRevisao.RetornaItervaloHorasPlanoRevisao(idPlano: string): Double;
+begin
+ with qryAux,qryAux.SQL do
+ begin
+   Clear;
+   Add('select intervalohoras from planorevisao');
+   Add('where id='+idPlano);
+   Open;
+   Result := FieldByName('intervalohoras').AsFloat;
+ end;
+end;
+
+function TdmRevisao.RetornaIdMaxPlanoRevisao: string;
+begin
+ with qryAux,qryAux.SQL do
+ begin
+   Clear;
+   Add('select max(id) max_id from planorevisao');
    Open;
    Result := FieldByName('max_id').AsString;
  end;

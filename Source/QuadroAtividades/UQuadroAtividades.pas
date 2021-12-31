@@ -1094,7 +1094,7 @@ begin
     frmCadMaquinaVeiculo.ShowModal;
   finally
     vIdMaquina            := dbCtx.TMaquinasid.AsString;
-    edtMaquina.Text       := dbCtx.TMaquinasmodelo.AsString+'-'+dbCtx.TMaquinasprefixo.AsString;
+    edtMaquina.Text       := dbCtx.TMaquinasprefixo.AsString;
     frmCadMaquinaVeiculo.Free;
   end;
 end;

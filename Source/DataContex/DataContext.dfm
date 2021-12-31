@@ -1418,6 +1418,7 @@ object dbCtx: TdbCtx
   end
   object TMaquinasOperacao: TFDQuery
     CachedUpdates = True
+    OnReconcileError = TMaquinasOperacaoReconcileError
     Connection = FDConPG
     SQL.Strings = (
       
@@ -1856,6 +1857,10 @@ object dbCtx: TdbCtx
     object QryMaquinaOperacaosyncaws: TIntegerField
       FieldName = 'syncaws'
       Origin = 'syncaws'
+    end
+    object QryMaquinaOperacaoidoperador: TIntegerField
+      FieldName = 'idoperador'
+      Origin = 'idoperador'
     end
   end
   object qryProdutosOperacao: TFDQuery
@@ -3582,12 +3587,6 @@ object dbCtx: TdbCtx
       Origin = 'observacao'
       Size = 100
     end
-    object TItensOrcamentoqtde: TFMTBCDField
-      FieldName = 'qtde'
-      Origin = 'qtde'
-      Precision = 64
-      Size = 0
-    end
     object TItensOrcamentosyncaws: TIntegerField
       FieldName = 'syncaws'
       Origin = 'syncaws'
@@ -3821,6 +3820,11 @@ object dbCtx: TdbCtx
     object TItensOrcamentodatarecebimento: TDateField
       FieldName = 'datarecebimento'
       Origin = 'datarecebimento'
+    end
+    object TItensOrcamentoqtde: TBCDField
+      FieldName = 'qtde'
+      Precision = 15
+      Size = 2
     end
   end
   object TOrcamentoFornecedores: TFDQuery
@@ -4133,6 +4137,7 @@ object dbCtx: TdbCtx
   end
   object TOperadorMaquina: TFDQuery
     CachedUpdates = True
+    OnReconcileError = TOperadorMaquinaReconcileError
     Connection = FDConPG
     SQL.Strings = (
       'select * from OperadorMaquinas'
@@ -5124,13 +5129,15 @@ object dbCtx: TdbCtx
   object FDConPG: TFDConnection
     Params.Strings = (
       'Database=FortAgro'
-      'Server=192.168.236.50'
-      'User_Name=postgres'
-      'Password=ffg@2021'
+      
+        'Server=ls-b5a9416631646d3b59e028d836b45022097f4ea8.cpim1c0ocmlf.' +
+        'us-east-1.rds.amazonaws.com'
+      'User_Name=dbmasteruser'
+      'Password=!89Ah>k3Wpd+SzQWjiDLU]]5PHu#$-70'
       'Pooled='
       'DriverID=PG')
     LoginPrompt = False
-    Left = 1136
+    Left = 1112
     Top = 256
   end
   object TMovLocalEstoque: TFDQuery
@@ -6305,12 +6312,6 @@ object dbCtx: TdbCtx
       FieldName = 'img'
       Origin = 'img'
     end
-    object TItensOrcamentoInsertqtde: TFMTBCDField
-      FieldName = 'qtde'
-      Origin = 'qtde'
-      Precision = 64
-      Size = 0
-    end
     object TItensOrcamentoInsertdescontorateio: TBCDField
       FieldName = 'descontorateio'
       Origin = 'descontorateio'
@@ -6322,6 +6323,35 @@ object dbCtx: TdbCtx
       Origin = 'freterateio'
       Precision = 15
       Size = 3
+    end
+    object TItensOrcamentoInsertqtde: TBCDField
+      FieldName = 'qtde'
+      Origin = 'qtde'
+      Precision = 15
+      Size = 2
+    end
+    object TItensOrcamentoInsertrecebido: TIntegerField
+      FieldName = 'recebido'
+      Origin = 'recebido'
+    end
+    object TItensOrcamentoInsertqtdrecebida: TFMTBCDField
+      FieldName = 'qtdrecebida'
+      Origin = 'qtdrecebida'
+      Precision = 64
+      Size = 0
+    end
+    object TItensOrcamentoInsertobsrecebimento: TWideStringField
+      FieldName = 'obsrecebimento'
+      Origin = 'obsrecebimento'
+      Size = 8190
+    end
+    object TItensOrcamentoInsertresponsavelrecebimento: TIntegerField
+      FieldName = 'responsavelrecebimento'
+      Origin = 'responsavelrecebimento'
+    end
+    object TItensOrcamentoInsertdatarecebimento: TDateField
+      FieldName = 'datarecebimento'
+      Origin = 'datarecebimento'
     end
   end
   object TPropriedade: TFDQuery
@@ -6972,7 +7002,6 @@ object dbCtx: TdbCtx
     end
   end
   object PgDriverLink: TFDPhysPgDriverLink
-    VendorLib = 'D:\Projetos2021\Deploy\libpq.dll'
     Left = 1136
     Top = 312
   end
@@ -7011,12 +7040,6 @@ object dbCtx: TdbCtx
       FieldName = 'iditem'
       Origin = 'iditem'
     end
-    object TItensOrcamentoCompquantidade: TFMTBCDField
-      FieldName = 'quantidade'
-      Origin = 'quantidade'
-      Precision = 64
-      Size = 0
-    end
     object TItensOrcamentoCompnome: TWideStringField
       AutoGenerateValue = arDefault
       FieldName = 'nome'
@@ -7046,6 +7069,12 @@ object dbCtx: TdbCtx
       FieldName = 'unidademedida'
       Origin = 'unidademedida'
       BlobType = ftWideMemo
+    end
+    object TItensOrcamentoCompquantidade: TBCDField
+      FieldName = 'quantidade'
+      Origin = 'quantidade'
+      Precision = 15
+      Size = 2
     end
   end
 end

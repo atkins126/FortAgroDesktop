@@ -13,7 +13,8 @@ uses
   FMX.Controls.Presentation, FMX.Objects, FMX.Layouts, Fmx.Bind.Grid,
   System.Bindings.Outputs, Fmx.Bind.Editors, Data.Bind.EngExt,
   Fmx.Bind.DBEngExt, Data.Bind.Components, Data.Bind.Grid, Data.Bind.DBScope,
-  FMX.EditBox, FMX.NumberBox, System.Math.Vectors, FMX.Controls3D, FMX.Layers3D;
+  FMX.EditBox, FMX.NumberBox, System.Math.Vectors, FMX.Controls3D, FMX.Layers3D,
+  FMX.Menus;
 
 type
   TfrmCadRevisao = class(TfrmCadPadrao)
@@ -153,6 +154,8 @@ type
     Label27: TLabel;
     edtMaquinaF: TEdit;
     btnBuscarLista: TButton;
+    PopupMenu1: TPopupMenu;
+    MenuItem1: TMenuItem;
     procedure btnAddClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
@@ -182,6 +185,7 @@ type
     procedure btnBuscarClick(Sender: TObject);
     procedure btnBuscarListaClick(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
+    procedure MenuItem1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -420,7 +424,7 @@ end;
 
 procedure TfrmCadRevisao.btnSalvarClick(Sender: TObject);
 begin
- if edtIntervalo.Text.Length=0 then
+  if (edtIntervalo.Text.Length=0) or (edtIntervalo.Text='0') then
   begin
     MyShowMessage('Informe o Intervalo de Horas!!',false);
     edtIntervalo.SetFocus;
@@ -538,6 +542,27 @@ end;
 procedure TfrmCadRevisao.Image13Click(Sender: TObject);
 begin
   layNovoItem.Visible      := false;
+end;
+
+procedure TfrmCadRevisao.MenuItem1Click(Sender: TObject);
+begin
+ MyShowMessage('Deseja Realmente Copiar esse Plano Revisão: '+
+ dmRevisao.TRevisaonome.AsString,true);
+ case frmPrincipal.vMsgConfirma of
+   1:begin
+      try
+        dmRevisao.CopiaPlanoRevisao(dmRevisao.TRevisaoid.AsString);
+        MyShowMessage('Plano copiado com sucesso!',false);
+        dmRevisao.TRevisao.Close;
+        dmRevisao.TRevisao.Open;
+        dmRevisao.TRevisaoItens.Open;
+        dmRevisao.TRevisaoMaquinas.Open();
+      except
+       on E : Exception do
+        ShowMessage(E.ClassName+' error raised, with message : '+E.Message);
+      end;
+   end;
+ end;
 end;
 
 procedure TfrmCadRevisao.rdLubrificacaoChange(Sender: TObject);

@@ -97,7 +97,6 @@ type
     ppLabel22: TppLabel;
     ppLabel24: TppLabel;
     ppDBText13: TppDBText;
-    ppDBText15: TppDBText;
     ppDBText16: TppDBText;
     ppLabel18: TppLabel;
     ppDBText17: TppDBText;
@@ -106,7 +105,6 @@ type
     ppLine5: TppLine;
     ppSummaryBand2: TppSummaryBand;
     ppShape5: TppShape;
-    ppDBCalc2: TppDBCalc;
     ppDBCalc3: TppDBCalc;
     ppSystemVariable3: TppSystemVariable;
     ppSystemVariable4: TppSystemVariable;
@@ -1416,8 +1414,10 @@ type
     qryFichatiporecstr: TWideMemoField;
     ppLabel92: TppLabel;
     ppDBText66: TppDBText;
-    procedure ppDetailBand15AfterPrint(Sender: TObject);
+    ppDBText15: TppDBText;
+    ppDBCalc2: TppDBCalc;
     procedure ppHeaderBand18BeforePrint(Sender: TObject);
+    procedure ppDetailBand15BeforePrint(Sender: TObject);
     type
       StringArray = array of string;
       IntegerArray = array of integer;
@@ -1787,7 +1787,7 @@ begin
   end;
 end;
 
-procedure TdmReport.ppDetailBand15AfterPrint(Sender: TObject);
+procedure TdmReport.ppDetailBand15BeforePrint(Sender: TObject);
 var
   objImage : TStringStream;
   ms: TMemoryStream;

@@ -1,651 +1,620 @@
 ﻿[dbCtx.TAuxCulturas]
 Visible=False
-Coordinates=1660,3708,113,33
+Coordinates=1660,3708,130,36
 
 [dbCtx.TAuxCultivares]
 Visible=False
-Coordinates=1862,166,121,33
+Coordinates=1862,166,139,36
 
 [dbCtx.TAuxTipoOperacaoSolido]
 Visible=False
-Coordinates=1862,56,172,33
+Coordinates=1862,56,199,36
 
 [dbCtx.TAuxCobertura]
 Visible=False
-Coordinates=1862,221,121,33
+Coordinates=1862,221,139,36
 
 [dmRel.qryRelOperacao]
 Visible=False
-Coordinates=1660,3928,128,33
+Coordinates=1660,3928,149,36
 
 [RecGro]
-Coordinates=1983,2596,51,33
+Coordinates=1983,2596,59,36
 
 [lblGridAreaPrev]
-Coordinates=96,2512,92,51
+Coordinates=96,2512,106,58
 
 [BindSourceDB6]
-Coordinates=553,1648,98,267
+Coordinates=553,1648,117,256
 
 [dbCtx.TOrcamento]
-Coordinates=553,10,107,573
-
-[tbiSolidos]
-Coordinates=1886,2596,64,33
+Coordinates=553,10,123,916
 
 [dbCtx.TItensPedido]
-Coordinates=1567,10,116,501
+Coordinates=1567,10,138,696
 
 [dbCtx.TStatusPedido]
-Coordinates=1112,1278,118,285
+Coordinates=1112,1278,136,344
 
 [btnExportar]
-Coordinates=563,2512,72,51
-
-[Rectangle8]
-Coordinates=1780,2596,69,33
+Coordinates=563,2512,81,58
 
 [dbCtx.TEstoqueEntrada]
-Coordinates=1731,10,131,483
-
-[RecPlantio]
-Coordinates=1677,2596,67,33
+Coordinates=1731,10,152,564
 
 [GroupBox1]
-Coordinates=737,2428,70,51
+Coordinates=737,2428,79,58
 
 [dbCtx.Embarque]
-Coordinates=2080,10,96,447
-
-[Label17]
-Coordinates=572,2428,52,51
+Coordinates=2080,10,111,542
 
 [dbCtx.TCentroCusto]
-Coordinates=926,1648,115,231
+Coordinates=926,1648,132,278
 
 [BindSourceDB1]
-Coordinates=677,798,113,357
+Coordinates=677,798,136,454
 
 [dbCtx.TAuxTipoServico]
-Coordinates=1084,1648,131,213
+Coordinates=1084,1648,150,256
 
 [dmRel.dsRelMapaPluvi]
-Coordinates=1660,1,127,33
+Coordinates=1660,1,148,36
 
 [dbCtx.TPluviometroTalhoes]
-Coordinates=158,1648,151,249
-
-[edtDataIniAtividade]
-Coordinates=2046,2428,115,51
+Coordinates=158,1648,173,300
 
 [dmRel.ReceituarioUtil]
-Coordinates=2183,798,121,303
-
-[cbxTipoAplicacaoSolido]
-Coordinates=568,2018,133,123
+Coordinates=2183,798,140,366
 
 [lblGridHoraHA]
-Coordinates=2480,2256,85,51
+Coordinates=2480,2256,98,58
 
 [dbCtx.Contratos]
-Coordinates=1204,10,105,537
-
-[Label14]
-Coordinates=1280,2256,52,51
-
-[Layout15]
-Coordinates=1584,2596,59,33
+Coordinates=1204,10,125,652
 
 [dbCtx.TAbastecimentoOutros]
-Coordinates=2344,1278,160,267
+Coordinates=2344,1278,183,322
 
 [Label3]
-Coordinates=658,2428,46,51
+Coordinates=658,2428,53,58
 
 [btnPrint]
-Coordinates=670,2512,53,51
-
-[Layout10]
-Coordinates=1491,2596,59,33
+Coordinates=670,2512,59,58
 
 [dmRel.ReceituarioUtilSum]
-Coordinates=829,2256,143,105
+Coordinates=829,2256,166,124
 
 [dbCtx.TVazaoOperacao]
-Coordinates=348,798,129,375
-
-[Layout48]
-Coordinates=1398,2596,59,33
-
-[Label13]
-Coordinates=1384,2428,52,51
+Coordinates=348,798,152,454
 
 [BindingsList1]
-Coordinates=1660,3873,82,33
+Coordinates=1660,3873,91,36
 
 [dbCtx.TReceituario]
-Coordinates=526,798,108,357
+Coordinates=526,798,125,608
 
 [dbCtx.QryOperacaoSafraTalhao]
-Coordinates=10,10,170,627
+Coordinates=10,10,199,762
 
 [Image2]
-Coordinates=308,2512,49,51
-
-[Label47]
-Coordinates=2465,2428,52,51
+Coordinates=308,2512,57,58
 
 [dbCtx.TFornecedores]
-Coordinates=2373,10,120,393
-
-[Label41]
-Coordinates=1298,2428,52,51
+Coordinates=2373,10,139,476
 
 [dmRel.dsRecUtilSum]
-Coordinates=1440,3131,118,33
+Coordinates=1440,3131,137,36
 
 [dbCtx.TPluviometros]
-Coordinates=2007,1278,117,285
+Coordinates=2007,1278,134,344
 
 [Label1]
-Coordinates=2604,2256,46,51
+Coordinates=2604,2256,53,58
 
 [ToolBar1]
-Coordinates=1212,2596,58,33
-
-[edtAreaReal]
-Coordinates=2368,2256,74,51
-
-[RecPulve]
-Coordinates=1117,2596,60,33
-
-[cbxVariedade]
-Coordinates=10,1377,84,123
+Coordinates=1212,2596,67,36
 
 [dbCtx.qryProdutosOperacao]
-Coordinates=1804,1278,155,285
+Coordinates=1804,1278,177,344
 
 [dbCtx.TUsuario]
-Coordinates=214,798,91,375
+Coordinates=214,798,104,36
 Visible=False
 
-[edtObservacaoAtividade]
-Coordinates=1452,2256,135,51
-
-[cbxTipoOperacaoSolid]
-Coordinates=488,2256,126,123
-
 [dbCtx.qryOcorrenciaOperacao]
-Coordinates=726,1278,164,285
+Coordinates=726,1278,189,344
 
 [cbxAtividade]
-Coordinates=2577,1974,84,123
+Coordinates=2577,1974,101,146
 
 [dmRel.qryAux]
-Coordinates=921,2428,84,51
+Coordinates=921,2428,95,58
 
 [BindSourceDB7]
-Coordinates=1471,1648,105,213
+Coordinates=1471,1648,126,256
 
 [dmRel.dsRepMonitoramento]
-Coordinates=186,3001,154,33
+Coordinates=186,3001,178,36
 
 [dbCtx.TSetores]
-Coordinates=2349,798,90,303
+Coordinates=2349,798,108,366
 
 [dbCtx.TAuxCategorias]
-Coordinates=2419,1648,125,213
-
-[Rectangle22]
-Coordinates=1004,2596,75,33
+Coordinates=2419,1648,144,256
 
 [dbCtx.TDetReceiturioTalhao]
-Coordinates=1274,1278,152,285
-
-[Label40]
-Coordinates=2938,2256,52,51
-
-[layAuxiliares]
-Coordinates=891,2596,77,33
+Coordinates=1274,1278,177,344
 
 [dmRel.qryRepMonitoramento]
-Coordinates=176,1974,158,213
+Coordinates=176,1974,182,256
 
 [AnimacaoMnu]
-Coordinates=1660,4203,84,33
+Coordinates=1660,4203,96,36
 
 [dbCtx.QryMaquinaOperacao]
-Coordinates=10,798,153,375
+Coordinates=10,798,178,36
+Visible=False
 
 [imgLogoCad]
-Coordinates=1582,2428,77,51
+Coordinates=1582,2428,87,58
 
 [dbCtx.TMonitoramentoValores]
-Coordinates=1370,1974,164,177
-
-[Rectangle6]
-Coordinates=785,2596,69,33
+Coordinates=1370,1974,189,212
 
 [dbCtx.TOrcamentoFornecedores]
-Coordinates=1750,798,175,321
+Coordinates=1750,798,202,454
 
 [dbCtx.TAuxGrupo]
-Coordinates=2276,1648,103,213
-
-[Label12]
-Coordinates=391,2512,52,51
+Coordinates=2276,1648,117,256
 
 [Layout2]
-Coordinates=699,2596,53,33
+Coordinates=699,2596,60,36
 
 [dmRel.dsRecVasao]
-Coordinates=55,3669,109,33
+Coordinates=55,3669,128,36
 
 [layFiltros]
-Coordinates=1305,2596,60,33
+Coordinates=1305,2596,67,36
 
 [dbCtx.vQry]
-Coordinates=1778,2428,69,51
+Coordinates=1778,2428,79,58
 
 [dmRel.DSDetTalhoesRec]
-Coordinates=1440,1772,137,33
-
-[cbxPlantioTipoOp]
-Coordinates=2435,1974,102,123
+Coordinates=1440,1772,161,36
 
 [Layout1]
-Coordinates=613,2596,53,33
+Coordinates=613,2596,60,36
 
 [Label2]
-Coordinates=493,2428,46,51
+Coordinates=493,2428,53,58
 
 [dbCtx.TAreas]
-Coordinates=2617,798,90,303
+Coordinates=2617,798,108,366
 
 [dmRel.qryRepMonSum]
-Coordinates=1021,2256,127,87
+Coordinates=1021,2256,147,102
 
 [GridAtividadesRel]
-Coordinates=893,853,103,267
+Coordinates=893,853,118,344
 
 [Layout3]
-Coordinates=527,2596,53,33
+Coordinates=527,2596,60,36
 
 [dmRel.dsMonitoramento]
-Coordinates=32,1505,135,33
+Coordinates=32,1505,154,36
 
 [dbCtx.TAuxPragas]
-Coordinates=10,1648,106,249
+Coordinates=10,1648,122,300
 
 [dbCtx.TOperacaoSafraTalhao]
-Coordinates=1355,10,159,519
+Coordinates=1355,10,186,630
 
 [lblGridTotalRegistro]
-Coordinates=174,2428,113,51
-
-[Label33]
-Coordinates=2683,2256,52,51
-
-[tbiPuverizacao]
-Coordinates=402,2596,87,33
+Coordinates=174,2428,129,58
 
 [dbCtx.TDetReceituario]
-Coordinates=941,1278,125,285
+Coordinates=941,1278,145,366
 
 [dbCtx.TMovLocalEstoque]
-Coordinates=1037,798,140,357
+Coordinates=1037,798,162,432
 
 [dbCtx.TAuxOperacao]
-Coordinates=1206,1974,119,177
+Coordinates=1206,1974,138,212
 
 [Label6]
-Coordinates=2973,2428,46,51
+Coordinates=2973,2428,53,58
 
 [dbCtx.TOperadorMaquina]
-Coordinates=537,1278,140,285
+Coordinates=537,1278,163,366
 
 [Label7]
-Coordinates=842,2428,46,51
-
-[recAux]
-Coordinates=322,2596,49,33
-
-[Layout14]
-Coordinates=229,2596,59,33
-
-[Label42]
-Coordinates=1710,2256,52,51
+Coordinates=842,2428,53,58
 
 [Image1]
-Coordinates=2769,2256,49,51
+Coordinates=2769,2256,57,58
 
 [cbxResponsavel]
-Coordinates=10,2256,95,123
-
-[cbxCulturaPulverizacao]
-Coordinates=750,1717,131,123
+Coordinates=10,2256,109,146
 
 [layFooterGrid1]
-Coordinates=103,2596,87,33
-
-[Layout49]
-Coordinates=10,2596,59,33
-
-[btnConfirmaAtividade]
-Coordinates=3124,2512,121,33
-
-[Animation]
-Coordinates=1403,4615,64,33
+Coordinates=103,2596,100,36
 
 [dbCtx.TAbastecimento]
-Coordinates=1909,10,126,465
+Coordinates=1909,10,145,718
 
 [dmRel.dsRelOperacao]
-Coordinates=494,1,124,33
+Coordinates=494,1,144,36
 
 [Label8]
-Coordinates=1140,2428,46,51
+Coordinates=1140,2428,53,58
 
 [lblGridAreaRealizada]
-Coordinates=1883,2428,117,51
-
-[layAuxiliar]
-Coordinates=3024,2512,66,33
+Coordinates=1883,2428,137,58
 
 [BindSourceDB5]
-Coordinates=800,1974,154,195
-
-[Label81]
-Coordinates=2887,2428,52,51
+Coordinates=800,1974,184,234
 
 [dmRel.qryMapaPLuvi]
-Coordinates=1902,1974,119,123
+Coordinates=1902,1974,137,146
 
 [dbCtx.Compradores]
-Coordinates=2538,10,113,393
-
-[edtDataFimAtividade]
-Coordinates=329,2428,116,51
-
-[btnCancela]
-Coordinates=2918,2512,69,33
+Coordinates=2538,10,129,476
 
 [dmRel.dsRepMonSum]
-Coordinates=1660,1981,123,33
+Coordinates=1660,1981,143,36
 
 [btnFechar]
-Coordinates=1042,2428,64,51
+Coordinates=1042,2428,72,58
 
 [lblCad]
-Coordinates=1633,2256,45,51
-
-[Layout16]
-Coordinates=2825,2512,59,33
-
-[Label32]
-Coordinates=2801,2428,52,51
+Coordinates=1633,2256,51,58
 
 [edtDataInicio]
-Coordinates=10,2428,115,51
-
-[Layout5]
-Coordinates=2739,2512,53,33
-
-[tabAuxCad]
-Coordinates=2635,2512,68,33
+Coordinates=10,2428,138,58
 
 [dbCtx.TLocalEstoque]
-Coordinates=2553,1278,120,267
+Coordinates=2553,1278,137,322
 
 [dbCtx.TSafra]
-Coordinates=1670,1278,90,285
+Coordinates=1670,1278,108,344
 
 [layTotalRegistroGrid]
-Coordinates=2477,2512,116,33
-
-[Layout50]
-Coordinates=2384,2512,59,33
+Coordinates=2477,2512,132,36
 
 [layListaP]
-Coordinates=2291,2512,59,33
-
-[Label49]
-Coordinates=1194,2256,52,51
+Coordinates=2291,2512,67,36
 
 [dbCtx.TMPComparativo]
-Coordinates=2167,1278,131,267
-
-[Image5]
-Coordinates=2101,2256,49,51
+Coordinates=2167,1278,151,366
 
 [dbCtx.TOcorrenciaOperacao]
-Coordinates=1978,798,154,303
+Coordinates=1978,798,179,366
 
 [dbCtx.TPedidoCompraRep]
-Coordinates=839,10,145,555
-
-[EditButton2]
-Coordinates=2184,2512,72,33
-
-[edtAreaPrev]
-Coordinates=1470,2428,75,51
-
-[Label44]
-Coordinates=2379,2428,52,51
-
-[Layout12]
-Coordinates=2091,2512,59,33
+Coordinates=839,10,168,784
 
 [dbCtx.TAuxMarca]
-Coordinates=2133,1648,101,213
+Coordinates=2133,1648,117,256
 
 [dmRel.TRelMonitoramento]
-Coordinates=343,1278,145,285
+Coordinates=343,1278,168,344
 
 [dbCtx.TProdutos]
-Coordinates=702,10,97,573
-
-[edtResponsavel]
-Coordinates=1882,2256,93,51
+Coordinates=702,10,126,828
 
 [dbCtx.TAuxTipoCultivare]
-Coordinates=384,1974,137,213
+Coordinates=384,1974,158,256
 
 [dmRel.dsPluviometria]
-Coordinates=1219,254,122,33
+Coordinates=1219,254,140,36
 
 [dmRel.DetTalhoesRec]
-Coordinates=659,2256,123,105
-
-[cbxFinalidadePulverizacao]
-Coordinates=2241,1974,146,123
+Coordinates=659,2256,144,124
 
 [dbCtx.TAuxTipoMaqVeic]
-Coordinates=1623,1648,135,213
-
-[Label43]
-Coordinates=2210,2428,52,51
-
-[cbxTipoOperacaoPulverizacao]
-Coordinates=272,2256,164,123
+Coordinates=1623,1648,157,256
 
 [dbCtx.TProdutosOperacao]
-Coordinates=1477,1278,145,285
-
-[Layout13]
-Coordinates=1998,2512,59,33
+Coordinates=1477,1278,167,344
 
 [MenuItem1]
-Coordinates=1893,2512,68,33
-
-[Layout45]
-Coordinates=1800,2512,59,33
-
-[tbiPlantio]
-Coordinates=2068,2596,61,33
+Coordinates=1893,2512,79,36
 
 [dmRel.dsRecUtil]
-Coordinates=958,1,96,33
+Coordinates=958,1,110,36
 
 [BindSourceDB2]
-Coordinates=191,1278,105,285
+Coordinates=191,1278,126,344
 
 [dbCtx.TPluviometria]
-Coordinates=1593,798,114,339
-
-[Layout31]
-Coordinates=1707,2512,59,33
-
-[Label28]
-Coordinates=1796,2256,52,51
+Coordinates=1593,798,131,410
 
 [dbCtx.TMaquinas]
-Coordinates=412,10,100,591
+Coordinates=412,10,143,784
 
 [dbCtx.TMonitoramento]
-Coordinates=1225,798,127,357
+Coordinates=1225,798,145,432
 
 [cbxSetor]
-Coordinates=145,2256,84,123
+Coordinates=145,2256,101,146
 
 [dmRel.DetRecVasao]
-Coordinates=1806,1648,114,213
+Coordinates=1806,1648,134,256
 
 [Label9]
-Coordinates=755,2512,46,51
+Coordinates=755,2512,53,58
 
 [dmRel.dsRelMediaChuvas]
-Coordinates=1212,1717,143,33
+Coordinates=1212,1717,166,36
 
 [lblGridTotalHoraMaquina]
-Coordinates=2184,2256,137,51
+Coordinates=2184,2256,158,58
 
 [Label5]
-Coordinates=3052,2428,46,51
-
-[cbxPlantioCobertura]
-Coordinates=1260,1703,115,123
+Coordinates=3052,2428,53,58
 
 [layLista]
-Coordinates=1622,2512,52,33
+Coordinates=1622,2512,59,36
 
 [Label4]
-Coordinates=1219,2428,46,51
-
-[Label15]
-Coordinates=2715,2428,52,51
+Coordinates=1219,2428,53,58
 
 [dbCtx.TAuxPragaTipo]
-Coordinates=1966,1648,122,213
+Coordinates=1966,1648,141,256
 
 [dmRel.Receiturario]
-Coordinates=2217,10,109,411
+Coordinates=2217,10,130,586
 
 [recToolBar]
-Coordinates=1519,2512,68,33
-
-[Rectangle7]
-Coordinates=1413,2512,69,33
+Coordinates=1519,2512,77,36
 
 [Image3]
-Coordinates=1695,2428,49,51
-
-[Layout47]
-Coordinates=1320,2512,59,33
-
-[Label19]
-Coordinates=2015,2256,52,51
+Coordinates=1695,2428,57,58
 
 [SaveDialog1]
-Coordinates=1862,386,75,33
-
-[Rectangle34]
-Coordinates=1207,2512,75,33
+Coordinates=1862,386,87,36
 
 [dbCtx.Tauxatividadeabastecimento]
-Coordinates=2589,1648,187,213
-
-[Label48]
-Coordinates=477,2512,52,51
-
-[recAuxiliar]
-Coordinates=1106,2512,67,33
+Coordinates=2589,1648,216,256
 
 [dbCtx.TServico]
-Coordinates=2483,798,90,303
+Coordinates=2483,798,108,366
 
 [Label10]
-Coordinates=10,2512,52,51
-
-[Layout4]
-Coordinates=1020,2512,53,33
+Coordinates=10,2512,60,58
 
 [dbCtx.TMaquinasOperacao]
-Coordinates=1396,798,147,357
+Coordinates=1396,798,171,432
 
 [edtDataFim]
-Coordinates=2551,2428,115,51
+Coordinates=2551,2428,138,58
 
 [dbCtx.TAuxSubGrupo]
-Coordinates=10,1974,122,213
-
-[cbxQualidadeCobertura]
-Coordinates=2065,1974,131,123
+Coordinates=10,1974,140,256
 
 [dmRel.qryRelChuvaMedia]
-Coordinates=1585,1974,141,141
+Coordinates=1585,1974,164,168
 
 [ToolBar2]
-Coordinates=927,2512,58,33
+Coordinates=927,2512,67,36
 
 [dbCtx.TPedidoCompra]
-Coordinates=1033,10,125,555
-
-[Layout46]
-Coordinates=834,2512,59,33
-
-[Image6]
-Coordinates=2296,2428,49,51
+Coordinates=1033,10,145,828
 
 [dmRel.dsReceituario]
-Coordinates=130,1,116,33
+Coordinates=130,1,134,36
 
 [dbCtx.TTalhoes]
-Coordinates=2693,10,91,33
+Coordinates=2693,10,105,36
 Visible=False
 
 [dbCtx.TAuxTipoOcorrencia]
-Coordinates=1010,1974,148,195
+Coordinates=1010,1974,170,234
 
 [dbCtx.TItensOrcamento]
-Coordinates=235,10,131,627
-
-[cbxPlantioCultura]
-Coordinates=357,1717,102,123
+Coordinates=235,10,151,1180
 
 [PopupmnuAltera]
-Coordinates=1862,716,97,33
-
-[Label16]
-Coordinates=2852,2256,52,51
+Coordinates=1862,716,110,36
 
 [Buscar]
-Coordinates=228,2512,49,51
+Coordinates=228,2512,54,58
 
 [cbxTalhao]
-Coordinates=2850,220,84,123
+Coordinates=2850,220,101,146
 Visible=True
 
 [Label11]
-Coordinates=1366,2256,52,51
+Coordinates=1366,2256,60,58
 
 [BindSourceDB3]
-Coordinates=2693,10,92,411
+Coordinates=2693,10,108,498
 
 [Label18]
-Coordinates=140,656,52,51
+Coordinates=140,656,60,58
 
 [cbxCultura]
-Coordinates=400,1850,84,123
+Coordinates=400,1850,101,146
+Visible=True
+
+[]
+Coordinates=3024,2512,66,33
+
+[Label20]
+Coordinates=590,2328,60,58
+
+[Label21]
+Coordinates=1218,2728,60,58
+
+[edtDataMaquina]
+Coordinates=1272,1904,138,58
+
+[edtHoraFim]
+Coordinates=1489,725,82,58
+
+[btnConfirmaMaquina]
+Coordinates=1272,758,134,36
+
+[edtHoraIni]
+Coordinates=1218,681,74,58
+
+[Animation]
+Coordinates=953,813,72,36
+
+[dbCtx.TPedidoCompraRep4]
+Coordinates=0,0,176,1026
+
+[Layout22]
+Coordinates=1272,2348,67,36
+
+[Label23]
+Coordinates=562,2034,60,58
+
+[Layout17]
+Coordinates=1272,2805,67,36
+
+[EditButton3]
+Coordinates=1489,1923,81,36
+
+[Image7]
+Coordinates=119,1290,57,58
+
+[dbCtx.TConfig]
+Coordinates=676,1641,97,146
+
+[Layout32]
+Coordinates=1272,2860,67,36
+
+[Rectangle13]
+Coordinates=1489,2205,87,36
+
+[edtHorasTrabalhada]
+Coordinates=1408,659,132,58
+
+[dbCtx.TnotaFiscalIntem]
+Coordinates=178,1318,151,498
+
+[Rectangle9]
+Coordinates=1489,2260,80,36
+
+[TabAux]
+Coordinates=1218,2915,59,36
+
+[dbCtx.TItensOrcamentoInsert]
+Coordinates=953,2399,183,630
+
+[dbCtx.TDevolucaoQuimico]
+Coordinates=631,2034,167,256
+
+[lblTipo]
+Coordinates=195,1,53,58
+
+[dbCtx.TPropriedade]
+Coordinates=396,2249,130,938
+
+[Label34]
+Coordinates=327,2328,60,58
+
+[Label46]
+Coordinates=258,2328,60,58
+
+[Label29]
+Coordinates=1218,2651,60,58
+
+[dbCtx.TTableDevolucao]
+Coordinates=195,78,152,366
+
+[dbCtx.TEstoqueSaida]
+Coordinates=195,628,139,652
+
+[cbxTipoAreo]
+Coordinates=195,463,101,146
+
+[Label27]
+Coordinates=738,1960,60,58
+
+[Layout19]
+Coordinates=1272,2970,67,36
+
+[Layout20]
+Coordinates=1272,3025,67,36
+
+[Label25]
+Coordinates=593,1425,60,58
+
+[Rectangle11]
+Coordinates=1489,2315,87,36
+
+[Label24]
+Coordinates=1218,2505,60,58
+
+[Rectangle34]
+Coordinates=1489,2370,87,36
+
+[dbCtx.TValorLiquidoOrc]
+Coordinates=1272,2205,152,124
+
+[Layout21]
+Coordinates=1272,3080,67,36
+
+[Layout18]
+Coordinates=1272,3135,67,36
+
+[Label26]
+Coordinates=50,1290,60,58
+
+[edtHorasParado]
+Coordinates=689,1883,108,58
+
+[Rectangle12]
+Coordinates=1489,2425,87,36
+
+[Image4]
+Coordinates=341,1854,57,58
+
+[edtObsMaquina]
+Coordinates=1237,1641,105,58
+
+[dbCtx.TItensOrcamentoComp]
+Coordinates=337,1290,185,234
+
+[tbiAddMaquina]
+Coordinates=1489,2567,100,36
+
+[edtMaquina]
+Coordinates=676,1806,82,58
+
+[Rectangle10]
+Coordinates=1489,2622,87,36
+
+[edtOperador]
+Coordinates=1177,2328,87,58
+
+[layAuxiliar]
+Coordinates=1489,2677,74,36
+
+[Rectangle23]
+Coordinates=1489,2732,87,36
+
+[Label22]
+Coordinates=953,1216,60,58
+
+[BindSourceDB4]
+Coordinates=10,798,164,476
+
+[Rectangle1]
+Coordinates=1489,2864,80,36
+
+[Label12]
+Coordinates=1218,3190,60,58
+
+[Layout4]
+Coordinates=1149,3225,60,36
+
+[tbiListaMaquinas]
+Coordinates=1489,2919,111,36
+
+[GridMaquinas]
+Coordinates=1489,2787,95,58
 Visible=True
 

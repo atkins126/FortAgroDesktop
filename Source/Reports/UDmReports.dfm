@@ -15,7 +15,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -3095,181 +3095,160 @@ object dmReport: TdmReport
     Left = 392
     Top = 72
     object ppDBOrcamentoppField1: TppField
+      Alignment = taRightJustify
       FieldAlias = 'id'
       FieldName = 'id'
       FieldLength = 0
-      DataType = dtNotKnown
+      DataType = dtInteger
       DisplayWidth = 0
       Position = 0
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField2: TppField
+      Alignment = taRightJustify
       FieldAlias = 'status'
       FieldName = 'status'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 1
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField3: TppField
       FieldAlias = 'datareg'
       FieldName = 'datareg'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDateTime
+      DisplayWidth = 34
       Position = 2
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField4: TppField
+      Alignment = taRightJustify
       FieldAlias = 'idusuario'
       FieldName = 'idusuario'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 3
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField5: TppField
       FieldAlias = 'dataalteracao'
       FieldName = 'dataalteracao'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDateTime
+      DisplayWidth = 34
       Position = 4
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField6: TppField
+      Alignment = taRightJustify
       FieldAlias = 'idusuarioalteracao'
       FieldName = 'idusuarioalteracao'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 5
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField7: TppField
+      Alignment = taRightJustify
       FieldAlias = 'idfornecedor'
       FieldName = 'idfornecedor'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 6
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField8: TppField
+      Alignment = taRightJustify
       FieldAlias = 'idpedido'
       FieldName = 'idpedido'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 7
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField9: TppField
       FieldAlias = 'observacao'
       FieldName = 'observacao'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 100
+      DisplayWidth = 100
       Position = 8
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField10: TppField
+      Alignment = taRightJustify
       FieldAlias = 'syncaws'
       FieldName = 'syncaws'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 9
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField11: TppField
+      Alignment = taRightJustify
       FieldAlias = 'syncfaz'
       FieldName = 'syncfaz'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 10
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField12: TppField
+      Alignment = taRightJustify
       FieldAlias = 'desconto'
       FieldName = 'desconto'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
       Position = 11
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField13: TppField
+      Alignment = taRightJustify
       FieldAlias = 'ipi'
       FieldName = 'ipi'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
       Position = 12
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField14: TppField
+      Alignment = taRightJustify
       FieldAlias = 'icmst'
       FieldName = 'icmst'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
       Position = 13
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField15: TppField
+      Alignment = taRightJustify
       FieldAlias = 'frete'
       FieldName = 'frete'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
       Position = 14
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField16: TppField
+      Alignment = taRightJustify
       FieldAlias = 'diferencialalicota'
       FieldName = 'diferencialalicota'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 3
+      DataType = dtDouble
+      DisplayWidth = 16
       Position = 15
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField17: TppField
+      Alignment = taRightJustify
       FieldAlias = 'idformapagamento'
       FieldName = 'idformapagamento'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtInteger
+      DisplayWidth = 10
       Position = 16
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField18: TppField
       FieldAlias = 'statusstr'
       FieldName = 'statusstr'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtMemo
+      DisplayWidth = 10
       Position = 17
       Searchable = False
       Sortable = False
@@ -3277,212 +3256,169 @@ object dmReport: TdmReport
     object ppDBOrcamentoppField19: TppField
       FieldAlias = 'identificador'
       FieldName = 'identificador'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 20
+      DisplayWidth = 20
       Position = 18
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField20: TppField
       FieldAlias = 'datapedido'
       FieldName = 'datapedido'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDate
+      DisplayWidth = 10
       Position = 19
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField21: TppField
       FieldAlias = 'fornecedor'
       FieldName = 'fornecedor'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 100
+      DisplayWidth = 100
       Position = 20
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField22: TppField
       FieldAlias = 'email'
       FieldName = 'email'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 100
+      DisplayWidth = 100
       Position = 21
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField23: TppField
       FieldAlias = 'cpf_cnpj'
       FieldName = 'cpf_cnpj'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 30
+      DisplayWidth = 30
       Position = 22
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField24: TppField
       FieldAlias = 'telefone_fixo'
       FieldName = 'telefone_fixo'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 20
+      DisplayWidth = 20
       Position = 23
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField25: TppField
       FieldAlias = 'inscricaoestadual'
       FieldName = 'inscricaoestadual'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 20
+      DisplayWidth = 20
       Position = 24
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField26: TppField
       FieldAlias = 'cidade'
       FieldName = 'cidade'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 100
+      DisplayWidth = 100
       Position = 25
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField27: TppField
       FieldAlias = 'contatopessoa'
       FieldName = 'contatopessoa'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 100
+      DisplayWidth = 100
       Position = 26
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField28: TppField
       FieldAlias = 'formapg'
       FieldName = 'formapg'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtMemo
+      DisplayWidth = 10
       Position = 27
       Searchable = False
       Sortable = False
     end
     object ppDBOrcamentoppField29: TppField
+      Alignment = taRightJustify
       FieldAlias = 'valortotal'
       FieldName = 'valortotal'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDouble
+      DisplayWidth = 65
       Position = 28
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField30: TppField
+      Alignment = taRightJustify
       FieldAlias = 'itemfrete'
       FieldName = 'itemfrete'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDouble
+      DisplayWidth = 65
       Position = 29
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField31: TppField
+      Alignment = taRightJustify
       FieldAlias = 'itemdesconto'
       FieldName = 'itemdesconto'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDouble
+      DisplayWidth = 65
       Position = 30
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField32: TppField
+      Alignment = taRightJustify
       FieldAlias = 'itemicmst'
       FieldName = 'itemicmst'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDouble
+      DisplayWidth = 65
       Position = 31
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField33: TppField
+      Alignment = taRightJustify
       FieldAlias = 'itemipi'
       FieldName = 'itemipi'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDouble
+      DisplayWidth = 65
       Position = 32
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField34: TppField
+      Alignment = taRightJustify
       FieldAlias = 'itemdifal'
       FieldName = 'itemdifal'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDouble
+      DisplayWidth = 65
       Position = 33
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField35: TppField
+      Alignment = taRightJustify
       FieldAlias = 'valorliquido'
       FieldName = 'valorliquido'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDouble
+      DisplayWidth = 65
       Position = 34
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField36: TppField
       FieldAlias = 'senha'
       FieldName = 'senha'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 20
+      DisplayWidth = 20
       Position = 35
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField37: TppField
       FieldAlias = 'datacompra'
       FieldName = 'datacompra'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDate
+      DisplayWidth = 10
       Position = 36
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField38: TppField
       FieldAlias = 'responsavelcompra'
       FieldName = 'responsavelcompra'
-      FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      FieldLength = 100
+      DisplayWidth = 100
       Position = 37
-      Searchable = False
-      Sortable = False
     end
     object ppDBOrcamentoppField39: TppField
       FieldAlias = 'dataprevitaentrega'
       FieldName = 'dataprevitaentrega'
       FieldLength = 0
-      DataType = dtNotKnown
-      DisplayWidth = 0
+      DataType = dtDate
+      DisplayWidth = 10
       Position = 38
-      Searchable = False
-      Sortable = False
     end
   end
   object ppRepOrcamento: TppReport
@@ -3491,7 +3427,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -6033,29 +5969,6 @@ object dmReport: TdmReport
         BandType = 4
         LayerName = Foreground1
       end
-      object ppDBText15: TppDBText
-        DesignLayer = ppDesignLayer2
-        UserName = 'DBText15'
-        Border.mmPadding = 0
-        DataField = 'qtde'
-        DataPipeline = ppDBItensOrcamento
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWindowText
-        Font.Name = 'Arial'
-        Font.Size = 8
-        Font.Style = []
-        ParentDataPipeline = False
-        TextAlignment = taCentered
-        Transparent = True
-        VerticalAlignment = avCenter
-        DataPipelineName = 'ppDBItensOrcamento'
-        mmHeight = 8738
-        mmLeft = 9522
-        mmTop = 265
-        mmWidth = 8991
-        BandType = 4
-        LayerName = Foreground1
-      end
       object ppDBText17: TppDBText
         DesignLayer = ppDesignLayer2
         UserName = 'DBText17'
@@ -6213,7 +6126,7 @@ object dmReport: TdmReport
         DesignLayer = ppDesignLayer2
         UserName = 'DBText24'
         Border.mmPadding = 0
-        DataField = 'qtde'
+        DataField = 'unidademedida'
         DataPipeline = ppDBItensOrcamento
         Font.Charset = DEFAULT_CHARSET
         Font.Color = clWindowText
@@ -6375,6 +6288,29 @@ object dmReport: TdmReport
         BandType = 4
         LayerName = Foreground1
       end
+      object ppDBText15: TppDBText
+        DesignLayer = ppDesignLayer2
+        UserName = 'DBText2'
+        Border.mmPadding = 0
+        DataField = 'qtde'
+        DataPipeline = ppDBItensOrcamento
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Name = 'Arial'
+        Font.Size = 8
+        Font.Style = []
+        ParentDataPipeline = False
+        TextAlignment = taCentered
+        Transparent = True
+        VerticalAlignment = avCenter
+        DataPipelineName = 'ppDBItensOrcamento'
+        mmHeight = 8738
+        mmLeft = 9522
+        mmTop = 265
+        mmWidth = 8991
+        BandType = 4
+        LayerName = Foreground1
+      end
     end
     object ppFooterBand2: TppFooterBand
       Background.Brush.Style = bsClear
@@ -6448,27 +6384,6 @@ object dmReport: TdmReport
         mmLeft = 2381
         mmTop = 265
         mmWidth = 283634
-        BandType = 7
-        LayerName = Foreground1
-      end
-      object ppDBCalc2: TppDBCalc
-        DesignLayer = ppDesignLayer2
-        UserName = 'DBCalc2'
-        Border.mmPadding = 0
-        DataField = 'qtde'
-        DataPipeline = ppDBItensOrcamento
-        Font.Charset = DEFAULT_CHARSET
-        Font.Color = clWhite
-        Font.Name = 'Arial'
-        Font.Size = 9
-        Font.Style = []
-        Transparent = True
-        VerticalAlignment = avCenter
-        DataPipelineName = 'ppDBItensOrcamento'
-        mmHeight = 4498
-        mmLeft = 61912
-        mmTop = 265
-        mmWidth = 12171
         BandType = 7
         LayerName = Foreground1
       end
@@ -6665,6 +6580,27 @@ object dmReport: TdmReport
         BandType = 7
         LayerName = Foreground1
       end
+      object ppDBCalc2: TppDBCalc
+        DesignLayer = ppDesignLayer2
+        UserName = 'DBCalc1'
+        Border.mmPadding = 0
+        DataField = 'qtde'
+        DataPipeline = ppDBItensOrcamento
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWhite
+        Font.Name = 'Arial'
+        Font.Size = 9
+        Font.Style = []
+        Transparent = True
+        VerticalAlignment = avCenter
+        DataPipelineName = 'ppDBItensOrcamento'
+        mmHeight = 4498
+        mmLeft = 61912
+        mmTop = 265
+        mmWidth = 12171
+        BandType = 7
+        LayerName = Foreground1
+      end
     end
     object ppDesignLayers2: TppDesignLayers
       object ppDesignLayer2: TppDesignLayer
@@ -6686,396 +6622,6 @@ object dmReport: TdmReport
     UserName = 'DBItensOrcamento'
     Left = 392
     Top = 128
-    object ppDBItensOrcamentoppField1: TppField
-      FieldAlias = 'item'
-      FieldName = 'item'
-      FieldLength = 0
-      DataType = dtLargeInt
-      DisplayWidth = 0
-      Position = 0
-    end
-    object ppDBItensOrcamentoppField2: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'id'
-      FieldName = 'id'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 1
-    end
-    object ppDBItensOrcamentoppField3: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'status'
-      FieldName = 'status'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 2
-    end
-    object ppDBItensOrcamentoppField4: TppField
-      FieldAlias = 'datareg'
-      FieldName = 'datareg'
-      FieldLength = 0
-      DataType = dtDateTime
-      DisplayWidth = 34
-      Position = 3
-    end
-    object ppDBItensOrcamentoppField5: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'idusuario'
-      FieldName = 'idusuario'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 4
-    end
-    object ppDBItensOrcamentoppField6: TppField
-      FieldAlias = 'dataalteracao'
-      FieldName = 'dataalteracao'
-      FieldLength = 0
-      DataType = dtDateTime
-      DisplayWidth = 34
-      Position = 5
-    end
-    object ppDBItensOrcamentoppField7: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'idusuarioalteracao'
-      FieldName = 'idusuarioalteracao'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 6
-    end
-    object ppDBItensOrcamentoppField8: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'idorcamento'
-      FieldName = 'idorcamento'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 7
-    end
-    object ppDBItensOrcamentoppField9: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'idproduto'
-      FieldName = 'idproduto'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 8
-    end
-    object ppDBItensOrcamentoppField10: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'valorunidade'
-      FieldName = 'valorunidade'
-      FieldLength = 2
-      DataType = dtDouble
-      DisplayWidth = 16
-      Position = 9
-    end
-    object ppDBItensOrcamentoppField11: TppField
-      FieldAlias = 'observacao'
-      FieldName = 'observacao'
-      FieldLength = 100
-      DisplayWidth = 100
-      Position = 10
-    end
-    object ppDBItensOrcamentoppField12: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'qtde'
-      FieldName = 'qtde'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 11
-    end
-    object ppDBItensOrcamentoppField13: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'syncaws'
-      FieldName = 'syncaws'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 12
-    end
-    object ppDBItensOrcamentoppField14: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'syncfaz'
-      FieldName = 'syncfaz'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 13
-    end
-    object ppDBItensOrcamentoppField15: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'desconto'
-      FieldName = 'desconto'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 14
-    end
-    object ppDBItensOrcamentoppField16: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'descontogeral'
-      FieldName = 'descontogeral'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 15
-    end
-    object ppDBItensOrcamentoppField17: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'fretegeral'
-      FieldName = 'fretegeral'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 16
-    end
-    object ppDBItensOrcamentoppField18: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'ipi'
-      FieldName = 'ipi'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 17
-    end
-    object ppDBItensOrcamentoppField19: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'icmst'
-      FieldName = 'icmst'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 18
-    end
-    object ppDBItensOrcamentoppField20: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'frete'
-      FieldName = 'frete'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 19
-    end
-    object ppDBItensOrcamentoppField21: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'diferencialalicota'
-      FieldName = 'diferencialalicota'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 20
-    end
-    object ppDBItensOrcamentoppField22: TppField
-      FieldAlias = 'marca'
-      FieldName = 'marca'
-      FieldLength = 100
-      DisplayWidth = 100
-      Position = 21
-    end
-    object ppDBItensOrcamentoppField23: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'idmarca'
-      FieldName = 'idmarca'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 22
-    end
-    object ppDBItensOrcamentoppField24: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'original'
-      FieldName = 'original'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 23
-    end
-    object ppDBItensOrcamentoppField25: TppField
-      FieldAlias = 'unidademedida'
-      FieldName = 'unidademedida'
-      FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
-      Position = 24
-      Searchable = False
-      Sortable = False
-    end
-    object ppDBItensOrcamentoppField26: TppField
-      FieldAlias = 'img'
-      FieldName = 'img'
-      FieldLength = 0
-      DataType = dtBLOB
-      DisplayWidth = 10
-      Position = 25
-      Searchable = False
-      Sortable = False
-    end
-    object ppDBItensOrcamentoppField27: TppField
-      FieldAlias = 'identificadorpedido'
-      FieldName = 'identificadorpedido'
-      FieldLength = 20
-      DisplayWidth = 20
-      Position = 26
-    end
-    object ppDBItensOrcamentoppField28: TppField
-      FieldAlias = 'datapedido'
-      FieldName = 'datapedido'
-      FieldLength = 0
-      DataType = dtDate
-      DisplayWidth = 10
-      Position = 27
-    end
-    object ppDBItensOrcamentoppField29: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'statuspedido'
-      FieldName = 'statuspedido'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 28
-    end
-    object ppDBItensOrcamentoppField30: TppField
-      FieldAlias = 'nomefornecedor'
-      FieldName = 'nomefornecedor'
-      FieldLength = 100
-      DisplayWidth = 100
-      Position = 29
-    end
-    object ppDBItensOrcamentoppField31: TppField
-      FieldAlias = 'telefonefornecedor'
-      FieldName = 'telefonefornecedor'
-      FieldLength = 20
-      DisplayWidth = 20
-      Position = 30
-    end
-    object ppDBItensOrcamentoppField32: TppField
-      FieldAlias = 'emailfornecedor'
-      FieldName = 'emailfornecedor'
-      FieldLength = 100
-      DisplayWidth = 100
-      Position = 31
-    end
-    object ppDBItensOrcamentoppField33: TppField
-      FieldAlias = 'cpfcnpjfornecedor'
-      FieldName = 'cpfcnpjfornecedor'
-      FieldLength = 30
-      DisplayWidth = 30
-      Position = 32
-    end
-    object ppDBItensOrcamentoppField34: TppField
-      FieldAlias = 'nomeproduto'
-      FieldName = 'nomeproduto'
-      FieldLength = 50
-      DisplayWidth = 50
-      Position = 33
-    end
-    object ppDBItensOrcamentoppField35: TppField
-      FieldAlias = 'codfabproduto'
-      FieldName = 'codfabproduto'
-      FieldLength = 30
-      DisplayWidth = 30
-      Position = 34
-    end
-    object ppDBItensOrcamentoppField36: TppField
-      FieldAlias = 'unidademedida_1'
-      FieldName = 'unidademedida_1'
-      FieldLength = 10
-      DisplayWidth = 10
-      Position = 35
-    end
-    object ppDBItensOrcamentoppField37: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'valortotal'
-      FieldName = 'valortotal'
-      FieldLength = 2
-      DataType = dtDouble
-      DisplayWidth = 16
-      Position = 36
-    end
-    object ppDBItensOrcamentoppField38: TppField
-      FieldAlias = 'originalstr'
-      FieldName = 'originalstr'
-      FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
-      Position = 37
-      Searchable = False
-      Sortable = False
-    end
-    object ppDBItensOrcamentoppField39: TppField
-      FieldAlias = 'formapg'
-      FieldName = 'formapg'
-      FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
-      Position = 38
-      Searchable = False
-      Sortable = False
-    end
-    object ppDBItensOrcamentoppField40: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'idformapg'
-      FieldName = 'idformapg'
-      FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
-      Position = 39
-    end
-    object ppDBItensOrcamentoppField41: TppField
-      FieldAlias = 'fornecedor'
-      FieldName = 'fornecedor'
-      FieldLength = 100
-      DisplayWidth = 100
-      Position = 40
-    end
-    object ppDBItensOrcamentoppField42: TppField
-      FieldAlias = 'marcanome'
-      FieldName = 'marcanome'
-      FieldLength = 50
-      DisplayWidth = 50
-      Position = 41
-    end
-    object ppDBItensOrcamentoppField43: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'valorbrutomaisfrete'
-      FieldName = 'valorbrutomaisfrete'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 42
-    end
-    object ppDBItensOrcamentoppField44: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'valorliquido'
-      FieldName = 'valorliquido'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 43
-    end
-    object ppDBItensOrcamentoppField45: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'descontoitem'
-      FieldName = 'descontoitem'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 44
-    end
-    object ppDBItensOrcamentoppField46: TppField
-      Alignment = taRightJustify
-      FieldAlias = 'freteitem'
-      FieldName = 'freteitem'
-      FieldLength = 0
-      DataType = dtDouble
-      DisplayWidth = 65
-      Position = 45
-    end
   end
   object dsItenOrcamento: TDataSource
     DataSet = dbCtx.TItensOrcamento
@@ -8711,7 +8257,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -12825,7 +12371,7 @@ object dmReport: TdmReport
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -14978,7 +14524,7 @@ object dmReport: TdmReport
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -17191,7 +16737,7 @@ object dmReport: TdmReport
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -20382,7 +19928,7 @@ object dmReport: TdmReport
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -22423,7 +21969,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -24985,7 +24531,7 @@ object dmReport: TdmReport
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -27656,7 +27202,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -29809,7 +29355,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -32354,7 +31900,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -34531,7 +34077,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -38336,7 +37882,7 @@ object dmReport: TdmReport
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -40662,7 +40208,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -42321,7 +41867,7 @@ object dmReport: TdmReport
       end
     end
     object ppDetailBand15: TppDetailBand
-      AfterPrint = ppDetailBand15AfterPrint
+      BeforePrint = ppDetailBand15BeforePrint
       Background1.Brush.Style = bsClear
       Background2.Brush.Style = bsClear
       Border.mmPadding = 0
@@ -42951,142 +42497,161 @@ object dmReport: TdmReport
     Left = 309
     Top = 226
     object ppDBPListaFotoppField1: TppField
-      Alignment = taRightJustify
       FieldAlias = 'id'
       FieldName = 'id'
       FieldLength = 0
-      DataType = dtInteger
+      DataType = dtNotKnown
       DisplayWidth = 0
       Position = 0
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField2: TppField
-      Alignment = taRightJustify
       FieldAlias = 'status'
       FieldName = 'status'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 1
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField3: TppField
       FieldAlias = 'datareg'
       FieldName = 'datareg'
       FieldLength = 0
-      DataType = dtDateTime
-      DisplayWidth = 34
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 2
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField4: TppField
-      Alignment = taRightJustify
       FieldAlias = 'idusuario'
       FieldName = 'idusuario'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 3
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField5: TppField
       FieldAlias = 'dataalteracao'
       FieldName = 'dataalteracao'
       FieldLength = 0
-      DataType = dtDateTime
-      DisplayWidth = 34
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 4
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField6: TppField
-      Alignment = taRightJustify
       FieldAlias = 'idusuarioalteracao'
       FieldName = 'idusuarioalteracao'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 5
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField7: TppField
-      Alignment = taRightJustify
       FieldAlias = 'idlocalestoque'
       FieldName = 'idlocalestoque'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 6
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField8: TppField
-      Alignment = taRightJustify
       FieldAlias = 'idmaquina'
       FieldName = 'idmaquina'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 7
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField9: TppField
-      Alignment = taRightJustify
       FieldAlias = 'idoperador'
       FieldName = 'idoperador'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 8
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField10: TppField
-      Alignment = taRightJustify
       FieldAlias = 'volumelt'
       FieldName = 'volumelt'
-      FieldLength = 3
-      DataType = dtDouble
-      DisplayWidth = 16
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 9
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField11: TppField
-      Alignment = taRightJustify
       FieldAlias = 'combustivel'
       FieldName = 'combustivel'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 10
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField12: TppField
       FieldAlias = 'dataabastecimento'
       FieldName = 'dataabastecimento'
       FieldLength = 0
-      DataType = dtDate
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 11
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField13: TppField
       FieldAlias = 'hora'
       FieldName = 'hora'
       FieldLength = 0
-      DataType = dtTime
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 12
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField14: TppField
-      Alignment = taRightJustify
       FieldAlias = 'syncaws'
       FieldName = 'syncaws'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 13
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField15: TppField
-      Alignment = taRightJustify
       FieldAlias = 'syncfaz'
       FieldName = 'syncfaz'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 14
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField16: TppField
       FieldAlias = 'combustivelnome'
       FieldName = 'combustivelnome'
       FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 15
       Searchable = False
       Sortable = False
@@ -43094,62 +42659,79 @@ object dmReport: TdmReport
     object ppDBPListaFotoppField17: TppField
       FieldAlias = 'localestoquenome'
       FieldName = 'localestoquenome'
-      FieldLength = 50
-      DisplayWidth = 50
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 16
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField18: TppField
       FieldAlias = 'maquinaprefixo'
       FieldName = 'maquinaprefixo'
-      FieldLength = 20
-      DisplayWidth = 20
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 17
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField19: TppField
       FieldAlias = 'operador'
       FieldName = 'operador'
-      FieldLength = 50
-      DisplayWidth = 50
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 18
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField20: TppField
-      Alignment = taRightJustify
       FieldAlias = 'horimetro'
       FieldName = 'horimetro'
-      FieldLength = 3
-      DataType = dtDouble
-      DisplayWidth = 16
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 19
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField21: TppField
-      Alignment = taRightJustify
       FieldAlias = 'idatividade'
       FieldName = 'idatividade'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 20
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField22: TppField
       FieldAlias = 'atividade'
       FieldName = 'atividade'
-      FieldLength = 50
-      DisplayWidth = 50
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 21
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField23: TppField
       FieldAlias = 'obs'
       FieldName = 'obs'
-      FieldLength = 100
-      DisplayWidth = 100
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 22
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField24: TppField
       FieldAlias = 'img'
       FieldName = 'img'
       FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 23
       Searchable = False
       Sortable = False
@@ -43158,8 +42740,8 @@ object dmReport: TdmReport
       FieldAlias = 'img2'
       FieldName = 'img2'
       FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 24
       Searchable = False
       Sortable = False
@@ -43168,8 +42750,8 @@ object dmReport: TdmReport
       FieldAlias = 'img3'
       FieldName = 'img3'
       FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 25
       Searchable = False
       Sortable = False
@@ -43178,8 +42760,8 @@ object dmReport: TdmReport
       FieldAlias = 'img4'
       FieldName = 'img4'
       FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 26
       Searchable = False
       Sortable = False
@@ -43188,29 +42770,31 @@ object dmReport: TdmReport
       FieldAlias = 'img5'
       FieldName = 'img5'
       FieldLength = 0
-      DataType = dtMemo
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 27
       Searchable = False
       Sortable = False
     end
     object ppDBPListaFotoppField29: TppField
-      Alignment = taRightJustify
       FieldAlias = 'valorlitro'
       FieldName = 'valorlitro'
-      FieldLength = 3
-      DataType = dtDouble
-      DisplayWidth = 16
+      FieldLength = 0
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 28
+      Searchable = False
+      Sortable = False
     end
     object ppDBPListaFotoppField30: TppField
-      Alignment = taRightJustify
       FieldAlias = 'externo'
       FieldName = 'externo'
       FieldLength = 0
-      DataType = dtInteger
-      DisplayWidth = 10
+      DataType = dtNotKnown
+      DisplayWidth = 0
       Position = 29
+      Searchable = False
+      Sortable = False
     end
   end
   object dsListaFoto: TDataSource
@@ -43349,7 +42933,7 @@ object dmReport: TdmReport
     PassSetting = psTwoPass
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -45116,7 +44700,7 @@ object dmReport: TdmReport
           DataPipeline = ppDBMaquinaFechamento
           PrinterSetup.BinName = 'Default'
           PrinterSetup.DocumentName = 'Report'
-          PrinterSetup.PaperName = 'A4'
+          PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
           PrinterSetup.PrinterName = 'Default'
           PrinterSetup.SaveDeviceSettings = False
           PrinterSetup.mmMarginBottom = 6350
@@ -45648,7 +45232,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -48166,7 +47750,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -50883,7 +50467,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
@@ -53320,7 +52904,7 @@ object dmReport: TdmReport
     PrinterSetup.BinName = 'Default'
     PrinterSetup.DocumentName = 'Report'
     PrinterSetup.Orientation = poLandscape
-    PrinterSetup.PaperName = 'A4'
+    PrinterSetup.PaperName = 'A4 (8.2 x 11.7 in; 210 x 297 mm)'
     PrinterSetup.PrinterName = 'Default'
     PrinterSetup.SaveDeviceSettings = False
     PrinterSetup.mmMarginBottom = 6350
